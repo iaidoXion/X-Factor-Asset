@@ -1,6 +1,15 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+class MenuSetting(models.Model):
+    menuId = models.CharField(max_length=50)
+    menuName = models.CharField(max_length=200)
+    menuUrl = models.CharField(max_length=200)
+    menuImg = models.CharField(max_length=200)
+    menuUse = models.CharField(max_length=10)
+    menuNote = models.TextField()
+    menuCreateDate = models.DateTimeField()
+
 
 class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_question')

@@ -8,5 +8,6 @@ urlpatterns = [
     path('web/', include('web.urls')),
     path('common/', include('common.urls')),
     path('', base_views.index, name='index'),  # '/' 에 해당되는 path
-    path('question/list/', base_views.list, name='list'),  # '/' 에 해당되는 path
+    path('dashboard/', base_views.dashboard, name='dashboard'),
+    path('question/list/', base_views.list, name='list'),
 ]

@@ -7,6 +7,7 @@ app_name = 'web'
 urlpatterns = [
     # base
     path('', base_views.index, name='index'),
+    path('dashboard/', base_views.dashboard, name='dashboard'),
     path('question/list/', base_views.list, name='list'),
     path('<int:question_id>/', base_views.detail, name='detail'),
 
