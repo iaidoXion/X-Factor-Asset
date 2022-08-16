@@ -1,11 +1,16 @@
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-
+from web.model.dashboardFun import DashboardDataList
 from web.models import Question
 
 
 def index(request):
+    chartData = DashboardDataList()
+    #MapUse = {"WorldUse" : WorldUse, "KoreaUse" : KoreaUse, "AreaUse" : AreaUse, "ZoneUse" : ZoneUse}
+    #returnData = { 'menuList': menuSettingList, 'chartData' : chartData, 'MapUse' : MapUse, 'Customer' : Customer}
+    returnData = {'chartData' : chartData}
+    #print(chartData)
     return render(request, 'web/index.html')
 
 

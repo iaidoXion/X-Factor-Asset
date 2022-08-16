@@ -1,0 +1,61 @@
+{
+  "PROJECT" : {
+    "CORE" : "Tanium",
+    "CUSTOMER" : "Xfactor",
+    "TYPE" : "System",
+    "MAP" : {
+      "World" : "block",
+      "Korea" : "block",
+      "Area" : "block",
+      "Zone" : "block"
+    },
+    "Alarm" : {
+      "StandardDate" : "2022-07-11",
+      "RamUsage" : 60,
+      "Case" : {
+        "First" : "Drive Size No Change",
+        "Second" : "No Login History",
+        "Third" : "RAM Usage Exceeded",
+        "Fourth" : "Listen Port No Change",
+        "Fifth" : "Established Port No Change"
+      }
+    }
+  },
+   "API" : {
+    "apiUrl" : "https://192.168.5.100",
+    "Authorization" : "Basic QWRtaW5pc3RyYXRvcjp4aW9uMTIzIQ==",
+    "ContentType" : "application/json",
+     "PATH" : {
+       "SesstionKey" : "/auth",
+       "Asset" : "/plugin/products/asset/v1/assets",
+       "Sensor" : "/api/v2/result_data/saved_question/",
+       "Questions" : {
+         "Saved" : "/api/v2/saved_questions"
+       }
+     },
+     "SensorID": "2187"
+  },
+  "MODULE" : {
+    "DataLoadingType" : "DB"
+  },
+  "DB" : {
+    "DBHost" : "192.168.5.160",
+    "DBName" : "postgres",
+    "DBUser" : "postgres",
+    "DBPwd" : "psql",
+    "AssetTNM" : "daily_asset",
+    "StatisticsTNM" : "daily_statistics"
+  },
+  "FILE" : {
+    "asset": {
+      "Storage" : "data/asset/daily/",
+      "FileName" : "Asset_",
+      "FileType" : ".json"
+    },
+    "statistics" : {
+      "Storage" : "data/statistics/daily/",
+      "FileName" : "Statistics_",
+      "FileType" : ".json"
+    }
+  }
+}
