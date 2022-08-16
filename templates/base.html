@@ -22,9 +22,11 @@
 	<link href="{% static 'assets/plugins/jvectormap-next/jquery-jvectormap.css' %}" rel="stylesheet" />
 	<!-- ================== END page-css ================== -->
 </head>
-<body>
+<body class="theme-orange">
 <!-- 네비게이션바 -->
 {% include "navbar.html" %}
+<!-- 사이드바 -->
+{% include "sidebar.html" %}
 <!-- 기본 템플릿 안에 삽입될 내용 Start -->
 {% block content %}
 {% endblock %}
