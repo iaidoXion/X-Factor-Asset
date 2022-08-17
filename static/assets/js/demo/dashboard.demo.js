@@ -252,11 +252,11 @@ var handleRenderChart = function() {
       }
     }
   };
-  var apexServerChart = new ApexCharts(
-    document.querySelector('#chart-server'),
-    serverChartOptions
-  );
-  apexServerChart.render();
+//  var apexServerChart = new ApexCharts(
+//    document.querySelector('#chart-server'),
+//    serverChartOptions
+//  );
+//  apexServerChart.render();
 };
 
 var handleRenderMap = function() {
@@ -335,7 +335,8 @@ $(document).ready(function() {
 	handleRenderMap();
 	
 	document.addEventListener('theme-reload', function() {
-		$('[data-render="apexchart"], #chart-server, #world-map').empty();
+//		$('[data-render="apexchart"], #chart-server, #world-map').empty();
+		$('[data-render="apexchart"], #world-map').empty();
 		handleRenderChart();
 		handleRenderMap();
 	});
