@@ -635,3 +635,20 @@ stroke-width: 0.2px; stroke: #fff;
     font-family: sans-serif;
     font-size: 20px;
 }
+
+#apexRadarChart {
+    width: 60%;
+}
+
+.raderRightWrap{
+    width: 40%;
+    background : pink;
+    margin-left: 60%;
+}
+
+.raderRightWrap div{
+    width: 100%;
+    height: 50%;
+    background: skyblue;
+    padding: 1rem;
+}
