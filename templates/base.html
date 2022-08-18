@@ -32,6 +32,9 @@
 {% endblock %}
 <!-- 기본 템플릿 안에 삽입될 내용 End -->
 <!-- Bootstrap JS -->
+<script>
+	a = {{chartData|safe}};
+</script>
 <script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <!-- ================== BEGIN core-js ================== -->
 <script src="{% static 'assets/js/vendor.min.js' %}"></script>
@@ -52,7 +55,7 @@
 
 		ga('create', 'UA-53034621-1', 'auto');
 		ga('send', 'pageview');
-
+		
 	</script>
 </body>
 </html>

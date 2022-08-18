@@ -6,7 +6,6 @@ Website: http://www.seantheme.com/hud/
 */
 
 var lineChart, barChart, radarChart, polarAreaChart, pieChart, doughnutChart;
-
 var handleRenderChartJs = function() {
 	Chart.defaults.font.family = app.font.family;
 	Chart.defaults.color = 'rgba('+ app.color.whiteRgb +', .2)' +', .5)';
@@ -21,6 +20,7 @@ var handleRenderChartJs = function() {
 	
 	
 	var ctx = document.getElementById('lineChart');
+	
 	lineChart = new Chart(ctx, {
 		type: 'line',
 		data: {
