@@ -446,39 +446,41 @@
 				<!-- BEGIN card-body -->
 				<div class="card-body h-130px">
 					<!-- BEGIN als-slide -->
-					<div class="als-container" id="demo2">
-						<span class="als-prev"><img src="{% static 'img/common/dashboard/arrowPrev.png' %}"/></span>
-						<div class="als-viewport">
-							<ul class="als-wrapper">
-								{% if chartData.bannerDataList %}
-								{% for bannerData in chartData.bannerDataList %}
-								<li class="als-item">
-									<div class="conBotTop">{{bannerData.name}} Count</div>
-									<div class="conBotBot">
-										<p class="botConTotalNum">{{bannerData.value}}</p>
-										<div class="my-float-left conBotImg">
-											{% if bannerData.roc == 0 %}
-											<a class="conBotIcon"> - </a>
-											{% elif bannerData.roc > 0 %}
-											<img src="{% static 'img/common/dashboard/arrowTop.png' %}">
-											{% else %}
-											<img src="{% static 'img/common/dashboard/arrowBot.png' %}">
-											{% endif %}
+					<div class="alsWrap">
+						<div class="als-container" id="demo2">
+							<span class="als-prev"><img src="{% static 'img/common/dashboard/arrowPrev.png' %}"/></span>
+							<div class="als-viewport">
+								<ul class="als-wrapper">
+									{% if chartData.bannerDataList %}
+									{% for bannerData in chartData.bannerDataList %}
+									<li class="als-item">
+										<div class="conBotTop">{{bannerData.name}} Count</div>
+										<div class="conBotBot">
+											<p class="botConTotalNum">{{bannerData.value}}</p>
+											<div class="my-float-left conBotImg">
+												{% if bannerData.roc == 0 %}
+												<a class="conBotIcon"> - </a>
+												{% elif bannerData.roc > 0 %}
+												<img src="{% static 'img/common/dashboard/arrowTop.png' %}">
+												{% else %}
+												<img src="{% static 'img/common/dashboard/arrowBot.png' %}">
+												{% endif %}
+											</div>
+											<p class="botConNum my-float-left">
+												{% if bannerData.roc < 0 %}
+												{% widthratio bannerData.roc 1 -1 %}
+												{% else %}
+												{{bannerData.roc}}
+												{% endif %}
+											</p>
 										</div>
-										<p class="botConNum my-float-left">
-											{% if bannerData.roc < 0 %}
-											{% widthratio bannerData.roc 1 -1 %}
-											{% else %}
-											{{bannerData.roc}}
-											{% endif %}
-										</p>
-									</div>
-								</li>
-								{% endfor %}
-								{% endif %}
-							</ul>
+									</li>
+									{% endfor %}
+									{% endif %}
+								</ul>
+							</div>
+							<span class="als-next"><img src="{% static 'img/common/dashboard/arrowNext.png' %}"/></span>
 						</div>
-						<span class="als-next"><img src="{% static 'img/common/dashboard/arrowNext.png' %}"/></span>
 					</div>
 					<!-- END als-slide -->
 				</div>
