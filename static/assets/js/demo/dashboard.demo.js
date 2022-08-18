@@ -114,10 +114,14 @@ https: var handleRenderChart = function () {
       show: false,
     };
 	  if (chartType == "bar") {
-		BarValue = []
-		for (x in a.barChartDataList) {
-			BarValue.push(a.barChartDataList[x].value);
-		}
+      BarValue = []
+      for (x in a.barChartDataList) {
+        dict = {
+          'x': a.barChartDataList[x].name, 'y':a.barChartDataList[x].value
+        };
+        BarValue.push(dict);
+      }
+      console.log(BarValue);
       chartColors = [
         getRandomColor(),
         "rgba(" + app.color.themeRgb + ", .75)",
@@ -131,10 +135,11 @@ https: var handleRenderChart = function () {
           endingShape: "rounded",
         },
       };
+      console.log(BarValue);
       chartData = [
         {
-          name: chartTitle,
-			    data: BarValue,
+          name: "",
+          data: BarValue,
         },
       ];
 	  } else if (chartType == "pie") {
@@ -176,7 +181,8 @@ https: var handleRenderChart = function () {
       NoteBook = [];
 		Desktop = [];
 		RMC = [];
-		Virtual = [];
+      Virtual = [];
+      list = ["{x: }"]
 		for (x in a.lineChartDataList) {
 			if (a.lineChartDataList[x].name == "Notebook") {
           dict = { 'x': a.lineChartDataList[x].date, 'y': a.lineChartDataList[x].value };
@@ -192,8 +198,6 @@ https: var handleRenderChart = function () {
           Virtual.push(dict);
         }
       }
-      // console.log(NoteBook)
-      // console.log(NoteBook[0]['x'])
 		chartColors = [
 			getRandomColor(),
 			getRandomColor(),
@@ -202,33 +206,20 @@ https: var handleRenderChart = function () {
 		];
 		chartData = [
       {
+        name: "Desktop",
+        data: Desktop,
+      },
+      {
         name: "NoteBook",
-        data: [
-          {
-            x: "02-10-2017 GMT",
-            y: 34,
-          },
-          {
-            x: "02-11-2017 GMT",
-            y: 43,
-          },
-          {
-            x: "02-12-2017 GMT",
-            y: 31,
-          },
-          {
-            x: "02-13-2017 GMT",
-            y: 43,
-          },
-          {
-            x: "02-14-2017 GMT",
-            y: 33,
-          },
-          {
-            x: "02-15-2017 GMT",
-            y: 52,
-          },
-        ],
+        data: NoteBook,
+      },
+      {
+        name: "RMC",
+        data: RMC,
+      },
+      {
+        name: "Virtual",
+        data: Virtual,
       },
     ];
 		chartStroke = {
@@ -266,7 +257,7 @@ https: var handleRenderChart = function () {
         y: {
           title: {
             formatter: function (seriesName) {
-              return "";
+              return "" + seriesName;
             },
           },
           formatter: (value) => {
@@ -345,7 +336,7 @@ https: var handleRenderChart = function () {
     xaxis: {
       categories: ['Desktop', 'Notebook', 'Rack', 'Virtual'],
       labels: {
-        show: false,
+        show: true,
       },
     },
     fill: {

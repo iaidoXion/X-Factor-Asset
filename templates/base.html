@@ -40,6 +40,7 @@
 	a = {{chartData|safe}};
 </script>
 <script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
 <!-- ================== BEGIN core-js ================== -->
 <script src="{% static 'assets/js/vendor.min.js' %}"></script>
 <script src="{% static 'assets/js/app.min.js' %}"></script>
@@ -58,6 +59,7 @@
 <script src="{% static 'assets/plugins/jvectormap-next/jquery-jvectormap.min.js' %}"></script>
 <script src="{% static 'assets/plugins/jvectormap-content/world-mill.js' %}"></script>
 <script src="{% static 'assets/plugins/apexcharts/dist/apexcharts.min.js' %}"></script>
+<script src="{% static 'assets/plugins/chart.js/dist/chart.min.js' %}"></script>
 <script src="{% static 'assets/js/demo/dashboard.demo.js' %}"></script>
 <script src="{% static 'js/common/nav.js' %}"></script>
 <script src="{% static 'js/common/als-slide.js' %}"></script>
@@ -70,7 +72,74 @@
 
 		ga('create', 'UA-53034621-1', 'auto');
 		ga('send', 'pageview');
-		
+
+  var apexRadarChartOptions = {
+    chart: {
+      toolbar: {
+        show: false
+      },
+      height: '100%',
+      width: '100%',
+      type: 'radar',
+    },
+    responsive: [{
+    breakpoint: undefined,
+    options: {},
+    }],
+    series: [{
+      name: 'Series 1',
+      data: [20, 100, 40, 30, 50, 80, 33],
+    }],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    plotOptions: {
+      radar: {
+        size: 200,
+        polygons: {
+          strokeColors: 'rgba('+ app.color.whiteRgb +', .25)',
+          strokeWidth: 1,
+          connectorColors: 'rgba('+ app.color.whiteRgb +', .25)',
+          fill: {
+            colors: ['rgba('+ app.color.gray300Rgb +', .25)', 'rgba('+ app.color.whiteRgb +', .25)']
+          }
+        }
+      }
+    },
+    title: {
+      text: ''
+    },
+    colors: [app.color.theme],
+    markers: {
+      size: 4,
+      colors: [app.color.theme],
+      strokeColor: app.color.theme,
+      strokeWidth: 2,
+    },
+    tooltip: {
+      y: {
+        formatter: function(val) {
+          return val
+        }
+      }
+    },
+    yaxis: {
+      tickAmount: 7,
+      labels: {
+        formatter: function(val, i) {
+          if (i % 2 === 0) {
+            return val
+          } else {
+            return ''
+          }
+        }
+      }
+    }
+  }
+  var apexRadarChart = new ApexCharts(
+    document.querySelector('#apexRadarChart'),
+    apexRadarChartOptions
+  );
+  apexRadarChart.render();
+
 	</script>
 </body>
 </html>

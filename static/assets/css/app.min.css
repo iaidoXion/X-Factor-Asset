@@ -8421,6 +8421,9 @@ height: 100%
 .ratio-16x9 {
 --bs-aspect-ratio: 56.25%
 }
+.my-ratio-16x9 {
+--bs-aspect-ratio: 56.757%
+}
 .ratio-21x9 {
 --bs-aspect-ratio: 42.8571428571%
 }
