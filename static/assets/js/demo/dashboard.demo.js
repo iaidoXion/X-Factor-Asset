@@ -221,22 +221,34 @@ var handleRenderChart = function() {
     stroke: {
       show: false
     },
-    colors: ['rgba('+ app.color.whiteRgb + ', .25)', app.color.theme],
+    colors: ['rgba('+ app.color.themeRgb + ', .35)', 'rgba('+ app.color.themeRgb + ', .55)', 'rgba('+ app.color.themeRgb + ', .75)', 'rgba('+ app.color.themeRgb + ', .95)'],
     series: [{
-    	name: 'MEMORY USAGE',
+    	name: 'Desktop',
       data: [
       	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(),
       	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()
       ]
     },{
-    	name: 'CPU USAGE',
+    	name: 'Notebook',
+      data: [
+      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(),
+      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()
+      ]
+    },{
+    	name: 'Rack',
+      data: [
+      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(),
+      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()
+      ]
+    },{
+    	name: 'Virtual',
       data: [
       	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(),
       	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()
       ]
     }],
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      categories: ['Desktop', 'Notebook', 'Rack', 'Virtual'],
       labels: {
 				show: false
 			}
@@ -252,11 +264,11 @@ var handleRenderChart = function() {
       }
     }
   };
-//  var apexServerChart = new ApexCharts(
-//    document.querySelector('#chart-server'),
-//    serverChartOptions
-//  );
-//  apexServerChart.render();
+  var apexServerChart = new ApexCharts(
+    document.querySelector('#chart-server'),
+    serverChartOptions
+  );
+  apexServerChart.render();
 };
 
 var handleRenderMap = function() {
@@ -335,8 +347,7 @@ $(document).ready(function() {
 	handleRenderMap();
 	
 	document.addEventListener('theme-reload', function() {
-//		$('[data-render="apexchart"], #chart-server, #world-map').empty();
-		$('[data-render="apexchart"], #world-map').empty();
+	$('[data-render="apexchart"], #chart-server, #world-map').empty();
 		handleRenderChart();
 		handleRenderMap();
 	});
