@@ -44,7 +44,8 @@
     "DBUser" : "postgres",
     "DBPwd" : "psql",
     "AssetTNM" : "daily_asset",
-    "StatisticsTNM" : "daily_statistics"
+    "StatisticsTNM" : "daily_statistics",
+    "MenuTNM": "web_menusetting"
   },
   "FILE" : {
     "asset": {

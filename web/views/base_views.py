@@ -2,10 +2,11 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-from web.models import Question, MenuSetting
+from web.models import Question
 from web.model.dashboard_function import DashboardData
+from common.menu import MenuSetting
 
-menuListDB = MenuSetting.objects.order_by('id')
+menuListDB = MenuSetting()
 
 
 # @login_required(login_url='common:login')
