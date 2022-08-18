@@ -1,268 +1,75 @@
-.container-frame {
-    width: 100%;
-    background-color: #f8f9fc;
-    min-height: 837px;
-    margin-top: 20px;
+/*************************************
+ * generic styling for ALS elements
+ ************************************/
+.als-container {
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+}
+
+.als-viewport {
+	position: relative;
+	overflow: hidden;
+	margin: 0px auto;
+}
+
+.als-wrapper {
+	position: relative;
+	list-style: none;
+}
+
+.als-item {
+	position: relative;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+}
+
+.als-prev, .als-next {
+	position: absolute;
+	cursor: pointer;
+	clear: both;
+}
+
+/*************************************
+ * specific styling for #demo2
+ ************************************/
+
+.alsWrap {
+    width: 1807px;
+    height: 87px;
     position: relative;
 }
-
-.container-color {
-    background-color: #f8f9fc;
+#demo2 {
+width: 100%;
+margin: 0 auto;
 }
 
-.container-child-color {
-    background-color: #ffffff;
+#demo2 .als-item {
+	min-height: 80px;
+	width: 175px;
+	text-align: center;
 }
 
-.content-title {
-    width: 100%;
-    height: 35px;
-    padding:10px;
-    font-size:12px;
+#demo2 .als-item img {
+	display: block;
+	margin: 0 auto;
+	vertical-align: middle;
 }
 
-.conText{
-    margin-left: 20px;
-    margin-top: 3px;
+#demo2 .als-prev, #demo2 .als-next {
+	top: 28px;
 }
 
-.mapChartTitle {
-    width: 30%;
-    min-height: 25px;
-    padding:10px;
-    font-size:12px;
-    float: left;
+#demo2 .als-prev {
+	left: 1.7%;
 }
 
-.mapChartMenuWorld{
-    width: 27%;
-    min-height: 25px;
-    float: right;
-    padding: 3px;
-    padding-top: 23px;
+#demo2 .als-next {
+	right: 1.7%;
 }
 
-.mapChartMenuKorea{
-    width: 100%;
-    min-height: 25px;
-    padding:10px;
-    display: none;
-    padding-top: 20px;
-}
-
-.mapChartMenuWrap{
-    margin-left: 9%;
-}
-
-.mapChartMenuWrap button{
-    padding-right: 13px;
-    padding-left: 13px;
-    width: 19.55%;
-}
-
-.world-map{
-    width: 100%;
-}
-
-.korea-map{
-    width: 100%;
-    display: none;
-}
-.si-map{
-    width: 100%;
-    display: none;
-}
-.gu-map{
-    width: 100%;
-    display: none;
-}
-.dong-map{
-    display: none;
-}
-
-#worldMap{
-    float: left;
-    margin-left: 0.05%;
-}
-#koreaMap{
-    margin-left: 5.9%;
-    float: left;
-}
-#siMap{
-    float: left;
-}
-
-.container-top{
-    width: 100%;
-    min-height: 200px;
-    margin-bottom: 20px;
-}
-
-.container-top-child {
-    width: 98%;
-    min-height: 200px;
-    background-color: #ffffff;
-    margin: 0 auto;
-}
-.gaugeWrap {
-    width:100%;
-    float:left;
-}
-.gaugeWrap>li{
-    display:block;
-    width:16.66%;
-    float:left;
-}
-.container-mid{
-    width: 100%;
-    min-height: 680px;
-    margin-bottom: 20px;
-}
-
-.container-center {
-    width: 72%;
-    height: 680px;
-
-}
-
-.mapLeft{
-    width: 73%;
-    height: 635px;
-    float: left;
-    padding-top: 52px;
-}
-
-.mapRight{
-    width: 25%;
-    height: 618px;
-    float: right;
-    margin-right: 1.8%;
-}
-
-.mapRightWrap{
-    width: 100%;
-    margin: 0 auto;
-}
-
-.mapRightWrap li{
-    margin: 0 auto;
-    background: #fff;
-    width: 80%;
-    height: 98px;
-    margin-top: 21px;
-    border: 1px solid #e3e6f0;
-    background: #f7f7f7;
-    color: #858796;
-}
-
-.mapGps{
-    float: left;
-    margin-left: 5%;
-    min-height: 97px;
-}
-.mapGps img{
-    margin-top: 25px;
-    width: 35px;
-    height: 35px;
-}
-
-.mapCont{
-    float: left;
-    font-size: 13px;
-    padding: 20px;
-    margin-left: 10px;
-    width: 78%;
-    height: 97px;
-    line-height: 17px;
-}
-.mapContTop{
-    font-size: 0.7em;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.container-left {
-    width: 25%;
-    min-height: 680px;
-    margin-left: 1%;
-    margin-right: 1%;
-}
-
-.container-left-top{
-    width: 100%;
-    min-height: 213px;
-}
-
-.container-left-bot{
-    width: 100%;
-    min-height: 214px;
-    margin-top: 20px;
-}
-
-.container-bot {
-    width: 98%;
-    height: 138px;
-    background-color: #ffffff;
-    margin: 0 auto;
-    margin-bottom: 21px;
-}
-
-#popWorld{
-    width: 100%;
-    height: 400px;
-    background: #fff;
-    position: absolute;
-    top: 20px;
-    left: 1%;
-    text-align: center;
-    border: 1px solid #e3e6f0;
-    z-index: 8888;
-}
-
-.pop-korea{
-    width: 800px;
-    height: 460px;
-    background: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    border: 1px solid #e3e6f0;
-    z-index: 8888;
-}
-
-.popClose{
-    padding: 10px;
-    float: right;
-    text-decoration: none;
-}
-
-.popMap{
-    width: 750px;
-    height: 460px;
-    margin: auto;
-}
-
-.popTable thead {
-    background: #e18a0a;
-    color: #fff;
-}
-
-table.popTable tbody tr.even {
-    background-color: #faf8f0;
-}
-
-.shadow{
-    position: fixed;
-    left: 0;top: 0;
-    background: rgba(0, 0, 0, 0.1);
-    width: 100%;
-    height: 100vh;
-    display: none;
-    z-index: 7777;
-}
 
 .botConTotalNum{
     font-size: 19px;
