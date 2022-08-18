@@ -7,13 +7,14 @@ from web.model.dashboard_function import DashboardData
 
 menuListDB = MenuSetting.objects.order_by('id')
 
-@login_required(login_url='common:login')
+
+# @login_required(login_url='common:login')
 def index(request) :
     returnData = {'menuList': menuListDB}
     return render(request, 'web/index.html', returnData)
 
 
-@login_required(login_url='common:login')
+#@login_required(login_url='common:login')
 def dashboard(request):
     #MapUse = {"WorldUse" : WorldUse, "KoreaUse" : KoreaUse, "AreaUse" : AreaUse, "ZoneUse" : ZoneUse}
     #returnData = { 'menuList': menuSettingList, 'chartData' : chartData, 'MapUse' : MapUse, 'Customer' : Customer}

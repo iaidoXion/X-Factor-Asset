@@ -4,259 +4,426 @@ Version: 1.8.0
 Author: Sean Ngu
 Website: http://www.seantheme.com/hud/
 */
-
+//console.log(a); 
 var randomNo = function() {
   return Math.floor(Math.random() * 60) + 30
 };
+//console.log(a.barChartDataList);
 
-var handleRenderChart = function() {
-	// global apexchart settings
-	Apex = {
-		title: {
-			style: {
-				fontSize:  '14px',
-				fontWeight:  'bold',
-				fontFamily:  app.font.family,
-				color:  app.color.white
-			},
-		},
-		legend: {
-			fontFamily: app.font.family,
-			labels: {
-				colors: '#fff'
-			}
-		},
-		tooltip: {
-			style: {
-        fontSize: '12px',
-        fontFamily: app.font.family
-      }
-		},
-		grid: {
-			borderColor: 'rgba('+ app.color.whiteRgb + ', .25)',
-		},
-		dataLabels: {
-			style: {
-				fontSize: '12px',
-				fontFamily: app.font.family,
-				fontWeight: 'bold',
-				colors: undefined
-  		}
-		},
-		xaxis: {
-			axisBorder: {
-				show: true,
-				color: 'rgba('+ app.color.whiteRgb + ', .25)',
-				height: 1,
-				width: '100%',
-				offsetX: 0,
-				offsetY: -1
-			},
-			axisTicks: {
-				show: true,
-				borderType: 'solid',
-				color: 'rgba('+ app.color.whiteRgb + ', .25)',
-				height: 6,
-				offsetX: 0,
-				offsetY: 0
-			},
+function getRandomColor() {
+	var letters = "0123456789ABCDEF";
+	var color = "#";
+	for (var i = 0; i < 6; i++) {
+	color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+}
+
+https: var handleRenderChart = function () {
+  // global apexchart settings
+  Apex = {
+    title: {
+      style: {
+        fontSize: "14px",
+        fontWeight: "bold",
+        fontFamily: app.font.family,
+        color: app.color.white,
+      },
+    },
+    legend: {
+      fontFamily: app.font.family,
       labels: {
-				style: {
-					colors: '#fff',
-					fontSize: '12px',
-					fontFamily: app.font.family,
-					fontWeight: 400,
-					cssClass: 'apexcharts-xaxis-label',
-				}
-			}
-		},
-		yaxis: {
+        colors: "#fff",
+        show: true,
+      },
+    },
+    tooltip: {
+      style: {
+        fontSize: "12px",
+        fontFamily: app.font.family,
+      },
+    },
+    grid: {
+      borderColor: "rgba(" + app.color.whiteRgb + ", .25)",
+    },
+    dataLabels: {
+      style: {
+        fontSize: "12px",
+        fontFamily: app.font.family,
+        fontWeight: "bold",
+        colors: undefined,
+      },
+    },
+    xaxis: {
+      axisBorder: {
+        show: true,
+        color: "rgba(" + app.color.whiteRgb + ", .25)",
+        height: 1,
+        width: "100%",
+        offsetX: 0,
+        offsetY: -1,
+      },
+      axisTicks: {
+        show: true,
+        borderType: "solid",
+        color: "rgba(" + app.color.whiteRgb + ", .25)",
+        height: 6,
+        offsetX: 0,
+        offsetY: 0,
+      },
       labels: {
-				style: {
-					colors: '#fff',
-					fontSize: '12px',
-					fontFamily: app.font.family,
-					fontWeight: 400,
-					cssClass: 'apexcharts-xaxis-label',
-				}
-			}
-		}
-	};
-  
-  
+        style: {
+          colors: "#fff",
+          fontSize: "12px",
+          fontFamily: app.font.family,
+          fontWeight: 400,
+          cssClass: "apexcharts-xaxis-label",
+        },
+      },
+    },
+    yaxis: {
+      min: 0,
+      max: 20,
+      labels: {
+        style: {
+          colors: "#fff",
+          fontSize: "12px",
+          fontFamily: app.font.family,
+          fontWeight: 400,
+          cssClass: "apexcharts-xaxis-label",
+        },
+      },
+    },
+  };
+
   // small stat chart
-	var x = 0;
-	var chart = [];
-	
-	var elmList = [].slice.call(document.querySelectorAll('[data-render="apexchart"]'));
-	elmList.map(function(elm) {
-		var chartType = elm.getAttribute('data-type');
-		var chartHeight = elm.getAttribute('data-height');
-		var chartTitle = elm.getAttribute('data-title');
-		var chartColors = [];
-		var chartPlotOptions = {};
-		var chartData = [];
-		var chartStroke = {
-			show: false
-		};
-		if (chartType == 'bar') {
-			chartColors = [app.color.theme];
-			chartPlotOptions = {
-				bar: {
-					horizontal: false,
-					columnWidth: '65%',
-					endingShape: 'rounded'
-				}
-			};
-			chartData = [{
-				name: chartTitle,
-				data: [randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()]
-			}];
-		} else if (chartType == 'pie') {
-			chartColors = ['rgba('+ app.color.themeRgb + ', 1)', 'rgba('+ app.color.themeRgb + ', .75)', 'rgba('+ app.color.themeRgb + ', .5)'];
-			chartData = [randomNo(), randomNo(), randomNo()];
-		} else if (chartType == 'donut') {
-			chartColors = ['rgba('+ app.color.themeRgb + ', .15)', 'rgba('+ app.color.themeRgb + ', .35)', 'rgba('+ app.color.themeRgb + ', .55)', 'rgba('+ app.color.themeRgb + ', .75)', 'rgba('+ app.color.themeRgb + ', .95)'];
-			chartData = [randomNo(), randomNo(), randomNo(), randomNo(), randomNo()];
-			chartStroke = {
-				show: false,
-				curve: 'smooth',
-				lineCap: 'butt',
-				colors: 'rgba(' + app.color.blackRgb + ', .25)',
-				width: 2,
-				dashArray: 0,    
-			};
-			chartPlotOptions = {
-				pie: {
-					donut: {
-						background: 'transparent',
-					}
-				}
-			};
-		} else if (chartType == 'line') {
-			chartColors = [app.color.theme];
-			chartData = [{
-				name: chartTitle,
-				data: [randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()]
-			}];
-			chartStroke = {
-				curve: 'straight',
-				width: 2
-			};
+  var x = 0;
+  var chart = [];
+
+  var elmList = [].slice.call(
+    document.querySelectorAll('[data-render="apexchart"]')
+  );
+  elmList.map(function (elm) {
+    var chartType = elm.getAttribute("data-type");
+    var chartHeight = elm.getAttribute("data-height");
+    var chartTitle = elm.getAttribute("data-title");
+    var chartColors = [];
+    var chartPlotOptions = {};
+    var chartData = [];
+    var chartStroke = {
+      show: false,
+    };
+	  if (chartType == "bar") {
+		BarValue = []
+		for (x in a.barChartDataList) {
+			BarValue.push(a.barChartDataList[x].value);
 		}
-	
-		var chartOptions = {
-			chart: {
-				height: chartHeight,
-				type: chartType,
-				toolbar: {
-					show: false
-				},
-				sparkline: {
-					enabled: true
-				},
-			},
-			dataLabels: {
-				enabled: false
-			},
-			colors: chartColors,
-			stroke: chartStroke,
-			plotOptions: chartPlotOptions,
-			series: chartData,
-			grid: {
-				show: false
-			},
-			tooltip: {
-				theme: 'dark',
-				x: {
-					show: false
-				},
-				y: {
-					title: {
-						formatter: function (seriesName) {
-							return ''
-						}
-					},
-					formatter: (value) => { return ''+ value },
-				}
-			},
-			xaxis: {
-				labels: {
-					show: false
-				}
-			},
-			yaxis: {
-				labels: {
-					show: false
-				}
-			}
+      chartColors = [
+        getRandomColor(),
+        "rgba(" + app.color.themeRgb + ", .75)",
+        "rgba(" + app.color.themeRgb + ", .75)",
+        "rgba(" + app.color.themeRgb + ", .75)",
+      ];
+      chartPlotOptions = {
+        bar: {
+          horizontal: false,
+          columnWidth: "65%",
+          endingShape: "rounded",
+        },
+      };
+      chartData = [
+        {
+          name: chartTitle,
+			    data: BarValue,
+        },
+      ];
+	  } else if (chartType == "pie") {
+		  pieValue = []
+		  for (x in a.pieChartDataList) {
+			  pieValue.push(a.pieChartDataList[x].value);
+		  }
+      chartColors = [
+        "rgba(" + app.color.themeRgb + ", 1)",
+        "rgba(" + app.color.themeRgb + ", .75)",
+        "rgba(" + app.color.themeRgb + ", .5)",
+      ];
+      chartData = pieValue;
+    } else if (chartType == "donut") {
+      chartColors = [
+        "rgba(" + app.color.themeRgb + ", .15)",
+        "rgba(" + app.color.themeRgb + ", .35)",
+        "rgba(" + app.color.themeRgb + ", .55)",
+        "rgba(" + app.color.themeRgb + ", .75)",
+        "rgba(" + app.color.themeRgb + ", .95)",
+      ];
+      chartData = [randomNo(), randomNo(), randomNo(), randomNo(), randomNo()];
+      chartStroke = {
+        show: false,
+        curve: "smooth",
+        lineCap: "butt",
+        colors: "rgba(" + app.color.blackRgb + ", .25)",
+        width: 2,
+        dashArray: 0,
+      };
+      chartPlotOptions = {
+        pie: {
+          donut: {
+            background: "transparent",
+          },
+        },
+      };
+    } else if (chartType == "line") {
+      NoteBook = [];
+		Desktop = [];
+		RMC = [];
+		Virtual = [];
+		for (x in a.lineChartDataList) {
+			if (a.lineChartDataList[x].name == "Notebook") {
+          dict = { 'x': a.lineChartDataList[x].date, 'y': a.lineChartDataList[x].value };
+          NoteBook.push(dict);
+        } else if (a.lineChartDataList[x].name == "Desktop") {
+          dict = { 'x': a.lineChartDataList[x].date, 'y': a.lineChartDataList[x].value };
+          Desktop.push(dict);
+        } else if (a.lineChartDataList[x].name == "Rack Mount Chassis") {
+          dict = { 'x': a.lineChartDataList[x].date, 'y': a.lineChartDataList[x].value };
+          RMC.push(dict);
+        } else if (a.lineChartDataList[x].name == "Virtual") {
+          dict = { 'x': a.lineChartDataList[x].date, 'y': a.lineChartDataList[x].value, };
+          Virtual.push(dict);
+        }
+      }
+      // console.log(NoteBook)
+      // console.log(NoteBook[0]['x'])
+		chartColors = [
+			getRandomColor(),
+			getRandomColor(),
+			getRandomColor(),
+			getRandomColor(),
+		];
+		chartData = [
+      {
+        name: "NoteBook",
+        data: [
+          {
+            x: "02-10-2017 GMT",
+            y: 34,
+          },
+          {
+            x: "02-11-2017 GMT",
+            y: 43,
+          },
+          {
+            x: "02-12-2017 GMT",
+            y: 31,
+          },
+          {
+            x: "02-13-2017 GMT",
+            y: 43,
+          },
+          {
+            x: "02-14-2017 GMT",
+            y: 33,
+          },
+          {
+            x: "02-15-2017 GMT",
+            y: 52,
+          },
+        ],
+      },
+    ];
+		chartStroke = {
+			curve: "straight",
+			width: 2,
 		};
-		chart[x] = new ApexCharts(elm, chartOptions);
-		chart[x].render();
-		x++;
-	});
-  
+    }
+
+    var chartOptions = {
+      chart: {
+        height: chartHeight,
+        type: chartType,
+        toolbar: {
+          show: false,
+        },
+        sparkline: {
+          enabled: true,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      colors: chartColors,
+      stroke: chartStroke,
+      plotOptions: chartPlotOptions,
+      series: chartData,
+      grid: {
+        show: false,
+      },
+      tooltip: {
+        theme: "dark",
+        x: {
+          show: true,
+        },
+        y: {
+          title: {
+            formatter: function (seriesName) {
+              return "";
+            },
+          },
+          formatter: (value) => {
+            return "" + value;
+          },
+        },
+      },
+      xaxis: {
+        type: 'category',
+        labels: {
+          show: true,
+        },
+      },
+      yaxis: {
+        labels: {
+          show: false,
+        },
+      },
+    };
+    chart[x] = new ApexCharts(elm, chartOptions);
+    chart[x].render();
+    x++;
+  });
+
   var serverChartOptions = {
     chart: {
-      height: '100%',
-      type: 'bar',
+      height: "100%",
+      type: "bar",
       toolbar: {
-        show: false
-      }
+        show: false,
+      },
     },
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '55%',
-        endingShape: 'rounded'  
+        columnWidth: "55%",
+        endingShape: "rounded",
       },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     grid: {
-    	show: true,
-    	borderColor: 'rgba('+ app.color.whiteRgb +', .15)',
+      show: true,
+      borderColor: "rgba(" + app.color.whiteRgb + ", .15)",
     },
     stroke: {
-      show: false
+      show: false,
     },
-    colors: ['rgba('+ app.color.whiteRgb + ', .25)', app.color.theme],
-    series: [{
-    	name: 'MEMORY USAGE',
-      data: [
-      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(),
-      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()
-      ]
-    },{
-    	name: 'CPU USAGE',
-      data: [
-      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(),
-      	randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo(), randomNo()
-      ]
-    }],
+    colors: ["rgba(" + app.color.whiteRgb + ", .25)", app.color.theme],
+    series: [
+      {
+        name: "MEMORY USAGE",
+        data: [
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+        ],
+      },
+      {
+        name: "CPU USAGE",
+        data: [
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+          randomNo(),
+        ],
+      },
+    ],
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
       labels: {
-				show: false
-			}
+        show: false,
+      },
     },
     fill: {
-      opacity: .65
+      opacity: 0.65,
     },
     tooltip: {
       y: {
         formatter: function (val) {
-          return "$ " + val + " thousands"
-        }
-      }
-    }
+          return "$ " + val + " thousands";
+        },
+      },
+    },
   };
-//  var apexServerChart = new ApexCharts(
-//    document.querySelector('#chart-server'),
-//    serverChartOptions
-//  );
-//  apexServerChart.render();
+  //  var apexServerChart = new ApexCharts(
+  //    document.querySelector('#chart-server'),
+  //    serverChartOptions
+  //  );
+  //  apexServerChart.render();
 };
 
 var handleRenderMap = function() {
