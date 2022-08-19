@@ -42,10 +42,12 @@ def plug_in(SK, APITYPE):
             for i in range(len(responseDataJson)):
                 if APITYPE == 'Sensor' :
                     DL = []
+                    #print(responseDataJson[i]['data'][4])
                     for k in range(len(responseDataJson[i]['data'])):
-                        DL.append(responseDataJson[i]['data'][k][0]['text'])
-                        #DL.append(responseDataJson[i]['data'][k])
+                        #DL.append(responseDataJson[i]['data'][k][0]['text'])
+                        DL.append(responseDataJson[i]['data'][k])
                     returnData.append(DL)
+                    
                 if APITYPE == 'Asset':
                     data = responseDataJson[i]
                     if data['id'] and data['computer_name'] and data['computer_id'] and data['os_platform'] and data[

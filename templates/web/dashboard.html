@@ -31,9 +31,34 @@
 						<div class="col-5">
 							<!-- BEGIN stat-sm -->
 							<div class="small text-white text-opacity-50 text-truncate">
-								<i class="fa fa-chevron-up fa-fw me-1"></i>Desktop<br />
-								<i class="far fa-user fa-fw me-1"></i>Notebook<br />
-								<i class="far fa-user fa-fw me-1"></i>Rack
+								<i class="fa fa-chevron-up fa-fw me-1"></i>
+									Desktop   
+								{% if chartData.barChartDataList.0.name == "Desktop"%}
+									{{ chartData.barChartDataList.0.value }}
+								{% else %}
+									Null
+								{% endif %}<br />
+								<i class="far fa-user fa-fw me-1"></i>
+									Notebook   
+								{% if chartData.barChartDataList.1.name == "Notebook"%}
+									{{ chartData.barChartDataList.1.value }}
+								{% else %}
+									Null
+								{% endif %}<br />
+								<i class="far fa-user fa-fw me-1"></i>
+								Rack    
+								{% if chartData.barChartDataList.2.name == "Rack Mount Chassis"%}
+									{{ chartData.barChartDataList.2.value }}
+								{% else %}
+									Null
+								{% endif %}<br />
+								<i class="far fa-user fa-fw me-1"></i>
+								Virtual   
+								{% if chartData.barChartDataList.3.name == "Virtual"%}
+									{{ chartData.barChartDataList.3.value }}
+								{% else %}
+									Null
+								{% endif %}
 							</div>
 							<!-- END stat-sm -->
 						</div>
@@ -70,17 +95,14 @@
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
 					<div class="row align-items-center mb-2">
-						<div class="col-5">
+						<div class="col-1">
 							<!-- BEGIN stat-sm -->
 							<div class="small text-white text-opacity-50 text-truncate">
-								<i class="fa fa-chevron-up fa-fw me-1"></i>Desktop<br />
-								<i class="far fa-user fa-fw me-1"></i>Notebook<br />
-								<i class="far fa-user fa-fw me-1"></i>Rack
 							</div>
 							<!-- END stat-sm -->
 						</div>
-						<div class="col-7">
-							<div class="mt-n2" data-render="apexchart" data-type="line" data-title="Visitors" data-height="50"></div>
+						<div class="col-11">
+							<div class="mt-n2" data-render="apexchart" data-type="line" data-title="Visitors" data-height="82"></div>
 						</div>
 					</div>
 					<!-- END stat-lg -->
@@ -116,14 +138,29 @@
 						<div class="col-5">
 							<!-- BEGIN stat-sm -->
 							<div class="small text-white text-opacity-50 text-truncate">
-								<i class="fa fa-chevron-up fa-fw me-1"></i>Desktop<br />
-								<i class="far fa-user fa-fw me-1"></i>Notebook<br />
-								<i class="far fa-user fa-fw me-1"></i>Rack
+								<i class="fa fa-chevron-up fa-fw me-1"></i>Linux
+								{% if chartData.pieChartDataList.0.name == "Linux"%}
+									{{ chartData.pieChartDataList.0.value }}
+								{% else %}
+									Null
+								{% endif %}<br />
+								<i class="far fa-user fa-fw me-1"></i>Mac
+								{% if chartData.pieChartDataList.1.name == "Mac"%}
+									{{ chartData.pieChartDataList.1.value }}
+								{% else %}
+									Null
+								{% endif %}<br />
+								<i class="far fa-user fa-fw me-1"></i>Windows
+								{% if chartData.pieChartDataList.2.name == "Windows"%}
+									{{ chartData.pieChartDataList.2.value }}
+								{% else %}
+									Null
+								{% endif %}
 							</div>
 							<!-- END stat-sm -->
 						</div>
 						<div class="col-7">
-							<div class="mt-n3 mb-n2" data-render="apexchart" data-type="pie" data-title="Visitors" data-height="70"></div>
+							<div class="mt-n3 mb-n2" data-render="apexchart" data-type="pie" data-title="Visitors" data-height="100"></div>
 						</div>
 					</div>
 					<!-- END stat-lg -->
@@ -167,7 +204,7 @@
 							<!-- END stat-sm -->
 						</div>
 						<div class="col-7">
-							<div class="mt-n3 mb-n2" data-render="apexchart" data-type="donut" data-title="Visitors" data-height="70"></div>
+							<div class="mt-n3 mb-n2" data-render="apexchart" data-type="donut" data-title="Visitors" data-height="100"></div>
 						</div>
 					</div>
 					<!-- END stat-lg -->
