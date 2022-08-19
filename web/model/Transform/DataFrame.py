@@ -5,11 +5,11 @@ def plug_in(data, day, type):
     DFL = []
     for d in data :
         if day == 'today' :
-            CI = d[0]
-            IP = d[9]
+            CI = d[0][0]['text']
+            IP = d[9][0]['text']
             if type == 'assetItem':
-                if d[8] != None:
-                    item = d[8]
+                if d[8][0]['text'] != None:
+                    item = d[8][0]['text']
                     itemPer = item.lower()
                 if itemPer.startswith('macbook'):
                     item = 'Notebook'
@@ -19,38 +19,45 @@ def plug_in(data, day, type):
                     item = 'Other'
                 itemIndex = 'assetItem'
             if type == 'osItem':
-                item = d[5]
+                item = d[5][0]['text']
                 itemPer = item.lower()
                 if itemPer == '[current result unavailable]':
                     item = 'Other'
                 itemIndex = 'os'
-            if type == 'DUS':
-                item = d[4]
+            if type == 'DUS': #내가 건드려야 할것
+                #print(d[4])
+                item = d[4][0]['text']
+                # if (len(d[4]) > 1) :
+                #     for x in d[4] :
+                #         print("--------------------------------------------")
+                #         print(x)
+                #         print("--------------------------------------------")
+                    
                 itemIndex = 'driveSize'
-            if type == 'LH':
-                if d[2] != '[current result unavailable]':
-                    date = datetime.strptime(d[2].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
+            if type == 'LH': #값 안찍힘
+                if d[2][0]['text'] != '[current result unavailable]':
+                    date = datetime.strptime(d[2][0]['text'].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
                     item = str(date).split(' ')[0]
                 itemIndex = 'lastLogin'
-            if type == 'RUET':
-                item = d[13].split(' ')[0]
+            if type == 'RUET':#값 안찍힘
+                item = d[13][0]['text'].split(' ')[0]
                 if item.isdigit():
                     item = int(item)
                 else:
                     item = 0
                 itemIndex = 'ramSize'
-            if type == 'RUEU':
-                item = d[12].split(' ')[0]
+            if type == 'RUEU': #값 안찍힘
+                item = d[12][0]['text'].split(' ')[0]
                 if item.isdigit():
                     item = int(item)
                 else:
                     item = 0
                 itemIndex = 'ramSize'
             if type == 'LPC':
-                item = d[10]
+                item = d[10][0]['text']
                 itemIndex = 'listenPortCount'
             if type == 'EPC':
-                item = d[11]
+                item = d[11][0]['text']
                 itemIndex = 'establishedPortCount'
         elif day == 'yesterday' :
             CI = d[0]
