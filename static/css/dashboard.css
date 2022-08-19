@@ -448,14 +448,20 @@ stroke-width: 0.2px; stroke: #fff;
 }
 
 .raderRightWrap{
-    width: 40%;
-    background : pink;
-    margin-left: 60%;
+    width: 30%;
+    margin-left: 70%;
 }
 
-.raderRightWrap div{
+.raderRightWrapTop{
     width: 100%;
     height: 50%;
-    background: skyblue;
     padding: 1rem;
+    padding-top: 4rem;
 }
+.raderRightWrapBot{
+    width: 100%;
+    height: 50%;
+    padding: 1rem;
+    padding-top: 4rem;
+}
+
