@@ -8,17 +8,7 @@ Website: http://www.seantheme.com/hud/
 var randomNo = function() {
   return Math.floor(Math.random() * 60) + 30
 };
-//console.log(a.barChartDataList);
-
-function getRandomColor() {
-	var letters = "0123456789ABCDEF";
-	var color = "#";
-	for (var i = 0; i < 6; i++) {
-	color += letters[Math.floor(Math.random() * 16)];
-	}
-	return color;
-}
-
+value = ""
 https: var handleRenderChart = function () {
   // global apexchart settings
   Apex = {
@@ -122,12 +112,7 @@ https: var handleRenderChart = function () {
         BarValue.push(dict);
       }
       console.log(BarValue);
-      chartColors = [
-        getRandomColor(),
-        "rgba(" + app.color.themeRgb + ", .75)",
-        "rgba(" + app.color.themeRgb + ", .75)",
-        "rgba(" + app.color.themeRgb + ", .75)",
-      ];
+      
       chartPlotOptions = {
         bar: {
           horizontal: false,
@@ -142,17 +127,45 @@ https: var handleRenderChart = function () {
           data: BarValue,
         },
       ];
+      Label = {
+        enabled: false,
+      },
+      chartColors = [
+        "rgba(" + app.color.themeRgb + ", .55)",
+        "rgba(" + app.color.themeRgb + ", .35)",
+        "rgba(" + app.color.themeRgb + ", .55)",
+        "rgba(" + app.color.themeRgb + ", .75)",
+        ],
+      xdata = {
+        type: "category",
+        labels: {
+          show: true,
+        },
+      };
 	  } else if (chartType == "pie") {
 		  pieValue = []
 		  for (x in a.pieChartDataList) {
 			  pieValue.push(a.pieChartDataList[x].value);
-		  }
+      }
       chartColors = [
         "rgba(" + app.color.themeRgb + ", 1)",
         "rgba(" + app.color.themeRgb + ", .75)",
         "rgba(" + app.color.themeRgb + ", .5)",
       ];
-      chartData = pieValue;
+      console.log(pieValue);
+      Label = {
+        enabled: true,
+        formatter: function (val) {
+          return val;
+        },
+      },
+      chartData = pieValue,
+      xdata = {
+        type: "category",
+        labels: {
+          show: true,
+        },
+      };
     } else if (chartType == "donut") {
       chartColors = [
         "rgba(" + app.color.themeRgb + ", .15)",
@@ -161,6 +174,9 @@ https: var handleRenderChart = function () {
         "rgba(" + app.color.themeRgb + ", .75)",
         "rgba(" + app.color.themeRgb + ", .95)",
       ];
+      Label = {
+        enabled: false,
+      },
       chartData = [randomNo(), randomNo(), randomNo(), randomNo(), randomNo()];
       chartStroke = {
         show: false,
@@ -175,6 +191,12 @@ https: var handleRenderChart = function () {
           donut: {
             background: "transparent",
           },
+        },
+      },
+      xdata = {
+        type: "category",
+        labels: {
+          show: true,
         },
       };
     } else if (chartType == "line") {
@@ -199,11 +221,11 @@ https: var handleRenderChart = function () {
         }
       }
 		chartColors = [
-			getRandomColor(),
-			getRandomColor(),
-			getRandomColor(),
-			getRandomColor(),
-		];
+      "rgba(" + app.color.themeRgb + ", .45)",
+      "rgba(" + app.color.themeRgb + ", .55)",
+      "rgba(" + app.color.themeRgb + ", .75)",
+      "rgba(" + app.color.themeRgb + ", .95)",
+    ];
 		chartData = [
       {
         name: "Desktop",
@@ -221,11 +243,35 @@ https: var handleRenderChart = function () {
         name: "Virtual",
         data: Virtual,
       },
-    ];
+      ];
+      Label = {
+        enabled: false,
+      },
 		chartStroke = {
 			curve: "straight",
 			width: 2,
-		};
+        },
+      xdata = {
+          axisBorder: {
+          show: true,
+          color: 'rgba('+ app.color.whiteRgb + ', .25)',
+          height: 1,
+          width: '100%',
+          offsetX: 0,
+          offsetY: -1
+        },
+        axisTicks: {
+          show: true,
+          borderType: 'solid',
+          color: 'rgba('+ app.color.whiteRgb + ', .25)',
+          height: 6,
+          offsetX: 0,
+          offsetY: 0
+        },
+        labels: {
+          show: true,
+        }
+      };
     }
 
     var chartOptions = {
@@ -239,9 +285,7 @@ https: var handleRenderChart = function () {
           enabled: true,
         },
       },
-      dataLabels: {
-        enabled: false,
-      },
+      dataLabels: Label,
       colors: chartColors,
       stroke: chartStroke,
       plotOptions: chartPlotOptions,
@@ -265,12 +309,7 @@ https: var handleRenderChart = function () {
           },
         },
       },
-      xaxis: {
-        type: 'category',
-        labels: {
-          show: true,
-        },
-      },
+      xaxis: xdata,
       yaxis: {
         labels: {
           show: false,
