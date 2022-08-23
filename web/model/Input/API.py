@@ -42,9 +42,7 @@ def plug_in(SK, APITYPE):
             for i in range(len(responseDataJson)):
                 if APITYPE == 'Sensor' :
                     DL = []
-                    #print(responseDataJson[i]['data'][4])
                     for k in range(len(responseDataJson[i]['data'])):
-                        #DL.append(responseDataJson[i]['data'][k][0]['text'])
                         DL.append(responseDataJson[i]['data'][k])
                     returnData.append(DL)
                     
@@ -76,7 +74,6 @@ def plug_in(SK, APITYPE):
                             'ram': ram
                         }
                         returnData.append(data)
-                        print(returnData)
         returnList = {'resCode': resCode, 'dataList': returnData}
         return returnList
     except ConnectionError as e:
