@@ -46,7 +46,8 @@
     "DBPwd" : "psql",
     "AssetTNM" : "daily_asset",
     "StatisticsTNM" : "daily_statistics",
-    "MenuTNM": "web_menusetting"
+    "MenuTNM": "web_menusetting",
+    "UserTNM": "auth_user"
   },
   "FILE" : {
     "asset": {
