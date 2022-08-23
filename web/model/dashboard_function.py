@@ -32,13 +32,19 @@ def DashboardData() :
                 TOIDL = TDFPI(sensorAPI, "today", "osItem")
                 SOIDL = ASDCD(TOIDL, "osItem", "group")
 
+                
+                #CPU Consumption
+                # TCCDLT = TDFPI(sensorAPI, "today", "CCDL")
+                # TDUSDLY = TDFPI(EAYL, "yesterday", "DUS") #DUS(yesterday)
+                # example = [TCCDLT, TDUSDLY]
+                # SDUSDLT = ASDCD(example, "CCDL", "count")
+                
                 # Drive Use Size Statistics
                 ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
                 TDUSDLT = TDFPI(sensorAPI, "today", "DUS")
                 TDUSDLY = TDFPI(EAYL, "yesterday", "DUS")
                 DUSCTDL = [TDUSDLT, TDUSDLY]
                 SDUSDLT = ASDCD(DUSCTDL, "DUS", "count")
-
                 # No Login History Statistics
                 ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
                 TNLHDLT = TDFPI(sensorAPI, "today", "LH")
@@ -94,6 +100,7 @@ def DashboardData() :
                 SRUSADL = ASDACD(RUSCTDL, 'RUE')
                 SLPCADL = ASDACD(LPCCTDL, 'LPC')
                 SEPCADL = ASDACD(EPCCTDL, 'EPC')
+                #SCCSADL = ASDACD(TCCDL, 'CCDL')
 
                 ## List
                 ### Transform by case
@@ -131,6 +138,7 @@ def DashboardData() :
                 BNDL = TDCD(SBNDL, "Banner")
                 # Alarm List
                 ALDL = TDCD(ALD, "alarmList")
+                
 
             elif ProjectType == 'Service':
                 print()

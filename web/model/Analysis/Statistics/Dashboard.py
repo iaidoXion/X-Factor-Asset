@@ -14,6 +14,7 @@ alarmCaseSecond = SETTING['PROJECT']['Alarm']['Case']['Second']
 alarmCaseThird = SETTING['PROJECT']['Alarm']['Case']['Third']
 alarmCaseFourth = SETTING['PROJECT']['Alarm']['Case']['Fourth']
 alarmCaseFifth = SETTING['PROJECT']['Alarm']['Case']['Fifth']
+alarmCaseSix = SETTING['PROJECT']['Alarm']['Case']['Six']
 
 
 def calculation(pastData, todayData) :
@@ -30,7 +31,6 @@ def calculation(pastData, todayData) :
     return RD
 
 def alarm_case_detection(data, case) :
-    #print(data)
     if case == 'DUS':
         AT = alarmCaseFirst
     elif case == 'LH':
@@ -41,6 +41,8 @@ def alarm_case_detection(data, case) :
         AT = alarmCaseFourth
     elif case == 'EPC':
         AT = alarmCaseFifth
+    elif case == 'CCDL' :
+        AT = alarmCaseSix
 
     TDL = data[0]
     PDL = data[1]
@@ -165,6 +167,10 @@ def chart_data(data, type, statistics) :
         elif type == 'EPC':
             DUSCY = len(DLMerge['establishedPortCount_x'].compare(DLMerge['establishedPortCount_y']))
             INM = [alarmCaseFifth]
+        # elif type == 'CCDL' :
+        #     DLMerge['cpuconsumption'] > 60
+        #     INM = [alarmCaseSix]
+        #     #DUSCY = len()
         if type == 'LH' or type == 'RUE':
             IC = [DUSCY]
         else :

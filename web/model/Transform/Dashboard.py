@@ -45,7 +45,6 @@ def banner(data, type) :
                 DFDL.append([name, value])
 
     RD = pd.DataFrame(DFDL, columns=DFCNM)
-    #print(RD)
     return RD
 
 def line_chart(data) :

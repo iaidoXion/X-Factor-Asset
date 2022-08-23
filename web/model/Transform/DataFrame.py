@@ -24,15 +24,44 @@ def plug_in(data, day, type):
                 if itemPer == '[current result unavailable]':
                     item = 'Other'
                 itemIndex = 'os'
-            if type == 'DUS': #내가 건드려야 할것
-                #print(d[4])
+            if type == 'DUS': 
                 item = d[4][0]['text']
-                # if (len(d[4]) > 1) :
-                #     for x in d[4] :
-                #         print("--------------------------------------------")
-                #         print(x)
-                #         print("--------------------------------------------")
-                    
+                sum = 0
+                list = []
+                if(len(d[4]) > 1) :
+                    for x in d[4] :
+                        value = x['text'].split(' ')
+                        list.append(value)
+                elif(len(d[4]) == 1) :
+                    value= d[4][0]['text'].split(' ')
+                    if ("[current" in value[0]) :
+                        continue
+                    list.append(value)
+                for x in list :
+                    if(len(x) == 3) :
+                        if(x[2] == 'KB') :
+                            result = int(x[1])
+                        elif(x[2] == 'MB') :
+                            result = int(x[1])*1024
+                        elif(x[2] == 'GB') : # 기준
+                            result = int(x[1])*1024*1024
+                        elif(x[2] == 'TB') :
+                            result = int(x[1])*1024*1024*1024
+                        elif(x[2] == 'PB') :
+                            result = int(x[1])*1024*1024*1024*1024
+                    elif(len(x) == 2) :
+                        if("K" in x[1].upper()) :
+                            result = float(x[1].upper().strip("K"))
+                        elif("M" in x[1].upper()) :
+                            result = float(x[1].strip("M")) * 1024
+                        elif("G" in x[1].upper()) :
+                            result = float(x[1].strip("G")) * 1024 * 1024
+                        else :
+                            print("예외")
+                            return int(value[1])
+                    sum += result
+                    result = round(int(sum)/1024/1024, -1)
+                item = str(result) + "GB"
                 itemIndex = 'driveSize'
             if type == 'LH': #값 안찍힘
                 if d[2][0]['text'] != '[current result unavailable]':
@@ -59,11 +88,46 @@ def plug_in(data, day, type):
             if type == 'EPC':
                 item = d[11][0]['text']
                 itemIndex = 'establishedPortCount'
+            if type == 'CCDL' :
+                value = d[20][0]['text'].split(' ')
+                if ("current" in d[20][0]['text']):
+                    item = '[current result unavailable]'
+                else :
+                    item = round(float(value[0].strip()))
+                itemIndex = 'cpuconsumption'
         elif day == 'yesterday' :
             CI = d[0]
             IP = ''
             if type == 'DUS' :
+                list = []
+                sum = 0
                 item = d[1]
+                list.append(d[1].split(' '))
+                for x in list :
+                    if(len(x) == 3) :
+                        if(x[2] == 'KB') :
+                            result = int(x[1])
+                        elif(x[2] == 'MB') :
+                            result = int(x[1])*1024
+                        elif(x[2] == 'GB') : # 기준
+                            result = int(x[1])*1024*1024
+                        elif(x[2] == 'TB') :
+                            result = int(x[1])*1024*1024*1024
+                        elif(x[2] == 'PB') :
+                            result = int(x[1])*1024*1024*1024*1024
+                    elif(len(x) == 2) :
+                        if("K" in x[1].upper()) :
+                            result = float(x[1].upper().strip("K"))
+                        elif("M" in x[1].upper()) :
+                            result = float(x[1].strip("M")) * 1024
+                        elif("G" in x[1].upper()) :
+                            result = float(x[1].strip("G")) * 1024 * 1024
+                        else :
+                            print("예외")
+                            return int(value[1])
+                sum += result
+                result = round(int(sum)/1024/1024, -1)
+                item = str(result) + "GB"
                 itemIndex = 'driveSize'
             elif type == 'LH':
                 item = str(d[5]).split(' ')[0]
@@ -74,9 +138,9 @@ def plug_in(data, day, type):
             elif type == 'EPC':
                 item = str(d[3])
                 itemIndex = 'establishedPortCount'
+            #elif type == 'CCDL' :
 
         DFL.append([CI, item, IP])
     DFC = ['id', itemIndex, 'ip']
     DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
-    #print(DF)
     return DF
