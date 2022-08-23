@@ -74,11 +74,11 @@ def DashboardData() :
                 ## Today Statistics Data Transform
                 ## Today Asset Total Count Calculation
                 ATCDL = {'name': ['Asset Total'], 'value': [sum(SAIDL['value'])]}
-                TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, SRUSDLT, LPCDLT, EPCDLT
+                TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT
                 TSDLT = TDBA(TSDL, 'today')
                 ## Banner ROC Calculation
                 SBNDL = ASDC(TSDLY, TSDLT)
-
+                #print(TSDLT)
                 # 5Days Asset Item Statistics Data Combination
                 ## Past Data Input(Statistics Table Data 5Days ago)
                 ESDLF = IDPI('statistics','fiveDay','asset')

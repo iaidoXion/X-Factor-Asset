@@ -27,8 +27,6 @@ def banner(data, type) :
                 name = 'Drive Size No Change'
             elif data[i][0] == 'login_history' :
                 name = 'No Login History'
-            elif data[i][0] == 'ram_use_size' :
-                name = 'RAM Usage Exceeded'
             elif data[i][0] == 'listen_port_count' :
                 name = 'Listen Port No Change'
             elif data[i][0] == 'established_port_count' :
