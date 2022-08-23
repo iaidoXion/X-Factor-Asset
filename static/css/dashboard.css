@@ -403,35 +403,37 @@ stroke-width: 0.2px; stroke: #fff;
 	right: 1.7%;
 }
 
-#siMap svg circle {
+#seongnamMap svg circle {
           fill: orange;
 /*          opacity: .5;
           stroke: white;*/
         }
-#siMap svg circle:hover {
+#seongnamMap svg circle:hover {
           fill: red;
           stroke: #333;
         }
-#siMap svg text {
+#seongnamMap svg text {
           pointer-events: none;
           fill: #858796;
+          font-family: Chakra Petch;
         }
-#siMap svg .municipality {
+#seongnamMap svg .municipality {
           fill: #d5d6dd;
           stroke: #fff;
         }
-#siMap svg .municipality-label {
+#seongnamMap svg .municipality-label {
           fill: #bbb;
           font-size: 12px;
           font-weight: 300;
           text-anchor: middle;
         }
-#siMap svg #map text {
+#seongnamMap svg #map text {
           color: #333;
           font-size: 10px;
           text-anchor: middle;
+          font-family: Chakra Petch;
         }
-#siMap svg #places text {
+#seongnamMap svg #places text {
           color: #777;
           font: 10px sans-serif;
           text-anchor: start;
@@ -455,12 +457,11 @@ stroke-width: 0.2px; stroke: #fff;
     width: 100%;
     height: 50%;
     padding: 1rem;
-    padding-top: 4rem;
 }
 .raderRightWrapBot{
     width: 100%;
     height: 50%;
     padding: 1rem;
-    padding-top: 4rem;
+    padding-top: 1rem;
 }
 
