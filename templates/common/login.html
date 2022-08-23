@@ -21,10 +21,13 @@
 		<div class="login">
 			<!-- BEGIN login-content -->
 			<div class="login-content">
-				<form action="{% url 'common:login' %}" method="POST" name="login_form">
+				<form action="{% url 'login' %}" method="POST" name="login_form">
 					{% csrf_token %}
 					{% include "../form_errors.html" %}
-					<h1 class="text-center">Sign In</h1>
+					{% if error %}
+						<div class="alert alert-danger" role="alert">{{error}}</div>
+					{% endif %}
+					<h1 class="text-center">Sign In </h1>
 					<div class="text-white text-opacity-50 text-center mb-4">
 						For your protection, please verify your identity.
 					</div>
@@ -47,7 +50,7 @@
 					</div>
 					<button type="submit" class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3">Sign In</button>
 					<div class="text-center text-white text-opacity-50">
-						Don't have an account yet? <a href="{% url 'common:signup' %}">Sign up</a>.
+						Don't have an account yet? <a href="{% url 'signup' %}">Sign up</a>.
 					</div>
 				</form>
 			</div>
@@ -83,37 +86,5 @@
 
 
 
-<!--<div class="login-form">-->
-<!--    <form method="post" action="{% url 'common:login' %}">-->
-<!--        {% csrf_token %}-->
-<!--        <input type="hidden" name="next" value="{{ next }}">  &lt;!&ndash; 로그인 성공후 이동되는 URL &ndash;&gt;-->
-<!--        {% include "form_errors.html" %}-->
-<!--        <h2 class="text-center">Log in</h2>-->
-<!--        <div class="form-group">-->
 
-<!--            <input type="text" class="form-control" name="username" id="username"-->
-<!--                   value="{{ form.username.value|default_if_none:'' }}">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-
-<!--            <input type="password" class="form-control" name="password" id="password"-->
-<!--                   value="{{ form.password.value|default_if_none:'' }}">-->
-<!--        </div>-->
-<!--        <div class="form group">-->
-<!--            <button type="submit" class="btn btn-secondary btn-block">Log in</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--    <p class="text-center text-muted small">Don't have an account? <a href="../signup/">Sign up here!</a></p>-->
-<!--</div>-->
-
-<!--{% if messages %}-->
-<!--{% for message in messages %}-->
-<!--{% if message.tags %}-->
-<!--<script>-->
-<!--    alert('{{ message }}')-->
-<!--</script>-->
-<!--    {% endif %}-->
-<!--    {% endfor %}-->
-
-<!--{% endif %}-->
 
