@@ -9,6 +9,7 @@ urlpatterns = [
     path('dashboard/', base_views.dashboard, name='dashboard'),
     path('signup/', views.signup, name='signup'),
     path('dashboard/logout/', views.logout, name='logout'),
+    path('asset/', base_views.assetweb, name='asset'),
 
     # path('admin/', admin.site.urls),
     # path('web/', include('web.urls')),

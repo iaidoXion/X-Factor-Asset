@@ -5,10 +5,12 @@ from django.shortcuts import render, get_object_or_404
 from web.models import Question
 from web.model.dashboard_function import DashboardData
 from common.menu import MenuSetting
-
+import json
 menuListDB = MenuSetting()
 
-
+with open("setting.json", encoding="UTF-8") as f:
+    SETTING = json.loads(f.read())
+Customer = SETTING['PROJECT']['CUSTOMER']
 
 def index(request) :
     returnData = {'menuList': menuListDB}
@@ -27,8 +29,20 @@ def dashboard(request):
     alarmData = DCDL["alarmListData"]
     AssociationData = DCDL["AssociationDataList"]
     chartData = {'barChartDataList': barChartData,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData}
-    returnData = {'menuList': menuListDB, 'chartData' : chartData}
+    returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer}
     return render(request, 'web/dashboard.html', returnData)
+
+
+def assetweb(request):
+    returnData = { 'menuList': menuListDB }
+    return render(request, 'web/asset.html', returnData)
+
+
+
+
+
+
+
 
 
 def list(request):

@@ -1,4 +1,130 @@
 
+/*************************************
+ * generic styling for ALS elements
+ ************************************/
+.als-container {
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+}
+
+.als-viewport {
+	position: relative;
+	overflow: hidden;
+	margin: 0px auto;
+}
+
+.als-wrapper {
+	position: relative;
+	list-style: none;
+}
+
+.als-item {
+	position: relative;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+}
+
+.als-prev, .als-next {
+	position: absolute;
+	cursor: pointer;
+	clear: both;
+}
+
+/*************************************
+ * specific styling for #demo2
+ ************************************/
+
+.alsWrap {
+    width: 100%;
+    height: 87px;
+    position: relative;
+}
+#demo2 {
+width: 100%;
+margin: 0 auto;
+}
+
+#demo2 .als-item {
+	min-height: 80px;
+	width: 175px;
+	text-align: center;
+}
+
+#demo2 .als-item img {
+	display: block;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+#demo2 .als-prev, #demo2 .als-next {
+	top: 28px;
+}
+
+#demo2 .als-prev {
+	left: 1.7%;
+}
+
+#demo2 .als-next {
+	right: 1.7%;
+}
+
+
+.botConTotalNum{
+    font-size: 19px;
+    font-weight: 700;
+    color: #7f7f7f;
+    float: left;
+}
+
+.botConNum{
+    font-size: 14px;
+    color: #ff9000;
+    margin-top: 3px;
+}
+
+.botConNum0{
+    font-size: 14px;
+    color: #000;
+    margin-top: 3px;
+}
+
+.conBotTop{
+    margin-bottom: 10px;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.8em;
+    min-height: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.conBotBot{
+    width: 100%;
+    height: 20px;
+    margin-left: 38%;
+}
+
+.conBotImg{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.conBotImg a{
+    text-decoration: none;
+}
+
+.conBotIcon{
+    display: block;
+    line-height: 6px;
+    color: #7f7f7f;
+}
+
 #barChart{
     font-size: 11px;;
 }
@@ -204,37 +330,113 @@ stroke-width: 0.2px; stroke: #fff;
     src: url('fonts/koverwatch.woff2');
 }
 
-#seongnamMap svg circle {
+
+/*************************************
+ * generic styling for ALS elements
+ ************************************/
+.als-container {
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+	z-index: 0;
+}
+
+.als-viewport {
+    display: block;
+	position: relative;
+	overflow: hidden;
+	margin: 0px auto;
+	width: 100%;
+}
+
+.als-wrapper {
+	position: relative;
+	overflow: hidden;
+	list-style: none;
+	padding-left: 0rem;
+}
+
+.als-item {
+	position: relative;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	overflow: hidden;
+}
+
+.als-prev, .als-next {
+	position: absolute;
+	cursor: pointer;
+	clear: both;
+	z-index: 10;
+}
+
+
+/*************************************
+ * specific styling for #demo2
+ ************************************/
+
+#demo2 {
+    overflow: hidden;
+}
+
+#demo2 .als-item {
+	margin: 0px 20px;
+	padding: 4px 0px;
+	min-height: 82px;
+	width: 174px;
+	text-align: center;
+}
+
+#demo2 .als-item img {
+	display: block;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+#demo2 .als-prev, #demo2 .als-next {
+	top: 28px;
+}
+
+#demo2 .als-prev {
+	left: 1.7%;
+}
+
+#demo2 .als-next {
+	right: 1.7%;
+}
+
+#seongnam-map svg circle {
           fill: orange;
 /*          opacity: .5;
           stroke: white;*/
         }
-#seongnamMap svg circle:hover {
+#seongnam-map svg circle:hover {
           fill: red;
           stroke: #333;
         }
-#seongnamMap svg text {
+#seongnam-map svg text {
           pointer-events: none;
-          fill: #858796;
-          font-family: Chakra Petch;
+          fill: #fff;
         }
-#seongnamMap svg .municipality {
+#seongnam-map svg .municipality {
           fill: #d5d6dd;
           stroke: #fff;
+          opacity: 0.2;
         }
-#seongnamMap svg .municipality-label {
+#seongnam-map svg .municipality-label {
           fill: #bbb;
           font-size: 12px;
           font-weight: 300;
           text-anchor: middle;
         }
-#seongnamMap svg #map text {
-          color: #333;
+#seongnam-map svg #map text {
+          color: #fff;
           font-size: 10px;
           text-anchor: middle;
-          font-family: Chakra Petch;
         }
-#seongnamMap svg #places text {
+#seongnam-map svg #places text {
           color: #777;
           font: 10px sans-serif;
           text-anchor: start;
@@ -266,8 +468,9 @@ stroke-width: 0.2px; stroke: #fff;
     padding-top: 1rem;
 }
 
-
-
+#world-map svg{
+    margin-left: 7%;
+}
 /******* BEGIN swiper css *******/
 .swiper-container {
     height: 98px;

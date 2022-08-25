@@ -23,10 +23,24 @@
 			<!-- BEGIN brand -->
 			<div class="brand">
 				<a href="index.html" class="brand-logo">
-					<span class="brand-img">
-						<span class="brand-img-text text-theme"></span>
-					</span>
-					<span class="brand-text">X-Factor</span>
+
+					{% if Customer == 'NC' %}
+					<img src="{% static 'assets/css/images/NC_logo4.png' %}">
+					{% else %}
+					<img src="{% static 'assets/css/images/X-factor-logo-2.png' %}">X-Factor
+					{% endif %}
+
+<!--					{% if Customer == 'NC' %}-->
+<!--					<span class="brand-img-nc">-->
+<!--						<span class="brand-img-text-nc text-theme"></span>-->
+<!--					</span>-->
+<!--					<span class="brand-text"></span>-->
+<!--					{% else %}-->
+<!--					<span class="brand-img">-->
+<!--						<span class="brand-img-text text-theme"></span>-->
+<!--					</span>-->
+<!--					<span class="brand-text">X-Factor</span>-->
+<!--					{% endif %}-->
 				</a>
 			</div>
 			<!-- END brand -->
