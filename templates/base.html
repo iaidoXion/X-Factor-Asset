@@ -7,53 +7,63 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
-	<meta name="author" content="" />
+    <meta name="author" content="" />
     <meta name="description" content="" />
-	<meta name="author" content="" />
+    <meta name="author" content="" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/bootstrap/dist/css/bootstrap.min.css' %}">
     <!-- web CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'oldStyle.css' %}">
+
     <!-- ================== BEGIN core-css ================== -->
-	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor.min.css' %}">
-	<link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet" />
-	<!-- ================== END core-css ================== -->
-	<!-- ================== BEGIN page-css ================== -->
-	<link href="{% static 'assets/plugins/jvectormap-next/jquery-jvectormap.css' %}" rel="stylesheet" />
-	<!-- ================== END page-css ================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor.min.css' %}">
+    <link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet" />
+    <!-- ================== END core-css ================== -->
+
+    <!-- ================== BEGIN swiper-CSS ================== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.css">
+    <!-- ================== END swiper-CSS ================== -->
+
+    <!-- ================== BEGIN dashboard-CSS ================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+    <!-- ================== END dashboard-CSS ================== -->
+
+    <!-- ================== BEGIN page-css ================== -->
+    <link href="{% static 'assets/plugins/jvectormap-next/jquery-jvectormap.css' %}" rel="stylesheet" />
+    <!-- ================== END page-css ================== -->
 </head>
 <body class="theme-orange">
 <!-- BEGIN #app -->
 <div id="app" class="app app-sidebar-collapsed">
-<!-- 네비게이션바 -->
-{% include "navbar.html" %}
-<!-- 사이드바 -->
-{% include "sidebar.html" %}
-<!-- 기본 템플릿 안에 삽입될 내용 Start -->
-{% block content %}
-{% endblock %}
-<!-- 기본 템플릿 안에 삽입될 내용 End -->
+    <!-- 네비게이션바 -->
+    {% include "navbar.html" %}
+    <!-- 사이드바 -->
+    {% include "sidebar.html" %}
+    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    {% block content %}
+    {% endblock %}
+    <!-- 기본 템플릿 안에 삽입될 내용 End -->
 </div>
 <!-- END #app -->
 <!-- Bootstrap JS -->
 <script>
 	a = {{chartData|safe}};
 </script>
+<script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+<!-- ================== BEGIN swiper-js ================== -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.js"></script>
+<!-- ================== END swiper-js ================== -->
 
 <!-- ================== BEGIN core-js ================== -->
 <script src="{% static 'assets/js/vendor.min.js' %}"></script>
 <script src="{% static 'assets/js/app.min.js' %}"></script>
 <!-- ================== END core-js ================== -->
 
-<!-- ================== BEGIN als slide-js ================== -->
-<script src="{% static 'js/jquery/ajax.jquery.min.js' %}"></script>
-<script src="{% static 'js/jquery/jquery.als-2.1.js' %}"></script>
-<!-- ================== END als slide-js ================== -->
-
-<!-- ================== BEGIN als slide-CSS ================== -->
-<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
-<!-- ================== END als slide-CSS ================== -->
+<!-- ================== BEGIN dashboard-js ================== -->
+<script src="{% static 'js/common/dashboard.js' %}"></script>
+<!-- ================== END dashboard-js ================== -->
 
 <!-- ================== END page-js ================== -->
 <script src="{% static 'assets/plugins/jvectormap-next/jquery-jvectormap.min.js' %}"></script>
@@ -64,7 +74,6 @@
 <script src="{% static 'assets/plugins/chart.js/dist/chart.min.js' %}"></script>
 <script src="{% static 'assets/js/demo/dashboard.demo.js' %}"></script>
 <script src="{% static 'js/common/nav.js' %}"></script>
-<script src="{% static 'js/common/als-slide.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/d3/d3.v3.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/d3/d3v4.js' %}"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>

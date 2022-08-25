@@ -1,128 +1,3 @@
-/*************************************
- * generic styling for ALS elements
- ************************************/
-.als-container {
-	position: relative;
-	width: 100%;
-	margin: 0px auto;
-}
-
-.als-viewport {
-	position: relative;
-	overflow: hidden;
-	margin: 0px auto;
-}
-
-.als-wrapper {
-	position: relative;
-	list-style: none;
-}
-
-.als-item {
-	position: relative;
-	display: block;
-	text-align: center;
-	cursor: pointer;
-	float: left;
-}
-
-.als-prev, .als-next {
-	position: absolute;
-	cursor: pointer;
-	clear: both;
-}
-
-/*************************************
- * specific styling for #demo2
- ************************************/
-
-.alsWrap {
-    width: 1807px;
-    height: 87px;
-    position: relative;
-}
-#demo2 {
-width: 100%;
-margin: 0 auto;
-}
-
-#demo2 .als-item {
-	min-height: 80px;
-	width: 175px;
-	text-align: center;
-}
-
-#demo2 .als-item img {
-	display: block;
-	margin: 0 auto;
-	vertical-align: middle;
-}
-
-#demo2 .als-prev, #demo2 .als-next {
-	top: 28px;
-}
-
-#demo2 .als-prev {
-	left: 1.7%;
-}
-
-#demo2 .als-next {
-	right: 1.7%;
-}
-
-
-.botConTotalNum{
-    font-size: 19px;
-    font-weight: 700;
-    color: #7f7f7f;
-    float: left;
-}
-
-.botConNum{
-    font-size: 14px;
-    color: #ff9000;
-    margin-top: 3px;
-}
-
-.botConNum0{
-    font-size: 14px;
-    color: #000;
-    margin-top: 3px;
-}
-
-.conBotTop{
-    margin-bottom: 10px;
-    margin-top: 16px;
-    text-align: center;
-    font-size: 0.8em;
-    min-height: 14px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.conBotBot{
-    width: 100%;
-    height: 20px;
-    margin-left: 38%;
-}
-
-.conBotImg{
-    margin-left: 2px;
-    margin-right: 2px;
-}
-
-.conBotImg a{
-    text-decoration: none;
-}
-
-.conBotIcon{
-    display: block;
-    line-height: 6px;
-    color: #7f7f7f;
-}
 
 #barChart{
     font-size: 11px;;
@@ -230,8 +105,6 @@ stroke-width: 0.2px; stroke: #fff;
 }
 
 
-
-
 #koreaPopMap path {
     stroke-linecap:round; stroke-linejoin:round;
 }
@@ -331,78 +204,6 @@ stroke-width: 0.2px; stroke: #fff;
     src: url('fonts/koverwatch.woff2');
 }
 
-
-/*************************************
- * generic styling for ALS elements
- ************************************/
-.als-container {
-	position: relative;
-	width: 100%;
-	margin: 0px auto;
-	z-index: 0;
-}
-
-.als-viewport {
-	position: relative;
-	overflow: hidden;
-	margin: 0px auto;
-}
-
-.als-wrapper {
-	position: relative;
-	list-style: none;
-}
-
-.als-item {
-	position: relative;
-	display: block;
-	text-align: center;
-	cursor: pointer;
-	float: left;
-}
-
-.als-prev, .als-next {
-	position: absolute;
-	cursor: pointer;
-	clear: both;
-	z-index: 10;
-}
-
-
-/*************************************
- * specific styling for #demo2
- ************************************/
-
-#demo2 {
-/*	margin: 28px auto;*/
-}
-
-#demo2 .als-item {
-	margin: 0px 20px;
-	padding: 4px 0px;
-	min-height: 82px;
-	width: 174px;
-	text-align: center;
-}
-
-#demo2 .als-item img {
-	display: block;
-	margin: 0 auto;
-	vertical-align: middle;
-}
-
-#demo2 .als-prev, #demo2 .als-next {
-	top: 28px;
-}
-
-#demo2 .als-prev {
-	left: 1.7%;
-}
-
-#demo2 .als-next {
-	right: 1.7%;
-}
-
 #seongnamMap svg circle {
           fill: orange;
 /*          opacity: .5;
@@ -465,3 +266,57 @@ stroke-width: 0.2px; stroke: #fff;
     padding-top: 1rem;
 }
 
+
+
+/******* BEGIN swiper css *******/
+.swiper-container {
+    height: 98px;
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.conBanner {
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 5px #fff inset;
+    max-width: 100%;
+    height: 98px;
+}
+
+.count-title {
+    padding-bottom: 0.625em;
+}
+
+.count-num {
+    display: flex;
+    flex-direction: row;
+/*    justify-content: space-between;
+    margin: 0 4.063em;*/
+    margin: 0 auto;
+}
+.conTotalnum {
+    padding-right: 1em;
+}
+
+.conNumIcon {
+    display: inline-block;
+    padding-top: 0.313em;
+    padding-right: 0.625em;
+}
+
+.conArrow {
+    padding-top: 0.625em;
+    padding-right: 0.625em;
+}
+
+.conNum {
+    padding-top: 0.375em;
+}
+
+/******* END swiper css *******/
