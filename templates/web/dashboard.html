@@ -31,33 +31,33 @@
 						<div class="col-5">
 							<!-- BEGIN stat-sm -->
 							<div class="small text-white text-opacity-50 text-truncate">
-								<i class="fa fa-chevron-up fa-fw me-1"></i>
-									Desktop   
+								<i class="fas fa-tv fa-fw me-1"></i>
+								Desktop
 								{% if chartData.barChartDataList.0.name == "Desktop"%}
-									{{ chartData.barChartDataList.0.value }}
+								{{ chartData.barChartDataList.0.value }}
 								{% else %}
-									Null
+								Null
 								{% endif %}<br />
-								<i class="far fa-user fa-fw me-1"></i>
-									Notebook   
+								<i class="fas fa-laptop fa-fw me-1"></i>
+								Notebook
 								{% if chartData.barChartDataList.1.name == "Notebook"%}
-									{{ chartData.barChartDataList.1.value }}
+								{{ chartData.barChartDataList.1.value }}
 								{% else %}
-									Null
+								Null
 								{% endif %}<br />
-								<i class="far fa-user fa-fw me-1"></i>
-								Rack    
+								<i class="fas fa-server fa-fw me-1"></i>
+								Rack
 								{% if chartData.barChartDataList.2.name == "Rack Mount Chassis"%}
-									{{ chartData.barChartDataList.2.value }}
+								{{ chartData.barChartDataList.2.value }}
 								{% else %}
-									Null
+								Null
 								{% endif %}<br />
-								<i class="far fa-user fa-fw me-1"></i>
-								Virtual   
+								<i class="fas fa-window-restore fa-fw me-1"></i>
+								Virtual
 								{% if chartData.barChartDataList.3.name == "Virtual"%}
-									{{ chartData.barChartDataList.3.value }}
+								{{ chartData.barChartDataList.3.value }}
 								{% else %}
-									Null
+								Null
 								{% endif %}
 							</div>
 							<!-- END stat-sm -->
@@ -138,23 +138,23 @@
 						<div class="col-5">
 							<!-- BEGIN stat-sm -->
 							<div class="small text-white text-opacity-50 text-truncate">
-								<i class="fa fa-chevron-up fa-fw me-1"></i>Linux
+								<i class="fab fa-linux fa-fw me-1"></i>Linux
 								{% if chartData.pieChartDataList.0.name == "Linux"%}
-									{{ chartData.pieChartDataList.0.value }}
+								{{ chartData.pieChartDataList.0.value }}
 								{% else %}
-									Null
+								Null
 								{% endif %}<br />
-								<i class="far fa-user fa-fw me-1"></i>Mac
+								<i class="fab fa-apple fa-fw me-1"></i>Mac
 								{% if chartData.pieChartDataList.1.name == "Mac"%}
-									{{ chartData.pieChartDataList.1.value }}
+								{{ chartData.pieChartDataList.1.value }}
 								{% else %}
-									Null
+								Null
 								{% endif %}<br />
-								<i class="far fa-user fa-fw me-1"></i>Windows
+								<i class="fab fa-windows fa-fw me-1"></i>Windows
 								{% if chartData.pieChartDataList.2.name == "Windows"%}
-									{{ chartData.pieChartDataList.2.value }}
+								{{ chartData.pieChartDataList.2.value }}
 								{% else %}
-									Null
+								Null
 								{% endif %}
 							</div>
 							<!-- END stat-sm -->
@@ -197,9 +197,9 @@
 						<div class="col-5">
 							<!-- BEGIN stat-sm -->
 							<div class="small text-white text-opacity-50 text-truncate">
-								<i class="fa fa-chevron-up fa-fw me-1"></i>Desktop<br />
-								<i class="far fa-user fa-fw me-1"></i>Notebook<br />
-								<i class="far fa-user fa-fw me-1"></i>Rack
+								<i class="fas fa-tv fa-fw me-1"></i>Desktop<br />
+								<i class="fas fa-laptop fa-fw me-1"></i>Notebook<br />
+								<i class="fas fa-server fa-fw me-1"></i>Rack
 							</div>
 							<!-- END stat-sm -->
 						</div>
@@ -434,9 +434,9 @@
 					<!-- END title -->
 					<!-- BEGIN map -->
 					<div class="ratio ratio-21x9 mb-3">
-<!--						<div id="world-map" class="jvectormap-without-padding"></div>-->
+						<!--						<div id="world-map" class="jvectormap-without-padding"></div>-->
 						<div id="korea-map" class="jvectormap-without-padding"></div>
-<!--						<div id="seongnam-map"></div>-->
+						<!--						<div id="seongnam-map"></div>-->
 					</div>
 					<!-- END map -->
 					<!-- BEGIN row -->
@@ -577,44 +577,40 @@
 			<div class="card mb-3">
 				<!-- BEGIN card-body -->
 				<div class="card-body h-130px">
-					<!-- BEGIN als-slide -->
-					<div class="alsWrap">
-						<div class="als-container" id="demo2">
-							<span class="als-prev"><img src="{% static 'img/common/dashboard/arrowPrev.png' %}"/></span>
-							<div class="als-viewport">
-								<ul class="als-wrapper">
-									{% if chartData.bannerDataList %}
-									{% for bannerData in chartData.bannerDataList %}
-									<li class="als-item">
-										<div class="conBotTop">{{bannerData.name}} Count</div>
-										<div class="conBotBot">
-											<p class="botConTotalNum">{{bannerData.value}}</p>
-											<div class="my-float-left conBotImg">
-												{% if bannerData.roc == 0 %}
-												<a class="conBotIcon"> - </a>
-												{% elif bannerData.roc > 0 %}
-												<img src="{% static 'img/common/dashboard/arrowTop.png' %}">
-												{% else %}
-												<img src="{% static 'img/common/dashboard/arrowBot.png' %}">
-												{% endif %}
-											</div>
-											<p class="botConNum my-float-left">
-												{% if bannerData.roc < 0 %}
-												{% widthratio bannerData.roc 1 -1 %}
-												{% else %}
-												{{bannerData.roc}}
-												{% endif %}
-											</p>
+					<!-- BEGIN swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							{% if chartData.bannerDataList %}
+							{% for bannerData in chartData.bannerDataList %}
+							<div class="swiper-slide">
+								<div class="conBanner">
+									<div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px">{{bannerData.name}} Count</div>
+									<div class="count-num">
+										<span class="conTotalnum fw-bold text-opacity-60 fs-4">{{bannerData.value}}</span>
+										<div class="conNumImg">
+											{% if bannerData.roc == 0 %}
+											<a class="conNumIcon text-decoration-none"> - </a>
+											{% elif bannerData.roc > 0 %}
+											<img class="conArrow" src="{% static 'img/common/dashboard/arrowTop.png' %}">
+											{% else %}
+											<img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
+											{% endif %}
 										</div>
-									</li>
-									{% endfor %}
-									{% endif %}
-								</ul>
+										<span class="conNum text-theme fw-bold">
+											{% if bannerData.roc < 0 %}
+											{% widthratio bannerData.roc 1 -1 %}
+											{% else %}
+											{{bannerData.roc}}
+											{% endif %}
+										</span>
+									</div>
+								</div>
 							</div>
-							<span class="als-next"><img src="{% static 'img/common/dashboard/arrowNext.png' %}"/></span>
+							{% endfor %}
+							{% endif %}
 						</div>
 					</div>
-					<!-- END als-slide -->
+					<!-- END swiper -->
 				</div>
 				<!-- END card-body -->
 
