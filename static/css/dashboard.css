@@ -1,3 +1,4 @@
+
 /*************************************
  * generic styling for ALS elements
  ************************************/
@@ -228,8 +229,6 @@ stroke-width: 0.2px; stroke: #fff;
 }
 #koreaMap #maps #path-99 { fill: #fff;
 }
-
-
 
 
 #koreaPopMap path {
@@ -472,3 +471,55 @@ stroke-width: 0.2px; stroke: #fff;
 #world-map svg{
     margin-left: 7%;
 }
+/******* BEGIN swiper css *******/
+.swiper-container {
+    height: 98px;
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.conBanner {
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 5px #fff inset;
+    max-width: 100%;
+    height: 98px;
+}
+
+.count-title {
+    padding-bottom: 0.625em;
+}
+
+.count-num {
+    display: flex;
+    flex-direction: row;
+/*    justify-content: space-between;
+    margin: 0 4.063em;*/
+    margin: 0 auto;
+}
+.conTotalnum {
+    padding-right: 1em;
+}
+
+.conNumIcon {
+    display: inline-block;
+    padding-top: 0.313em;
+    padding-right: 0.625em;
+}
+
+.conArrow {
+    padding-top: 0.625em;
+    padding-right: 0.625em;
+}
+
+.conNum {
+    padding-top: 0.375em;
+}
+
+/******* END swiper css *******/
