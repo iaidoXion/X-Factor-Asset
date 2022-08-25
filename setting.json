@@ -34,7 +34,7 @@
          "Saved" : "/api/v2/saved_questions"
        }
      },
-     "SensorID": "2306"
+     "SensorID": "2492"
   },
   "MODULE" : {
     "DataLoadingType" : "DB"

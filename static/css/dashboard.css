@@ -37,7 +37,7 @@
  ************************************/
 
 .alsWrap {
-    width: 1807px;
+    width: 100%;
     height: 87px;
     position: relative;
 }
@@ -343,14 +343,18 @@ stroke-width: 0.2px; stroke: #fff;
 }
 
 .als-viewport {
+    display: block;
 	position: relative;
 	overflow: hidden;
 	margin: 0px auto;
+	width: 100%;
 }
 
 .als-wrapper {
 	position: relative;
+	overflow: hidden;
 	list-style: none;
+	padding-left: 0rem;
 }
 
 .als-item {
@@ -359,6 +363,7 @@ stroke-width: 0.2px; stroke: #fff;
 	text-align: center;
 	cursor: pointer;
 	float: left;
+	overflow: hidden;
 }
 
 .als-prev, .als-next {
@@ -374,7 +379,7 @@ stroke-width: 0.2px; stroke: #fff;
  ************************************/
 
 #demo2 {
-/*	margin: 28px auto;*/
+    overflow: hidden;
 }
 
 #demo2 .als-item {
@@ -403,37 +408,36 @@ stroke-width: 0.2px; stroke: #fff;
 	right: 1.7%;
 }
 
-#seongnamMap svg circle {
+#seongnam-map svg circle {
           fill: orange;
 /*          opacity: .5;
           stroke: white;*/
         }
-#seongnamMap svg circle:hover {
+#seongnam-map svg circle:hover {
           fill: red;
           stroke: #333;
         }
-#seongnamMap svg text {
+#seongnam-map svg text {
           pointer-events: none;
-          fill: #858796;
-          font-family: Chakra Petch;
+          fill: #fff;
         }
-#seongnamMap svg .municipality {
+#seongnam-map svg .municipality {
           fill: #d5d6dd;
           stroke: #fff;
+          opacity: 0.2;
         }
-#seongnamMap svg .municipality-label {
+#seongnam-map svg .municipality-label {
           fill: #bbb;
           font-size: 12px;
           font-weight: 300;
           text-anchor: middle;
         }
-#seongnamMap svg #map text {
-          color: #333;
+#seongnam-map svg #map text {
+          color: #fff;
           font-size: 10px;
           text-anchor: middle;
-          font-family: Chakra Petch;
         }
-#seongnamMap svg #places text {
+#seongnam-map svg #places text {
           color: #777;
           font: 10px sans-serif;
           text-anchor: start;
@@ -465,3 +469,6 @@ stroke-width: 0.2px; stroke: #fff;
     padding-top: 1rem;
 }
 
+#world-map svg{
+    margin-left: 7%;
+}

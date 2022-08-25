@@ -8,12 +8,20 @@
 					<div class="menu-header">Navigation</div>
 					{% for menu in menuList %}
 					{% if menu.menuUse == '1' %}
-					<div class="menu-item active">
-						<a href="/{{menu.menuUrl}}/" class="menu-link">
-							<span class="menu-icon"><i class="bi bi-cpu"></i></span>
-							<span class="menu-text">{{ menu.menuName }}</span>
-						</a>
-					</div>
+					{% if request.get_full_path|cut:'/' == menu.menuUrl %}
+						<div class="menu-item active">
+					{% else %}
+						<div class="menu-item">
+                    {% endif %}
+							<a href="../{{menu.menuUrl}}" class="menu-link">
+								<span class="menu-icon"><i class="bi bi-cpu"></i></span>
+								<span class="menu-text">{{ menu.menuName }}</span>
+							</a>
+						</div>
+
+
+
+
 					{% endif %}
 					{% endfor %}
 					<div class="menu-item">

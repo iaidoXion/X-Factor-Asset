@@ -32,28 +32,28 @@
 							<!-- BEGIN stat-sm -->
 							<div class="small text-white text-opacity-50 text-truncate">
 								<i class="fa fa-chevron-up fa-fw me-1"></i>
-									Desktop   
+									Desktop
 								{% if chartData.barChartDataList.0.name == "Desktop"%}
 									{{ chartData.barChartDataList.0.value }}
 								{% else %}
 									Null
 								{% endif %}<br />
 								<i class="far fa-user fa-fw me-1"></i>
-									Notebook   
+									Notebook
 								{% if chartData.barChartDataList.1.name == "Notebook"%}
 									{{ chartData.barChartDataList.1.value }}
 								{% else %}
 									Null
 								{% endif %}<br />
 								<i class="far fa-user fa-fw me-1"></i>
-								Rack    
+								Rack
 								{% if chartData.barChartDataList.2.name == "Rack Mount Chassis"%}
 									{{ chartData.barChartDataList.2.value }}
 								{% else %}
 									Null
 								{% endif %}<br />
 								<i class="far fa-user fa-fw me-1"></i>
-								Virtual   
+								Virtual
 								{% if chartData.barChartDataList.3.name == "Virtual"%}
 									{{ chartData.barChartDataList.3.value }}
 								{% else %}
@@ -250,37 +250,37 @@
 									<div data-render="apexchart" data-type="donut" data-title="Visitors" data-height="50"></div>
 								</div>
 								<div>
-									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1">DISK USAGE</div>
+<!--									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1">DISK USAGE</div>-->
 									<div class="mb-2 fs-5 text-truncate">RAM Usage Exceeded</div>
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
-										<div class="progress-bar bg-theme" style="width: 20%"></div>
+										<div class="progress-bar bg-theme" style="width: 100%"></div>
 									</div>
-									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">
-										Last updated 1 min ago
-									</div>
+<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
+<!--										Last updated 1 min ago-->
+<!--									</div>-->
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme"></i>
-										<div class="flex-1">192.168.0.0</div>
+										<div class="flex-1">192.168.0</div>
 										<div>17.8%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-80"></i>
-										<div class="flex-1">192.168.0.3</div>
+										<div class="flex-1">192.168.1</div>
 										<div>3.2%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-60"></i>
-										<div class="flex-1">192.168.0.4</div>
+										<div class="flex-1">192.168.2</div>
 										<div>3.2%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-40"></i>
-										<div class="flex-1">192.168.0.1</div>
+										<div class="flex-1">192.168.3</div>
 										<div>3.2%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-20"></i>
-										<div class="flex-1">192.168.0.2</div>
+										<div class="flex-1">192.168.4</div>
 										<div>3.2%</div>
 									</div>
 								</div>
@@ -293,37 +293,37 @@
 									<div data-render="apexchart" data-type="donut" data-title="Visitors" data-height="50"></div>
 								</div>
 								<div>
-									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1">BANDWIDTH</div>
+<!--									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1">BANDWIDTH</div>-->
 									<div class="mb-2 fs-5 text-truncate">CPU Usage Exceeded</div>
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
-										<div class="progress-bar bg-theme" style="width: 10%"></div>
+										<div class="progress-bar bg-theme" style="width: 100%"></div>
 									</div>
-									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">
-										Last updated 1 min ago
-									</div>
+<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
+<!--										Last updated 1 min ago-->
+<!--									</div>-->
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme"></i>
-										<div class="flex-1">192.168.0.0</div>
+										<div class="flex-1">192.168.0</div>
 										<div>17.8%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-80"></i>
-										<div class="flex-1">192.168.0.4</div>
+										<div class="flex-1">192.168.3</div>
 										<div>3.2%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-60"></i>
-										<div class="flex-1">192.168.0.3</div>
+										<div class="flex-1">192.168.4</div>
 										<div>3.2%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-40"></i>
-										<div class="flex-1">192.168.0.1</div>
+										<div class="flex-1">192.168.1</div>
 										<div>3.2%</div>
 									</div>
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme text-opacity-20"></i>
-										<div class="flex-1">192.168.0.2</div>
+										<div class="flex-1">192.168.2</div>
 										<div>3.2%</div>
 									</div>
 								</div>
@@ -427,15 +427,15 @@
 				<!-- BEGIN card-body -->
 				<div class="card-body">
 					<!-- BEGIN title -->
-					<div class="d-flex fw-bold small mb-3">
-						<span class="flex-grow-1">TRAFFIC ANALYTICS</span>
+					<div class="d-flex fw-bold small mb-2">
+						<span class="flex-grow-1">Failure Symptom Case Detection</span>
 						<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
 					</div>
 					<!-- END title -->
 					<!-- BEGIN map -->
-					<div class="ratio ratio-21x9 mb-3">
-<!--						<div id="world-map" class="jvectormap-without-padding"></div>-->
-						<div id="korea-map" class="jvectormap-without-padding"></div>
+					<div class="ratio my-ratio-21x9">
+						<div id="world-map" class="jvectormap-without-padding"></div>
+<!--						<div id="korea-map" class="jvectormap-without-padding"></div>-->
 <!--						<div id="seongnam-map"></div>-->
 					</div>
 					<!-- END map -->
@@ -446,34 +446,44 @@
 							<table class="w-100 small mb-0 text-truncate text-white text-opacity-60">
 								<thead>
 								<tr class="text-white text-opacity-75">
-									<th class="w-50">COUNTRY</th>
-									<th class="w-25 text-end">VISITS</th>
+									<th class="w-50">Alarm Case</th>
+									<th class="w-25 text-end">Count</th>
 									<th class="w-25 text-end">PCT%</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td>FRANCE</td>
+								<tr class="text-theme fw-bold">
+									<td>No Login History</td>
+									<td class="text-end">13,849</td>
+									<td class="text-end">40.79%</td>
+								</tr>
+								<tr class="text-theme fw-bold">
+									<td>Drive Size No Change</td>
 									<td class="text-end">13,849</td>
 									<td class="text-end">40.79%</td>
 								</tr>
 								<tr>
-									<td>SPAIN</td>
+									<td>CPU Usage Exceeded</td>
 									<td class="text-end">3,216</td>
 									<td class="text-end">9.79%</td>
 								</tr>
-								<tr class="text-theme fw-bold">
-									<td>MEXICO</td>
+								<tr>
+									<td>Running Process Exceeded</td>
 									<td class="text-end">1,398</td>
 									<td class="text-end">4.26%</td>
 								</tr>
 								<tr>
-									<td>UNITED STATES</td>
+									<td>RAM Usage Exceeded</td>
 									<td class="text-end">1,090</td>
 									<td class="text-end">3.32%</td>
 								</tr>
 								<tr>
-									<td>BELGIUM</td>
+									<td>Listen Port No Change</td>
+									<td class="text-end">1,045</td>
+									<td class="text-end">3.18%</td>
+								</tr>
+								<tr>
+									<td>Established Port No Change</td>
 									<td class="text-end">1,045</td>
 									<td class="text-end">3.18%</td>
 								</tr>
@@ -487,6 +497,10 @@
 							<div class="card">
 								<!-- BEGIN card-body -->
 								<div class="card-body py-2">
+									<div>
+										Total Alarm Case Top 5(%)
+									</div>
+									<br>
 									<div class="d-flex align-items-center">
 										<div class="w-70px">
 											<div data-render="apexchart" data-type="donut" data-height="70"></div>
@@ -497,7 +511,7 @@
 												<tr>
 													<td>
 														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-95"></div> FEED
+															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-95"></div> 192.168.0
 														</div>
 													</td>
 													<td class="text-end">25.70%</td>
@@ -505,7 +519,7 @@
 												<tr>
 													<td>
 														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-75"></div> ORGANIC
+															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-75"></div> 192.168.1
 														</div>
 													</td>
 													<td class="text-end">24.30%</td>
@@ -513,7 +527,7 @@
 												<tr>
 													<td>
 														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-55"></div> REFERRAL
+															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-55"></div> 192.168.2
 														</div>
 													</td>
 													<td class="text-end">23.05%</td>
@@ -521,7 +535,7 @@
 												<tr>
 													<td>
 														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-35"></div> DIRECT
+															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-35"></div> 192.168.3
 														</div>
 													</td>
 													<td class="text-end">14.85%</td>
@@ -529,7 +543,7 @@
 												<tr>
 													<td>
 														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-15"></div> EMAIL
+															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-15"></div> 192.168.4
 														</div>
 													</td>
 													<td class="text-end">7.35%</td>

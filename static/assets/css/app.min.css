@@ -1,5 +1,6 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500&display=swap'); /*!
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500&display=swap');
+/*!
  * HUD v1.8.0 (https://seantheme.com/hud/)
  * Copyright 2022 SeanTheme
  */ /*!
@@ -8426,6 +8427,9 @@ height: 100%
 }
 .ratio-21x9 {
 --bs-aspect-ratio: 42.8571428571%
+}
+.my-ratio-21x9 {
+--bs-aspect-ratio: 40.953%
 }
 .fixed-top {
 position: fixed;
@@ -19060,6 +19064,40 @@ height: 1.625rem;
 left:3px;
 top:3px;
 }
+
+.app-header .brand .brand-logo .brand-img-nc {
+width: 2.063rem;
+height: 2.063rem;
+background: url('images/NC_logo4.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 1rem;
+position: relative;
+}
+.app-header .brand .brand-logo .brand-img .brand-img-text-nc::after {
+content: url('images/NC_logo4.png');
+position: absolute;
+width: 1.625rem;
+height: 1.625rem;
+left:3px;
+top:3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .app-header .menu {
 display: flex;
 align-items: center;
@@ -24196,4 +24234,8 @@ max-height: 100%
 }
 .widget-user-list .widget-user-list-item+.widget-user-list-item {
 margin-left: -1.25rem
+}
+
+#seongnam-map text {
+    font-family: 'Black Han Sans', sans-serif;
 }
