@@ -3965,7 +3965,7 @@ color: var(--bs-btn-hover-color)
 --bs-btn-padding-y: 0.25rem;
 --bs-btn-padding-x: 0.5rem;
 --bs-btn-font-size: 0.8125rem;
---bs-btn-border-radius: 2px
+--bs-btn-border-radius: 1px
 }
 .fade {
 transition: opacity 0.15s linear
@@ -19014,8 +19014,8 @@ margin-right: auto
 }
 .app-header .brand {
 height: 100%;
-width: 18.875rem;
-padding: 0 1rem;
+width: 10.875rem;
+padding: 0 .75rem;
 display: flex;
 align-items: center
 }
@@ -19223,7 +19223,8 @@ bottom: 0;
 position: fixed;
 top: 3.25rem;
 z-index: 1010;
-left: 0
+left: 0;
+background: rgba(31,42,55,0.7);
 }
 .app-sidebarBg {
 background: rgba(42,59,74,.8);
@@ -19988,8 +19989,8 @@ background: rgba(29, 40, 53, .95)
 border-radius: 0
 }
 .card.card-expand .card-body {
-flex: 1 0 0;
-overflow: scroll
+/*flex: 1 0 0;*/
+overflow: auto;
 }
 .card.card-expand:not(.border-0):before {
 top: 5px;
@@ -21634,7 +21635,7 @@ body .typeahead__container .typeahead__result .typeahead__list .typeahead__item+
 border-top: 1px solid rgba(255, 255, 255, .15)
 }
 .jvectormap-container {
-position: relative
+position: relative;
 }
 .jvectormap-container .jvectormap-goback,
 .jvectormap-container .jvectormap-zoomin,

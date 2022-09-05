@@ -1,3 +1,20 @@
+//map chart 버튼
+$(document).ready(function(){
+    $('#worldBtn').click(function() {
+        $("#world-map").show();
+        $("#korea-map").hide();
+    });
+
+    $('#koreaBtn').click(function() {
+        $("#world-map").hide();
+        $("#korea-map").show();
+
+    });
+});
+
+
+
+// swiper 배너
 $(document).ready(function () {
 
   var mySwifer = new Swiper('.swiper-container', {
