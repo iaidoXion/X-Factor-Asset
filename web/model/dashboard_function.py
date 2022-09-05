@@ -31,20 +31,22 @@ def DashboardData() :
                 # OS Item Statistics
                 TOIDL = TDFPI(sensorAPI, "today", "osItem")
                 SOIDL = ASDCD(TOIDL, "osItem", "group")
-
-                
-                #CPU Consumption
-                # TCCDLT = TDFPI(sensorAPI, "today", "CCDL")
-                # TDUSDLY = TDFPI(EAYL, "yesterday", "DUS") #DUS(yesterday)
-                # example = [TCCDLT, TDUSDLY]
-                # SDUSDLT = ASDCD(example, "CCDL", "count")
-                
+                                
                 # Drive Use Size Statistics
                 ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
                 TDUSDLT = TDFPI(sensorAPI, "today", "DUS")
                 TDUSDLY = TDFPI(EAYL, "yesterday", "DUS")
                 DUSCTDL = [TDUSDLT, TDUSDLY]
                 SDUSDLT = ASDCD(DUSCTDL, "DUS", "count")
+                
+                #CPU Consumption
+                TCCDLT = TDFPI(sensorAPI, "today", "CCDL")
+                CCSDLT = ASDCD(TCCDLT, "CCDL", "count")
+                
+                #Running Process
+                TRPDL = TDFPI(sensorAPI, "today", "RP")
+                RPDLA = ASDCD(TRPDL, "RP", "count")
+                
                 # No Login History Statistics
                 ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
                 TNLHDLT = TDFPI(sensorAPI, "today", "LH")
@@ -80,7 +82,7 @@ def DashboardData() :
                 ## Today Statistics Data Transform
                 ## Today Asset Total Count Calculation
                 ATCDL = {'name': ['Asset Total'], 'value': [sum(SAIDL['value'])]}
-                TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT
+                TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT, CCSDLT, RPDLA
                 TSDLT = TDBA(TSDL, 'today')
                 ## Banner ROC Calculation
                 SBNDL = ASDC(TSDLY, TSDLT)
@@ -100,7 +102,8 @@ def DashboardData() :
                 SRUSADL = ASDACD(RUSCTDL, 'RUE')
                 SLPCADL = ASDACD(LPCCTDL, 'LPC')
                 SEPCADL = ASDACD(EPCCTDL, 'EPC')
-                #SCCSADL = ASDACD(TCCDL, 'CCDL')
+                SCCSADL = ASDACD(TCCDLT, 'CCDL')
+                SRPSADL = ASDACD(TRPDL, 'RP')
 
                 ## List
                 ### Transform by case
@@ -109,7 +112,10 @@ def DashboardData() :
                 TRUSALDL = TDAL(SRUSADL, 'list', 'RUE')
                 TLPCALDL = TDAL(SLPCADL, 'list', 'LPC')
                 TEPCALDL = TDAL(SEPCADL, 'list', 'EPC')
-                ALD = [TDUSALDL, TLHALDL, TRUSALDL, TLPCALDL, TEPCALDL]
+                TCCSADL = TDAL(SCCSADL, 'list', 'CCDL')
+                TRPSADL = TDAL(SRPSADL, 'list', 'RP')
+                
+                ALD = [TDUSALDL, TLHALDL, TRUSALDL, TLPCALDL, TEPCALDL, TCCSADL, TRPSADL]
 
                 ## Network
                 ### Data Grouping(Statistics) by case
@@ -118,14 +124,29 @@ def DashboardData() :
                 SRUSND = ASDN(SRUSADL, 'group', 'RUE')
                 SLPCND = ASDN(SLPCADL, 'group', 'LPC')
                 SEPCND = ASDN(SEPCADL, 'group', 'EPC')
+                SCCSAD = ASDN(SCCSADL, 'group', 'CCDL')
+                SRPSAD = ASDN(SRPSADL, 'group', 'RP')
+                
+                ## Donut Chart
+                SDCCC = ASDN(SCCSADL, 'MD', 'CCDL')
+                SDDRU = ASDN(SRUSADL, 'MD', 'RUE')
 
                 TDUSND = TDAL(SDUSND, 'network', 'DUS')
                 TLHND = TDAL(SLHND, 'network', 'LH')
                 TRUSND = TDAL(SRUSND, 'network', 'RUE')
                 TLPCND = TDAL(SLPCND, 'network', 'LPC')
                 TEPCND = TDAL(SEPCND, 'network', 'EPC')
-                NDL = [TDUSND[0], TDUSND[1]+TLHND[1]+TRUSND[1]+TLPCND[1]+TEPCND[1]]
+                TSCCSA = TDAL(SCCSAD, 'network', 'CCDL')
+                TSRPSA = TDAL(SRPSAD, 'network', 'RP')
+                
+                ## DONU chart
+                TMDCD = TDAL(SDCCC, 'network', 'CCDL')
+                TMRUE = TDAL(SRUSND, 'network', 'RUE')
+                MDC = [TMDCD[1], TMRUE[1]]
+                
+                NDL = [TDUSND[0], TDUSND[1]+TLHND[1]+TRUSND[1]+TLPCND[1]+TEPCND[1] + TSCCSA[1] + TSRPSA[1]]
                 NCDL = ASDN(NDL, 'max', 'all')
+                #RADCDL = ASDN(NDL, 'max', 'all')
 
                 # BAR Chart
                 BDL = TDCD(SAIDL, "Bar")
@@ -138,6 +159,9 @@ def DashboardData() :
                 BNDL = TDCD(SBNDL, "Banner")
                 # Alarm List
                 ALDL = TDCD(ALD, "alarmList")
+                #Mini Donut Chart(RAM)
+                MDRU = TDCD(MDC, "MDC")
+                #Mini Donut Chart(CPU)
                 
 
             elif ProjectType == 'Service':
@@ -151,9 +175,9 @@ def DashboardData() :
         "pieChartData" : PDL,
         "bannerData" : BNDL,
         "alarmListData" : ALDL[0],
-        "AssociationDataList" : NCDL
+        "AssociationDataList" : NCDL,
+        "MiniDonutChart" : MDRU
     }
-
     return RD
 
 

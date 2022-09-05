@@ -15,6 +15,7 @@ alarmCaseThird = SETTING['PROJECT']['Alarm']['Case']['Third']
 alarmCaseFourth = SETTING['PROJECT']['Alarm']['Case']['Fourth']
 alarmCaseFifth = SETTING['PROJECT']['Alarm']['Case']['Fifth']
 alarmCaseSix = SETTING['PROJECT']['Alarm']['Case']['Six']
+alarmCaseSeven = SETTING['PROJECT']['Alarm']['Case']['Seven']
 
 
 def calculation(pastData, todayData) :
@@ -43,12 +44,18 @@ def alarm_case_detection(data, case) :
         AT = alarmCaseFifth
     elif case == 'CCDL' :
         AT = alarmCaseSix
+    elif case == "RP" :
+        AT = alarmCaseSeven
+    
 
-    TDL = data[0]
-    PDL = data[1]
-    DLMerge = pd.merge(left=TDL, right=PDL, how="outer", on="id").sort_values(by="id", ascending=True).reset_index(drop=True).drop(['ip_y'], axis=1)
-    #DLMerge = DLMerge.dropna(axis=0)
-    DLMerge.columns = ['id', 'Today', 'ip', 'Past']
+    if case == 'CCDL' or case == 'RP' :
+        DLMerge = data
+    else :    
+        TDL = data[0]
+        PDL = data[1]
+        DLMerge = pd.merge(left=TDL, right=PDL, how="outer", on="id").sort_values(by="id", ascending=True).reset_index(drop=True).drop(['ip_y'], axis=1)
+        #DLMerge = DLMerge.dropna(axis=0)
+        DLMerge.columns = ['id', 'Today', 'ip', 'Past']
     DL = []
     DLC =['name', 'value', 'alarmText']
     for j in range(len(DLMerge)):
@@ -64,6 +71,18 @@ def alarm_case_detection(data, case) :
             if DLMerge['Today'][j] != 0 and DLMerge['Past'][j] != 0 :
                 usage = DLMerge['Past'][j]/DLMerge['Today'][j]*100
                 if usage > AlarmRamUsage :
+                    AI = DLMerge['id'][j]
+                    IP = DLMerge['ip'][j]
+                    DL.append([AI, IP, AT])
+        elif case == "CCDL" :
+            if DLMerge['cpuconsumption'][j] != '[current result unavailable]' and DLMerge['cpuconsumption'][j] != '[TSE-Error]':
+                if DLMerge['cpuconsumption'][j] > 60.0 :
+                    AI = DLMerge['id'][j]
+                    IP = DLMerge['ip'][j]
+                    DL.append([AI, IP, AT])
+        elif case == "RP" :
+            if DLMerge['runningprocess'][j] != '[current result unavailable]' :
+                if len(DLMerge['runningprocess'][j]) > 100 :
                     AI = DLMerge['id'][j]
                     IP = DLMerge['ip'][j]
                     DL.append([AI, IP, AT])
@@ -87,18 +106,65 @@ def network(data, type, case) :
         AT = alarmCaseFourth
     elif case == 'EPC':
         AT = alarmCaseFifth
+    elif case == 'CCDL' :
+        AT = alarmCaseSix
+    elif case == "RP" :
+        AT = alarmCaseSeven
+        
 
     if type == 'group' :
         ADL = []
         if data['value'][0]:
             for i in range(len(data['value'])):
+                if "current result unavailable" in data['value'][0] :
+                    continue
                 IPS = data['value'][i].split('.')
                 if len(IPS) == 4 :
                     IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
                 ADL.append([IP])
         RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts')
         RD['alarmCase'] = AT
+        print(RD)
+    if type == 'MD' :
+        ADL = []
+        if data['value'][0]:
+            for i in range(len(data['value'])):
+                if "current result unavailable" in data['value'][0] :
+                    continue
+                IPS = data['value'][i].split('.')
+                if len(IPS) == 4 :
+                    IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
+                ADL.append([IP])
+        RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts').head(5)
+        RD['alarmCase'] = AT
+        print(RD)
     elif type == 'max' :
+        nodeDataList = []
+        linksDataList = []
+        odf = pd.DataFrame(data[1], columns=data[0])
+        MDF = odf.loc[odf.groupby(['group'])['alarmCount'].idxmax()]
+        MDF['point'] = 'true'
+        df = pd.merge(left=odf, right=MDF, how="left",on=['id', 'group', 'alarmCount', 'name', 'alarmCase']).sort_values(by="id", ascending=True).reset_index()
+        
+        DFG = df.groupby(['group']).sum(['alarmCount']).reset_index()
+        for j in range(len(DFG.group)):
+            # if "CPU Consumption is Excess" in df['alarmCase'][i]:
+            #     print(df)
+            #     print("----------")
+            groupNameCountSplit = DFG.group[j].split('.')
+            groupNameCount = groupNameCountSplit[0]+groupNameCountSplit[1]+groupNameCountSplit[2]
+            nodeDataList.append({'group': DFG.group[j],'alarmCount': str(DFG.alarmCount[j]), 'id': 'groupCenter'+str(groupNameCount), 'name': DFG.group[j], 'alarmCase': DFG.group[j]})
+            #print(nodeDataList)
+        for i in range(len(df.id)) :
+            groupNameCount = groupNameCountSplit[0] + groupNameCountSplit[1] + groupNameCountSplit[2]
+            if df.point[i] == 'true' :
+                point = 'true'
+            else :
+                point = 'false'
+            nodeDataList.append({'group' : df.group[i], 'alarmCount': str(df.alarmCount[i]), 'id':df.id[i], 'name':df.name[i], 'alarmCase':df.alarmCase[i], 'point':point})
+            linksDataList.append({'source': df.id[i], 'target': 'groupCenter'+str(groupNameCount)})
+        RD ={'nodeDataList':nodeDataList, 'linksDataList':linksDataList}
+    elif type == 'all' :
         nodeDataList = []
         linksDataList = []
         odf = pd.DataFrame(data[1], columns=data[0])
@@ -107,6 +173,7 @@ def network(data, type, case) :
         df = pd.merge(left=odf, right=MDF, how="left",on=['id', 'group', 'alarmCount', 'name', 'alarmCase']).sort_values(by="id", ascending=True).reset_index()
 
         DFG = df.groupby(['group']).sum(['alarmCount']).reset_index()
+        #print(DFG)
         for j in range(len(DFG.group)):
             groupNameCountSplit = DFG.group[j].split('.')
             groupNameCount = groupNameCountSplit[0]+groupNameCountSplit[1]+groupNameCountSplit[2]
@@ -121,12 +188,12 @@ def network(data, type, case) :
             nodeDataList.append({'group' : df.group[i], 'alarmCount': str(df.alarmCount[i]), 'id':df.id[i], 'name':df.name[i], 'alarmCase':df.alarmCase[i], 'point':point})
             linksDataList.append({'source': df.id[i], 'target': 'groupCenter'+str(groupNameCount)})
         RD ={'nodeDataList':nodeDataList, 'linksDataList':linksDataList}
-
     return RD
 
 
 
 def chart_data(data, type, statistics) :
+    #print(data)
     if statistics == 'group' :
         if type == 'assetItem' :
             GBI = 'assetItem'
@@ -143,9 +210,12 @@ def chart_data(data, type, statistics) :
         IC = ICL.tolist()
 
     elif statistics == 'count' :
-        todayDL = data[0]
-        yesterdayDL = data[1]
-        DLMerge = pd.merge(left=todayDL, right=yesterdayDL, how="outer", on="id").sort_values(by="id", ascending=True).reset_index(drop=True)
+        if type == "CCDL" or type == 'RP' :
+            DLMerge = data
+        else :    
+            todayDL = data[0]
+            yesterdayDL = data[1]
+            DLMerge = pd.merge(left=todayDL, right=yesterdayDL, how="outer", on="id").sort_values(by="id", ascending=True).reset_index(drop=True)
         DTC = len(DLMerge)
         if type == 'DUS' :
             DUSCY = len(DLMerge['driveSize_x'].compare(DLMerge['driveSize_y']))
@@ -167,11 +237,28 @@ def chart_data(data, type, statistics) :
         elif type == 'EPC':
             DUSCY = len(DLMerge['establishedPortCount_x'].compare(DLMerge['establishedPortCount_y']))
             INM = [alarmCaseFifth]
-        # elif type == 'CCDL' :
-        #     DLMerge['cpuconsumption'] > 60
-        #     INM = [alarmCaseSix]
-        #     #DUSCY = len()
-        if type == 'LH' or type == 'RUE':
+        elif type == 'CCDL' :
+            i = 0;
+            for x in DLMerge['cpuconsumption'] :
+                if x == "[current result unavailable]" or x == "[TSE-Error]" :
+                    print("current : {}".format(x))
+                    continue
+                if float(x) > 60.0 :
+                    i = i + 1
+            DUSCY = i
+            INM = [alarmCaseSix]
+            # DLMerge['cpuconsumption'][0].astype(float)
+            # DUSCY = len(DLMerge[(float(DLMerge['cpuconsumption']) > 60.0)])
+            # INM = [alarmCaseSix]
+            # DUSCY = len()
+        elif type == 'RP' :
+            i = 0;
+            for x in DLMerge['runningprocess'] :
+                if len(x) > 100 :
+                    i = i + 1
+            DUSCY = i
+            INM = [alarmCaseSeven]
+        if type == 'LH' or type == 'RUE' or type == 'CCDL':
             IC = [DUSCY]
         else :
             IC = [DTC-DUSCY]
