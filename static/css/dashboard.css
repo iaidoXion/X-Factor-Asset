@@ -446,6 +446,7 @@ stroke-width: 0.2px; stroke: #fff;
     font-family: sans-serif;
     font-size: 20px;
 }
+/*
 
 #apexRadarChart {
     width: 60%;
@@ -467,10 +468,15 @@ stroke-width: 0.2px; stroke: #fff;
     padding: 1rem;
     padding-top: 1rem;
 }
+*/
 
-#world-map svg{
-    margin-left: 7%;
-}
+/*.jvectormap-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+
+
 /******* BEGIN swiper css *******/
 .swiper-container {
     height: 98px;

@@ -21,7 +21,7 @@
 		<div class="login">
 			<!-- BEGIN login-content -->
 			<div class="login-content">
-				<form action="{% url 'login' %}" method="POST" name="login_form">
+				<form action="{% url 'login' %}" method="POST" name="login_form" >
 					{% csrf_token %}
 					{% include "../form_errors.html" %}
 					{% if error %}
@@ -32,20 +32,20 @@
 						For your protection, please verify your identity.
 					</div>
 					<div class="mb-3">
-						<label class="form-label">사용자ID <span class="text-danger">*</span></label>
-						<input type="text" class="form-control form-control-lg bg-white bg-opacity-5" value="{{ form.username.value|default_if_none:'' }}" placeholder="" name="username" id="username"/>
+						<label class="form-label">사용자ID  <span class="text-danger">*</span></label>
+						<input type="text" class="form-control form-control-lg bg-white bg-opacity-5"  name="user_id" id="user_id" autocomplete="off"/>
 					</div>
 					<div class="mb-3">
 						<div class="d-flex">
 							<label class="form-label">비밀번호 <span class="text-danger">*</span></label>
 							<a href="#" class="ms-auto text-white text-decoration-none text-opacity-50">Forgot password?</a>
 						</div>
-						<input type="password" class="form-control form-control-lg bg-white bg-opacity-5" value="{{ form.password.value|default_if_none:'' }}" placeholder="" name="password" id="password"/>
+						<input type="password" class="form-control form-control-lg bg-white bg-opacity-5" value="{{ form.user_pw.value|default_if_none:'' }}" placeholder="" name="user_pw" id="user_pw" autocomplete="off"/>
 					</div>
 					<div class="mb-3">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="customCheck1" />
-							<label class="form-check-label" for="customCheck1">Remember me</label>
+							<input class="form-check-input" type="checkbox" value="" id="idSaveCheck" />
+							<label class="form-check-label" for="idSaveCheck">Remember me</label>
 						</div>
 					</div>
 					<button type="submit" class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3">Sign In</button>
@@ -65,8 +65,9 @@
 	<!-- END #app -->
 
 	<!-- ================== BEGIN core-js ================== -->
-	<script src="assets/js/vendor.min.js"></script>
-	<script src="assets/js/app.min.js"></script>
+	<script src="/static/assets/js/vendor.min.js"></script>
+	<script src="/static/assets/js/app.min.js"></script>
+	<script src="/static/js/jquery/jquery-3.6.0.min.js"></script>
 	<!-- ================== END core-js ================== -->
 
 
@@ -80,6 +81,61 @@
 		ga('create', 'UA-53034621-1', 'auto');
 		ga('send', 'pageview');
 
+
+
+$(document).ready(function(){
+    // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+    var userInputId = getCookie("userInputId");
+    $("input[name='user_id']").val(userInputId);
+
+    if($("input[name='user_id']").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+        $("#idSaveCheck").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+    }
+
+    $("#idSaveCheck").change(function(){ // 체크박스에 변화가 있다면,
+        if($("#idSaveCheck").is(":checked")){ // ID 저장하기 체크했을 때,
+            var userInputId = $("input[name='user_id']").val();
+            setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
+        }else{ // ID 저장하기 체크 해제 시,
+            deleteCookie("userInputId");
+        }
+    });
+
+    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+    $("input[name='user_id']").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+        if($("#idSaveCheck").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+            var userInputId = $("input[name='user_id']").val();
+            setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
+        }
+    });
+});
+
+function setCookie(cookieName, value, exdays){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+}
+
+function deleteCookie(cookieName){
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() - 1);
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+}
+
+function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = '';
+    if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+    }
+    return unescape(cookieValue);
+}
 	</script>
 </body>
 </html>

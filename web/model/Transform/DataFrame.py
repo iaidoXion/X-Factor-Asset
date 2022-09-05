@@ -70,6 +70,7 @@ def plug_in(data, day, type):
                     item = str(date).split(' ')[0]
                 else :
                     item = "None"
+
                 itemIndex = 'lastLogin'
             if type == 'RUET':#값 안찍힘
                 item = d[13][0]['text'].split(' ')[0]
