@@ -65,8 +65,15 @@ def plug_in(data, day, type):
                 itemIndex = 'driveSize'
             if type == 'LH': #값 안찍힘
                 if d[2][0]['text'] != '[current result unavailable]':
-                    date = datetime.strptime(d[2][0]['text'].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
+                    # print(datetime.strptime(d[2][0]['text'].split(' -')[0], "%a, %d %b %Y %H:%M:%S"))
+                    if ('-' in d[2][0]['text']):
+                        date = datetime.strptime(d[2][0]['text'].split(' -')[0], "%a, %d %b %Y %H:%M:%S")
+                    else:
+                        date = datetime.strptime(d[2][0]['text'].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
+                    # date = datetime.strptime(d[2][0]['text'].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
                     item = str(date).split(' ')[0]
+                else:
+                    item = 'None'
                 itemIndex = 'lastLogin'
             if type == 'RUET':#값 안찍힘
                 item = d[13][0]['text'].split(' ')[0]

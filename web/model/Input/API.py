@@ -4,35 +4,32 @@ import json
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
 apiUrl = SETTING['API']['apiUrl']
-Authorization = SETTING['API']['Authorization']
 ContentType = SETTING['API']['ContentType']
 SesstionKeyPath = SETTING['API']['PATH']['SesstionKey']
 SensorAPIPath = SETTING['API']['PATH']['Sensor']
 SensorID = SETTING['API']['SensorID']
-AssetAPIPath = SETTING['API']['PATH']['Asset']
+TNID = SETTING['API']['username']
+TNPWD = SETTING['API']['password']
 
 def plug_in(SK, APITYPE):
     try:
-        if SK == '' :
-            headers = {'Authorization': Authorization}
-        else :
-            headers = {'session': SK, 'Authorization': Authorization, 'Content-Type': ContentType}
-
         if APITYPE == 'Auth' :
             path = SesstionKeyPath
+            urls = apiUrl + path
+            headers = '{"username" : "' + TNID + '","domain":"",  "password":"' + TNPWD + '"}'
+            response = requests.post(urls, data=headers, verify=False)
+            resCode = response.status_code
+            returnData = response.json()['data']['session']
+
+
         if APITYPE == 'Sensor' :
             path = SensorAPIPath + SensorID
-        if APITYPE == 'Asset':
-            path = AssetAPIPath
+            urls = apiUrl + path
+            headers = {'session': SK, 'Content-Type': ContentType}
+            response = requests.request("GET", urls, headers=headers, verify=False)
+            resCode = response.status_code
+            responseText = response.text
 
-        urls = apiUrl + path
-        response = requests.request("GET", urls, headers=headers, verify=False)
-        resCode = response.status_code
-        responseText = response.text
-
-        if SK == '' :
-            returnData = responseText
-        else :
             responseTextJson = json.loads(responseText)
             returnData = []
             if APITYPE == 'Sensor' :

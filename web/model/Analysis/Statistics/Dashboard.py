@@ -92,6 +92,8 @@ def network(data, type, case) :
         ADL = []
         if data['value'][0]:
             for i in range(len(data['value'])):
+                if "current result" in data['value'][i] :
+                    continue
                 IPS = data['value'][i].split('.')
                 if len(IPS) == 4 :
                     IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
@@ -105,12 +107,18 @@ def network(data, type, case) :
         MDF = odf.loc[odf.groupby(['group'])['alarmCount'].idxmax()]
         MDF['point'] = 'true'
         df = pd.merge(left=odf, right=MDF, how="left",on=['id', 'group', 'alarmCount', 'name', 'alarmCase']).sort_values(by="id", ascending=True).reset_index()
+        DFG = df.groupby(['group']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
 
-        DFG = df.groupby(['group']).sum(['alarmCount']).reset_index()
+        TOT=DFG['alarmCount'].sum()
+        TOTPER=round((DFG['alarmCount']/TOT)*100, 2)
+
+        ACDF= df.groupby(['alarmCase']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
+        ACPER=round((ACDF['alarmCount']/TOT)*100, 2)
+        #print(ACPER)
         for j in range(len(DFG.group)):
             groupNameCountSplit = DFG.group[j].split('.')
             groupNameCount = groupNameCountSplit[0]+groupNameCountSplit[1]+groupNameCountSplit[2]
-            nodeDataList.append({'group': DFG.group[j],'alarmCount': str(DFG.alarmCount[j]), 'id': 'groupCenter'+str(groupNameCount), 'name': DFG.group[j], 'alarmCase': DFG.group[j]})
+            nodeDataList.append({'group': DFG.group[j],'alarmCount': str(DFG.alarmCount[j]), 'id': 'groupCenter'+str(groupNameCount), 'name': DFG.group[j], 'alarmCase': DFG.group[j], 'totalPertage': TOTPER[j]})
         for i in range(len(df.id)) :
             groupNameCountSplit = df.group[i].split('.')
             groupNameCount = groupNameCountSplit[0] + groupNameCountSplit[1] + groupNameCountSplit[2]
