@@ -79,7 +79,7 @@ var handleRenderChart = function () {
       labels: {
         style: {
           colors: "#fff",
-          fontSize: "8px",
+          fontSize: "3px",
           fontFamily: app.font.family,
           fontWeight: 400,
           cssClass: "apexcharts-xaxis-label",
@@ -495,7 +495,7 @@ var apexLineChartOptions = {
 		tooltip: {
 			theme: 'dark',
 			x: {
-				show: false
+				show: true
 			},
 			y: {
 				title: {
@@ -1238,6 +1238,87 @@ var handleRenderKoreaMap = function() {
 
 
 
+function seongnamMap(worldMapData, seongnamNetwork) {
+	var width = 800, height = 376.92;
+	var svg = d3.select("#seongnam-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", "0 0 879.5 376.92").style("margin-left", '1%');
+	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
+	var projection = d3.geo.mercator().center([127.1094211519, 37.399]).scale(120000).translate([width / 2, height / 2]);
+	var path = d3.geo.path().projection(projection);
+
+	svg.selectAll("circle")
+		.data(worldMapData)
+		.enter()
+		.append("circle")
+		.attr("class", "dot")
+		.attr("transform", translateCircle)
+		.attr("r", 4)
+		.style("fill", "#e08a0b");
+
+	function translateCircle(datum, index) {
+		return "translate(" + projection([datum.y, datum.x]) + ")";
+	};
+
+	setInterval(function () {
+		worldMapData.forEach(function (datum) {
+			svg
+				.append("circle")
+				.attr("class", "ring")
+				.attr("transform", translateCircle(datum))
+				.attr("r", 1)
+				.style("fill", "#e06f0b")
+				.style("opacity", "0.3")
+				.style("fill-opacity", "0.3")
+				.transition()
+				.ease("linear")
+				.duration(2000)
+				.style("stroke-opacity", 1e-6)
+				.style("stroke-width", 1)
+				.style("stroke", "e06f0b")
+				.attr("r", 30)
+				.remove();
+		})
+	}, 800);
+
+	d3.json("../static/assets/plugins/jvectormap-content/seongnam.json", function (error, data) {
+		var features = topojson.feature(data, data.objects.seongnam).features;
+
+		map.selectAll('path').data(features).enter().append('path')
+			.attr('class', function (d) { return 'municipality c' + d.properties.code })
+			.attr('d', path);
+
+		map.selectAll('text').data(features).enter().append("text")
+			.attr("transform", function (d) { return "translate(" + path.centroid(d) + ")"; })
+			.attr("dy", ".35em")
+			.attr("class", "municipality-label")
+			.text(function (d) { return d.properties.sggnm; })
+			.style("fill", "#717384")
+	});
+
+
+	var simulation = d3v4.forceSimulation()
+		.force("link", d3v4.forceLink().distance(d => d.distance).id(function (d) { return d.id; }))
+		.force("charge", d3v4.forceManyBody().strength(-170));
+
+	seongnamNetwork.forEach(function (graph) {
+		var link = svg.append("g")
+			.attr("class", "links")
+			.selectAll("line")
+			.data(graph.links)
+			.enter().append("line")
+			.attr("stroke-width", "1.7")
+			.style("stroke", "#e18a0a");
+
+		var fillCircle = function (g) {
+			if (g == "Ncrd") {
+				return "/web/static/img/dashboard/ncrd.png";
+			} else if (g == "Ncalpha") {
+				return "/web/static/img/dashboard/ncalpha.png";
+			}
+		};
+
+	});
+
+}
 
 
 
@@ -1247,17 +1328,17 @@ var handleRenderKoreaMap = function() {
 ------------------------------------------------ */
 $(document).ready(function() {
 	handleRenderChart();
-	handleRenderMap();
-	handleRenderKoreaMap();
+	//handleRenderMap();
+	//handleRenderKoreaMap();
 	//handleRenderSeongnamMap();
-	//seongnamMap(worldMapData, seongnamNetwork);
+	seongnamMap(worldMapData, seongnamNetwork);
 
 	document.addEventListener('theme-reload', function() {
-	$('[data-render="apexchart"], #apexRadarChart #world-map #korea-map ').empty();
+	$('[data-render="apexchart"], #apexRadarChart #seongnamMap ').empty();
 		handleRenderChart();
-		handleRenderMap();
-		handleRenderKoreaMap();
+		//handleRenderMap();
+		//handleRenderKoreaMap();
 		//handleRenderSeongnamMap();
-		//seongnamMap(worldMapData, seongnamNetwork);
+		seongnamMap(worldMapData, seongnamNetwork);
 	});
 });
