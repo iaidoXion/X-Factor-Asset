@@ -12,12 +12,4 @@ urlpatterns = [
     path('asset/', base_views.assetweb, name='asset'),
     path('updateform/', views.updateform, name='updateform'),
     path('update/', views.update, name='update'),
-
-
-    # path('admin/', admin.site.urls),
-    # path('web/', include('web.urls')),
-    # path('common/', include('common.urls')),
-    # #path('', base_views.index, name='index'),  # '/' 에 해당되는 path
-    # path('question/list/', base_views.list, name='list'),
-
 ]
