@@ -332,7 +332,7 @@ var handleRenderChart = function () {
    var E = []
    if (a.barChartDataList.length > 4){
     for (var i = 0; i <4; i++){
-        D.push(a.barChartDataList[i]['value']);
+        D.push(JSON.stringify(a.barChartDataList[i]['value']))
         E.push(a.barChartDataList[i]['name']);
 
     };
@@ -667,98 +667,138 @@ var apexDountChartOptions = {
 	apexDountChart.render();
 
 
-
 //----------------------------------------
 // Failure Symptom Case - raider chart
-//---------------------------------------
-
-var apexRadarChartOptions = {
-		chart: {
-			width: '100%',
-			height: 500,
-			type: 'radar',
-			toolbar: {
-				show: false
-			},
-		},
-		responsive: [{
-			breakpoint: undefined,
-			options: {},
-		}],
-		series: [{
-			name: 'Failure Symptom Case',
-			data: [10, 100, 40, 30, 50, 80, 33],
-		}],
-		dataLabels: {
-			enabled: false
-		},
-		plotOptions: {
-			radar: {
-				size: 170,
-				polygons: {
-					strokeColors: 'rgba(' + app.color.whiteRgb + ', .25)',
-					strokeWidth: 1,
-					connectorColors: 'rgba(' + app.color.whiteRgb + ', .25)',
-					fill: {
-						colors: ['rgba(' + app.color.gray300Rgb + ', .25)', 'rgba(' + app.color.whiteRgb + ', .25)']
-					}
-				},
+//---------------------------------------\
+	group = [];
+	var radar_dict = {};
+	var radar_list = [];
+	for (var i = 0; i < a.AssociationDataList.nodeDataList.length; i++) {
+		group.push(a.AssociationDataList.nodeDataList[i].group);
+	};
+	var set = new Set(group);
+	let array = Array.from(set);
+	for (var i = 0; i < set.size; i++){
+		list = [];
+		alarm_list = [];
+		for (var j = 0; j < a.AssociationDataList.nodeDataList.length; j++){
+			if (a.AssociationDataList.nodeDataList[j].group == array[i]) {
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded') {
+					list.push(parseInt(a.AssociationDataList.nodeDataList[j].alarmCount));
+					alarm_list.push(a.AssociationDataList.nodeDataList[j].alarmCase);
+				} else if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change') {
+					list.push(parseInt(a.AssociationDataList.nodeDataList[j].alarmCount));
+					alarm_list.push(a.AssociationDataList.nodeDataList[j].alarmCase);
+				} else if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					list.push(parseInt(a.AssociationDataList.nodeDataList[j].alarmCount));
+					alarm_list.push(a.AssociationDataList.nodeDataList[j].alarmCase);
+				} else if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change') {
+					list.push(parseInt(a.AssociationDataList.nodeDataList[j].alarmCount));
+					alarm_list.push(a.AssociationDataList.nodeDataList[j].alarmCase);
+				} else if (a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change") {
+					list.push(parseInt(a.AssociationDataList.nodeDataList[j].alarmCount));
+					alarm_list.push(a.AssociationDataList.nodeDataList[j].alarmCase);
+				} else if (a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess') {
+					list.push(parseInt(a.AssociationDataList.nodeDataList[j].alarmCount));
+					alarm_list.push(a.AssociationDataList.nodeDataList[j].alarmCase);
+				}
 			}
-		},
-		colors: [app.color.theme],
-		markers: {
-			size: 4,
-			colors: [app.color.theme],
-			strokeColor: app.color.theme,
-			strokeWidth: 2,
-		},
-		tooltip: {
-			theme: 'dark',
-			x: {
-				show: false
-			},
-			y: {
-				title: {
-					formatter: function (seriesName) {
-						return ''
-					}
-				},
-				formatter: (value) => { return '' + value },
-			}
-		},
-		xaxis: {
-			categories: [
-				['No Login History'],
-				['Drive', 'Size', 'No Change'],
-				['Listen', 'Port', 'No Change'],
-				['Established', 'Port', 'No Change'],
-				['RAM', 'Usage', 'Exceeded'],
-				['CPU', 'Usage', 'Exceeded'],
-				['Running', 'Process', 'Exceeded'],
-			],
-			labels: {
-				show: true,
-				rotate: 0,
-				style: {
-					colors: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff'],
-					fontSize: '10px',
-					cssClass: 'apexcharts-xaxis-label',
-				},
-			}
-		},
-		yaxis: {
-			tickAmount: 7,
-			labels: {
-				formatter: function (val, i) {
-					if (i % 1 === 0) {
-						return val
-					} else {
-						return ''
-					}
-				},
-			}
+			radar_dict['name'] = alarm_list;
+			radar_dict['data'] = list;
 		}
-	}
+		radar_list.push(radar_dict);
+	};
+var apexRadarChartOptions = {
+  chart: {
+    width: "100%",
+    height: 500,
+    type: "radar",
+    toolbar: {
+      show: false,
+    },
+  },
+  responsive: [
+    {
+      breakpoint: undefined,
+      options: {},
+    },
+  ],
+  series: radar_list,
+  dataLabels: {
+    enabled: false,
+  },
+  plotOptions: {
+    radar: {
+      size: 170,
+      polygons: {
+        strokeColors: "rgba(" + app.color.whiteRgb + ", .25)",
+        strokeWidth: 1,
+        connectorColors: "rgba(" + app.color.whiteRgb + ", .25)",
+        fill: {
+          colors: [
+            "rgba(" + app.color.gray300Rgb + ", .25)",
+            "rgba(" + app.color.whiteRgb + ", .25)",
+          ],
+        },
+      },
+    },
+  },
+  colors: [app.color.theme],
+  markers: {
+    size: 4,
+    colors: [app.color.theme],
+    strokeColor: app.color.theme,
+    strokeWidth: 2,
+  },
+  tooltip: {
+    theme: "dark",
+    x: {
+      show: false,
+    },
+    y: {
+      title: {
+        formatter: function (seriesName) {
+          return "";
+        },
+      },
+      formatter: (value) => {
+        return "" + value;
+      },
+    },
+  },
+  xaxis: {
+    categories: [
+      ["No Login History"],
+      ["Drive", "Size", "No Change"],
+      ["Listen", "Port", "No Change"],
+      ["Established", "Port", "No Change"],
+      ["RAM", "Usage", "Exceeded"],
+      ["CPU", "Usage", "Exceeded"],
+      ["Running", "Process", "Exceeded"],
+    ],
+    labels: {
+      show: true,
+      rotate: 0,
+      style: {
+        colors: ["#fff", "#fff", "#fff", "#fff", "#fff", "#fff", "#fff"],
+        fontSize: "10px",
+        cssClass: "apexcharts-xaxis-label",
+      },
+    },
+  },
+  yaxis: {
+    tickAmount: 7,
+    labels: {
+      formatter: function (val, i) {
+        if (i % 1 === 0) {
+          return val;
+        } else {
+          return "";
+        }
+      },
+    },
+  },
+};
 	var apexRadarChart = new ApexCharts(
 		document.querySelector('#apexRadarChart'),
 		apexRadarChartOptions
@@ -770,6 +810,14 @@ var apexRadarChartOptions = {
 //----------------------------------------
 // Failure Symptom Case - dount Achart
 //---------------------------------------
+	list = [];
+	alarm_list = []
+  for (var i = 0; i < a.AssociationDataList.nodeDataList.length; i++) {
+    if (a.AssociationDataList.nodeDataList[i].alarmCase == "RAM Usage Exceeded") {
+		list.push(parseInt(a.AssociationDataList.nodeDataList[i].alarmCount));
+		alarm_list.push(a.AssociationDataList.nodeDataList[i].group);
+    }
+	}
 var apexDountChartOptions = {
 		chart: {
 			height: 160,
@@ -808,8 +856,8 @@ var apexDountChartOptions = {
 			show: false,
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
-		labels: ['192.168.0', '192.168.1', '192.168.2', '192.168.3', '192.168.4'],
-		series: [10, 20, 5, 2, 14],
+		labels: alarm_list,
+		series: list,
 		tooltip: {
 			theme: 'dark',
 			x: {
@@ -836,6 +884,14 @@ var apexDountChartOptions = {
 //----------------------------------------
 // Failure Symptom Case - dount Bchart
 //---------------------------------------
+	list = [];
+  alarm_list = [];
+  for (var i = 0; i < a.AssociationDataList.nodeDataList.length; i++) {
+    if (a.AssociationDataList.nodeDataList[i].alarmCase == "CPU Consumption is Excess" ) {
+      list.push(parseInt(a.AssociationDataList.nodeDataList[i].alarmCount));
+      alarm_list.push(a.AssociationDataList.nodeDataList[i].group);
+    }
+  }
 	var apexDountChartOptions = {
 		chart: {
 			height: 160,
@@ -875,8 +931,8 @@ var apexDountChartOptions = {
 			show: false,
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
-		labels: ['192.168.0', '192.168.1', '192.168.2', '192.168.3', '192.168.4'],
-		series: [5, 4, 2, 20, 9],
+		labels: alarm_list,
+		series: list,
 		tooltip: {
 			theme: 'dark',
 			x: {
