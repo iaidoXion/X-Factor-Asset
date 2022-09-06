@@ -104,6 +104,28 @@ def alarm(data, type, case) :
             DL.append([data.group[i], data.counts[i], 'group'+str(groupNameCount)+case, case, AT])
         RD=[DC,DL]
         #print(RD[1])
+    elif type == 'world' :
+        ALDL = []
+        if data.empty:
+            ALDL = [{'ip': '-', 'alarmText': AT,'group': '-', 'gps': '-' }]
+        else:
+            if data['name'][0]:
+                for i in range(len(data['value'])):
+                    if "current result" in data['value'][i] :
+                        continue
+                    IPS = data['value'][i].split('.')
+                    if len(IPS) == 4 :
+                        GROUP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
+                        GPS = [37.48662777731903,127.03398991528599]
+                    # if int(IPS[3]) % 2 == 1 :
+                    #     GPS = [37.39962807731903,127.10910445171359]
+                    # else :
+                    #     GPS = [37.39545927731903,127.10945123911237]
+                    ALDL.append({'ip': data['value'][i], 'alarmText': data['alarmText'][i], 'group': GROUP, 'gps': GPS})
+            else:
+                ALDL = [{'ip': '-', 'alarmText': AT,'group': '-', 'gps': '-' }]
+        RD = ALDL
+        #print(RD)
     return RD
 
 def chart_data(data, type) :
