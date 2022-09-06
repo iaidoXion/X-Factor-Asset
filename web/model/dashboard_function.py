@@ -183,6 +183,18 @@ def DashboardData() :
                 # Alarm List
                 ALDL = TDCD(ALD, "alarmList")
 
+                # Total chart Data
+                # Total alarm TOP 5
+                TACC = ASDN(NDL, 'max', 'all')
+                # WorldMapChartData
+                WMDUS = TDAL(SDUSADL, 'world', 'DUS')
+                WMLH = TDAL(SLHADL, 'world', 'LH')
+                WMRUE = TDAL(SRUSADL, 'world', 'RUE')
+                WMLPC = TDAL(SLPCADL, 'world', 'LPC')
+                WMEPC = TDAL(SEPCADL, 'world', 'EPC')
+                WMCCDL = TDAL(SCCSADL, 'world', 'CCDL')
+                WNRP = TDAL(SRPSADL, 'world', 'RP')
+                WMCDL = [WMDUS + WMLH + WMRUE + WMLPC + WMEPC + WMCCDL + WNRP]
             elif ProjectType == 'Service':
                 print()
     elif core == 'Zabbix':
