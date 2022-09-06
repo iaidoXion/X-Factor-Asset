@@ -27,8 +27,10 @@ def dashboard(request):
     minidonutData = DCDL['MiniDonutChart']
     alarmData = DCDL["alarmListData"]
     AssociationData = DCDL["AssociationDataList"]
+    WorldMapData = DCDL["WorldMapDataList"]
+    TotalData = DCDL["TotalDataList"]
     donutChartData = DCDL["donutChartDataList"]
-    chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'donutChartDataList' : donutChartData}
+    chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
     returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer}
     return render(request, 'web/dashboard.html', returnData)
 

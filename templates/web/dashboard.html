@@ -356,41 +356,13 @@
 								</tr>
 								</thead>
 								<tbody>
+								{% for TotalData in chartData.TotalDataList.nodeDataList %}
 								<tr>
-									<td>No Login History</td>
-									<td class="text-end">13,849</td>
-									<td class="text-end">40.79%</td>
+									<td>{{TotalData.alarmCase}}</td>
+									<td class="text-end">{{TotalData.alarmCount}}</td>
+									<td class="text-end">{{TotalData.alarmpertage}}%</td>
 								</tr>
-								<tr>
-									<td>Drive Size No Change</td>
-									<td class="text-end">13,849</td>
-									<td class="text-end">40.79%</td>
-								</tr>
-								<tr>
-									<td>CPU Usage Exceeded</td>
-									<td class="text-end">3,216</td>
-									<td class="text-end">9.79%</td>
-								</tr>
-								<tr>
-									<td>Running Process Exceeded</td>
-									<td class="text-end">1,398</td>
-									<td class="text-end">4.26%</td>
-								</tr>
-								<tr>
-									<td>RAM Usage Exceeded</td>
-									<td class="text-end">1,090</td>
-									<td class="text-end">3.32%</td>
-								</tr>
-								<tr>
-									<td>Listen Port No Change</td>
-									<td class="text-end">1,045</td>
-									<td class="text-end">3.18%</td>
-								</tr>
-								<tr>
-									<td>Established Port No Change</td>
-									<td class="text-end">1,045</td>
-									<td class="text-end">3.18%</td>
-								</tr>
+								{% endfor %}
 								</tbody>
 							</table>
 						</div>

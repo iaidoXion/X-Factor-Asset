@@ -147,7 +147,7 @@ def DashboardData() :
                 MDC = [TMDCD[1], TMRUE[1]]
                 
                 NDL = [TDUSND[0], TDUSND[1]+TLHND[1]+TRUSND[1]+TLPCND[1]+TEPCND[1] + TSCCSA[1] + TSRPSA[1]]
-                NCDL = ASDN(NDL, 'max', 'all')
+                NCDL = ASDN(NDL, 'all', 'all')
                 #RADCDL = ASDN(NDL, 'max', 'all')
 
                 # BAR Chart
@@ -195,6 +195,8 @@ def DashboardData() :
         "bannerData" : BNDL,
         "alarmListData" : ALDL[0],
         "AssociationDataList" : NCDL,
+        "TotalDataList": TACC,
+        "WorldMapDataList":WMCDL,
         "MiniDonutChart" : MDRU,
         "donutChartDataList": DDLC
     }
