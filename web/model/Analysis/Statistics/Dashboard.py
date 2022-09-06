@@ -114,57 +114,47 @@ def network(data, type, case) :
 
     if type == 'group' :
         ADL = []
-        if data['value'][0]:
-            for i in range(len(data['value'])):
+        if data.empty:
+            print()
+        else :
+            if data['value'][0]:
+                for i in range(len(data['value'])):
 
-                if "current result" in data['value'][i] :
-                    continue
-                IPS = data['value'][i].split('.')
-                if len(IPS) == 4 :
-                    IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
-                ADL.append([IP])
+                    if "current result" in data['value'][i] :
+                        continue
+                    IPS = data['value'][i].split('.')
+                    if len(IPS) == 4 :
+                        IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
+                    ADL.append([IP])
         RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts')
         RD['alarmCase'] = AT
-        print(RD)
+        #print(RD)
     if type == 'MD' :
         ADL = []
-        if data['value'][0]:
-            for i in range(len(data['value'])):
-                if "current result unavailable" in data['value'][0] :
-                    continue
-                IPS = data['value'][i].split('.')
-                if len(IPS) == 4 :
-                    IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
-                ADL.append([IP])
+        if data.empty:
+            print()
+        else:
+            if data['value'][0]:
+                for i in range(len(data['value'])):
+                    if "current result unavailable" in data['value'][0] :
+                        continue
+                    IPS = data['value'][i].split('.')
+                    if len(IPS) == 4 :
+                        IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
+                    ADL.append([IP])
         RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts').head(5)
         RD['alarmCase'] = AT
-        print(RD)
+
     elif type == 'max' :
         nodeDataList = []
-        linksDataList = []
         odf = pd.DataFrame(data[1], columns=data[0])
-        MDF = odf.loc[odf.groupby(['group'])['alarmCount'].idxmax()]
-        MDF['point'] = 'true'
-        df = pd.merge(left=odf, right=MDF, how="left",on=['id', 'group', 'alarmCount', 'name', 'alarmCase']).sort_values(by="id", ascending=True).reset_index()
-        
-        DFG = df.groupby(['group']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
-        for j in range(len(DFG.group)):
-            # if "CPU Consumption is Excess" in df['alarmCase'][i]:
-            #     print(df)
-            #     print("----------")
-            groupNameCountSplit = DFG.group[j].split('.')
-            groupNameCount = groupNameCountSplit[0]+groupNameCountSplit[1]+groupNameCountSplit[2]
-            nodeDataList.append({'group': DFG.group[j],'alarmCount': str(DFG.alarmCount[j]), 'id': 'groupCenter'+str(groupNameCount), 'name': DFG.group[j], 'alarmCase': DFG.group[j]})
-            #print(nodeDataList)
-        for i in range(len(df.id)) :
-            groupNameCount = groupNameCountSplit[0] + groupNameCountSplit[1] + groupNameCountSplit[2]
-            if df.point[i] == 'true' :
-                point = 'true'
-            else :
-                point = 'false'
-            nodeDataList.append({'group' : df.group[i], 'alarmCount': str(df.alarmCount[i]), 'id':df.id[i], 'name':df.name[i], 'alarmCase':df.alarmCase[i], 'point':point})
-            linksDataList.append({'source': df.id[i], 'target': 'groupCenter'+str(groupNameCount)})
-        RD ={'nodeDataList':nodeDataList, 'linksDataList':linksDataList}
+        DFG = odf.groupby(['alarmCase']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
+        TOT = DFG['alarmCount'].sum()
+        ACPER=round((DFG['alarmCount']/TOT)*100, 2)
+        for j in range(len(DFG.alarmCase)):
+            nodeDataList.append({'alarmCount': str(DFG.alarmCount[j]), 'alarmCase': DFG.alarmCase[j], 'alarmpertage':ACPER[j]})
+        RD ={'nodeDataList':nodeDataList}
+
     elif type == 'all' :
         nodeDataList = []
         linksDataList = []
@@ -172,17 +162,9 @@ def network(data, type, case) :
         MDF = odf.loc[odf.groupby(['group'])['alarmCount'].idxmax()]
         MDF['point'] = 'true'
         df = pd.merge(left=odf, right=MDF, how="left",on=['id', 'group', 'alarmCount', 'name', 'alarmCase']).sort_values(by="id", ascending=True).reset_index()
-
-        DFG = df.groupby(['group']).sum(['alarmCount']).reset_index()
-        #print(DFG)
-        
-
+        DFG = df.groupby(['group']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
         TOT=DFG['alarmCount'].sum()
         TOTPER=round((DFG['alarmCount']/TOT)*100, 2)
-
-        ACDF= df.groupby(['alarmCase']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
-        ACPER=round((ACDF['alarmCount']/TOT)*100, 2)
-        #print(ACPER)
 
         for j in range(len(DFG.group)):
             groupNameCountSplit = DFG.group[j].split('.')
