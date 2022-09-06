@@ -21,7 +21,7 @@
     <!-- ================== END core-css ================== -->
 
     <!-- ================== BEGIN swiper-CSS ================== -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/swiper-bundle.min.css' %}">
     <!-- ================== END swiper-CSS ================== -->
 
     <!-- ================== BEGIN dashboard-CSS ================== -->
@@ -34,7 +34,7 @@
 </head>
 <body class="theme-orange">
 <!-- BEGIN #app -->
-<div id="app" class="app app-sidebar-collapsed">
+<div id="app" class="app">
     <!-- 네비게이션바 -->
     {% include "navbar.html" %}
     <!-- 사이드바 -->
@@ -53,7 +53,7 @@
 <script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
 <!-- ================== BEGIN swiper-js ================== -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.js"></script>
+<script src="{% static 'js/jquery/swiper-bundle.min.js' %}"></script>
 <!-- ================== END swiper-js ================== -->
 
 <!-- ================== BEGIN core-js ================== -->
@@ -74,9 +74,10 @@
 <script src="{% static 'assets/plugins/chart.js/dist/chart.min.js' %}"></script>
 <script src="{% static 'assets/js/demo/dashboard.demo.js' %}"></script>
 <script src="{% static 'js/common/nav.js' %}"></script>
+<script src="{% static 'js/chart/network.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/d3/d3.v3.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/d3/d3v4.js' %}"></script>
-<script src="https://d3js.org/queue.v1.min.js"></script>
+<script type="text/javascript" src="{% static 'js/d3/queue.v1.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/common/topojson.v1.min.js' %}"></script>
 
 
@@ -112,6 +113,19 @@ var seongnamNetwork = [
   ]
 }
 ];
+var networkData = [{
+  "nodes": [
+    {% for nodeData in chartData.AssociationDataList.nodeDataList %}
+    {"id": '{{nodeData.id}}', "group": '{{nodeData.group}}', "name": '{{nodeData.name}}', "alarmCase" :  '{{nodeData.alarmCase}}', "alarmCount" :  '{{nodeData.alarmCount}}', "point": '{{nodeData.point}}'},
+    {% endfor %}
+  ],
+  "links": [
+    {% for linksData in chartData.AssociationDataList.linksDataList %}
+    {"source": '{{linksData.source}}', "target": '{{linksData.target}}', "distance": 200},
+    {% endfor %}
+  ]
+}];
+networkChart(networkData);
   
 	</script>
 </body>

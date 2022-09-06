@@ -148,7 +148,7 @@ def chart_data(data, type) :
             if type == 'Bar' or type == 'Pie':
                 ChartDataList.append({"name": data['name'][i], "value": data['value'][i]})
             elif type == 'Banner' :
-                ChartDataList.append({"name": data['name'][i], "value": data['value_y'][i], "roc" : data['ROC'][i]})
+                ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc" : data['ROC'][i]})
             elif type == 'Line' :
                 ChartDataList.append({"name": data['name'][i], "value": data['value'][i], "date" : data['date'][i]})
     

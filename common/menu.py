@@ -47,7 +47,7 @@ def MenuSetting():
 
             DFL.append([ID, MenuID, MenuName, MenuUrl, MenuUse, MenuNote, MenuCD, MenuImg])
             DFC = ['id', 'menuID', 'menuName','menuUrl', 'menuUse', 'menuNote', 'menuCD', 'menuImg']
-        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
+        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=True).reset_index(drop=True)
         DC=DF.to_dict('records')
         return DC
     except:
