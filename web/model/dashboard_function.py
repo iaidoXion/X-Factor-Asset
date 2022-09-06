@@ -178,10 +178,6 @@ def DashboardData() :
                 for i in range(5):
                     c.append({"name": a[i], "value": b[i]})
                 DDLC = c
-                # Banner
-                BNDL = TDCD(SBNDL, "Banner")
-                # Alarm List
-                ALDL = TDCD(ALD, "alarmList")
 
                 # Total chart Data
                 # Total alarm TOP 5
@@ -195,6 +191,7 @@ def DashboardData() :
                 WMCCDL = TDAL(SCCSADL, 'world', 'CCDL')
                 WNRP = TDAL(SRPSADL, 'world', 'RP')
                 WMCDL = [WMDUS + WMLH + WMRUE + WMLPC + WMEPC + WMCCDL + WNRP]
+
             elif ProjectType == 'Service':
                 print()
     elif core == 'Zabbix':
