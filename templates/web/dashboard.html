@@ -169,15 +169,19 @@
 				<div class="card-body h-150px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small">
-						<span class="flex-grow-1">Installed Application (Top3)</span>
+						<span class="flex-grow-1">Installed Application (Top5)</span>
 					</div>
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
 					<div class="h-100px d-flex flex-row align-items-center justify-content-sm-between ">
 						<div class="small text-white text-opacity-50 text-truncate col-3">
-							<i class="fas fa-tv fa-fw me-1"></i>Desktop<br />
-							<i class="fas fa-laptop fa-fw me-1"></i>Notebook<br />
-							<i class="fas fa-server fa-fw me-1"></i>Rack
+							{% if chartData.donutChartDataList %}
+								{% for data in chartData.donutChartDataList %}
+								{{data.name}} :
+								{{data.value}}
+								<br>
+								{% endfor %}
+								{% endif %}
 						</div>
 						<div>
 							<div class="col-12">
@@ -337,6 +341,7 @@
 						<div id="world-map" class="jvectormap-without-padding"></div>
 						<div id="korea-map" class="jvectormap-without-padding"></div>
 						<!-- <div id="seongnam-map"></div> -->
+<!--						<div id="network-chart"></div>-->
 					</div>
 					<!-- END map -->
 					<!-- BEGIN row -->
@@ -548,9 +553,7 @@
 	<!-- END row -->
 </div>
 <!-- END #content -->
-<script>
-	console.log({{chartData|safe}});
-</script>
+
 <!-- BEGIN btn-scroll-top -->
 <!--<a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>-->
 <!-- END btn-scroll-top -->

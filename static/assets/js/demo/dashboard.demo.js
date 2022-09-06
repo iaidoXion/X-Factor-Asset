@@ -66,7 +66,7 @@ var handleRenderChart = function () {
       labels: {
         style: {
           colors: "#fff",
-          fontSize: "7px",
+          fontSize: "10px",
           fontFamily: app.font.family,
           fontWeight: 400,
           cssClass: "apexcharts-xaxis-label",
@@ -330,10 +330,19 @@ var handleRenderChart = function () {
 //---------------------------------------
    var D = []
    var E = []
-   for (var i = 0; i <4; i++){
-        D.push(JSON.stringify(a.barChartDataList[i]['value']))
-        E.push(a.barChartDataList[i]['name'])
+   if (a.barChartDataList.length > 4){
+    for (var i = 0; i <4; i++){
+        D.push(a.barChartDataList[i]['value']);
+        E.push(a.barChartDataList[i]['name']);
+
+    };
    }
+   else {
+    for (var i = 0; i < a.barChartDataList.length; i++){
+        D.push(a.barChartDataList[i]['value']);
+        E.push(a.barChartDataList[i]['name']);
+    };
+   };
 
 var apexColumnChartOptions = {
 		chart: {
@@ -366,8 +375,7 @@ var apexColumnChartOptions = {
 			show: true
 		},
 		xaxis: {
-			categories: ['Desktop', 'Notebook', 'Rack', 'Virturl'
-			],
+			categories: E,
 			labels: {
 				show: true,
                 style: {}
@@ -407,6 +415,34 @@ var apexColumnChartOptions = {
 //---------------------------------------
 // Asset Count By Day Item - line chart
 //----------------------------------------
+
+//   var lineName = []
+//   var lineValue = []
+//   var lineDate = []
+//    for (var i = 0; i < a.lineChartDataList.length; i++){
+//        lineValue.push(a.lineChartDataList[i]['value']);
+//        lineName.push(a.lineChartDataList[i]['name']);
+//        lineDate.push(a.lineChartDataList[i]['date'])
+//    };
+
+//console.log(a.lineChartDataList.groupBy(({date}) => date));
+var lineDataGrouping = a.lineChartDataList.reduce(function(result, current){
+    result[current.name] = result[current.name] || [];
+    result[current.name].push(current);
+    return result;
+}, {});
+//console.log(lineDataGrouping)
+//var lineOnlyName = []
+//    for (var i = 0; i < lineDataGrouping.length; i++){
+//            lineOnlyName.push(lineDataGrouping[i]['name']);
+//    };
+
+var lineOnlyName = Object.keys(lineDataGrouping)
+//console.log(lineOnlyName)
+
+
+
+
 var apexLineChartOptions = {
 		chart: {
 			height: 120,
@@ -489,6 +525,14 @@ var apexLineChartOptions = {
 //----------------------------------------
 // Asset Count By Day Item - pie chart
 //---------------------------------------
+
+   var F = []
+   var G = []
+    for (var i = 0; i < a.pieChartDataList.length; i++){
+        F.push(a.pieChartDataList[i]['value']);
+        G.push(a.pieChartDataList[i]['name']);
+    };
+
 var apexPieChartOptions = {
 		chart: {
 			height: 150,
@@ -527,8 +571,8 @@ var apexPieChartOptions = {
 			show: false,
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
-		labels: ['Linux', 'Windows', 'Mac'],
-		series: [44, 55, 13],
+		labels: G,
+		series: F,
 		tooltip: {
 			theme: 'dark',
 			x: {
@@ -553,8 +597,14 @@ var apexPieChartOptions = {
 
 
 //---------------------------------------
-// Asset Count By Day Item - dount chart
+// Install Application Top5 - dount chart
 //---------------------------------------
+   var donutValue = []
+   var donutName = []
+    for (var i = 0; i < a.donutChartDataList.length; i++){
+        donutValue.push(a.donutChartDataList[i]['value']);
+        donutName.push(a.donutChartDataList[i]['name']);
+    };
 var apexDountChartOptions = {
 		chart: {
 			height: 150,
@@ -593,8 +643,8 @@ var apexDountChartOptions = {
 			show: false,
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
-		labels: ['Desktop', 'Notebook', 'Rack'],
-		series: [44, 55, 13],
+		labels: donutName,
+		series: donutValue,
 		tooltip: {
 			theme: 'dark',
 			x: {

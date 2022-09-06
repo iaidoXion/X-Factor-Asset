@@ -3,10 +3,12 @@ from web.model.Input.DB import plug_in as IDPI
 from web.model.Transform.DataFrame import plug_in as TDFPI
 from web.model.Transform.Dashboard import banner as TDBA, alarm as TDAL, line_chart as TDLC, chart_data as TDCD
 from web.model.Analysis.Statistics.Dashboard import calculation as ASDC, alarm_case_detection as ASDACD, network as ASDN, chart_data as ASDCD
-
+from collections import Counter
+import numpy as np
 import urllib3
 import pandas as pd
 import json
+import itertools
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
@@ -162,7 +164,24 @@ def DashboardData() :
                 #Mini Donut Chart(RAM)
                 MDRU = TDCD(MDC, "MDC")
                 #Mini Donut Chart(CPU)
-                
+
+                # Donut Chart
+                DDL = TDFPI(sensorAPI, "today", "IANL")
+                DDLA = np.array(DDL["installApplicationsName"])  # np.ndarray()
+                DDLAR = DDLA.tolist()  # list
+                DDLF = list(itertools.chain(*DDLAR))
+                counter = dict(Counter(DDLF))
+                sorted_dict = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+                a = (list(sorted_dict.keys()))
+                b = (list(sorted_dict.values()))
+                c = []
+                for i in range(5):
+                    c.append({"name": a[i], "value": b[i]})
+                DDLC = c
+                # Banner
+                BNDL = TDCD(SBNDL, "Banner")
+                # Alarm List
+                ALDL = TDCD(ALD, "alarmList")
 
             elif ProjectType == 'Service':
                 print()
@@ -176,7 +195,8 @@ def DashboardData() :
         "bannerData" : BNDL,
         "alarmListData" : ALDL[0],
         "AssociationDataList" : NCDL,
-        "MiniDonutChart" : MDRU
+        "MiniDonutChart" : MDRU,
+        "donutChartDataList": DDLC
     }
     return RD
 
