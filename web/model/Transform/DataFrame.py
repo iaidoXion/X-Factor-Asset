@@ -109,6 +109,13 @@ def plug_in(data, day, type):
                     items.append(x['text'])
                 item = items
                 itemIndex = 'runningprocess'
+            if type == 'IANL' :
+                item=[]
+                if(len(d[14]) >= 1) :
+                    for x in d[14] :
+                        value = x['text']
+                        item.append(value)
+                itemIndex = 'installApplicationsName'
         elif day == 'yesterday' :
             CI = d[0]
             IP = ''

@@ -16,8 +16,6 @@ def index(request) :
     returnData = {'menuList': menuListDB}
     return render(request, 'web/index.html', returnData)
 
-
-
 def dashboard(request):
     #MapUse = {"WorldUse" : WorldUse, "KoreaUse" : KoreaUse, "AreaUse" : AreaUse, "ZoneUse" : ZoneUse}
     #returnData = { 'menuList': menuSettingList, 'chartData' : chartData, 'MapUse' : MapUse, 'Customer' : Customer}
@@ -29,7 +27,8 @@ def dashboard(request):
     minidonutData = DCDL['MiniDonutChart']
     alarmData = DCDL["alarmListData"]
     AssociationData = DCDL["AssociationDataList"]
-    chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData}
+    donutChartData = DCDL["donutChartDataList"]
+    chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'donutChartDataList' : donutChartData}
     returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer}
     return render(request, 'web/dashboard.html', returnData)
 
