@@ -29,7 +29,10 @@ def DashboardData() :
                 # Asset Item Statistics
                 TAIDL = TDFPI(sensorAPI, "today", "assetItem")
                 SAIDL = ASDCD(TAIDL, "assetItem", "group")
-
+                
+                # Line Chart
+                TAIDL2 = TDFPI(sensorAPI, "today", "line")
+                
                 # OS Item Statistics
                 TOIDL = TDFPI(sensorAPI, "today", "osItem")
                 SOIDL = ASDCD(TOIDL, "osItem", "group")
@@ -88,13 +91,12 @@ def DashboardData() :
                 TSDLT = TDBA(TSDL, 'today')
                 ## Banner ROC Calculation
                 SBNDL = ASDC(TSDLY, TSDLT)
-                #print(TSDLT)
                 # 5Days Asset Item Statistics Data Combination
                 ## Past Data Input(Statistics Table Data 5Days ago)
                 ESDLF = IDPI('statistics','fiveDay','asset')
                 ## Past & Today Data Combination Transform
                 AIFD = [ESDLF, SAIDL]
-                ESAIDL = TDLC(AIFD)
+                ESAIDL = TDLC(AIFD)#Line Chart
 
 
                 # Alarm
@@ -163,7 +165,6 @@ def DashboardData() :
                 ALDL = TDCD(ALD, "alarmList")
                 #Mini Donut Chart(RAM)
                 MDRU = TDCD(MDC, "MDC")
-                #Mini Donut Chart(CPU)
 
                 # Donut Chart
                 DDL = TDFPI(sensorAPI, "today", "IANL")

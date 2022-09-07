@@ -142,7 +142,7 @@ def network(data, type, case) :
                     if len(IPS) == 4 :
                         IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
                     ADL.append([IP])
-        RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts').head(5)
+        RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts').sort_values(by="counts", ascending=True).head(5)
         RD['alarmCase'] = AT
 
     elif type == 'max' :

@@ -34,7 +34,11 @@ def banner(data, type) :
                 name = 'Listen Port No Change'
             elif data[i][0] == 'established_port_count' :
                 name = 'Established Port No Change'
+            elif data[i][0] == 'ram_use_size' :
+                name = 'RAM Usage Exceeded'
+                
             DFDL.append([name, data[i][2]])
+            
         elif type == 'today' :
             for j in range(len(data[i]['name'])) :
                 name = data[i]['name'][j]
@@ -52,7 +56,6 @@ def banner(data, type) :
 
 def line_chart(data) :
     DL = []
-
     today = datetime.today().strftime("%Y-%m-%d")
     for i in range(len(data[1]['name'])) :
         DL.append([data[1]['name'][i],data[1]['value'][i],today])

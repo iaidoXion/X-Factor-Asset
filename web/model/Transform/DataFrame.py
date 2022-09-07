@@ -1,6 +1,7 @@
 from itertools import count
 import pandas as pd
 from datetime import datetime
+from collections import Counter
 today = datetime.today().strftime("%Y-%m-%d")
 def plug_in(data, day, type):
     DFL = []
@@ -16,9 +17,25 @@ def plug_in(data, day, type):
                     item = 'Notebook'
                 if itemPer.startswith('imac'):
                     item = 'Desktop'
-                if itemPer == '[current result unavailable]' :
-                    item = 'Other'
+                if itemPer.startswith('rack'):
+                    item = 'Server'
+                if itemPer == '[current result unavailable]':
+                    item = '[current result unavailable]'
                 itemIndex = 'assetItem'
+            if type == 'line':
+                if d[8][0]['text'] != None:
+                    item = d[8][0]['text']
+                    itemPer = item.lower()
+                if itemPer.startswith('macbook'):
+                    item = 'Notebook'
+                if itemPer.startswith('imac'):
+                    item = 'Desktop'
+                if itemPer.startswith('rack'):
+                    item = 'Server'
+                if itemPer == '[current result unavailable]':
+                    item = '[current result unavailable]'
+                itemIndex = 'assetItem'
+                    
             if type == 'osItem':
                 item = d[5][0]['text']
                 itemPer = item.lower()
