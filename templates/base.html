@@ -93,13 +93,14 @@
 		ga('send', 'pageview');
 
 
-  var worldMapData = [
-		{x:37.39948593886602,y:127.10864108531601},
-		{x:37.39557358509345,y:127.1082797008697},
-		{x:37.39863925472823,y:127.108340579838517},
-		{x:37.3994744444141,y:127.11131206038527},
-		{x:37.397501793831225,y:127.11068799834034}
-	];
+var worldMapData = [];
+for (let i = 0; i < a.WorldMapDataList[0].length; i++){
+    worldMapData.push(a.WorldMapDataList[0][0].gps);
+};
+    worldMapData.push([35.1552983,129.1152895]);
+    worldMapData.push([37.3994481,127.1088779]);
+
+
 
 var seongnamNetwork = [
 {

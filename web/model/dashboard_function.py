@@ -179,9 +179,11 @@ def DashboardData() :
                     c.append({"name": a[i], "value": b[i]})
                 DDLC = c
 
-                # Total chart Data
-                # Total alarm TOP 5
+                # Total alarm Case
                 TACC = ASDN(NDL, 'max', 'all')
+                # Total alarm TOP 5
+                TACT = ASDN(NDL, 'top', 'all')
+
                 # WorldMapChartData
                 WMDUS = TDAL(SDUSADL, 'world', 'DUS')
                 WMLH = TDAL(SLHADL, 'world', 'LH')
@@ -205,6 +207,7 @@ def DashboardData() :
         "alarmListData" : ALDL[0],
         "AssociationDataList" : NCDL,
         "TotalDataList": TACC,
+        "TotalTopDataList": TACT,
         "WorldMapDataList":WMCDL,
         "MiniDonutChart" : MDRU,
         "donutChartDataList": DDLC

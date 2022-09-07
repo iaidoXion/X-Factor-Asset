@@ -340,7 +340,7 @@
 					<div class="ratio ratio-21x9">
 						<div id="world-map" class="jvectormap-without-padding"></div>
 						<div id="korea-map" class="jvectormap-without-padding"></div>
-						 <div id="seongnam-map" style="width: 80%; height: 300px;"></div>
+						<div id="seongnam-map" style="width: 80%; height: 300px;"></div>
 					</div>
 					<!-- END map -->
 					<!-- BEGIN row -->
@@ -373,61 +373,32 @@
 							<div class="card">
 								<!-- BEGIN card-body -->
 								<div class="card-body py-2">
+									<tr class="text-white text-opacity-75">
+										<th class="w-50">Total Alarm Case Top 5 (%)</th>
+									</tr>
 									<div class="d-flex align-items-center">
+
 										<div class="w-150px h-135px" style="margin: 0 auto;">
 											<div id="apexDountFailerCChart"></div>
 										</div>
 										<div class="flex-1 ps-2">
 											<table class="w-100 fs-12px mb-0 text-white text-opacity-60">
+												<thead>
+														<th class="w-25">GROUP</th>
+														<th class="w-25 text-end">PCT%</th>
+												</thead>
 												<tbody>
+												{% for TotalTopData in chartData.TotalTopDataList.nodeDataList %}
 												<tr>
 													<td>
 														<div class="d-flex align-items-center">
 															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-95"></div>
-															{{chartData.AssociationDataList.nodeDataList.0.group}}
+															{{TotalTopData.group}}
 														</div>
 													</td>
-													<td class="text-end">{{chartData.AssociationDataList.nodeDataList.0.totalPertage}}%</td>
+													<td class="text-end">{{TotalTopData.totalPertage}}%</td>
 												</tr>
-												<tr>
-													<td>
-														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-75"></div>
-															{{chartData.AssociationDataList.nodeDataList.1.group}}
-														</div>
-													</td>
-
-													<td class="text-end">{{chartData.AssociationDataList.nodeDataList.1.totalPertage}}%</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-55"></div>
-															{{chartData.AssociationDataList.nodeDataList.2.group}}
-														</div>
-													</td>
-
-													<td class="text-end">{{chartData.AssociationDataList.nodeDataList.2.totalPertage}}%</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-35"></div>
-															{{chartData.AssociationDataList.nodeDataList.3.group}}
-														</div>
-													</td>
-													<td class="text-end">{{chartData.AssociationDataList.nodeDataList.3.totalPertage}}%</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="d-flex align-items-center">
-															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-15"></div>
-															{{chartData.AssociationDataList.nodeDataList.4.group}}
-														</div>
-													</td>
-
-													<td class="text-end">{{chartData.AssociationDataList.nodeDataList.4.totalPertage}}%</td>
-												</tr>
+												{% endfor %}
 												</tbody>
 											</table>
 										</div>
