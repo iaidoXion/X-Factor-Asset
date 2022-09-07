@@ -328,19 +328,19 @@ var handleRenderChart = function () {
 //----------------------------------------
 // Asset Count By Item - bar chart
 //---------------------------------------
-   var D = []
-   var E = []
+   var barValue = []
+   var barName = []
    if (a.barChartDataList.length > 4){
     for (var i = 0; i <4; i++){
-        D.push(JSON.stringify(a.barChartDataList[i]['value']))
-        E.push(a.barChartDataList[i]['name']);
+        barValue.push(JSON.stringify(a.barChartDataList[i]['value']))
+        barName.push(a.barChartDataList[i]['name']);
 
     };
    }
    else {
     for (var i = 0; i < a.barChartDataList.length; i++){
-        D.push(a.barChartDataList[i]['value']);
-        E.push(a.barChartDataList[i]['name']);
+        barValue.push(a.barChartDataList[i]['value']);
+        barName.push(a.barChartDataList[i]['name']);
     };
    };
 
@@ -369,13 +369,13 @@ var apexColumnChartOptions = {
 		},
 		colors: [app.color.theme],
 		series: [{
-			data: D
+			data: barValue
 		}],
 		grid: {
 			show: true
 		},
 		xaxis: {
-			categories: E,
+			categories: barName,
 			labels: {
 				show: true,
                 style: {}
@@ -426,22 +426,41 @@ var apexColumnChartOptions = {
 //    };
 
 //console.log(a.lineChartDataList.groupBy(({date}) => date));
-var lineDataGrouping = a.lineChartDataList.reduce(function(result, current){
-    result[current.name] = result[current.name] || [];
-    result[current.name].push(current);
-    return result;
-}, {});
+
+
+
+//var lineDataGrouping = a.lineChartDataList.reduce(function(result, current){
+//    result[current.name] = result[current.name] || [];
+//    result[current.name].push(current);
+//    return result;
+//}, {});
 //console.log(lineDataGrouping)
 //var lineOnlyName = []
 //    for (var i = 0; i < lineDataGrouping.length; i++){
 //            lineOnlyName.push(lineDataGrouping[i]['name']);
 //    };
 
-var lineOnlyName = Object.keys(lineDataGrouping)
-//console.log(lineOnlyName)
+//var lineOnlyName = Object.keys(lineDataGrouping)
+//var lineOnlyValue = Object.values(lineDataGrouping)
+////console.log(lineOnlyName)
+//
+//var lineSeries = []
+//    for (var i = 0; i < lineOnlyName.length; i++){
+//            lineSeries.push({'name': lineOnlyName[i]});
+//    };
+//
+//var linesss = []
 
 
 
+
+//console.log(lineDataGrouping.Desktop[0].value)
+
+//lineSeries = [
+
+//{name: 'Desktop',data: [10, 5, 6, 8, 5]}, {name: 'Notebook',data: [5, 6, 2, 8, 5]}
+//
+//]
 
 var apexLineChartOptions = {
 		chart: {
@@ -526,11 +545,11 @@ var apexLineChartOptions = {
 // Asset Count By Day Item - pie chart
 //---------------------------------------
 
-   var F = []
-   var G = []
+   var pieValue = []
+   var pieName = []
     for (var i = 0; i < a.pieChartDataList.length; i++){
-        F.push(a.pieChartDataList[i]['value']);
-        G.push(a.pieChartDataList[i]['name']);
+        pieValue.push(a.pieChartDataList[i]['value']);
+        pieName.push(a.pieChartDataList[i]['name']);
     };
 
 var apexPieChartOptions = {
@@ -571,8 +590,8 @@ var apexPieChartOptions = {
 			show: false,
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
-		labels: G,
-		series: F,
+		labels: pieName,
+		series: pieValue,
 		tooltip: {
 			theme: 'dark',
 			x: {
@@ -1481,7 +1500,7 @@ $(document).ready(function() {
 	seongnamMap(worldMapData, seongnamNetwork);
 
 	document.addEventListener('theme-reload', function() {
-	$('[data-render="apexchart"], #apexRadarChart #seongnamMap ').empty();
+	$('[data-render="apexchart"], #apexRadarChart #world-map ').empty();
 		handleRenderChart();
 		handleRenderMap(worldMapData);
 		handleRenderKoreaMap(worldMapData);
