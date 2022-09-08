@@ -20551,7 +20551,7 @@ padding-right: 1rem
 width: 100%
 }
 .apexcharts-canvas .apexcharts-tooltip {
-font-size: 0.8125rem;
+font-size: 0.563rem;
 box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, .075)
 }
 .apexcharts-canvas .apexcharts-tooltip * {
@@ -20585,7 +20585,7 @@ height: 0.625rem;
 margin-right: 0.25rem
 }
 .apexcharts-canvas .apexcharts-tooltip .apexcharts-tooltip-series-group .apexcharts-tooltip-text .apexcharts-tooltip-y-group {
-padding: 0
+padding: 0;
 }
 .apexcharts-canvas .apexcharts-tooltip .apexcharts-tooltip-series-group+.apexcharts-tooltip-series-group {
 padding-top: 0
@@ -24228,4 +24228,11 @@ margin-left: -1.25rem
 
 #seongnam-map text {
     font-family: 'Black Han Sans', sans-serif;
+}
+
+#apexDountChart .apexcharts-tooltip-y-group {
+overflow: hidden;
+white-space: normal !important;
+display: inline-block;
+line-height: length;
 }

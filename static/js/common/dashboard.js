@@ -1,17 +1,25 @@
 //map chart 버튼
 $(document).ready(function(){
+
+    $('#korea-map, #seongnam-map').hide();
+    $('#world-map').show();
+
     $('#worldBtn').click(function() {
-        $("#world-map").show();
-        $("#korea-map").hide();
+        $('#world-map').show();
+        $('#korea-map, #seongnam-map').hide();
     });
 
     $('#koreaBtn').click(function() {
-        $("#world-map").hide();
-        $("#korea-map").show();
-
+        $('#korea-map').show();
+        $('#world-map, #seongnam-map').hide();
     });
-});
 
+    $('#areaBtn').click(function() {
+        $('#seongnam-map').show();
+        $('#world-map, #korea-map').hide();
+    });
+
+});
 
 
 // swiper 배너
