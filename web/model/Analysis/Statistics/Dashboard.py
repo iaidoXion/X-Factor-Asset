@@ -204,7 +204,6 @@ def network(data, type, case) :
 
 
 def chart_data(data, type, statistics) :
-    #print(data)
     if statistics == 'group' :
         if type == 'assetItem' :
             GBI = 'assetItem'

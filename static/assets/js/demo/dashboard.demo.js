@@ -113,7 +113,6 @@ var handleRenderChart = function () {
 //        };
 //        BarValue.push(dict);
 //      }
-//      console.log(BarValue);
 //
 //      chartPlotOptions = {
 //        bar: {
@@ -122,7 +121,6 @@ var handleRenderChart = function () {
 //          endingShape: "rounded",
 //        },
 //      };
-//      console.log(BarValue);
 //      chartData = [
 //        {
 //          name: "",
@@ -154,7 +152,6 @@ var handleRenderChart = function () {
 //        "rgba(" + app.color.themeRgb + ", .75)",
 //        "rgba(" + app.color.themeRgb + ", .5)",
 //      ];
-//      console.log(pieValue);
 //      Label = {
 //        enabled: false,
 //        formatter: function (val) {
@@ -429,8 +426,6 @@ var apexColumnChartOptions = {
 //        lineDate.push(a.lineChartDataList[i]['date'])
 //    };
 
-//console.log(a.lineChartDataList.groupBy(({date}) => date));
-
 
 
 //var lineDataGrouping = a.lineChartDataList.reduce(function(result, current){
@@ -438,7 +433,6 @@ var apexColumnChartOptions = {
 //    result[current.name].push(current);
 //    return result;
 //}, {});
-//console.log(lineDataGrouping)
 //var lineOnlyName = []
 //    for (var i = 0; i < lineDataGrouping.length; i++){
 //            lineOnlyName.push(lineDataGrouping[i]['name']);
@@ -446,7 +440,6 @@ var apexColumnChartOptions = {
 
 //var lineOnlyName = Object.keys(lineDataGrouping)
 //var lineOnlyValue = Object.values(lineDataGrouping)
-////console.log(lineOnlyName)
 //
 //var lineSeries = []
 //    for (var i = 0; i < lineOnlyName.length; i++){
@@ -458,7 +451,6 @@ var apexColumnChartOptions = {
 
 
 
-//console.log(lineDataGrouping.Desktop[0].value)
 
 //lineSeries = [
 
@@ -702,7 +694,6 @@ var apexDountChartOptions = {
 	}
 	
 	for (var i = 0; i < group.length; i++){
-		// console.log("=============start=================");
 		list = [];
 		alarm_list = [];
 		var name;
@@ -857,7 +848,7 @@ var apexRadarChartOptions = {
       },
     },
   },
-  colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],
+	colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],
   markers: {
     size: 2,
     colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],

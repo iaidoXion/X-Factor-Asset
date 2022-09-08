@@ -1,4 +1,6 @@
+from audioop import reverse
 from itertools import count
+from operator import itemgetter
 import pandas as pd
 from datetime import datetime
 from collections import Counter
@@ -175,6 +177,46 @@ def plug_in(data, day, type):
                 itemIndex = 'establishedPortCount'
 
         DFL.append([CI, item, IP])
-    DFC = ['id', itemIndex, 'ip']
-    DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
-    return DF
+    if type == 'line' :
+        DFC = ['id', itemIndex, 'ip']
+        list = []
+        result = []
+        length = 4
+        TOP5 = []
+        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
+        for i in DF['assetItem'].drop_duplicates() :
+            list.append(i)
+            
+        for group_list in list :
+            dict = {}
+            i = 0;
+            for asset_list in DF['assetItem'] :
+                if group_list == asset_list :
+                    i = i + 1 
+                    
+            dict['name'] = group_list
+            dict['count'] = i
+            result.append(dict)
+        
+        data = sorted(result, key=itemgetter('count'), reverse=True)
+        if len(data)   < length :
+            length = len(data)
+            
+        for i in range(length) :
+            TOP5.append(data[i]['name'])
+        for i in TOP5 :
+            if i in list:
+                list.remove(i)
+        for i in range(len(list)) :
+            if len(list) == 0 :
+                DF
+            else :
+                idx = DF[DF['assetItem'] == list[i]].index
+                DF = DF.drop(idx)
+        DF = DF.reset_index(drop=True)
+        return DF
+    else:
+        DFL.append([CI, item, IP])
+        DFC = ['id', itemIndex, 'ip']
+        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
+        return DF
