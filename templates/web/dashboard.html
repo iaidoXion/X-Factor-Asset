@@ -28,7 +28,7 @@
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
 					<div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
-						<div class="fs-7px text-white text-opacity-50 text-truncate col-4">
+						<div class="small text-white text-opacity-50 text-truncate col-3">
 							{% if chartData.barChartDataList %}
 							{% for data in chartData.barChartDataList %}
 							{% if data.name == "Desktop" %}
@@ -43,6 +43,13 @@
 							<i class="fas fa-ellipsis-h fa-fw me-1"></i>
 							{% endif %}
 							{{data.name}}
+							<br>
+							{% endfor %}
+							{% endif %}
+						</div>
+						<div class="small text-white text-opacity-50 text-truncate col-1">
+							{% if chartData.barChartDataList %}
+							{% for data in chartData.barChartDataList %}
 							{{data.value}}<br>
 							{% endfor %}
 							{% endif %}
@@ -134,6 +141,13 @@
 							<i class="fas fa-ellipsis-h fa-fw me-1"></i>
 							{% endif %}
 							{{data.name}}
+							<br>
+							{% endfor %}
+							{% endif %}
+						</div>
+						<div class="small text-white text-opacity-50 text-truncate col-1">
+							{% if chartData.pieChartDataList %}
+							{% for data in chartData.pieChartDataList %}
 							{{data.value}}<br>
 							{% endfor %}
 							{% endif %}
@@ -174,14 +188,21 @@
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
 					<div class="h-100px d-flex flex-row align-items-center justify-content-sm-between ">
-						<div class="small text-white text-opacity-50 text-truncate col-3">
+						<div class="small text-white text-opacity-50 text-truncate col-5" >
 							{% if chartData.donutChartDataList %}
-								{% for data in chartData.donutChartDataList %}
-								{{data.name}} :
-								{{data.value}}
-								<br>
-								{% endfor %}
-								{% endif %}
+							{% for data in chartData.donutChartDataList %}
+							{{data.name}}
+							<br>
+							{% endfor %}
+							{% endif %}
+						</div>
+						<div class="small text-white text-opacity-50 text-truncate col-1" style="padding-left: 10px;">
+							{% if chartData.donutChartDataList %}
+							{% for data in chartData.donutChartDataList %}
+							{{data.value}}
+							<br>
+							{% endfor %}
+							{% endif %}
 						</div>
 						<div>
 							<div class="col-12">
@@ -211,13 +232,10 @@
 			<!-- BEGIN card -->
 			<div class="card mb-3">
 				<!-- BEGIN card-body -->
-				<div class="card-body h-590px">
+				<div class="card-body h-600px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small mb-2">
 						<span class="flex-grow-1">Failure Symptom Case Detection Count By Group</span>
-						<a href="#" data-toggle="card-expand"
-						   class="text-white text-opacity-50 text-decoration-none"><i
-								class="bi bi-fullscreen"></i></a>
 					</div>
 					<!-- END title -->
 
@@ -245,9 +263,9 @@
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
 										<div class="progress-bar bg-theme" style="width: 100%"></div>
 									</div>
-<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
-<!--										Last updated 1 min ago-->
-<!--									</div>-->
+									<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
+									<!--										Last updated 1 min ago-->
+									<!--									</div>-->
 									{% for x in chartData.minidonutData %}
 									{% if "RAM" in x.name%}
 									<div class="d-flex align-items-center small">
@@ -277,11 +295,11 @@
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
 										<div class="progress-bar bg-theme" style="width: 100%"></div>
 									</div>
-<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
-<!--										Last updated 1 min ago-->
-<!--									</div>-->
+									<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
+									<!--										Last updated 1 min ago-->
+									<!--									</div>-->
 									{% for x in chartData.minidonutData %}
-									{% if "CPU" in x.name %} 
+									{% if "CPU" in x.name %}
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme"></i>
 										<div class="flex-1">{{x.ip}}</div>
@@ -320,7 +338,7 @@
 			<!-- BEGIN card -->
 			<div class="card mb-3">
 				<!-- BEGIN card-body -->
-				<div class="card-body h-590px">
+				<div class="card-body h-600px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small mb-3">
 						<div class="flex-grow-1" style="position: relative;">
@@ -328,10 +346,9 @@
 							<div class="btn-group ps-3" style="position: absolute; right:20px;">
 								<button type="button" id="worldBtn" class="btn btn-outline-warning btn-sm">World</button>
 								<button type="button" id="koreaBtn" class="btn btn-outline-warning btn-sm">Korea</button>
-								<button type="button" id="AreaBtn" class="btn btn-outline-warning btn-sm">Area</button>
+								<button type="button" id="areaBtn" class="btn btn-outline-warning btn-sm">Area</button>
 							</div>
 						</div>
-
 						<a href="#" data-toggle="card-expand"
 						   class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
 					</div>
@@ -341,6 +358,8 @@
 						<div id="world-map" class="jvectormap-without-padding"></div>
 						<div id="korea-map" class="jvectormap-without-padding"></div>
 						<div id="seongnam-map" style="width: 80%; height: 300px;"></div>
+<!--						<div id="seoul-map" style="width: 80%; height: 300px;"></div>-->
+
 					</div>
 					<!-- END map -->
 					<!-- BEGIN row -->
@@ -377,15 +396,14 @@
 										<th class="w-50">Total Alarm Case Top 5 (%)</th>
 									</tr>
 									<div class="d-flex align-items-center">
-
 										<div class="w-150px h-135px" style="margin: 0 auto;">
 											<div id="apexDountFailerCChart"></div>
 										</div>
 										<div class="flex-1 ps-2">
 											<table class="w-100 fs-12px mb-0 text-white text-opacity-60">
 												<thead>
-														<th class="w-25">GROUP</th>
-														<th class="w-25 text-end">PCT%</th>
+												<th class="w-25">GROUP</th>
+												<th class="w-25 text-end">PCT%</th>
 												</thead>
 												<tbody>
 												{% for TotalTopData in chartData.TotalTopDataList.nodeDataList %}
