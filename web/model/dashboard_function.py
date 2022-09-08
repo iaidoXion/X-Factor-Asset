@@ -32,6 +32,8 @@ def DashboardData() :
                 
                 # Line Chart
                 TAIDL2 = TDFPI(sensorAPI, "today", "line")
+                LINEGROUP = ASDCD(TAIDL2, "assetItem", "group")
+                
                 
                 # OS Item Statistics
                 TOIDL = TDFPI(sensorAPI, "today", "osItem")
@@ -95,8 +97,11 @@ def DashboardData() :
                 ## Past Data Input(Statistics Table Data 5Days ago)
                 ESDLF = IDPI('statistics','fiveDay','asset')
                 ## Past & Today Data Combination Transform
-                AIFD = [ESDLF, SAIDL]
-                ESAIDL = TDLC(AIFD)#Line Chart
+                # AIFD = [ESDLF, SAIDL]
+                
+                ## LineChart
+                LNFD = [ESDLF, LINEGROUP]
+                ESAIDL = TDLC(LNFD)#Line Chart
 
 
                 # Alarm

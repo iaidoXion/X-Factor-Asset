@@ -113,7 +113,6 @@ var handleRenderChart = function () {
 //        };
 //        BarValue.push(dict);
 //      }
-//      console.log(BarValue);
 //
 //      chartPlotOptions = {
 //        bar: {
@@ -122,7 +121,6 @@ var handleRenderChart = function () {
 //          endingShape: "rounded",
 //        },
 //      };
-//      console.log(BarValue);
 //      chartData = [
 //        {
 //          name: "",
@@ -154,7 +152,6 @@ var handleRenderChart = function () {
 //        "rgba(" + app.color.themeRgb + ", .75)",
 //        "rgba(" + app.color.themeRgb + ", .5)",
 //      ];
-//      console.log(pieValue);
 //      Label = {
 //        enabled: false,
 //        formatter: function (val) {
@@ -425,8 +422,6 @@ var apexColumnChartOptions = {
 //        lineDate.push(a.lineChartDataList[i]['date'])
 //    };
 
-//console.log(a.lineChartDataList.groupBy(({date}) => date));
-
 
 
 //var lineDataGrouping = a.lineChartDataList.reduce(function(result, current){
@@ -434,7 +429,6 @@ var apexColumnChartOptions = {
 //    result[current.name].push(current);
 //    return result;
 //}, {});
-//console.log(lineDataGrouping)
 //var lineOnlyName = []
 //    for (var i = 0; i < lineDataGrouping.length; i++){
 //            lineOnlyName.push(lineDataGrouping[i]['name']);
@@ -442,7 +436,6 @@ var apexColumnChartOptions = {
 
 //var lineOnlyName = Object.keys(lineDataGrouping)
 //var lineOnlyValue = Object.values(lineDataGrouping)
-////console.log(lineOnlyName)
 //
 //var lineSeries = []
 //    for (var i = 0; i < lineOnlyName.length; i++){
@@ -454,7 +447,6 @@ var apexColumnChartOptions = {
 
 
 
-//console.log(lineDataGrouping.Desktop[0].value)
 
 //lineSeries = [
 
@@ -699,7 +691,6 @@ var apexDountChartOptions = {
 	}
 	
 	for (var i = 0; i < group.length; i++){
-		// console.log("=============start=================");
 		list = [];
 		alarm_list = [];
 		var name;
@@ -715,7 +706,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[0] = parseInt(0);
 						alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -731,7 +721,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[1] = parseInt(0);
 						alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -747,7 +736,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[2] = parseInt(0);
 						alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -763,7 +751,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[3] = parseInt(0);
 						alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -779,7 +766,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[4] = parseInt(0);
 						alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -795,7 +781,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[5] = parseInt(0);
 						alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -811,7 +796,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History') {
-						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[6] = parseInt(0);
 						alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -826,7 +810,6 @@ var apexDountChartOptions = {
 		radar_list.push(radar_dict);
 	};
 	category_list.push(radar_list);
-	console.log(category_list);
 var apexRadarChartOptions = {
   chart: {
     width: "100%",
@@ -862,17 +845,18 @@ var apexRadarChartOptions = {
       },
     },
   },
-  colors: [
-    "rgba(" + app.color.themeRgb + ", .5)",
-    "rgba(" + app.color.themeRgb + ", .35)",
-    "rgba(" + app.color.themeRgb + ", .65)",
-    "rgba(" + app.color.themeRgb + ", .95)",
-    "rgba(" + app.color.themeRgb + ", .125)",
-  ],
+	colors: ["#ffdf00", "#ffbc00", "#ff9e00", "#ff8100", "#ff6100"],
+//   [
+//     "rgba(" + app.color.themeRgb + ", .5)",
+//     "rgba(" + app.color.themeRgb + ", .35)",
+//     "rgba(" + app.color.themeRgb + ", .65)",
+//     "rgba(" + app.color.themeRgb + ", .95)",
+//     "rgba(" + app.color.themeRgb + ", .125)",
+//   ],
   markers: {
     size: 4,
-    colors: [app.color.theme],
-    strokeColor: app.color.theme,
+    colors: ["#ffdf00", "#ffbc00", "#ff9e00", "#ff8100", "#ff6100"],
+    strokeColor: ["#ffdf00", "#ffbc00", "#ff9e00", "#ff8100", "#ff6100"],
     strokeWidth: 2,
   },
   tooltip: {
