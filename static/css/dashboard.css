@@ -1,7 +1,10 @@
+/*
 
+*/
 /*************************************
  * generic styling for ALS elements
- ************************************/
+ ************************************//*
+
 .als-container {
 	position: relative;
 	width: 100%;
@@ -33,9 +36,11 @@
 	clear: both;
 }
 
+*/
 /*************************************
  * specific styling for #demo2
- ************************************/
+ ************************************//*
+
 
 .alsWrap {
     width: 100%;
@@ -220,7 +225,9 @@ stroke-width: 0.2px; stroke: #fff;
 }
 #koreaMap path { fill: #d5d6dd; stroke: #gray; stroke-width: 0.5px;
 }
-/* #koreaMap path:hover { fill: #ffcc00; } */
+*/
+/* #koreaMap path:hover { fill: #ffcc00; } *//*
+
 #koreaMap text { font-family: "Nanum Gothic"; font-size: 10px; pointer-events: none;
 }
 #koreaMap #elecrail path { fill: none; stroke: #ff9900; stroke-width: 0.5px; opacity: 0.95;
@@ -272,7 +279,9 @@ stroke-width: 0.2px; stroke: #fff;
 }
 #koreaPopMap path { fill: lightgray; stroke: #gray; stroke-width: 0.5px;
 }
-/* #koreaPopMap path:hover { fill: #ffcc00; } */
+*/
+/* #koreaPopMap path:hover { fill: #ffcc00; } *//*
+
 #koreaPopMap text { font-family: "Nanum Gothic"; font-size: 10px; pointer-events: none;
 }
 #koreaPopMap #elecrail path { fill: none; stroke: #ff9900; stroke-width: 0.5px; opacity: 0.95;
@@ -329,11 +338,13 @@ stroke-width: 0.2px; stroke: #fff;
     font-family: 'overwatch';
     src: url('fonts/koverwatch.woff2');
 }
+*/
 
 
 /*************************************
  * generic styling for ALS elements
  ************************************/
+/*
 .als-container {
 	position: relative;
 	width: 100%;
@@ -371,12 +382,13 @@ stroke-width: 0.2px; stroke: #fff;
 	clear: both;
 	z-index: 10;
 }
+*/
 
 
 /*************************************
  * specific styling for #demo2
  ************************************/
-
+/*
 #demo2 {
     overflow: hidden;
 }
@@ -405,7 +417,12 @@ stroke-width: 0.2px; stroke: #fff;
 
 #demo2 .als-next {
 	right: 1.7%;
-}
+}*/
+
+
+
+
+/******* seongnam-map css *******/
 
 #seongnam-map svg circle {
           fill: orange;
@@ -426,7 +443,7 @@ stroke-width: 0.2px; stroke: #fff;
           opacity: 0.2;
         }
 #seongnam-map svg .municipality-label {
-          fill: #bbb;
+          fill: #fff;
           font-size: 12px;
           font-weight: 300;
           text-anchor: middle;
@@ -437,7 +454,7 @@ stroke-width: 0.2px; stroke: #fff;
           text-anchor: middle;
         }
 #seongnam-map svg #places text {
-          color: #777;
+          color: #fff;
           font: 10px sans-serif;
           text-anchor: start;
         }
@@ -446,6 +463,9 @@ stroke-width: 0.2px; stroke: #fff;
     font-family: sans-serif;
     font-size: 20px;
 }
+
+
+
 /*
 
 #apexRadarChart {
@@ -527,5 +547,4 @@ stroke-width: 0.2px; stroke: #fff;
 .conNum {
     padding-top: 0.375em;
 }
-
 /******* END swiper css *******/
