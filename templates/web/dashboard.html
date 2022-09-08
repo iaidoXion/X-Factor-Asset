@@ -176,12 +176,12 @@
 					<div class="h-100px d-flex flex-row align-items-center justify-content-sm-between ">
 						<div class="small text-white text-opacity-50 text-truncate col-3">
 							{% if chartData.donutChartDataList %}
-								{% for data in chartData.donutChartDataList %}
-								{{data.name}} :
-								{{data.value}}
-								<br>
-								{% endfor %}
-								{% endif %}
+							{% for data in chartData.donutChartDataList %}
+							{{data.name}} :
+							{{data.value}}
+							<br>
+							{% endfor %}
+							{% endif %}
 						</div>
 						<div>
 							<div class="col-12">
@@ -245,9 +245,9 @@
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
 										<div class="progress-bar bg-theme" style="width: 100%"></div>
 									</div>
-<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
-<!--										Last updated 1 min ago-->
-<!--									</div>-->
+									<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
+									<!--										Last updated 1 min ago-->
+									<!--									</div>-->
 									{% for x in chartData.minidonutData %}
 									{% if "RAM" in x.name%}
 									<div class="d-flex align-items-center small">
@@ -277,11 +277,11 @@
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
 										<div class="progress-bar bg-theme" style="width: 100%"></div>
 									</div>
-<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
-<!--										Last updated 1 min ago-->
-<!--									</div>-->
+									<!--									<div class="fs-11px text-white text-opacity-50 mb-2 text-truncate">-->
+									<!--										Last updated 1 min ago-->
+									<!--									</div>-->
 									{% for x in chartData.minidonutData %}
-									{% if "CPU" in x.name %} 
+									{% if "CPU" in x.name %}
 									<div class="d-flex align-items-center small">
 										<i class="bi bi-circle-fill fs-6px me-2 text-theme"></i>
 										<div class="flex-1">{{x.ip}}</div>
@@ -341,6 +341,7 @@
 						<div id="world-map" class="jvectormap-without-padding"></div>
 						<div id="korea-map" class="jvectormap-without-padding"></div>
 						<div id="seongnam-map" style="width: 80%; height: 300px;"></div>
+<!--						<div id="seoul-map" style="width: 80%; height: 300px;"></div>-->
 					</div>
 					<!-- END map -->
 					<!-- BEGIN row -->
@@ -384,8 +385,8 @@
 										<div class="flex-1 ps-2">
 											<table class="w-100 fs-12px mb-0 text-white text-opacity-60">
 												<thead>
-														<th class="w-25">GROUP</th>
-														<th class="w-25 text-end">PCT%</th>
+												<th class="w-25">GROUP</th>
+												<th class="w-25 text-end">PCT%</th>
 												</thead>
 												<tbody>
 												{% for TotalTopData in chartData.TotalTopDataList.nodeDataList %}
