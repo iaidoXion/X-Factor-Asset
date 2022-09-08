@@ -696,7 +696,6 @@ var apexDountChartOptions = {
 	group = [];
 	var radar_list = [];
 	var category_list = [];
-//	console.log(a);
 	
 	for (var i = 0; i < 5; i++) {
     	group.push(a.AssociationDataList.nodeDataList[i].group);
@@ -719,7 +718,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-//						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[0] = parseInt(0);
 						alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -735,7 +733,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-//						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[1] = parseInt(0);
 						alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -751,7 +748,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-//						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[2] = parseInt(0);
 						alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -767,7 +763,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-//						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[3] = parseInt(0);
 						alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -783,7 +778,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-//						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[4] = parseInt(0);
 						alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -799,7 +793,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-//						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[5] = parseInt(0);
 						alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -815,7 +808,6 @@ var apexDountChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History') {
-//						console.log(a.AssociationDataList.nodeDataList[j].alarmCount);
 					} else {
 						list[6] = parseInt(0);
 						alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -830,7 +822,6 @@ var apexDountChartOptions = {
 		radar_list.push(radar_dict);
 	};
 	category_list.push(radar_list);
-//	console.log(category_list);
 var apexRadarChartOptions = {
   chart: {
     width: "100%",
@@ -1445,7 +1436,7 @@ function seongnamMap(worldMapData, seongnamNetwork) {
 		var features = topojson.feature(data, data.objects.seongnam).features;
 
 		map.selectAll('path').data(features).enter().append('path')
-			.attr('class', function (d) { return 'municipality c' + d.properties.code })
+			.attr('class', function (d) { return 'municipality c' + d.adm_cd })
 			.attr('d', path);
 
 		map.selectAll('text').data(features).enter().append("text")
@@ -1482,7 +1473,99 @@ function seongnamMap(worldMapData, seongnamNetwork) {
 
 }
 
+function seoulMap(worldMapData) {
+    d3.select(window).on("resize", sizeChange);
+    function sizeChange() {
+	    d3.select("g").attr("transform", "scale(" + $("#seoul-map").width()/900 + ")");
+	    $("svg").height($("#seoul-map").width()*0.618);
+	}
 
+	var width = 800, height = 376.92;
+	var svg = d3.select("#seoul-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", "0 0 879.5 376.92");
+	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
+	var projection = d3.geo.mercator().center([126.9774211519, 37.550]).scale(60000).translate([width / 2, height / 2]);
+	var path = d3.geo.path().projection(projection);
+
+	svg.selectAll("circle")
+		.data(worldMapData)
+		.enter()
+		.append("circle")
+		.attr("class", "dot")
+		.attr("transform", translateCircle)
+		.attr("r", 4)
+		.style("fill", "#e08a0b");
+
+	function translateCircle(datum, index) {
+
+
+		//
+		return "translate(" + projection([datum[1], datum[0]]) + ")";
+	};
+
+	setInterval(function () {
+		worldMapData.forEach(function (datum) {
+			svg
+				.append("circle")
+				.attr("class", "ring")
+				.attr("transform", translateCircle(datum))
+				.attr("r", 1)
+				.style("fill", "#e06f0b")
+				.style("opacity", "0.3")
+				.style("fill-opacity", "0.3")
+				.transition()
+				.ease("linear")
+				.duration(2000)
+				.style("stroke-opacity", 1e-6)
+				.style("stroke-width", 1)
+				.style("stroke", "e06f0b")
+				.attr("r", 30)
+				.remove();
+		})
+	}, 800);
+
+	d3.json("../static/assets/plugins/jvectormap-content/seoul.json", function (error, data) {
+		var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
+
+		map.selectAll('path').data(features).enter().append('path')
+			.attr('class', function (d) { return 'municipality c' + d.properties.SIG_CD })
+			.attr('d', path)
+			.attr("opacity", 0.5)
+			.style("fill", "#c7cbce");
+
+		map.selectAll('text').data(features).enter().append("text")
+			.attr("transform", function (d) { return "translate(" + path.centroid(d) + ")"; })
+			.attr("dy", ".35em")
+			.attr("class", "municipality-label")
+			.text(function (d) { return d.properties.SIG_KOR_NM; })
+			.style("fill", "#fff")
+			.attr("opacity", 0.5);
+	});
+
+
+	var simulation = d3v4.forceSimulation()
+		.force("link", d3v4.forceLink().distance(d => d.distance).id(function (d) { return d.id; }))
+		.force("charge", d3v4.forceManyBody().strength(-170));
+
+	seongnamNetwork.forEach(function (graph) {
+		var link = svg.append("g")
+			.attr("class", "links")
+			.selectAll("line")
+			.data(graph.links)
+			.enter().append("line")
+			.attr("stroke-width", "1.7")
+			.style("stroke", "#e18a0a");
+
+		var fillCircle = function (g) {
+			if (g == "Ncrd") {
+				return "/web/static/img/dashboard/ncrd.png";
+			} else if (g == "Ncalpha") {
+				return "/web/static/img/dashboard/ncalpha.png";
+			}
+		};
+
+	});
+
+}
 
 
 
@@ -1494,7 +1577,7 @@ $(document).ready(function() {
 	handleRenderKoreaMap(worldMapData);
 	//handleRenderSeongnamMap();
 	seongnamMap(worldMapData, seongnamNetwork);
-
+    seoulMap(worldMapData);
 	document.addEventListener('theme-reload', function() {
 	$('[data-render="apexchart"], #apexRadarChart #world-map #korea-map #seongnamMap').empty();
 		handleRenderChart();
@@ -1502,5 +1585,6 @@ $(document).ready(function() {
 		handleRenderKoreaMap(worldMapData);
 		//handleRenderSeongnamMap();
 		seongnamMap(worldMapData, seongnamNetwork);
+		seoulMap(worldMapData);
 	});
 });
