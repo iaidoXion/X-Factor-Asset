@@ -26,7 +26,7 @@ def plug_in(table, day, type):
         if table == 'asset' :
             query = """
                 select 
-                    computer_id, disk_used_space, listen_port_count, established_port_count, ram_use_size, asset_collection_date
+                    computer_id, disk_used_space, listen_port_count, established_port_count, asset_collection_date
                 from
                     """ + AssetTNM + """
                 where 

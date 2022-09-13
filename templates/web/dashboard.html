@@ -253,12 +253,12 @@
 
 							<div class="FailureA">
 								<!-- BEGIN chart -->
-								<div class="w-150px h-135px" style="margin: 0 auto;">
+								<div style="margin: 0 auto; height: 250px;">
 									<div id="apexDountFailerAChart"></div>
 								</div>
 								<!-- END chart -->
 								<!-- BEGIN info -->
-								<div class="ps-3 flex-1">
+								{% comment %} <div class="ps-3 flex-1">
 									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1 pt-1">RAM Usage Exceeded</div>
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
 										<div class="progress-bar bg-theme" style="width: 100%"></div>
@@ -275,21 +275,21 @@
 									</div>
 									{% endif%}
 									{% endfor %}
-								</div>
+								</div> {% endcomment %}
 								<!-- END info -->
 							</div>
 
 							<!-- END col-6 -->
 							<!-- BEGIN col-6 -->
 
-							<div class="FailureB pt-2">
+							<div class="FailureB">
 								<!-- BEGIN chart -->
-								<div class="w-150px h-135px" style="margin: 0 auto;">
+								<div style="margin: 0 auto; height: 250px;">
 									<div id="apexDountFailerBChart"></div>
 								</div>
 								<!-- END chart -->
 								<!-- BEGIN info -->
-								<div class="ps-3 flex-1">
+								{% comment %} <div class="ps-3 flex-1">
 									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1 pt-1">CPU Usage Exceeded
 									</div>
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
@@ -307,7 +307,7 @@
 									</div>
 									{% endif %}
 									{% endfor %}
-								</div>
+								</div> {% endcomment %}
 								<!-- END info -->
 							</div>
 
