@@ -35,7 +35,7 @@
 							<i class="fas fa-tv fa-fw me-1"></i>
 							{% elif data.name == "Notebook" %}
 							<i class="fas fa-laptop fa-fw me-1"></i>
-							{% elif data.name == "Rack Mount Chassis" %}
+							{% elif data.name == "Server" %}
 							<i class="fas fa-server fa-fw me-1"></i>
 							{% elif data.name == "Virtual" %}
 							<i class="fas fa-window-restore fa-fw me-1"></i>
@@ -467,7 +467,7 @@
 							{% for bannerData in chartData.bannerDataList %}
 							<div class="swiper-slide">
 								<div class="conBanner">
-									<div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px">{{bannerData.name}} Count</div>
+									<div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px" title="{{bannerData.name}} Count">{{bannerData.name}} Count</div>
 									<div class="count-num">
 										<span class="conTotalnum fw-bold text-opacity-60 fs-4">{{bannerData.value}}</span>
 										<div class="conNumImg">

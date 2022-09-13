@@ -4026,7 +4026,7 @@ border-left: 0.3em solid transparent
 margin-left: 0
 }
 .dropdown-menu {
---bs-dropdown-min-width: 10rem;
+--bs-dropdown-min-width: 12rem;
 --bs-dropdown-padding-x: 0;
 --bs-dropdown-padding-y: 0.5rem;
 --bs-dropdown-spacer: 0.125rem;
@@ -24231,8 +24231,5 @@ margin-left: -1.25rem
 }
 
 #apexDountChart .apexcharts-tooltip-y-group {
-overflow: hidden;
-white-space: normal !important;
-display: inline-block;
-line-height: length;
+white-space: pre-line !important;
 }
