@@ -35,7 +35,7 @@
 							<i class="fas fa-tv fa-fw me-1"></i>
 							{% elif data.name == "Notebook" %}
 							<i class="fas fa-laptop fa-fw me-1"></i>
-							{% elif data.name == "Rack Mount Chassis" %}
+							{% elif data.name == "Server" %}
 							<i class="fas fa-server fa-fw me-1"></i>
 							{% elif data.name == "Virtual" %}
 							<i class="fas fa-window-restore fa-fw me-1"></i>
@@ -344,9 +344,15 @@
 						<div class="flex-grow-1" style="position: relative;">
 							Failure Symptom Case Detection
 							<div class="btn-group ps-3" style="position: absolute; right:20px;">
+								{% if MapUse.WorldUse == 'block' %}
 								<button type="button" id="worldBtn" class="btn btn-outline-warning btn-sm">World</button>
+								{%endif%}
+								{% if MapUse.KoreaUse == 'block' %}
 								<button type="button" id="koreaBtn" class="btn btn-outline-warning btn-sm">Korea</button>
+								{%endif%}
+								{% if MapUse.AreaUse == 'block' %}
 								<button type="button" id="areaBtn" class="btn btn-outline-warning btn-sm">Area</button>
+								{%endif%}
 							</div>
 						</div>
 						<a href="#" data-toggle="card-expand"
@@ -355,11 +361,16 @@
 					<!-- END title -->
 					<!-- BEGIN map -->
 					<div class="ratio ratio-21x9">
-						<div id="world-map" class="jvectormap-without-padding"></div>
-						<div id="korea-map" class="jvectormap-without-padding"></div>
-						<div id="seongnam-map" style="width: 80%; height: 300px;"></div>
-<!--						<div id="seoul-map" style="width: 80%; height: 300px;"></div>-->
-
+						{% if MapUse.WorldUse == 'block' %}
+						<div id="world-map" class="jvectormap-without-padding" style="display:{{MapUse.WorldUse}}"></div>
+						{%endif%}
+						{% if MapUse.KoreaUse == 'block' %}
+						<div id="korea-map" class="jvectormap-without-padding" style="display:{{MapUse.KoreaUse}}"></div>
+						{%endif%}
+						{% if MapUse.AreaUse == 'block' %}
+						<div id="seoul-map" style="width: 80%; height: 300px;" style="display:{{MapUse.AreaUse}}"></div>
+						<div id="seongnam-map" style="width: 80%; height: 300px;" style="display:{{MapUse.AreaUse}}"></div>
+						{%endif%}
 					</div>
 					<!-- END map -->
 					<!-- BEGIN row -->

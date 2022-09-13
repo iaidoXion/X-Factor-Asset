@@ -24236,3 +24236,12 @@ white-space: normal !important;
 display: inline-block;
 line-height: length;
 }
+
+/*
+#seongnam-map{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}*/
