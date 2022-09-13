@@ -167,7 +167,7 @@ def plug_in(data, day, type):
                 item = str(result) + "GB"
                 itemIndex = 'driveSize'
             elif type == 'LH':
-                item = str(d[5]).split(' ')[0]
+                item = str(d[4]).split(' ')[0]
                 itemIndex = 'lastLogin'
             elif type == 'LPC':
                 item = str(d[2])

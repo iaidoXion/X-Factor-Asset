@@ -34,7 +34,6 @@ def DashboardData() :
                 TAIDL2 = TDFPI(sensorAPI, "today", "line")
                 LINEGROUP = ASDCD(TAIDL2, "assetItem", "group")
                 
-                
                 # OS Item Statistics
                 TOIDL = TDFPI(sensorAPI, "today", "osItem")
                 SOIDL = ASDCD(TOIDL, "osItem", "group")
@@ -89,7 +88,7 @@ def DashboardData() :
                 ## Today Statistics Data Transform
                 ## Today Asset Total Count Calculation
                 ATCDL = {'name': ['Asset Total'], 'value': [sum(SAIDL['value'])]}
-                TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT, CCSDLT, RPDLA
+                TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT
                 TSDLT = TDBA(TSDL, 'today')
                 ## Banner ROC Calculation
                 SBNDL = ASDC(TSDLY, TSDLT)

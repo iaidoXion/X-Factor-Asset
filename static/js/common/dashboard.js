@@ -1,22 +1,45 @@
-//map chart 버튼
+
 $(document).ready(function(){
+//map chart display from setting.json
+    if (mapUse.WorldUse == 'block'){
+        $('#korea-map, #seoul-map, #seongnam-map').hide();
+        $('#world-map').show();
+        }
+    else if (mapUse.KoreaUse == 'block'){
+        $('#world-map, #seoul-map').hide();
+        $('#korea-map').show();
+        }
+    else if (mapUse.AreaUse == 'block'){
+        if (mapUse.AreaType == 'seoul-map'){
+        $('#world-map, #korea-map, #seongnam-map').hide();
+        $('#seoul-map').show();
+        }
+        else if (mapUse.AreaType == 'seongnam-map'){
+        $('#world-map, #korea-map, #seoul-map').hide();
+        $('#seongnam-map').show();
+        }
+    };
 
-    $('#korea-map, #seongnam-map').hide();
-    $('#world-map').show();
-
+//map chart 버튼
     $('#worldBtn').click(function() {
         $('#world-map').show();
-        $('#korea-map, #seongnam-map').hide();
+        $('#korea-map, #seoul-map, #seongnam-map').hide();
     });
 
     $('#koreaBtn').click(function() {
         $('#korea-map').show();
-        $('#world-map, #seongnam-map').hide();
+        $('#world-map, #seoul-map, #seongnam-map').hide();
     });
 
     $('#areaBtn').click(function() {
+        if (mapUse.AreaType == 'seoul-map'){
+        $('#world-map, #korea-map, #seongnam-map').hide();
+        $('#seoul-map').show();
+        }
+        else if (mapUse.AreaType == 'seongnam-map'){
+        $('#world-map, #korea-map, #seoul-map').hide();
         $('#seongnam-map').show();
-        $('#world-map, #korea-map').hide();
+        }
     });
 
 });

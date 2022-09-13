@@ -35,7 +35,7 @@
 							<i class="fas fa-tv fa-fw me-1"></i>
 							{% elif data.name == "Notebook" %}
 							<i class="fas fa-laptop fa-fw me-1"></i>
-							{% elif data.name == "Rack Mount Chassis" %}
+							{% elif data.name == "Server" %}
 							<i class="fas fa-server fa-fw me-1"></i>
 							{% elif data.name == "Virtual" %}
 							<i class="fas fa-window-restore fa-fw me-1"></i>
@@ -253,12 +253,12 @@
 
 							<div class="FailureA">
 								<!-- BEGIN chart -->
-								<div class="w-150px h-135px" style="margin: 0 auto;">
+								<div style="margin: 0 auto; height: 250px;">
 									<div id="apexDountFailerAChart"></div>
 								</div>
 								<!-- END chart -->
 								<!-- BEGIN info -->
-								<div class="ps-3 flex-1">
+								{% comment %} <div class="ps-3 flex-1">
 									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1 pt-1">RAM Usage Exceeded</div>
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
 										<div class="progress-bar bg-theme" style="width: 100%"></div>
@@ -275,21 +275,21 @@
 									</div>
 									{% endif%}
 									{% endfor %}
-								</div>
+								</div> {% endcomment %}
 								<!-- END info -->
 							</div>
 
 							<!-- END col-6 -->
 							<!-- BEGIN col-6 -->
 
-							<div class="FailureB pt-2">
+							<div class="FailureB">
 								<!-- BEGIN chart -->
-								<div class="w-150px h-135px" style="margin: 0 auto;">
+								<div style="margin: 0 auto; height: 250px;">
 									<div id="apexDountFailerBChart"></div>
 								</div>
 								<!-- END chart -->
 								<!-- BEGIN info -->
-								<div class="ps-3 flex-1">
+								{% comment %} <div class="ps-3 flex-1">
 									<div class="fs-10px fw-bold text-white text-opacity-50 mb-1 pt-1">CPU Usage Exceeded
 									</div>
 									<div class="progress h-3px bg-white-transparent-2 mb-1">
@@ -307,7 +307,7 @@
 									</div>
 									{% endif %}
 									{% endfor %}
-								</div>
+								</div> {% endcomment %}
 								<!-- END info -->
 							</div>
 
@@ -344,9 +344,15 @@
 						<div class="flex-grow-1" style="position: relative;">
 							Failure Symptom Case Detection
 							<div class="btn-group ps-3" style="position: absolute; right:20px;">
+								{% if MapUse.WorldUse == 'block' %}
 								<button type="button" id="worldBtn" class="btn btn-outline-warning btn-sm">World</button>
+								{%endif%}
+								{% if MapUse.KoreaUse == 'block' %}
 								<button type="button" id="koreaBtn" class="btn btn-outline-warning btn-sm">Korea</button>
+								{%endif%}
+								{% if MapUse.AreaUse == 'block' %}
 								<button type="button" id="areaBtn" class="btn btn-outline-warning btn-sm">Area</button>
+								{%endif%}
 							</div>
 						</div>
 						<a href="#" data-toggle="card-expand"
@@ -355,11 +361,16 @@
 					<!-- END title -->
 					<!-- BEGIN map -->
 					<div class="ratio ratio-21x9">
-						<div id="world-map" class="jvectormap-without-padding"></div>
-						<div id="korea-map" class="jvectormap-without-padding"></div>
-						<div id="seongnam-map" style="width: 80%; height: 300px;"></div>
-<!--						<div id="seoul-map" style="width: 80%; height: 300px;"></div>-->
-
+						{% if MapUse.WorldUse == 'block' %}
+						<div id="world-map" class="jvectormap-without-padding" style="display:{{MapUse.WorldUse}}"></div>
+						{%endif%}
+						{% if MapUse.KoreaUse == 'block' %}
+						<div id="korea-map" class="jvectormap-without-padding" style="display:{{MapUse.KoreaUse}}"></div>
+						{%endif%}
+						{% if MapUse.AreaUse == 'block' %}
+						<div id="seoul-map" style="width: 80%; height: 300px;" style="display:{{MapUse.AreaUse}}"></div>
+						<div id="seongnam-map" style="width: 80%; height: 300px;" style="display:{{MapUse.AreaUse}}"></div>
+						{%endif%}
 					</div>
 					<!-- END map -->
 					<!-- BEGIN row -->
@@ -467,7 +478,7 @@
 							{% for bannerData in chartData.bannerDataList %}
 							<div class="swiper-slide">
 								<div class="conBanner">
-									<div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px">{{bannerData.name}} Count</div>
+									<div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px" title="{{bannerData.name}} Count">{{bannerData.name}} Count</div>
 									<div class="count-num">
 										<span class="conTotalnum fw-bold text-opacity-60 fs-4">{{bannerData.value}}</span>
 										<div class="conNumImg">

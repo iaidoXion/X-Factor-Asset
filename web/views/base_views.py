@@ -7,7 +7,10 @@ menuListDB = MenuSetting()
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
 Customer = SETTING['PROJECT']['CUSTOMER']
-
+WorldUse = SETTING['PROJECT']['MAP']['World']
+KoreaUse = SETTING['PROJECT']['MAP']['Korea']
+AreaUse = SETTING['PROJECT']['MAP']['Area']['use']
+AreaType = SETTING['PROJECT']['MAP']['Area']['type']
 def index(request) :
     returnData = {'menuList': menuListDB}
     return render(request, 'web/index.html', returnData)
@@ -30,9 +33,11 @@ def dashboard(request):
         TotalTopData = DCDL['TotalTopDataList']
         TotalData = DCDL["TotalDataList"]
         donutChartData = DCDL["donutChartDataList"]
+        MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
         chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
-        returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer}
+        returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         return render(request, 'web/dashboard.html', returnData)
+
 
 
 def assetweb(request):
