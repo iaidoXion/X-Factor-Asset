@@ -7,8 +7,10 @@
     "MAP" : {
       "World" : "block",
       "Korea" : "block",
-      "Area" : "block",
-      "Zone" : "block"
+      "Area" : {
+        "use": "block",
+        "type" : "seongnam-map"
+      }
     },
     "Alarm" : {
       "StandardDate" : "2022-07-11",
