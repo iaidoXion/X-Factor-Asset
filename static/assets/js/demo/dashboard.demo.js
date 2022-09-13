@@ -500,7 +500,10 @@ var apexLineChartOptions = {
 			categories: ['2022-08-20', '2022-08-21', '2022-08-22', '2022-08-23', '2022-08-24', '2022-08-25'],
 			labels: {
 				show: true,
-			}
+			},
+			tooltip: {
+				enabled: false,
+			},
 		},
 		yaxis: {
 			labels: {
@@ -596,7 +599,7 @@ var apexPieChartOptions = {
 			y: {
 				title: {
 					formatter: function (val) {
-						return '' + val
+						return "Count: "
 					}
 				},
 				formatter: (value) => { return '' + value },
@@ -668,7 +671,7 @@ var apexDountChartOptions = {
 			y: {
 				title: {
 					formatter: function (val) {
-						return '' + val
+						return '' + val +"<br>" +" Count:"
 					}
 				},
 				formatter: (value) => { return '' + value },
@@ -968,8 +971,8 @@ var apexDountChartOptions = {
 			},
 			y: {
 				title: {
-					formatter: function (seriesName) {
-						return ''
+					formatter: function (val) {
+						return "Count: "
 					}
 				},
 				formatter: (value) => { return '' + value },
@@ -1043,8 +1046,8 @@ var apexDountChartOptions = {
 			},
 			y: {
 				title: {
-					formatter: function (seriesName) {
-						return ''
+					formatter: function (val) {
+						return "Count: "
 					}
 				},
 				formatter: (value) => { return '' + value },
@@ -1120,8 +1123,8 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 			},
 			y: {
 				title: {
-					formatter: function (seriesName) {
-						return ''
+					formatter: function (val) {
+						return "Count: "
 					}
 				},
 				formatter: (value) => { return '' + value },
