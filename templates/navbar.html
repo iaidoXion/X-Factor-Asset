@@ -22,7 +22,7 @@
 
 			<!-- BEGIN brand -->
 			<div class="brand">
-				<a href="index.html" class="brand-logo">
+				<a href="../dashboard" class="brand-logo">
 
 					{% if Customer == 'NC' %}
 					<img src="{% static 'assets/css/images/nc_newlogo.png' %}">
@@ -192,7 +192,7 @@
 						<a class="dropdown-item d-flex align-items-center" href="email_inbox.html">{{request.session.sessionemail|default:'메일없음' }}<i class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
 						<a class="dropdown-item d-flex align-items-center" href="settings.html">SETTINGS <i class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item d-flex align-items-center" href="logout/">LOGOUT <i class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
+						<a class="dropdown-item d-flex align-items-center" onclick="confirmLogout2()">LOGOUT <i class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
 					</div>
 				</div>
 				{% endif %}
@@ -213,3 +213,14 @@
 			</form>
 			<!-- END menu-search -->
 		</div>
+
+		<script>
+			function confirmLogout2() {
+				if( confirm("정말 로그아웃 하시겠습니까?") ) {
+					location.href = "../logout/";
+				}
+			}
+
+
+
+		</script>

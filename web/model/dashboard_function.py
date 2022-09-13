@@ -149,7 +149,7 @@ def DashboardData() :
                 
                 ## DONU chart
                 TMDCD = TDAL(SDCCC, 'network', 'CCDL')
-                TMRUE = TDAL(SRUSND, 'network', 'RUE')
+                TMRUE = TDAL(SDDRU, 'network', 'RUE')
                 MDC = [TMDCD[1], TMRUE[1]]
                 
                 NDL = [TDUSND[0], TDUSND[1]+TLHND[1]+TRUSND[1]+TLPCND[1]+TEPCND[1] + TSCCSA[1] + TSRPSA[1]]

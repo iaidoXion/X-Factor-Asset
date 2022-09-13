@@ -102,7 +102,6 @@ def login(request):
                     return render(request, 'common/login.html', res_data)
                 else:
                     request.session['sessionid']=user_id
-                    print(request.session['sessionid'])
                     return redirect('../dashboard')
 
 
@@ -197,7 +196,7 @@ def update(request):
 
 def logout(request):
     if Login_Method == "WEB":
-        if request.session['sessionid'] :
+        if 'sessionid' in request.session :
             del (request.session['sessionid'])
             del (request.session['sessionname'])
             del(request.session['sessionemail'])
@@ -205,7 +204,7 @@ def logout(request):
         else :
             return render(request, 'common/login.html')
     elif Login_Method == "Tanium":
-        if request.session['sessionid'] :
+        if 'sessionid' in request.session :
             del (request.session['sessionid'])
             return render(request, 'common/login.html')
         else :

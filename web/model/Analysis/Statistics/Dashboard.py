@@ -142,7 +142,7 @@ def network(data, type, case) :
                     if len(IPS) == 4 :
                         IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
                     ADL.append([IP])
-        RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts').sort_values(by="counts", ascending=True).head(5)
+        RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts').sort_values(by="counts", ascending=False).head(5).reset_index(drop=True, inplace=False)
         RD['alarmCase'] = AT
 
     elif type == 'max' :
@@ -186,8 +186,7 @@ def network(data, type, case) :
         MDF = odf.loc[odf.groupby(['group'])['alarmCount'].idxmax()]
         MDF['point'] = 'true'
         df = pd.merge(left=odf, right=MDF, how="left",
-                      on=['id', 'group', 'alarmCount', 'name', 'alarmCase']).sort_values(by="id",
-                                                                                         ascending=True).reset_index()
+                      on=['id', 'group', 'alarmCount', 'name', 'alarmCase']).sort_values(by="id",ascending=True).reset_index()
         DFG = df.groupby(['group']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index().head(5)
         TOT = DFG['alarmCount'].sum()
         TOTPER = round((DFG['alarmCount'] / TOT) * 100, 2)
@@ -251,7 +250,6 @@ def chart_data(data, type, statistics) :
             i = 0;
             for x in DLMerge['cpuconsumption'] :
                 if x == "[current result unavailable]" or x == "[TSE-Error]" :
-                    print("current : {}".format(x))
                     continue
                 if float(x) > 60.0 :
                     i = i + 1

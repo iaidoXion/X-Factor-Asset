@@ -16,22 +16,28 @@ def index(request) :
     return render(request, 'web/index.html', returnData)
 
 def dashboard(request):
-    DCDL = DashboardData()
-    barChartData = DCDL["barChartData"]
-    lineChartData = DCDL["lineChartData"]
-    pieChartData = DCDL["pieChartData"]
-    bannerData = DCDL["bannerData"]
-    minidonutData = DCDL['MiniDonutChart']
-    alarmData = DCDL["alarmListData"]
-    AssociationData = DCDL["AssociationDataList"]
-    WorldMapData = DCDL["WorldMapDataList"]
-    TotalTopData = DCDL['TotalTopDataList']
-    TotalData = DCDL["TotalDataList"]
-    donutChartData = DCDL["donutChartDataList"]
-    MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
-    chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
-    returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
-    return render(request, 'web/dashboard.html', returnData)
+    res_data={}
+    if not 'sessionid' in request.session :
+        res_data['error'] = '먼저 로그인을 해주세요.'
+        return render(request, 'common/login.html', res_data)
+    else :
+        DCDL = DashboardData()
+        barChartData = DCDL["barChartData"]
+        lineChartData = DCDL["lineChartData"]
+        pieChartData = DCDL["pieChartData"]
+        bannerData = DCDL["bannerData"]
+        minidonutData = DCDL['MiniDonutChart']
+        alarmData = DCDL["alarmListData"]
+        AssociationData = DCDL["AssociationDataList"]
+        WorldMapData = DCDL["WorldMapDataList"]
+        TotalTopData = DCDL['TotalTopDataList']
+        TotalData = DCDL["TotalDataList"]
+        donutChartData = DCDL["donutChartDataList"]
+        MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
+        chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
+        returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
+        return render(request, 'web/dashboard.html', returnData)
+
 
 
 def assetweb(request):

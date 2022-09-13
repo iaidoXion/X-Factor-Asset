@@ -1096,18 +1096,19 @@ var apexDountChartOptions = {
 //---------------------------------------
 
 
-
 group=[];
 value=[];
+pertage=[]
 for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
     group.push(a.TotalTopDataList.nodeDataList[i].group);
     value.push(parseInt(a.TotalTopDataList.nodeDataList[i].alarmCount));
+    pertage.push(parseInt(a.TotalTopDataList.nodeDataList[i].totalPertage));
 }
-
 	var apexDountChartOptions = {
 		chart: {
-			height: 150,
+			height: 500,
 			type: 'donut',
+			width: 300,
 		},
 		plotOptions: {
 			pie: {
@@ -1118,9 +1119,8 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 		},
 		dataLabels: {
 			enabled: true,
-
-			formatter(val, opts) {
-				const name = opts.w.globals.labels[opts.seriesIndex]
+			formatter(val, value) {
+				const name = value.w.globals.labels[value.seriesIndex]
 				return [name, val.toFixed(1) + '%']
 			},
 			style: {
@@ -1140,8 +1140,24 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 			show: false
 		},
 		legend: {
-			show: false,
-		},
+            formatter: function(group, value) {
+                return [group +"&nbsp;&nbsp;&nbsp;"+value.w.globals.series[value.seriesIndex]]
+            },
+            position : 'right',
+            fontSize: "10px",
+            height: 230,
+
+
+        },
+        tooltipHoverFormatter: function(group, value) {
+        return '<strong>' + value.w.globals.series[value.seriesIndex][value.dataPointIndex] + '</strong>'
+        },
+
+//		legend: {
+//			show: true,
+//			position:"right"
+//
+//		},
 		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
 		labels: group,
 		series: value,
@@ -1165,6 +1181,7 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 		apexDountChartOptions
 	);
 	apexDountChart.render();
+
 
 
 
