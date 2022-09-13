@@ -143,9 +143,20 @@ def chart_data(data, type) :
         TRPDL = data[6]
         ChartDataList.append({'DUSDL': DUSDL, 'LHDL': LHDL, 'RUEDL': RUEDL, 'LPCDL': LPCDL, 'EPCDL': EPCDL, 'TCCDLT' : TCCDLT, 'TRPDL':TRPDL})
     elif type == "MDC" :
-        for i in range(len(data)) :
-            for j in range(len(data[i])) :
-                ChartDataList.append({"name": data[i][j][4] ,"ip": data[i][j][0], "value": data[i][j][1]})
+        check = []
+        if data is None:
+            ChartDataList.append({"name": "CPU Consumption is Excess" ,"ip": "-", "value": 1})
+            ChartDataList.append({"name": "RAM Usage Exceeded" ,"ip": "-", "value": 1})
+        else:
+            for i in range(len(data)) :
+                for j in range(len(data[i])) :
+                    ChartDataList.append({"name": data[i][j][4] ,"ip": data[i][j][0], "value": data[i][j][1]})
+            for i in ChartDataList :
+                check.append(i['name'])
+            if  "CPU Consumption is Excess" not in check :
+                ChartDataList.append({"name": "CPU Consumption is Excess" ,"ip": "-", "value": int(1)})
+            elif "RAM Usage Exceeded" not in check :
+                ChartDataList.append({"name": "RAM Usage Exceeded" ,"ip": "-", "value": int(1)})
     else :
         for i in range(len(data['name'])):
             if type == 'Bar' or type == 'Pie':

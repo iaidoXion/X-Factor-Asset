@@ -690,7 +690,7 @@ var apexDountChartOptions = {
 	var category_list = [];
 	
 	for (var i = 0; i < 5; i++) {
-    	group.push(a.AssociationDataList.nodeDataList[i].group);
+		group.push(a.AssociationDataList.nodeDataList[i].group);
 	}
 	
 	for (var i = 0; i < group.length; i++){
@@ -848,7 +848,7 @@ var apexRadarChartOptions = {
       },
     },
   },
-	colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],
+  colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],
   markers: {
     size: 2,
     colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],
@@ -861,11 +861,11 @@ var apexRadarChartOptions = {
       show: true,
     },
     y: {
-        title: {
-            formatter: function (val) {
+      title: {
+        formatter: function (val) {
                 return '' + val
             }
-		},
+        },
 		formatter: (value) => { return '' + value },
     },
   },
@@ -895,7 +895,7 @@ var apexRadarChartOptions = {
       formatter: function (val, i) {
         if (i % 1 === 0) {
           return val;
-        } else {
+		} else {
           return "";
         }
       },
@@ -911,7 +911,7 @@ var apexRadarChartOptions = {
 
 
 //----------------------------------------
-// Failure Symptom Case - dount Achart
+// Failure Symptom Case - RAM Usage Exceeded - dount Achart
 //---------------------------------------
 	list = [];
 	alarm_list = []
@@ -922,8 +922,9 @@ var apexRadarChartOptions = {
     }
 	}
 var apexDountChartOptions = {
-		chart: {
-			height: 160,
+	chart: {
+			width : '100%',
+			height: '100%',
 			type: 'donut',
 		},
 		plotOptions: {
@@ -955,8 +956,23 @@ var apexDountChartOptions = {
 		stroke: {
 			show: false
 		},
+		title: {
+			text: 'RAM Usage Exceeded',
+			align: 'center',
+		},
 		legend: {
-			show: false,
+			show: true,
+			position: "bottom",
+			width : '100%',
+			horizontalAlign: "left",
+			formatter: function(group, value) {
+              return [
+                group +
+                  "&nbsp;&nbsp;" +
+                  "&nbsp;&nbsp;" +
+                  value.w.globals.series[value.seriesIndex],
+              ];
+          	},
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
 		labels: alarm_list,
@@ -982,10 +998,8 @@ var apexDountChartOptions = {
 	);
 	apexDountChart.render();
 
-
-
 //----------------------------------------
-// Failure Symptom Case - dount Bchart
+// Failure Symptom Case - CPU Consumption is Excess - dount Bchart 
 //---------------------------------------
 	list = [];
   alarm_list = [];
@@ -997,7 +1011,8 @@ var apexDountChartOptions = {
   }
 	var apexDountChartOptions = {
 		chart: {
-			height: 160,
+			width : '100%',
+			height: '100%',
 			type: 'donut',
 		},
 		plotOptions: {
@@ -1006,6 +1021,10 @@ var apexDountChartOptions = {
 					offset: 2
 				}
 			}
+		},
+		title: {
+			text: 'CPU Consumption is Excess',
+			align: 'center',
 		},
 		dataLabels: {
 			enabled: true,
@@ -1031,7 +1050,17 @@ var apexDountChartOptions = {
 			show: false
 		},
 		legend: {
-			show: false,
+			show: true,
+			position: "bottom",
+			horizontalAlign: "left",
+			formatter: function(group, value) {
+              return [
+                group +
+                  "&nbsp;&nbsp;" +
+                  "&nbsp;&nbsp;" +
+                  value.w.globals.series[value.seriesIndex],
+              ];
+          	},
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
 		labels: alarm_list,
