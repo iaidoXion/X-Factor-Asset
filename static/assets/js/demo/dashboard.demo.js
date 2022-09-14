@@ -915,8 +915,7 @@ var apexRadarChartOptions = {
 	}
     var apexDonutChartOptions = {
         chart: {
-                width: 248,
-                height: 270,
+                height: 300,
                 type: 'donut',
             },
         plotOptions: {
@@ -955,6 +954,7 @@ var apexRadarChartOptions = {
         legend: {
             show: true,
             position: "bottom",
+            width: '100%',
             height: 90,
             horizontalAlign: 'left',
             formatter: (value, opts) => {
@@ -1007,8 +1007,7 @@ var apexRadarChartOptions = {
   }
 	var apexDonutChartOptions = {
 		chart: {
-		    width: 248,
-			height: 270,
+			height: 300,
 			type: 'donut',
 		},
 		plotOptions: {
@@ -1048,6 +1047,7 @@ var apexRadarChartOptions = {
 			show: true,
 			position: "bottom",
 			width : '100%',
+			height: 90,
 			horizontalAlign: 'left',
 			floating: false,
 			formatter: (value, opts) => {
