@@ -139,30 +139,40 @@ def plug_in(data, day, type):
             CI = d[0]
             IP = ''
             if type == 'DUS' :
-                list = []
                 sum = 0
+                dus = []
                 item = d[1]
-                list.append(d[1].split(' '))
-                for x in list :
-                    if(len(x) == 3) :
-                        if(x[2] == 'KB') :
+                list = str(d[1]).split(',')
+                if len(list) == 1:
+                    a = list[0].split(' ')
+                    dus.append(a)
+                elif len(list) > 1 :
+                    for i in list:
+                        a = i.split(' ')
+                        dus.append(a)
+                for x in dus :
+                    if len(x) == 3 :
+                        if('KB' in x[2]) :
                             result = int(x[1])
-                        elif(x[2] == 'MB') :
+                        elif('MB' in x[2]) :
                             result = int(x[1])*1024
-                        elif(x[2] == 'GB') : # 기준
+                        elif('GB' in x[2]) : # 기준
                             result = int(x[1])*1024*1024
-                        elif(x[2] == 'TB') :
+                        elif('TB'in x[2]) :
                             result = int(x[1])*1024*1024*1024
-                        elif(x[2] == 'PB') :
+                        elif('PB'in x[2]) :
                             result = int(x[1])*1024*1024*1024*1024
-                    elif(len(x) == 2) :
-                        if("K" in x[1].upper()) :
-                            result = float(x[1].upper().strip("K"))
-                        elif("M" in x[1].upper()) :
-                            result = float(x[1].strip("M")) * 1024
-                        elif("G" in x[1].upper()) :
-                            result = float(x[1].strip("G")) * 1024 * 1024
-                sum += result
+                    elif len(x) == 2 :
+                        if ("K" in x[1].upper()):
+                            a = x[1].upper().find("K")
+                            result = float(x[1][:a])
+                        elif ("M" in x[1].upper()):
+                            a = x[1].upper().find("M")
+                            result = float(x[1][:a]) * 1024
+                        elif ("G" in x[1].upper()):
+                            a = x[1].upper().find("G")
+                            result = float(x[1][:a]) * 1024 * 1024
+                    sum += result
                 result = round(int(sum)/1024/1024, -1)
                 item = str(result) + "GB"
                 itemIndex = 'driveSize'
