@@ -1,7 +1,7 @@
 from re import S
 import pandas as pd
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 with open("setting.json", encoding="UTF-8") as f:
@@ -56,13 +56,27 @@ def banner(data, type) :
 
 def line_chart(data) :
     DL = []
+    timelist = []
+    pd_list = []
     today = datetime.today().strftime("%Y-%m-%d")
+    for time in range(5) :
+        a = datetime.today()-timedelta(days=time)
+        b = a.strftime("%Y-%m-%d")
+        timelist.append(b)
+        
     for i in range(len(data[1]['name'])) :
         DL.append([data[1]['name'][i],data[1]['value'][i],today])
     for j in range(len(data[0])) :
         if data[0][j][1] != 'all':
             DL.append([data[0][j][1], data[0][j][2], data[0][j][3].strftime("%Y-%m-%d")])
     df = pd.DataFrame(DL,columns=['name','value','date']).sort_values(by="date", ascending=True).reset_index(drop=True)
+    asset = df.replace('Rack Mount Chassis', 'Server')
+    
+    for i in timelist :
+        df = asset[asset['date'] == i].sort_values(by="name", ascending=True).reset_index(drop=True)
+        pd_list.append(df)
+        
+    
     RD = df
     return RD
 
@@ -158,13 +172,42 @@ def chart_data(data, type) :
             elif "RAM Usage Exceeded" not in check :
                 ChartDataList.append({"name": "RAM Usage Exceeded" ,"ip": "-", "value": int(1)})
     else :
+        if type == 'Line' :
+            asset_list = []
+            dup_date_list = []
+            # duplicate = data.drop_duplicates(['name'])
+            # for i in duplicate['name'] :
+            #     dup_list.append(i)
+            today = datetime.today().strftime("%Y-%m-%d")
+            
+            duplicate_date = data.drop_duplicates(['date'])
+            for i in duplicate_date['date'] :
+                dup_date_list.append(i)  
+                
+            for i in dup_date_list:
+                if today == i :
+                    for j in data[data['date'] == i]['name'] :
+                        x = data[data['name'] == j].reset_index(drop=True)
+                        asset_list.append(x)
+            
+                # for j in dup_date_list :
+                #     if i["date"]
+            # for i in asset_list :
+            #     data_list = []
+            #     data_dict = {}
+            #     x = data[data['name'] == i].reset_index(drop=True)
+            #     for j in range(len(x['name'])) :
+            #         print(x['date'][j])
+            #         data_list.append(x['value'][j])
+            #     print("==============")
+            #     print("list = {}".format(data_list))
+            # print(x)
+            ChartDataList.append({"date": dup_date_list})
         for i in range(len(data['name'])):
             if type == 'Bar' or type == 'Pie':
                 ChartDataList.append({"name": data['name'][i], "value": data['value'][i]})
             elif type == 'Banner' :
                 ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc" : data['ROC'][i]})
-            elif type == 'Line' :
-                ChartDataList.append({"name": data['name'][i], "value": data['value'][i], "date" : data['date'][i]})
     
     RD = ChartDataList
     return RD
