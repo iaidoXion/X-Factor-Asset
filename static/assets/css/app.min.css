@@ -24245,3 +24245,30 @@ line-height: length;
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
 }*/
+
+
+
+#kmap .background {
+  fill: none;
+  pointer-events: all;
+}
+
+#states path {
+  fill: #b8b8b8;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+#states path {
+	cursor: pointer;
+}
+
+#states text {
+	cursor: pointer;
+	font-size: 12px;
+	font-family: 'Nanum Gothic';
+}
+
+/*#world-map .ring{
+    opacity: .09 !important;
+}*/
