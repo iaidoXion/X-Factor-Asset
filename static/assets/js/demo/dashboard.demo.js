@@ -480,24 +480,12 @@ var apexLineChartOptions = {
 				opacity: 0.5
 			}
 		},
-		series: [{
-			name: 'Desktop',
-			data: [10, 5, 6, 8, 5]
-		}, {
-			name: 'Notebook',
-			data: [5, 6, 2, 8, 5]
-		}, {
-			name: 'Rack',
-			data: [3, 4, 5, 7, 10]
-		}, {
-			name: 'Virtual',
-			data: [2, 4, 6, 4, 3]
-		}],
+		series: a.lineChartDataList[0].data,
 		markers: {
 			size: 1,
 		},
 		xaxis: {
-			categories: ['2022-08-20', '2022-08-21', '2022-08-22', '2022-08-23', '2022-08-24', '2022-08-25'],
+			categories: a.lineChartDataList[0].date,
 			labels: {
 				show: true,
 			},
