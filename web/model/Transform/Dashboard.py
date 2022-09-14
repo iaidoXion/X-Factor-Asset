@@ -63,7 +63,6 @@ def line_chart(data) :
         a = datetime.today()-timedelta(days=time)
         b = a.strftime("%Y-%m-%d")
         timelist.append(b)
-        
     for i in range(len(data[1]['name'])) :
         DL.append([data[1]['name'][i],data[1]['value'][i],today])
     for j in range(len(data[0])) :
@@ -71,13 +70,14 @@ def line_chart(data) :
             DL.append([data[0][j][1], data[0][j][2], data[0][j][3].strftime("%Y-%m-%d")])
     df = pd.DataFrame(DL,columns=['name','value','date']).sort_values(by="date", ascending=True).reset_index(drop=True)
     asset = df.replace('Rack Mount Chassis', 'Server')
-    
     for i in timelist :
         df = asset[asset['date'] == i].sort_values(by="name", ascending=True).reset_index(drop=True)
         pd_list.append(df)
-        
-    
-    RD = df
+    a = pd.merge(pd_list[0], pd_list[1], how = 'left', on='name' , suffixes=["_1", '_2'])
+    b = pd.merge(a, pd_list[2], how = 'left', on='name', suffixes=['_2', '_3'])
+    c = pd.merge(b, pd_list[3], how = 'left', on='name', suffixes=['_3', '_4'])
+    last = pd.merge(c, pd_list[4], how = 'left', on='name', suffixes=['_4', '_5'])
+    RD = last
     return RD
 
 def alarm(data, type, case) :
@@ -174,35 +174,20 @@ def chart_data(data, type) :
     else :
         if type == 'Line' :
             asset_list = []
-            dup_date_list = []
-            # duplicate = data.drop_duplicates(['name'])
-            # for i in duplicate['name'] :
-            #     dup_list.append(i)
-            today = datetime.today().strftime("%Y-%m-%d")
+            result = []
+            # today = datetime.today().strftime("%Y-%m-%d")
+            for i in range(len(data)) :
+                asset_list.append(data['name'][i])
             
-            duplicate_date = data.drop_duplicates(['date'])
-            for i in duplicate_date['date'] :
-                dup_date_list.append(i)  
-                
-            for i in dup_date_list:
-                if today == i :
-                    for j in data[data['date'] == i]['name'] :
-                        x = data[data['name'] == j].reset_index(drop=True)
-                        asset_list.append(x)
-            
-                # for j in dup_date_list :
-                #     if i["date"]
-            # for i in asset_list :
-            #     data_list = []
-            #     data_dict = {}
-            #     x = data[data['name'] == i].reset_index(drop=True)
-            #     for j in range(len(x['name'])) :
-            #         print(x['date'][j])
-            #         data_list.append(x['value'][j])
-            #     print("==============")
-            #     print("list = {}".format(data_list))
-            # print(x)
-            ChartDataList.append({"date": dup_date_list})
+            for i in range(len(data)) :
+                chart_dict = {}
+                if data['name'][i] == asset_list[i] :
+                    data_list = [data['value'][i], data['value_4'][i], data['value_3'][i], data['value_2'][i], data['value_1'][i]]
+                    date_list = [data['date'][i], data['date_4'][i], data['date_3'][i], data['date_2'][i], data['date_1'][i]]
+                    chart_dict['name'] = asset_list[i]
+                    chart_dict['data'] = data_list
+                    result.append(chart_dict)
+            ChartDataList.append({"data" : result, "date": date_list})
         for i in range(len(data['name'])):
             if type == 'Bar' or type == 'Pie':
                 ChartDataList.append({"name": data['name'][i], "value": data['value'][i]})
