@@ -15210,6 +15210,9 @@ height: 200px !important
 .h-250px {
 height: 250px !important
 }
+.h-270px {
+height: 270px !important
+}
 .h-300px {
 height: 300px !important
 }
@@ -15224,6 +15227,9 @@ height: 450px !important
 }
 .h-500px {
 height: 500px !important
+}
+.h-540px {
+height: 540px !important
 }
 .h-550px {
 height: 550px !important
@@ -24245,3 +24251,25 @@ line-height: length;
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
 }*/
+
+
+
+/* apexchart css customized */
+#apexColumnChart {
+    cursor: pointer;
+}
+
+#apexColumnChart .apexcharts-xaxis {
+    color: #c00 ! important;
+}
+
+#apexDonutFailureAChart .apexcharts-legend, #apexDonutFailureBChart .apexcharts-legend {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px !important;
+    inset: auto 0px 15px !important;
+}
+
+#apexDonutFailureAChart .chartLegend, #apexDonutFailureBChart .chartLegend {
+    float: right;
+}
