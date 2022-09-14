@@ -16,7 +16,7 @@ var handleRenderChart = function () {
   Apex = {
     title: {
       style: {
-        fontSize: "14px",
+        fontSize: "12px",
         fontWeight: "bold",
         fontFamily: app.font.family,
         color: app.color.white,
@@ -26,7 +26,7 @@ var handleRenderChart = function () {
       fontFamily: app.font.family,
       labels: {
         colors: "#fff",
-        show: false,
+        show: true,
       },
     },
     tooltip: {
@@ -66,7 +66,7 @@ var handleRenderChart = function () {
       labels: {
         style: {
           colors: "#fff",
-          fontSize: "10px",
+          fontSize: "8px",
           fontFamily: app.font.family,
           fontWeight: 400,
           cssClass: "apexcharts-xaxis-label",
@@ -377,7 +377,7 @@ var apexColumnChartOptions = {
 				show: true,
                 style: {
 					colors: '#fff',
-					fontSize: '9px',
+					fontSize: '8px',
 					cssClass: 'apexcharts-xaxis-label',
 				}
 			}
@@ -615,7 +615,7 @@ var apexPieChartOptions = {
 
 
 //---------------------------------------
-// Install Application Top5 - dount chart
+// Install Application Top5 - donut chart
 //---------------------------------------
    var donutValue = []
    var donutName = []
@@ -623,7 +623,7 @@ var apexPieChartOptions = {
         donutValue.push(a.donutChartDataList[i]['value']);
         donutName.push(a.donutChartDataList[i]['name']);
     };
-var apexDountChartOptions = {
+var apexDonutChartOptions = {
 		chart: {
 			height: 150,
 			type: 'donut',
@@ -678,11 +678,11 @@ var apexDountChartOptions = {
 			}
 		}
 	};
-	var apexDountChart = new ApexCharts(
-		document.querySelector('#apexDountChart'),
-		apexDountChartOptions
+	var apexDonutChart = new ApexCharts(
+		document.querySelector('#apexDonutChart'),
+		apexDonutChartOptions
 	);
-	apexDountChart.render();
+	apexDonutChart.render();
 
 
 //----------------------------------------
@@ -816,6 +816,7 @@ var apexDountChartOptions = {
 		radar_list.push(radar_dict);
 	};
 	category_list.push(radar_list);
+
 var apexRadarChartOptions = {
   chart: {
     width: "100%",
@@ -914,7 +915,7 @@ var apexRadarChartOptions = {
 
 
 //----------------------------------------
-// Failure Symptom Case - RAM Usage Exceeded - dount Achart
+// Failure Symptom Case - RAM Usage Exceeded - donut Achart
 //---------------------------------------
 	list = [];
 	alarm_list = []
@@ -924,114 +925,117 @@ var apexRadarChartOptions = {
 		alarm_list.push(a.AssociationDataList.nodeDataList[i].group);
     }
 	}
-var apexDountChartOptions = {
-	chart: {
-			width : '100%',
-			height: '100%',
-			type: 'donut',
-		},
-		plotOptions: {
-			pie: {
-				dataLabels: {
-					offset: 2
-				}
-			}
-		},
-		dataLabels: {
-			enabled: true,
-			formatter(val, opts) {
-				const name = opts.w.globals.labels[opts.seriesIndex]
-				return [name, val.toFixed(1) + '%']
-			},
-			style: {
-				fontSize: '9px',
-				colors: [app.color.white]
-			},
-			dropShadow: {
-				enabled: true,
-				color: 'rgba(' + app.color.darkRgb + ', .75)',
-				top: -2,
-				left: 4,
-				blur: 1,
-				opacity: 0.5
-			}
-		},
-		stroke: {
-			show: false
-		},
-		title: {
-			text: 'RAM Usage Exceeded',
-			align: 'center',
-		},
-		legend: {
-			show: true,
-			position: "bottom",
-			width : '100%',
-			horizontalAlign: "left",
-			formatter: function(group, value) {
-              return [
-                group +
-                  "&nbsp;&nbsp;" +
-                  "&nbsp;&nbsp;" +
-                  value.w.globals.series[value.seriesIndex],
-              ];
-          	},
-		},
-		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
-		labels: alarm_list,
-		series: list,
-		tooltip: {
-			theme: 'dark',
-			x: {
-				show: false
-			},
-			y: {
-				title: {
-					formatter: function (val) {
-						return "Count: "
-					}
-				},
-				formatter: (value) => { return '' + value },
-			}
-		},
-	};
-	var apexDountChart = new ApexCharts(
-		document.querySelector('#apexDountFailerAChart'),
-		apexDountChartOptions
-	);
-	apexDountChart.render();
+    var apexDonutChartOptions = {
+        chart: {
+                width: 248,
+                height: 270,
+                type: 'donut',
+            },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    offset: 1
+                }
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter(val, opts) {
+                const name = opts.w.globals.labels[opts.seriesIndex]
+                return [name, val.toFixed(1) + '%']
+            },
+            style: {
+                fontSize: '9px',
+                colors: [app.color.white]
+            },
+            dropShadow: {
+                enabled: true,
+                color: 'rgba(' + app.color.darkRgb + ', .75)',
+                top: -2,
+                left: 4,
+                blur: 1,
+                opacity: 0.5
+            }
+        },
+        stroke: {
+            show: false
+        },
+        title: {
+            text: 'RAM Usage Exceeded',
+            align: 'left',
+        },
+        legend: {
+            show: true,
+            position: "bottom",
+            height: 90,
+            horizontalAlign: 'left',
+            formatter: (value, opts) => {
+                return value + '<span class="chartLegend">' + opts.w.globals.series[opts.seriesIndex] + '</span>';
+            },
+            itemMargin: {
+                horizontal: 0,
+                vertical: 0
+            },
+            labels: {
+                colors: '#fff',
+                fontSize: '10px'
+            }
+        },
+        colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
+        labels: alarm_list,
+        series: list,
+        tooltip: {
+            theme: 'dark',
+            x: {
+                show: false
+            },
+            y: {
+                title: {
+                    formatter: function (val) {
+                            return "Count: "
+                    }
+                },
+                    formatter: (value) => { return '' + value },
+                }
+            },
+        };
+
+        var apexDonutChart = new ApexCharts(
+            document.querySelector('#apexDonutFailureAChart'),
+            apexDonutChartOptions
+        );
+        apexDonutChart.render();
 
 //----------------------------------------
-// Failure Symptom Case - CPU Consumption is Excess - dount Bchart 
+// Failure Symptom Case - CPU Consumption is Excess - donut Bchart
 //---------------------------------------
-	list = [];
-  alarm_list = [];
+    list = [];
+    alarm_list = [];
   for (var i = 0; i < a.AssociationDataList.nodeDataList.length; i++) {
     if (a.AssociationDataList.nodeDataList[i].alarmCase == "CPU Consumption is Excess" ) {
       list.push(parseInt(a.AssociationDataList.nodeDataList[i].alarmCount));
       alarm_list.push(a.AssociationDataList.nodeDataList[i].group);
     }
   }
-	var apexDountChartOptions = {
+	var apexDonutChartOptions = {
 		chart: {
-			width : '100%',
-			height: '100%',
+		    width: 248,
+			height: 270,
 			type: 'donut',
 		},
 		plotOptions: {
 			pie: {
 				dataLabels: {
-					offset: 2
+					offset: 1
 				}
 			}
 		},
 		title: {
 			text: 'CPU Consumption is Excess',
-			align: 'center',
+			align: 'left',
 		},
 		dataLabels: {
 			enabled: true,
-
 			formatter(val, opts) {
 				const name = opts.w.globals.labels[opts.seriesIndex]
 				return [name, val.toFixed(1) + '%']
@@ -1055,15 +1059,20 @@ var apexDountChartOptions = {
 		legend: {
 			show: true,
 			position: "bottom",
-			horizontalAlign: "left",
-			formatter: function(group, value) {
-              return [
-                group +
-                  "&nbsp;&nbsp;" +
-                  "&nbsp;&nbsp;" +
-                  value.w.globals.series[value.seriesIndex],
-              ];
-          	},
+			width : '100%',
+			horizontalAlign: 'left',
+			floating: false,
+			formatter: (value, opts) => {
+				return value + '<span class="chartLegend">' + opts.w.globals.series[opts.seriesIndex] + '</span>';
+			  },
+			  itemMargin: {
+				horizontal: 0,
+				vertical: 0
+			},
+			labels: {
+				colors: '#fff',
+				fontSize: '10px'
+			}
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
 		labels: alarm_list,
@@ -1083,16 +1092,16 @@ var apexDountChartOptions = {
 			}
 		},
 	};
-	var apexDountChart = new ApexCharts(
-		document.querySelector('#apexDountFailerBChart'),
-		apexDountChartOptions
+	var apexDonutChart = new ApexCharts(
+		document.querySelector('#apexDonutFailureBChart'),
+		apexDonutChartOptions
 	);
-	apexDountChart.render();
+	apexDonutChart.render();
 
 
 
 //----------------------------------------
-// Failure Symptom Case - dount Cchart
+// Failure Symptom Case - donut Cchart
 //---------------------------------------
 
 
@@ -1104,7 +1113,7 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
     value.push(parseInt(a.TotalTopDataList.nodeDataList[i].alarmCount));
     pertage.push(parseInt(a.TotalTopDataList.nodeDataList[i].totalPertage));
 }
-	var apexDountChartOptions = {
+	var apexDonutChartOptions = {
 		chart: {
 			height: 500,
 			type: 'donut',
@@ -1176,11 +1185,11 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 			}
 		},
 	};
-	var apexDountChart = new ApexCharts(
-		document.querySelector('#apexDountFailerCChart'),
-		apexDountChartOptions
+	var apexDonutChart = new ApexCharts(
+		document.querySelector('#apexDonutFailureCChart'),
+		apexDonutChartOptions
 	);
-	apexDountChart.render();
+	apexDonutChart.render();
 
 
 
