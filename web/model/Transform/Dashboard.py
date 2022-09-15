@@ -56,27 +56,54 @@ def banner(data, type) :
 
 def line_chart(data) :
     DL = []
+    time_array = []
     timelist = []
+    ext_time = []
     pd_list = []
     today = datetime.today().strftime("%Y-%m-%d")
     for time in range(5) :
         a = datetime.today()-timedelta(days=time)
         b = a.strftime("%Y-%m-%d")
         timelist.append(b)
+    
     for i in range(len(data[1]['name'])) :
         DL.append([data[1]['name'][i],data[1]['value'][i],today])
     for j in range(len(data[0])) :
         if data[0][j][1] != 'all':
             DL.append([data[0][j][1], data[0][j][2], data[0][j][3].strftime("%Y-%m-%d")])
     df = pd.DataFrame(DL,columns=['name','value','date']).sort_values(by="date", ascending=True).reset_index(drop=True)
+    
+    for i in df['date'].drop_duplicates() :
+        time_array.append(i)
+    ext_time = list(set(time_array).intersection(timelist))
     asset = df.replace('Rack Mount Chassis', 'Server')
+    timelist = []
+    
+    for i in ext_time :
+        d = datetime.strptime(i, '%Y-%m-%d')
+        timelist.append(d)
+        
+    timelist.sort(reverse=True)
+    ext_time = []
+    
     for i in timelist :
-        df = asset[asset['date'] == i].sort_values(by="name", ascending=True).reset_index(drop=True)
-        pd_list.append(df)
-    a = pd.merge(pd_list[0], pd_list[1], how = 'left', on='name' , suffixes=["_1", '_2'])
-    b = pd.merge(a, pd_list[2], how = 'left', on='name', suffixes=['_2', '_3'])
-    c = pd.merge(b, pd_list[3], how = 'left', on='name', suffixes=['_3', '_4'])
-    last = pd.merge(c, pd_list[4], how = 'left', on='name', suffixes=['_4', '_5'])
+        d = datetime.strftime(i, "%Y-%m-%d")
+        ext_time.append(d)
+        
+    for i in range(len(ext_time)) :
+        pd_list.append(asset[asset['date'] == ext_time[i]].sort_values(by="name", ascending=True).reset_index(drop=True))
+    
+    if len(ext_time) == 1 :
+        last = pd_list[0]
+    elif len(ext_time) == 2 :
+        last = pd.merge(pd_list[0], pd_list[1], on='name' , how='left', suffixes=["_1", '_2'])
+    elif len(ext_time) == 3 :
+        last = pd.merge(pd.merge(pd_list[0],pd_list[1],on='name', how='left', suffixes=["_1", '_2']),pd_list[2], on='name', how='left', suffixes=['_2', '_3'])
+    elif len(ext_time) == 4 :
+        last = pd.merge(pd.merge(pd.merge(pd_list[0],pd_list[1],on='name', how='left', suffixes=["_1", '_2']),pd_list[2], on='name', how='left', suffixes=['_2', '_3']), pd_list[3], on='name', how='left', suffixes=['_3', '_4'])
+    elif len(ext_time) == 5 :    
+        last = pd.merge(pd.merge(pd.merge(pd.merge(pd_list[0],pd_list[1],on='name', how='left', suffixes=["_1", '_2']),pd_list[2], on='name', how='left', suffixes=['_2', '_3']), pd_list[3], on='name', how='left', suffixes=['_3', '_4']), pd_list[4], on='name', how='left', suffixes=['_4', '_5'])
+    
     RD = last
     return RD
 
@@ -178,7 +205,6 @@ def chart_data(data, type) :
             # today = datetime.today().strftime("%Y-%m-%d")
             for i in range(len(data)) :
                 asset_list.append(data['name'][i])
-            
             for i in range(len(data)) :
                 chart_dict = {}
                 if data['name'][i] == asset_list[i] :
@@ -193,6 +219,11 @@ def chart_data(data, type) :
                 ChartDataList.append({"name": data['name'][i], "value": data['value'][i]})
             elif type == 'Banner' :
                 ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc" : data['ROC'][i]})
-    
+    if type == 'Bar' :
+        x = sorted(ChartDataList , key= lambda x: x['value'], reverse=True)
+        ChartDataList = x
+    elif type == 'Pie' :
+        x = sorted(ChartDataList , key= lambda x: x['value'], reverse=True)
+        ChartDataList = x
     RD = ChartDataList
     return RD
