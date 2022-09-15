@@ -955,10 +955,10 @@ var apexRadarChartOptions = {
             show: true,
             position: "bottom",
             width: '100%',
-            height: 90,
+            height: 113,
             horizontalAlign: 'left',
             formatter: (value, opts) => {
-                return value + '<span class="chartLegend">' + opts.w.globals.series[opts.seriesIndex] + '</span>';
+                return '<span class="chartBorder">' + value + '<span class="chartLegend">' + opts.w.globals.series[opts.seriesIndex] + '</span>' + '</span>';
             },
             itemMargin: {
                 horizontal: 0,
@@ -1047,7 +1047,7 @@ var apexRadarChartOptions = {
 			show: true,
 			position: "bottom",
 			width : '100%',
-			height: 90,
+			height: 113,
 			horizontalAlign: 'left',
 			floating: false,
 			formatter: (value, opts) => {
