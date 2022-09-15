@@ -24236,13 +24236,6 @@ margin-left: -1.25rem
     font-family: 'Black Han Sans', sans-serif;
 }
 
-#apexDountChart .apexcharts-tooltip-y-group {
-overflow: hidden;
-white-space: pre-line !important;
-display: inline-block;
-line-height: length;
-}
-
 /*
 #seongnam-map{
     position: absolute;
@@ -24274,18 +24267,22 @@ line-height: length;
 }
 
 /* apexchart css customized */
+
 #apexColumnChart {
     cursor: pointer;
 }
 
-#apexColumnChart .apexcharts-xaxis {
-    color: #c00 ! important;
+#apexDonutChart .apexcharts-tooltip-y-group {
+    overflow: hidden;
+    white-space: pre-line !important;
+    display: inline-block;
+    line-height: length;
 }
 
 #apexDonutFailureAChart .apexcharts-legend, #apexDonutFailureBChart .apexcharts-legend {
     display: flex;
     flex-direction: column;
-    padding: 0 10px !important;
+    padding: 1rem 0.5rem 0 !important;
     inset: auto 0px 15px !important;
 }
 
@@ -24293,7 +24290,15 @@ line-height: length;
     float: right;
 }
 
+
 #world-map svg, #korea-map svg, #seoul-map svg, #seongnam-map svg{
     width: 100%;
     height: 100%;
 }
+
+#apexDonutFailureAChart .apexcharts-legend-series:first-child,
+#apexDonutFailureBChart .apexcharts-legend-series:first-child {
+    border-top: 2px solid var(--bs-theme);
+    padding-top: 0.1875rem;
+}
+
