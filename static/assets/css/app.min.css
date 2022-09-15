@@ -24255,28 +24255,23 @@ line-height: length;
 
 #kmap .background {
   fill: none;
-  pointer-events: all;
 }
 
-#states path {
+/*#states path {
   fill: #b8b8b8;
   stroke: #fff;
   stroke-width: 1.5px;
-}
+}*/
 
-#states path {
+/*#states path {
 	cursor: pointer;
-}
+}*/
 
 #states text {
 	cursor: pointer;
 	font-size: 12px;
 	font-family: 'Nanum Gothic';
 }
-
-/*#world-map .ring{
-    opacity: .09 !important;
-}*/
 
 /* apexchart css customized */
 #apexColumnChart {
@@ -24298,3 +24293,7 @@ line-height: length;
     float: right;
 }
 
+#world-map svg, #korea-map svg, #seoul-map svg, #seongnam-map svg{
+    width: 100%;
+    height: 100%;
+}

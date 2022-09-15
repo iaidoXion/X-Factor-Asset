@@ -133,7 +133,7 @@ def alarm(data, type, case) :
                     IPS = data['value'][i].split('.')
                     if len(IPS) == 4 :
                         GROUP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
-                        GPS = [37.48662777731903,127.03398991528599]
+                        GPS = [37.3994481,127.1088779]
                     # if int(IPS[3]) % 2 == 1 :
                     #     GPS = [37.39962807731903,127.10910445171359]
                     # else :
