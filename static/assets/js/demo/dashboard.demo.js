@@ -1326,7 +1326,8 @@ function worldMap(worldMapData) {
         var svg = d3.select("#world-map").append("svg")
             .attr("width", width)
             .attr("height", height)
-            .attr("class", "map");
+            .attr("class", "map")
+            .attr("viewBox", `0 0 ${width} ${height}`);
 
         var projection = d3v4.geoMercator()
             .translate([width / 2, height / 1.4])
@@ -1362,7 +1363,7 @@ svg.selectAll("circle")
                 .append("path")
                 .attr("d", path)
                 .attr("fill", "rgba("+app.color.whiteRgb+")")
-                .attr("opacity", .25)
+                .attr("opacity", .5)
         }
 
 
@@ -1483,7 +1484,8 @@ var path = d3.geo.path()
 var svg = d3.select("#korea-map").append("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr('id', 'kmap');
+    .attr('id', 'kmap')
+    .attr("viewBox", `0 0 ${width} ${height}`);
 
 var states = svg.append("g")
     .attr("id", "states");
@@ -1498,6 +1500,8 @@ d3.json("../static/assets/plugins/jvectormap-content/korea.json", function(json)
       .data(json.features)
     .enter().append("path")
       .attr("d", path)
+      .attr("fill", "rgba("+app.color.whiteRgb+")")
+      .attr("opacity", .5)
       .attr("id", function(d) { return 'path-'+d.id; });
 
   labels = states.selectAll("text")
@@ -1507,6 +1511,8 @@ d3.json("../static/assets/plugins/jvectormap-content/korea.json", function(json)
       .attr("id", function(d) { return 'label-'+d.id; })
       .attr('text-anchor', 'middle')
       .attr("dy", ".35em")
+      .attr("fill", "rgba("+app.color.whiteRgb+")")
+      .attr("opacity", .8)
       .text(function(d) { return d.properties.Name; });
 });
 
@@ -1594,9 +1600,9 @@ d3.select(window).on("resize", sizeChange);
 	}
 
 	var width = 740, height = 376.92;
-	var svg = d3.select("#seongnam-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", "0 0 879.5 376.92");
+	var svg = d3.select("#seongnam-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);
 	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
-	var projection = d3.geo.mercator().center([127.1094211519, 37.388]).scale(60000).translate([width / 2, height / 2]);
+	var projection = d3.geo.mercator().center([127.1094211519, 37.388]).scale(120000).translate([width / 2, height / 2]);
 	var path = d3.geo.path().projection(projection);
 
 	svg.selectAll("circle")
@@ -1668,7 +1674,7 @@ function seoulMap(worldMapData) {
 	}
 
 	var width = 800, height = 376.92;
-	var svg = d3.select("#seoul-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", "0 0 879.5 376.92");
+	var svg = d3.select("#seoul-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);;
 	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
 	var projection = d3.geo.mercator().center([126.9774211519, 37.550]).scale(60000).translate([width / 2, height / 2]);
 	var path = d3.geo.path().projection(projection);
