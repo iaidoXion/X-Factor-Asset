@@ -22,7 +22,7 @@ def plug_in(data, day, type):
                 if itemPer.startswith('rack'):
                     item = 'Server'
                 if itemPer == '[current result unavailable]':
-                    item = '[current result unavailable]'
+                    item = 'Other'
                 itemIndex = 'assetItem'
             if type == 'line':
                 if d[8][0]['text'] != None:
@@ -35,7 +35,7 @@ def plug_in(data, day, type):
                 if itemPer.startswith('rack'):
                     item = 'Server'
                 if itemPer == '[current result unavailable]':
-                    item = '[current result unavailable]'
+                    item = 'Other'
                 itemIndex = 'assetItem'
                     
             if type == 'osItem':
@@ -88,7 +88,7 @@ def plug_in(data, day, type):
                         date = datetime.strptime(d[2][0]['text'].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
                     item = str(date).split(' ')[0]
                 else :
-                    item = "None"
+                    item = "Other"
 
                 itemIndex = 'lastLogin'
             if type == 'RUET':#값 안찍힘
@@ -114,9 +114,9 @@ def plug_in(data, day, type):
             if type == 'CCDL' :
                 value = d[20][0]['text'].split(' ')
                 if "current" in d[20][0]['text'] :
-                    item = '[current result unavailable]'
+                    item = 'Other'
                 elif "TSE-Error" in d[20][0]['text'] :
-                    item = '[TSE-Error]'
+                    item = 'Other'
                 else :
                     item = round(float(value[0].strip()), 1)
                 itemIndex = 'cpuconsumption'
@@ -124,7 +124,8 @@ def plug_in(data, day, type):
                 items = []
                 for x in d[18] :
                     if '[current result unavailable]' in x['text'] :
-                        continue
+                        items.append("Other")
+                        # continue
                     items.append(x['text'])
                 item = items
                 itemIndex = 'runningprocess'

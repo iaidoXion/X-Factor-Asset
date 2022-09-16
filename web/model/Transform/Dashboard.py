@@ -25,7 +25,10 @@ def banner(data, type) :
                 if data[i][1] == 'all' :
                     name = 'Asset Total'
                 else :
-                    name = data[i][1]
+                    if  data[i][1] == "Rack Mount Chassis" :
+                        name = "Server"
+                    else :
+                        name = data[i][1]
             elif data[i][0] == 'drive_size' :
                 name = 'Drive Size No Change'
             elif data[i][0] == 'login_history' :
@@ -202,16 +205,36 @@ def chart_data(data, type) :
         if type == 'Line' :
             asset_list = []
             result = []
-            # today = datetime.today().strftime("%Y-%m-%d")
             for i in range(len(data)) :
                 asset_list.append(data['name'][i])
             for i in range(len(data)) :
                 chart_dict = {}
                 if data['name'][i] == asset_list[i] :
-                    data_list = [data['value'][i], data['value_4'][i], data['value_3'][i], data['value_2'][i], data['value_1'][i]]
-                    date_list = [data['date'][i], data['date_4'][i], data['date_3'][i], data['date_2'][i], data['date_1'][i]]
-                    chart_dict['name'] = asset_list[i]
-                    chart_dict['data'] = data_list
+                    if len(data.columns) == 3 :
+                        data_list = [data['value'][i]]
+                        date_list = [data['date'][i]]
+                        chart_dict['name'] = asset_list[i]
+                        chart_dict['data'] = data_list
+                    elif len(data.columns) == 5 :
+                        data_list = [data['value_2'][i], data['value_1'][i]]
+                        date_list = [data['date_2'][i], data['date_1'][i]]
+                        chart_dict['name'] = asset_list[i]
+                        chart_dict['data'] = data_list
+                    elif len(data.columns) == 7 :
+                        data_list = [data['value'][i], data['value_2'][i], data['value_1'][i]]
+                        date_list = [data['date'][i], data['date_2'][i], data['date_1'][i]]
+                        chart_dict['name'] = asset_list[i]
+                        chart_dict['data'] = data_list
+                    elif len(data.columns) == 9 :
+                        data_list = [data['value_4'][i], data['value_3'][i], data['value_2'][i], data['value_1'][i]]
+                        date_list = [data['date_4'][i], data['date_3'][i], data['date_2'][i], data['date_1'][i]]
+                        chart_dict['name'] = asset_list[i]
+                        chart_dict['data'] = data_list
+                    else:
+                        data_list = [data['value'][i], data['value_4'][i], data['value_3'][i], data['value_2'][i], data['value_1'][i]]
+                        date_list = [data['date'][i], data['date_4'][i], data['date_3'][i], data['date_2'][i], data['date_1'][i]]
+                        chart_dict['name'] = asset_list[i]
+                        chart_dict['data'] = data_list
                     result.append(chart_dict)
             ChartDataList.append({"data" : result, "date": date_list})
         for i in range(len(data['name'])):
