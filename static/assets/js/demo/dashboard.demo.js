@@ -1319,7 +1319,7 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 
 function worldMap(worldMapData) {
         var width = 750,
-            height = 320,
+            height = 330,
             centered,
             clicked_point;
 
@@ -1330,7 +1330,7 @@ function worldMap(worldMapData) {
             .attr("viewBox", `0 0 ${width} ${height}`);
 
         var projection = d3v4.geoMercator()
-            .translate([width / 2, height / 1.4])
+            .translate([width / 2, height / 2])
             .scale(80);
 
         var path = d3v4.geoPath()
@@ -1356,7 +1356,6 @@ svg.selectAll("circle")
         function ready(error, data){
 
             var features = topojson.feature(data, data.objects.countries).features;
-
             svg.selectAll("path")
                 .data(features)
                 .enter()
@@ -1467,8 +1466,8 @@ svg.selectAll("circle")
 
 
 function koreaMap(worldMapData) {
-var width = 700,
-    height = 310,
+var width = 750,
+    height = 330,
     initialScale = 2500,
     centered,
     labels;
@@ -1593,19 +1592,34 @@ function translateCircle(datum, index)
 
 function seongnamMap(worldMapData) {
 
-d3.select(window).on("resize", sizeChange);
-    function sizeChange() {
-	    d3.select("g").attr("transform", "scale(" + $("#seongnam-map").width()/900 + ")");
-	    $("svg").height($("#seongnam-map").width()*0.618);
-	}
 
-	var width = 740, height = 376.92;
-	var svg = d3.select("#seongnam-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);
-	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
-	var projection = d3.geo.mercator().center([127.1094211519, 37.388]).scale(120000).translate([width / 2, height / 2]);
-	var path = d3.geo.path().projection(projection);
+        var width = 750,
+            height = 330,
+            centered,
+            clicked_point;
 
-	svg.selectAll("circle")
+        var svg = d3.select("#seongnam-map").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("class", "map")
+            .attr("viewBox", `0 0 ${width} ${height}`);
+
+        var projection = d3v4.geoMercator()
+            .translate([width / 2, height / 1.4])
+            .center([127.1094211519, 37.398])
+            .scale(110000);
+
+        var path = d3v4.geoPath()
+            .projection(projection);
+
+        var g = svg.append("g");
+
+        queue()
+            .defer(d3.json, "../static/assets/plugins/jvectormap-content/seongnam.json" )
+            .await(ready);
+
+
+svg.selectAll("circle")
         .data(worldMapData)
         .enter()
         .append("circle")
@@ -1614,7 +1628,24 @@ d3.select(window).on("resize", sizeChange);
         .attr("r",4)
         .style("fill", "red");
 
-	function translateCircle(datum, index)
+
+        function ready(error, data){
+
+            var features = topojson.feature(data, data.objects.seongnam).features;
+            svg.selectAll("path")
+                .data(features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr("fill", "rgba("+app.color.whiteRgb+")")
+                .attr("opacity", .5)
+        }
+
+
+
+
+
+        function translateCircle(datum, index)
           {
             return "translate(" +  projection([datum[1], datum[0]]) + ")";
           };
@@ -1643,25 +1674,75 @@ d3.select(window).on("resize", sizeChange);
 
 
 
-	d3.json("../static/assets/plugins/jvectormap-content/seongnam.json", function (error, data) {
-		var features = topojson.feature(data, data.objects.seongnam).features;
-
-		map.selectAll('path').data(features).enter().append('path')
-			.attr('class', function (d) { return 'municipality c' + d.properties.OBJECTID })
-			.attr('d', path)
-			.attr("opacity", 0.5)
-			.style("fill", "#c7cbce")
-			.attr("stroke-opacity", 0)
-			.attr("stroke-width", 5);
-
-		map.selectAll('text').data(features).enter().append("text")
-			.attr("transform", function (d) { return "translate(" + path.centroid(d) + ")"; })
-			.attr("dy", ".35em")
-			.attr("class", "municipality-label")
-			.text(function (d) { return d.properties.sggnm; })
-			.style("fill", "#fff")
-			.attr("opacity", 0.5);
-	});
+//d3.select(window).on("resize", sizeChange);
+//    function sizeChange() {
+//	    d3.select("g").attr("transform", "scale(" + $("#seongnam-map").width()/900 + ")");
+//	    $("svg").height($("#seongnam-map").width()*0.618);
+//	}
+//
+//	var width = 740, height = 351;
+//	var svg = d3.select("#seongnam-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);
+//	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
+//	var projection = d3.geo.mercator().center([127.1094211519, 37.398]).scale(115000).translate([width / 2, height / 2]);
+//	var path = d3.geo.path().projection(projection);
+//
+//	svg.selectAll("circle")
+//        .data(worldMapData)
+//        .enter()
+//        .append("circle")
+//        .attr("class","dot")
+//        .attr("transform",translateCircle)
+//        .attr("r",4)
+//        .style("fill", "red");
+//
+//	function translateCircle(datum, index)
+//          {
+//            return "translate(" +  projection([datum[1], datum[0]]) + ")";
+//          };
+//
+//        setInterval(function(){
+//	      worldMapData.forEach(function(datum)
+//          {
+//			  svg
+//			  	.append("circle")
+//			      .attr("class", "ring")
+//			      .attr("transform", translateCircle(datum))
+//			      .attr("r", 1)
+//			      .style("fill", "rgba("+app.color.themeRgb+")")
+//			      .style("opacity", .14)
+//			      .style("fill-opacity", .14)
+//			    .transition()
+//			      .ease("linear")
+//			      .duration(2000)
+//			      .style("stroke-opacity", .14)
+//			      .style("stroke-width", 0.1)
+//			      .style("stroke", "rgba("+app.color.themeRgb+")")
+//			      .attr("r", 30)
+//			      .remove();
+//          })
+//      }, 800);
+//
+//
+//
+//	d3.json("../static/assets/plugins/jvectormap-content/seongnam.json", function (error, data) {
+//		var features = topojson.feature(data, data.objects.seongnam).features;
+//
+//		map.selectAll('path').data(features).enter().append('path')
+//			.attr('class', function (d) { return 'municipality c' + d.properties.OBJECTID })
+//			.attr('d', path)
+//			.attr("opacity", 0.5)
+//			.style("fill", "#c7cbce")
+//			.attr("stroke-opacity", 0)
+//			.attr("stroke-width", 5);
+//
+//		map.selectAll('text').data(features).enter().append("text")
+//			.attr("transform", function (d) { return "translate(" + path.centroid(d) + ")"; })
+//			.attr("dy", ".35em")
+//			.attr("class", "municipality-label")
+//			.text(function (d) { return d.properties.sggnm; })
+//			.style("fill", "#fff")
+//			.attr("opacity", 0.5);
+//	});
 
 
 }
@@ -1673,7 +1754,7 @@ function seoulMap(worldMapData) {
 	    $("svg").height($("#seoul-map").width()*0.618);
 	}
 
-	var width = 800, height = 376.92;
+	var width = 800, height = 351;
 	var svg = d3.select("#seoul-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);;
 	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
 	var projection = d3.geo.mercator().center([126.9774211519, 37.550]).scale(60000).translate([width / 2, height / 2]);
