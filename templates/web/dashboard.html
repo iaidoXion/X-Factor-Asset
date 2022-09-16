@@ -316,6 +316,7 @@
 				<!-- BEGIN card-body -->
 				<div class="card-body h-600px">
 					<!-- BEGIN title -->
+
 					<div class="d-flex fw-bold small mb-3">
 						<div class="flex-grow-1" style="position: relative;">
 							Failure Symptom Case Detection
@@ -336,7 +337,8 @@
 					</div>
 					<!-- END title -->
 					<!-- BEGIN map -->
-					<div class="ratio-21x9" id="ABCD">
+
+					<div class="ratio ratio-21x9">
 						{% if MapUse.WorldUse == 'block' %}
 						<div id="world-map" style="display:{{MapUse.WorldUse}}"></div>
 						{%endif%}
@@ -348,6 +350,7 @@
 						<div id="seongnam-map"  style="display:{{MapUse.AreaUse}}"></div>
 						{%endif%}
 					</div>
+
 					<!-- END map -->
 					<!-- BEGIN row -->
 					<div class="row gx-4" id="alarmCase">
@@ -378,37 +381,36 @@
 							<!-- BEGIN card -->
 							<div class="card">
 								<!-- BEGIN card-body -->
-								<div class="card-body py-2">
+								<div class="card-body py-2 h-150px">
 									<tr class="text-white text-opacity-75">
 										<th class="w-50">Total Alarm Case Top 5 (%)</th>
 									</tr>
-									<div class="d-flex align-items-center">
-										<div class="w-150px h-135px" style="margin: 0 auto;">
-											<div id="apexDonutFailureCChart"></div>
-										</div>
-										<div class="flex-1 ps-2">
-											<table class="w-100 fs-12px mb-0 text-white text-opacity-60">
-												<!--												<thead>-->
-												<!--												<th class="w-25">GROUP</th>-->
-												<!--												<th class="w-25 text-end">PCT%</th>-->
-												<!--												</thead>-->
-												<!--												<tbody>-->
-												<!--												{% for TotalTopData in chartData.TotalTopDataList.nodeDataList %}-->
-												<!--												<tr>-->
-												<!--													<td>-->
-												<!--														<div class="d-flex align-items-center">-->
-												<!--															<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-95"></div>-->
-												<!--															{{TotalTopData.group}}-->
-												<!--														</div>-->
-												<!--													</td>-->
-												<!--													<td class="text-end">{{TotalTopData.totalPertage}}%</td>-->
-												<!--												</tr>-->
-												<!--												{% endfor %}-->
-												<!--												</tbody>-->
-											</table>
-										</div>
+									<div>
+										<div id="apexDonutFailureCChart"></div>
 									</div>
+									<!--<div class="flex-1 ps-2">
+                                        <table class="w-100 fs-12px mb-0 text-white text-opacity-60">
+                                            <thead>
+                                            <th class="w-25">GROUP</th>
+                                            <th class="w-25 text-end">PCT%</th>
+                                            </thead>
+                                            <tbody>
+                                            {% for TotalTopData in chartData.TotalTopDataList.nodeDataList %}
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-95"></div>
+                                                        {{TotalTopData.group}}
+                                                    </div>
+                                                </td>
+                                                <td class="text-end">{{TotalTopData.totalPertage}}%</td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>-->
 								</div>
+
 								<!-- END card-body -->
 
 								<!-- BEGIN card-arrow -->
@@ -426,6 +428,7 @@
 					</div>
 					<!-- END row -->
 				</div>
+
 				<!-- END card-body -->
 
 				<!-- BEGIN card-arrow -->

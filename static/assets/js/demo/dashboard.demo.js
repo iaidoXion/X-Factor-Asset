@@ -466,13 +466,15 @@ var apexLineChartOptions = {
 				show: false
 			}
 		},
-		colors: ['rgba(' + app.color.themeRgb + ', .37)', 'rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
+		/*colors: ['rgba(' + app.color.themeRgb + ', .37)', 'rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],*/
+        /*colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],*/
+        colors: ["#FFB573", "#DB674B", "#FF8811", "#EDAD09"],
 		dataLabels: {
 			enabled: false,
 		},
 		stroke: {
 			curve: 'smooth',
-			width: 2
+			width: 3
 		},
 		grid: {
 			row: {
@@ -1103,25 +1105,28 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 }
 	var apexDonutChartOptions = {
 		chart: {
-			height: 500,
+			height: 115,
 			type: 'donut',
-			width: 300,
 		},
 		plotOptions: {
 			pie: {
 				dataLabels: {
-					offset: 2
+					offset: 1,
 				}
 			}
 		},
 		dataLabels: {
 			enabled: true,
-			formatter(val, value) {
+//			formatter(val, value) {
+//				const name = value.w.globals.labels[value.seriesIndex]
+//				return [name, val.toFixed(1) + '%']
+//			},
+            formatter(val, value) {
 				const name = value.w.globals.labels[value.seriesIndex]
-				return [name, val.toFixed(1) + '%']
+				return [val.toFixed(1) + '%']
 			},
 			style: {
-				fontSize: '9px',
+				fontSize: '8px',
 				colors: [app.color.white]
 			},
 			dropShadow: {
@@ -1136,25 +1141,42 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 		stroke: {
 			show: false
 		},
-		legend: {
-            formatter: function(group, value) {
-                return [group +"&nbsp;&nbsp;&nbsp;"+value.w.globals.series[value.seriesIndex]]
-            },
-            position : 'right',
-            fontSize: "10px",
-            height: 230,
-
-
-        },
-        tooltipHoverFormatter: function(group, value) {
-        return '<strong>' + value.w.globals.series[value.seriesIndex][value.dataPointIndex] + '</strong>'
-        },
-
 //		legend: {
 //			show: true,
 //			position:"right"
 //
 //		},
+//        legend: {
+//            formatter: function(group, value) {
+//                return [group +"&nbsp;&nbsp;&nbsp;"+value.w.globals.series[value.seriesIndex]]
+//            },
+//            position : 'right',
+//            fontSize: "10px",
+//            height: 230,
+//        },
+        legend: {
+			show: true,
+			position: "right",
+			width : "100%",
+			height: 100,
+			horizontalAlign: 'right',
+			floating: false,
+			/* formatter: (value, opts) => {
+				return value + '<span class="chartLegend">' + opts.w.globals.series[opts.seriesIndex] + '</span>';
+			}, */
+			formatter: (value, opts) => {
+                return '<span class="chartBorder">' + value + '<span class="chartLegend">' + opts.w.globals.series[opts.seriesIndex] + '</span>' + '</span>';
+            },
+			itemMargin: {
+				horizontal: 0,
+				vertical: 0
+			},
+			labels: {
+				colors: '#fff',
+				fontSize: '10px'
+			}
+		},
+
 		colors: ['rgba(' + app.color.themeRgb + ', 1)', 'rgba(' + app.color.themeRgb + ', .8)', 'rgba(' + app.color.themeRgb + ', .6)', 'rgba(' + app.color.themeRgb + ', .4)', 'rgba(' + app.color.themeRgb + ', .2)'],
 		labels: group,
 		series: value,
@@ -1172,6 +1194,9 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 				formatter: (value) => { return '' + value },
 			}
 		},
+//		tooltipHoverFormatter: function(group, value) {
+//            return '<strong>' + value.w.globals.series[value.seriesIndex][value.dataPointIndex] + '</strong>'
+//        },
 	};
 	var apexDonutChart = new ApexCharts(
 		document.querySelector('#apexDonutFailureCChart'),
@@ -1466,6 +1491,7 @@ svg.selectAll("circle")
 
 
 function koreaMap(worldMapData) {
+
 var width = 750,
     height = 330,
     initialScale = 2500,
@@ -1591,12 +1617,14 @@ function translateCircle(datum, index)
 
 
 function seongnamMap(worldMapData) {
-
-
         var width = 750,
             height = 330,
             centered,
             clicked_point;
+	var svg = d3.select("#seongnam-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);
+	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
+	var projection = d3.geo.mercator().center([127.1094211519, 37.388]).scale(120000).translate([width / 2, height / 2]);
+	var path = d3.geo.path().projection(projection);
 
         var svg = d3.select("#seongnam-map").append("svg")
             .attr("width", width)
@@ -1754,7 +1782,7 @@ function seoulMap(worldMapData) {
 	    $("svg").height($("#seoul-map").width()*0.618);
 	}
 
-	var width = 800, height = 351;
+	var width = 800, height = 350;
 	var svg = d3.select("#seoul-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);;
 	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
 	var projection = d3.geo.mercator().center([126.9774211519, 37.550]).scale(60000).translate([width / 2, height / 2]);
