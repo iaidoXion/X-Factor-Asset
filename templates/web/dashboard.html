@@ -340,20 +340,20 @@
 
 					<div class="ratio ratio-21x9">
 						{% if MapUse.WorldUse == 'block' %}
-						<div id="world-map" class="jvectormap-without-padding" style="display:{{MapUse.WorldUse}}"></div>
+						<div id="world-map" style="display:{{MapUse.WorldUse}}"></div>
 						{%endif%}
 						{% if MapUse.KoreaUse == 'block' %}
-						<div id="korea-map" class="jvectormap-without-padding" style="display:{{MapUse.KoreaUse}}"></div>
+						<div id="korea-map" style="display:{{MapUse.KoreaUse}}"></div>
 						{%endif%}
 						{% if MapUse.AreaUse == 'block' %}
-						<div id="seoul-map" style="width: 80%; height: 350px;" style="display:{{MapUse.AreaUse}}"></div>
-						<div id="seongnam-map" style="width: 80%; height: 350px;" style="display:{{MapUse.AreaUse}}"></div>
+						<div id="seoul-map"  style="display:{{MapUse.AreaUse}}"></div>
+						<div id="seongnam-map"  style="display:{{MapUse.AreaUse}}"></div>
 						{%endif%}
 					</div>
 
 					<!-- END map -->
 					<!-- BEGIN row -->
-					<div class="row gx-4 h-170px" id="ABC">
+					<div class="row gx-4" id="alarmCase">
 						<!-- BEGIN col-6 -->
 						<div class="col-lg-6 mb-3 mb-lg-0">
 							<table class="w-100 fs-12px mb-0 text-truncate text-white text-opacity-60">
