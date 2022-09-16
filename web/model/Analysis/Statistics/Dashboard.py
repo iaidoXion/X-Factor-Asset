@@ -75,7 +75,7 @@ def alarm_case_detection(data, case) :
                     IP = DLMerge['ip'][j]
                     DL.append([AI, IP, AT])
         elif case == "CCDL" :
-            if DLMerge['cpuconsumption'][j] != '[current result unavailable]' and DLMerge['cpuconsumption'][j] != '[TSE-Error]':
+            if DLMerge['cpuconsumption'][j] != '[current result unavailable]' and DLMerge['cpuconsumption'][j] != '[TSE-Error]' and DLMerge['cpuconsumption'][j] != "Other":
                 if DLMerge['cpuconsumption'][j] > 60.0 :
                     AI = DLMerge['id'][j]
                     IP = DLMerge['ip'][j]
@@ -249,7 +249,7 @@ def chart_data(data, type, statistics) :
         elif type == 'CCDL' :
             i = 0;
             for x in DLMerge['cpuconsumption'] :
-                if x == "[current result unavailable]" or x == "[TSE-Error]" :
+                if x == "[current result unavailable]" or x == "[TSE-Error]" or "Other":
                     continue
                 if float(x) > 60.0 :
                     i = i + 1
