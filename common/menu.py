@@ -44,11 +44,13 @@ def MenuSetting():
             MenuNote = d[5]
             MenuCD = d[6]
             MenuImg = d[7]
+            MenuEng = d[8]
 
-            DFL.append([ID, MenuID, MenuName, MenuUrl, MenuUse, MenuNote, MenuCD, MenuImg])
-            DFC = ['id', 'menuID', 'menuName','menuUrl', 'menuUse', 'menuNote', 'menuCD', 'menuImg']
+            DFL.append([ID, MenuID, MenuName, MenuUrl, MenuUse, MenuNote, MenuCD, MenuImg, MenuEng])
+            DFC = ['id', 'menuID', 'menuName','menuUrl', 'menuUse', 'menuNote', 'menuCD', 'menuImg', 'menuEng']
         DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=True).reset_index(drop=True)
         DC=DF.to_dict('records')
+        print(MenuImg)
         return DC
     except:
         print(MenuTNM+' Menu Table connection(Select) Failure')
