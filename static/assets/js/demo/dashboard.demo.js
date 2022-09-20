@@ -909,12 +909,12 @@ var apexRadarChartOptions = {
 //---------------------------------------
 	list = [];
 	alarm_list = []
-  for (var i = 0; i < a.AssociationDataList.nodeDataList.length; i++) {
-    if (a.AssociationDataList.nodeDataList[i].alarmCase == "RAM Usage Exceeded") {
-		list.push(parseInt(a.AssociationDataList.nodeDataList[i].alarmCount));
-		alarm_list.push(a.AssociationDataList.nodeDataList[i].group);
+  for (var i = 0; i < a.minidonutData.length; i++) {
+    if (a.minidonutData[i].name == "RAM Usage Exceeded") {
+      list.push(parseInt(a.minidonutData[i].value));
+      alarm_list.push(a.minidonutData[i].ip);
     }
-	}
+  }
     var apexDonutChartOptions = {
         chart: {
                 height: 300,
@@ -1001,10 +1001,10 @@ var apexRadarChartOptions = {
 //---------------------------------------
     list = [];
     alarm_list = [];
-  for (var i = 0; i < a.AssociationDataList.nodeDataList.length; i++) {
-    if (a.AssociationDataList.nodeDataList[i].alarmCase == "CPU Consumption is Excess" ) {
-      list.push(parseInt(a.AssociationDataList.nodeDataList[i].alarmCount));
-      alarm_list.push(a.AssociationDataList.nodeDataList[i].group);
+  for (var i = 0; i < a.minidonutData.length; i++) {
+    if (a.minidonutData[i].name == "CPU Consumption is Excess") {
+      list.push(parseInt(a.minidonutData[i].value));
+      alarm_list.push(a.minidonutData[i].ip);
     }
   }
 	var apexDonutChartOptions = {

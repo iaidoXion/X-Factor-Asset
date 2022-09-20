@@ -27,19 +27,22 @@
     }
   },
    "API" : {
-    "apiUrl" : "https://192.168.5.100",
-    "ContentType" : "application/json",
-     "PATH" : {
-       "SesstionKey" : "/api/v2/session/login",
-       "Sensor" : "/api/v2/result_data/saved_question/",
-       "Questions" : {
-         "Saved" : "/api/v2/saved_questions"
+     "apiUrl": "https://192.168.5.100",
+     "ContentType": "application/json",
+     "PATH": {
+       "SesstionKey": "/api/v2/session/login",
+       "Sensor": "/api/v2/result_data/saved_question/",
+       "Questions": {
+         "Saved": "/api/v2/saved_questions"
        }
      },
-     "username" : "administrator",
-     "password" : "xion123!",
-     "SensorID": "2492"
-  },
+     "username": "administrator",
+     "password": "xion123!",
+     "SensorID": {
+       "common": "2492",
+       "weakness": "2812"
+     }
+   },
   "MODULE" : {
     "DataLoadingType" : "DB"
   },

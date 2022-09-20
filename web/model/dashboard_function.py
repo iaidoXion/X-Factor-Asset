@@ -24,6 +24,7 @@ def DashboardData() :
             SK = IAPI('', 'Auth')
             EAYL = IDPI('asset', 'yesterday', '')
             sensorData = IAPI(SK['dataList'], 'Sensor')
+            sensorData_hyd = IAPI(SK['dataList'], 'Sensor_hyd')
             sensorAPI = sensorData['dataList']
             if ProjectType == 'System' :
                 # Asset Item Statistics
