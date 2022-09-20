@@ -1355,7 +1355,7 @@ function worldMap(worldMapData) {
             .attr("viewBox", `0 0 ${width} ${height}`);
 
         var projection = d3v4.geoMercator()
-            .translate([width / 2, height / 2])
+            .translate([width / 2, height / 1.5])
             .scale(80);
 
         var path = d3v4.geoPath()
@@ -1375,7 +1375,7 @@ svg.selectAll("circle")
         .attr("class","dot")
         .attr("transform",translateCircle)
         .attr("r",4)
-        .style("fill", "red");
+        .style("fill", "rgba("+app.color.themeRgb+")");
 
 
         function ready(error, data){
@@ -1404,22 +1404,43 @@ svg.selectAll("circle")
           {
 			  svg
 			  	.append("circle")
-			      .attr("class", "ring")
-			      .attr("transform", translateCircle(datum))
-			      .attr("r", 1)
-			      .style("fill", "rgba("+app.color.themeRgb+")")
-			      .style("opacity", .14)
-			      .style("fill-opacity", .14)
-			    .transition()
-			      .ease("linear")
-			      .duration(2000)
-			      .style("stroke-opacity", .14)
-			      .style("stroke-width", 0.1)
-			      .style("stroke", "rgba("+app.color.themeRgb+")")
-			      .attr("r", 30)
-			      .remove();
+			  	.attr({
+                    "class": "ring",
+                    "transform": translateCircle(datum),
+                    "fill":"rgba("+app.color.themeRgb+")",
+                    "stroke":"rgba("+app.color.whiteRgb+")",
+                    "stroke-opacity": .5,
+                    "stroke-width": 0,
+                    "r":1,
+                    "opacity": 0.14,
+                    "fill-opacity":0.14
+                })
+                .transition()
+                .duration(6000)
+                .attr("r", 40)
+                .attr("opacity", 0)
+                .remove();
+
+
+
+
+
+//			      .attr("class", "ring")
+//			      .attr("transform", translateCircle(datum))
+//			      .attr("r", 1)
+//			      .style("fill", "rgba("+app.color.themeRgb+")")
+//			      .style("opacity", .14)
+//			      .style("fill-opacity", .14)
+//			    .transition()
+//			      .ease("linear")
+//			      .duration(2000)
+//			      .style("stroke-opacity", .14)
+//			      .style("stroke-width", 0.1)
+//			      .style("stroke", "rgba("+app.color.themeRgb+")")
+//			      .attr("r", 30)
+//			      .remove();
           })
-      }, 800);
+      }, 1000);
 };
 
 
@@ -1494,12 +1515,12 @@ function koreaMap(worldMapData) {
 
 var width = 750,
     height = 330,
-    initialScale = 2500,
+    initialScale = 2700,
     centered,
     labels;
 
 var projection = d3.geo.mercator()
-    .center([127.1094211519, 36.150])
+    .center([127.1094211519, 36.170])
     .scale(initialScale)
     .translate([width / 2, height / 2]);
 
@@ -1534,7 +1555,7 @@ d3.json("../static/assets/plugins/jvectormap-content/korea.json", function(json)
     .enter().append("text")
       .attr("transform", labelsTransform)
       .attr("id", function(d) { return 'label-'+d.id; })
-      .attr('text-anchor', 'middle')
+      .attr('text-anchor', 'small')
       .attr("dy", ".35em")
       .attr("fill", "rgba("+app.color.whiteRgb+")")
       .attr("opacity", .8)
@@ -1548,7 +1569,7 @@ svg.selectAll("circle")
         .attr("class","dot")
         .attr("transform",translateCircle)
         .attr("r",4)
-        .style("fill", "red");
+        .style("fill", "rgba("+app.color.themeRgb+")");
 
 function labelsTransform(d) {
 
@@ -1576,20 +1597,38 @@ function translateCircle(datum, index)
           {
 			  svg
 			  	.append("circle")
-			      .attr("class", "ring")
-			      .attr("transform", translateCircle(datum))
-			      .attr("r", 1)
-			      .style("fill", "rgba("+app.color.themeRgb+")")
-			      .style("opacity", .14)
-			      .style("fill-opacity", .14)
-			    .transition()
-			      .ease("linear")
-			      .duration(2000)
-			      .style("stroke-opacity", .14)
-			      .style("stroke-width", 0.1)
-			      .style("stroke", "rgba("+app.color.themeRgb+")")
-			      .attr("r", 30)
-			      .remove();
+			  	.attr({
+                    "class": "ring",
+                    "transform": translateCircle(datum),
+                    "fill":"rgba("+app.color.themeRgb+")",
+                    "stroke":"rgba("+app.color.whiteRgb+")",
+                    "stroke-opacity": .5,
+                    "stroke-width": 0,
+                    "r":1,
+                    "opacity": 0.14,
+                    "fill-opacity":0.14
+                })
+                .transition()
+                .duration(6000)
+                .attr("r", 40)
+                .attr("opacity", 0)
+                .remove();
+
+
+//			      .attr("class", "ring")
+//			      .attr("transform", translateCircle(datum))
+//			      .attr("r", 1)
+//			      .style("fill", "rgba("+app.color.themeRgb+")")
+//			      .style("opacity", .14)
+//			      .style("fill-opacity", .14)
+//			    .transition()
+//			      .ease("linear")
+//			      .duration(2000)
+//			      .style("stroke-opacity", .14)
+//			      .style("stroke-width", 0.1)
+//			      .style("stroke", "rgba("+app.color.themeRgb+")")
+//			      .attr("r", 30)
+//			      .remove();
           })
       }, 800);
 };
@@ -1626,14 +1665,8 @@ function seongnamMap(worldMapData) {
 	var projection = d3.geo.mercator().center([127.1094211519, 37.388]).scale(120000).translate([width / 2, height / 2]);
 	var path = d3.geo.path().projection(projection);
 
-        var svg = d3.select("#seongnam-map").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("class", "map")
-            .attr("viewBox", `0 0 ${width} ${height}`);
-
         var projection = d3v4.geoMercator()
-            .translate([width / 2, height / 1.4])
+            .translate([width / 2, height / 1.8])
             .center([127.1094211519, 37.398])
             .scale(110000);
 
@@ -1654,7 +1687,7 @@ svg.selectAll("circle")
         .attr("class","dot")
         .attr("transform",translateCircle)
         .attr("r",4)
-        .style("fill", "red");
+        .style("fill", "rgba("+app.color.themeRgb+")");
 
 
         function ready(error, data){
@@ -1666,7 +1699,18 @@ svg.selectAll("circle")
                 .append("path")
                 .attr("d", path)
                 .attr("fill", "rgba("+app.color.whiteRgb+")")
-                .attr("opacity", .5)
+                .attr("opacity", .5);
+
+            svg.selectAll('text').data(features).enter().append("text")
+			.attr("transform", function (d) { return "translate(" + path.centroid(d) + ")"; })
+			.attr("dy", ".35em")
+			.attr("class", "municipality-label")
+			.text(function (d) { return d.properties.name; })
+			.style("fill", "rgba("+app.color.whiteRgb+")")
+			.attr('text-anchor', 'small')
+			.attr("opacity", .8);
+
+
         }
 
 
@@ -1683,20 +1727,42 @@ svg.selectAll("circle")
           {
 			  svg
 			  	.append("circle")
-			      .attr("class", "ring")
-			      .attr("transform", translateCircle(datum))
-			      .attr("r", 1)
-			      .style("fill", "rgba("+app.color.themeRgb+")")
-			      .style("opacity", .14)
-			      .style("fill-opacity", .14)
-			    .transition()
-			      .ease("linear")
-			      .duration(2000)
-			      .style("stroke-opacity", .14)
-			      .style("stroke-width", 0.1)
-			      .style("stroke", "rgba("+app.color.themeRgb+")")
-			      .attr("r", 30)
-			      .remove();
+			  	.attr({
+                    "class": "ring",
+                    "transform": translateCircle(datum),
+                    "fill":"rgba("+app.color.themeRgb+")",
+                    "stroke":"rgba("+app.color.whiteRgb+")",
+                    "stroke-opacity": .5,
+                    "stroke-width": 0,
+                    "r":1,
+                    "opacity": 0.14,
+                    "fill-opacity":0.14
+                })
+                .transition()
+                .duration(6000)
+                .attr("r", 40)
+                .attr("opacity", 0)
+                .remove();
+
+
+
+
+
+
+//			      .attr("class", "ring")
+//			      .attr("transform", translateCircle(datum))
+//			      .attr("r", 1)
+//			      .style("fill", "rgba("+app.color.themeRgb+")")
+//			      .style("opacity", .14)
+//			      .style("fill-opacity", .14)
+//			    .transition()
+//			      .ease("linear")
+//			      .duration(2000)
+//			      .style("stroke-opacity", .14)
+//			      .style("stroke-width", 0.1)
+//			      .style("stroke", "rgba("+app.color.themeRgb+")")
+//			      .attr("r", 30)
+//			      .remove();
           })
       }, 800);
 
@@ -1785,7 +1851,7 @@ function seoulMap(worldMapData) {
 	var width = 800, height = 350;
 	var svg = d3.select("#seoul-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);;
 	var map = svg.append("g").attr("id", "map"), places = svg.append("g").attr("id", "places");
-	var projection = d3.geo.mercator().center([126.9774211519, 37.550]).scale(60000).translate([width / 2, height / 2]);
+	var projection = d3.geo.mercator().center([126.9774211519, 37.560]).scale(60000).translate([width / 2, height / 2]);
 	var path = d3.geo.path().projection(projection);
 
 	svg.selectAll("circle")
@@ -1795,7 +1861,7 @@ function seoulMap(worldMapData) {
         .attr("class","dot")
         .attr("transform",translateCircle)
         .attr("r",4)
-        .style("fill", "red");
+        .style("fill", "rgba("+app.color.themeRgb+")");
 
 	function translateCircle(datum, index)
           {
@@ -1807,20 +1873,41 @@ function seoulMap(worldMapData) {
           {
 			  svg
 			  	.append("circle")
-			      .attr("class", "ring")
-			      .attr("transform", translateCircle(datum))
-			      .attr("r", 1)
-			      .style("fill", "rgba("+app.color.themeRgb+")")
-			      .style("opacity", .14)
-			      .style("fill-opacity", .14)
-			    .transition()
-			      .ease("linear")
-			      .duration(2000)
-			      .style("stroke-opacity", .14)
-			      .style("stroke-width", 0.1)
-			      .style("stroke", "rgba("+app.color.themeRgb+")")
-			      .attr("r", 30)
-			      .remove();
+			  	.attr({
+                    "class": "ring",
+                    "transform": translateCircle(datum),
+                    "fill":"rgba("+app.color.themeRgb+")",
+                    "stroke":"rgba("+app.color.whiteRgb+")",
+                    "stroke-opacity": .5,
+                    "stroke-width": 0,
+                    "r":1,
+                    "opacity": 0.14,
+                    "fill-opacity":0.14
+                })
+                .transition()
+                .duration(6000)
+                .attr("r", 40)
+                .attr("opacity", 0)
+                .remove();
+
+
+
+
+
+//			      .attr("class", "ring")
+//			      .attr("transform", translateCircle(datum))
+//			      .attr("r", 1)
+//			      .style("fill", "rgba("+app.color.themeRgb+")")
+//			      .style("opacity", .14)
+//			      .style("fill-opacity", .14)
+//			    .transition()
+//			      .ease("linear")
+//			      .duration(2000)
+//			      .style("stroke-opacity", .14)
+//			      .style("stroke-width", 0.1)
+//			      .style("stroke", "rgba("+app.color.themeRgb+")")
+//			      .attr("r", 30)
+//			      .remove();
           })
       }, 800);
 
@@ -1830,18 +1917,17 @@ function seoulMap(worldMapData) {
 		map.selectAll('path').data(features).enter().append('path')
 			.attr('class', function (d) { return 'municipality c' + d.properties.SIG_CD })
 			.attr('d', path)
-			.attr("opacity", 0.5)
-			.style("fill", "#c7cbce")
-			.attr("stroke-opacity", 0)
-			.attr("stroke-width", 5);
+			.style("fill", "rgba("+app.color.whiteRgb+")")
+			.attr("opacity", .5);
 
 		map.selectAll('text').data(features).enter().append("text")
 			.attr("transform", function (d) { return "translate(" + path.centroid(d) + ")"; })
 			.attr("dy", ".35em")
 			.attr("class", "municipality-label")
 			.text(function (d) { return d.properties.SIG_KOR_NM; })
-			.style("fill", "#fff")
-			.attr("opacity", 0.5);
+			.style("fill", "rgba("+app.color.whiteRgb+")")
+			.attr('text-anchor', 'small')
+			.attr("opacity", .8);
 	});
 }
 
