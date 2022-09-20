@@ -8,6 +8,8 @@ ContentType = SETTING['API']['ContentType']
 SesstionKeyPath = SETTING['API']['PATH']['SesstionKey']
 SensorAPIPath = SETTING['API']['PATH']['Sensor']
 SensorID = SETTING['API']['SensorID']
+Common_SensorID = SETTING['API']['SensorID']['common']
+HYD_SensorID = SETTING['API']['SensorID']['weakness']
 TNID = SETTING['API']['username']
 TNPWD = SETTING['API']['password']
 
@@ -21,9 +23,32 @@ def plug_in(SK, APITYPE):
             resCode = response.status_code
             returnData = response.json()['data']['session']
 
+        if APITYPE == 'Sensor_hyd' :
+            path = SensorAPIPath + HYD_SensorID
+            urls = apiUrl + path
+            headers = {'session': SK, 'Content-Type': ContentType}
+            response = requests.request("GET", urls, headers=headers, verify=False)
+            resCode = response.status_code
+            responseText = response.text
+            
+            responseTextJson = json.loads(responseText)
+            returnData = []
+            
+            savedQuestionId = responseTextJson['data']['result_sets'][0]['saved_question_id']
+            responseDataJson = responseTextJson['data']['result_sets'][0]['rows']
+            
+            for i in range(len(responseDataJson)) :
+                DL = []
+                if "[current result unavailable]" in responseDataJson[i]['data'][0][0]['text'] or 'TSE-Error' in responseDataJson[i]['data'][0][0]['text']:
+                    DL.append("Data cannot be read")
+                else :
+                    for j in responseDataJson[i]['data'][0] :
+                        ex = j
+                    # print(responseDataJson[i]['data'][0])
+                # if responseDataJson[i]['data']['text']
 
         if APITYPE == 'Sensor' :
-            path = SensorAPIPath + SensorID
+            path = SensorAPIPath + Common_SensorID
             urls = apiUrl + path
             headers = {'session': SK, 'Content-Type': ContentType}
             response = requests.request("GET", urls, headers=headers, verify=False)
