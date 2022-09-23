@@ -1559,7 +1559,7 @@ d3.json("../static/assets/plugins/jvectormap-content/korea.json", function(json)
       .attr("dy", ".35em")
       .attr("fill", "rgba("+app.color.whiteRgb+")")
       .attr("opacity", .8)
-      .text(function(d) { return d.properties.Name; });
+      .text(function(d) { return d.properties.ShortName; });
 });
 
 svg.selectAll("circle")
