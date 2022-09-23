@@ -28,7 +28,7 @@
 	<!-- ================== END core-css ================== -->
 
 </head>
-<body class='pace-top'>
+<body class='pace-top theme-orange'>
 	<!-- BEGIN #app -->
 	<div id="app" class="app app-full-height app-without-header">
 		<!-- BEGIN login -->
@@ -41,12 +41,12 @@
 					{% if error %}
 						<div class="alert alert-danger" role="alert">{{error}}</div>
 					{% endif %}
-					<h1 class="text-center">Sign In </h1>
+					<h1 class="text-center">로그인</h1>
 					<div class="text-white text-opacity-50 text-center mb-4">
-						For your protection, please verify your identity.
+<!--						For your protection, please verify your identity.-->
 					</div>
 					<div class="mb-3">
-						<label class="form-label">사용자ID  <span class="text-danger">*</span></label>
+						<label class="form-label">사용자 아이디  <span class="text-danger">*</span></label>
 						<input type="text" class="form-control form-control-lg bg-white bg-opacity-5"  name="user_id" id="user_id" autocomplete="off"/>
 					</div>
 					<div class="mb-3">
@@ -57,16 +57,16 @@
 					</div>
 					<div class="mb-3">
 						<div class="form-check">
-							<div class="raw">
+							<div class="raw" sytle="flex-direction: row;">
 								<input class="form-check-input" type="checkbox" value="" id="idSaveCheck" />
-								<label class="form-check-label" for="idSaveCheck">Remember me</label>
-								<a href="#" class="ms-auto text-white text-decoration-none text-opacity-50">Forgot password?</a>
+								<label class="form-check-label" for="idSaveCheck">사용자 아이디 저장</label>
+<!--								<a href="#" class="ms-auto text-white text-decoration-none text-opacity-50" style="margin-left: 30px;">Forgot password?</a>-->
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3">Sign In</button>
+					<button type="submit" class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3">확인</button>
 					<div class="text-center text-white text-opacity-50">
-						Don't have an account yet? <a href="{% url 'signup' %}">Sign up</a>.
+						새로운 계정을 생성하겠습니까? <a href="{% url 'signup' %}">회원가입</a>
 					</div>
 				</form>
 			</div>

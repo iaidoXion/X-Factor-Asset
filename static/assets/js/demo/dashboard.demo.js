@@ -559,18 +559,19 @@ var apexPieChartOptions = {
 				const name = opts.w.globals.labels[opts.seriesIndex]
 				return [name, val.toFixed(1) + '%']
 			},
-			style: {
-				fontSize: '10px',
-				colors: [app.color.white]
-			},
-			dropShadow: {
-				enabled: true,
-				color: 'rgba(' + app.color.darkRgb + ', .75)',
-				top: -2,
-				left: 4,
-				blur: 1,
-				opacity: 0.5
-			}
+            style: {
+                fontSize: '10px',
+                colors: [app.color.white],
+                fontWeight: 300
+            },
+//			dropShadow: {
+//				enabled: true,
+//				color: 'rgba(' + app.color.darkRgb + ', .75)',
+//				top: -2,
+//				left: 4,
+//				blur: 1,
+//				opacity: 0.5
+//			}
 		},
 		stroke: {
 			show: false
@@ -631,18 +632,19 @@ var apexDonutChartOptions = {
 				const name = opts.w.globals.labels[opts.seriesIndex]
 				return [val.toFixed(1) + '%']
 			},
-			style: {
-				fontSize: '10px',
-				colors: [app.color.white]
-			},
-			dropShadow: {
-				enabled: true,
-				color: 'rgba(' + app.color.darkRgb + ', .75)',
-				top: -2,
-				left: 4,
-				blur: 1,
-				opacity: 0.5
-			}
+            style: {
+                fontSize: '10px',
+                colors: [app.color.white],
+                fontWeight: 300
+            },
+//			dropShadow: {
+//				enabled: true,
+//				color: 'rgba(' + app.color.darkRgb + ', .75)',
+//				top: -2,
+//				left: 4,
+//				blur: 1,
+//				opacity: 0.5
+//			}
 		},
 		stroke: {
 			show: false
@@ -934,17 +936,18 @@ var apexRadarChartOptions = {
                 return [name, val.toFixed(1) + '%']
             },
             style: {
-                fontSize: '9px',
-                colors: [app.color.white]
+                fontSize: '10px',
+                colors: [app.color.white],
+                fontWeight: 300
             },
-            dropShadow: {
-                enabled: true,
-                color: 'rgba(' + app.color.darkRgb + ', .75)',
-                top: -2,
-                left: 4,
-                blur: 1,
-                opacity: 0.5
-            }
+//            dropShadow: {
+//				enabled: true,
+//				color: 'rgba(' + app.color.darkRgb + ', .75)',
+//				top: -2,
+//				left: 4,
+//				blur: 1,
+//				opacity: 0.5
+//			}
         },
         stroke: {
             show: false
@@ -1029,18 +1032,19 @@ var apexRadarChartOptions = {
 				const name = opts.w.globals.labels[opts.seriesIndex]
 				return [name, val.toFixed(1) + '%']
 			},
-			style: {
-				fontSize: '9px',
-				colors: [app.color.white]
-			},
-			dropShadow: {
-				enabled: true,
-				color: 'rgba(' + app.color.darkRgb + ', .75)',
-				top: -2,
-				left: 4,
-				blur: 1,
-				opacity: 0.5
-			}
+            style: {
+                fontSize: '10px',
+                colors: [app.color.white],
+                fontWeight: 300
+            },
+//			dropShadow: {
+//				enabled: true,
+//				color: 'rgba(' + app.color.darkRgb + ', .75)',
+//				top: -2,
+//				left: 4,
+//				blur: 1,
+//				opacity: 0.5
+//			}
 		},
 		stroke: {
 			show: false
@@ -1125,18 +1129,19 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 				const name = value.w.globals.labels[value.seriesIndex]
 				return [val.toFixed(1) + '%']
 			},
-			style: {
-				fontSize: '8px',
-				colors: [app.color.white]
-			},
-			dropShadow: {
-				enabled: true,
-				color: 'rgba(' + app.color.darkRgb + ', .75)',
-				top: -2,
-				left: 4,
-				blur: 1,
-				opacity: 0.5
-			}
+            style: {
+                fontSize: '10px',
+                colors: [app.color.white],
+                fontWeight: 300
+            },
+//			dropShadow: {
+//				enabled: true,
+//				color: 'rgba(' + app.color.darkRgb + ', .75)',
+//				top: -2,
+//				left: 4,
+//				blur: 1,
+//				opacity: 0.5
+//			}
 		},
 		stroke: {
 			show: false

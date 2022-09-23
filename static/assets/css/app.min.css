@@ -6693,11 +6693,6 @@ margin: calc(var(--bs-modal-footer-gap) * 0.5)
     --bs-modal-width: 1140px
 }
 }
-@media(min-width:1920px) {
-.modal-xl {
-    --bs-modal-width: 1800px
-}
-}
 .modal-fullscreen {
 width: 100vw;
 max-width: none;
@@ -24337,41 +24332,47 @@ margin-left: -1.25rem
 .weak-wrap {
     width: 100%;
     height: 100%;
-    position: relative;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.weak-container {
-    width: 19%;
-    float: right;
-}
-.weak-container .weak-content {
-    float: left;
-    width: 59%;
-    padding-top: 3px;
+.weak-wrap .weakItem span {
+    display: inline-block
 }
 
-.weak-container .weak-content span {
+.weak-wrap .weak-id {
     display: inline-block;
+    /* flex: 1 1 auto; */
+    flex: 1 auto;
 }
 
-.weak-container .weak-content span:nth-child(2) {
+/*.weak-wrap .weak-id span:nth-child(1) {
+    border-bottom: 1px solid #fff;
+}*/
+
+.weak-wrap .weak-content span:nth-child(2) {
     padding-right: 10px;
 }
 
-.weak-container.weak-content span:nth-child(odd) {
+.weak-wrap .weak-content span:nth-child(odd) {
     padding-right: 5px;
 }
 
-.weak-container .weak-state {
-    float: left;
-    width: 41%;
+.weak-wrap .weak-state .weakBox {
+    display: inline-block !important;
+    width: 80px !important;
+}
+
+.weak-wrap .weak-state {
     padding-left: 23px;
 }
 
-.weak-container .weak-state .weakBox {
-    display: inline-block !important;
-    width: 80px !important;
+#datatableB div.dataTables_wrapper div.dataTables_filter label {
+    position: absolute;
+    right: 90px;
+    top:0;
 }
 
 #world-map svg, #korea-map svg, #seoul-map svg, #seongnam-map svg{

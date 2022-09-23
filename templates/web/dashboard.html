@@ -23,7 +23,8 @@
 				<div class="card-body h-150px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small">
-						<span class="flex-grow-1">Asset Count By Item</span>
+<!--						<span class="flex-grow-1">Asset Count By Item</span>-->
+						<span class="flex-grow-1">자산 항목 수 (상위 5개)</span>
 					</div>
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
@@ -85,7 +86,8 @@
 				<div class="card-body h-150px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small">
-						<span class="flex-grow-1">Asset Count By Day Item</span>
+<!--						<span class="flex-grow-1">Asset Count By Day Item</span>-->
+						<span class="flex-grow-1">자산 항목 수 (일단위)</span>
 					</div>
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
@@ -123,7 +125,8 @@
 				<div class="card-body h-150px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small">
-						<span class="flex-grow-1">Count By OS Item (Top3)</span>
+<!--						<span class="flex-grow-1">Count By OS Item (Top3)</span>-->
+						<span class="flex-grow-1">OS별 자산 항목 수 (상위 3개)</span>
 					</div>
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
@@ -183,7 +186,8 @@
 				<div class="card-body h-150px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small">
-						<span class="flex-grow-1">Installed Application (Top5)</span>
+<!--						<span class="flex-grow-1">Installed Application (Top5)</span>-->
+						<span class="flex-grow-1">설치된 자산 현황 (상위 5개)</span>
 					</div>
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
@@ -237,7 +241,8 @@
 				<div class="card-body h-600px">
 					<!-- BEGIN title -->
 					<div class="d-flex fw-bold small mb-2">
-						<span class="flex-grow-1">Failure Symptom Case Detection Count By Group</span>
+<!--						<span class="flex-grow-1">Failure Symptom Case Detection Count By Group</span>-->
+						<span class="flex-grow-1">그룹별 장애 징후 감지 항목 수</span>
 					</div>
 					<!-- END title -->
 					<div class="d-flex justify-content-center align-items-center">
@@ -319,16 +324,17 @@
 
 					<div class="d-flex fw-bold small mb-3">
 						<div class="flex-grow-1" style="position: relative;">
-							Failure Symptom Case Detection
+<!--							Failure Symptom Case Detection-->
+							그룹별 장애 징후 감지 모니터링
 							<div class="btn-group ps-3" style="position: absolute; right:20px;">
 								{% if MapUse.WorldUse == 'block' %}
-								<button type="button" id="worldBtn" class="btn btn-outline-warning btn-sm">World</button>
+								<button type="button" id="worldBtn" class="btn btn-outline-warning btn-sm">세계</button>
 								{%endif%}
 								{% if MapUse.KoreaUse == 'block' %}
-								<button type="button" id="koreaBtn" class="btn btn-outline-warning btn-sm">Korea</button>
+								<button type="button" id="koreaBtn" class="btn btn-outline-warning btn-sm">국내</button>
 								{%endif%}
 								{% if MapUse.AreaUse == 'block' %}
-								<button type="button" id="areaBtn" class="btn btn-outline-warning btn-sm">Area</button>
+								<button type="button" id="areaBtn" class="btn btn-outline-warning btn-sm">지역</button>
 								{%endif%}
 							</div>
 						</div>
@@ -338,7 +344,7 @@
 					<!-- END title -->
 					<!-- BEGIN map -->
 
-					<div class="ratio ratio-21x9">
+					<div class="ratio ratio-21x9" style="width: 100%;">
 						{% if MapUse.WorldUse == 'block' %}
 						<div id="world-map" style="display:{{MapUse.WorldUse}}"></div>
 						{%endif%}
@@ -353,14 +359,19 @@
 
 					<!-- END map -->
 					<!-- BEGIN row -->
-					<div class="row gx-4" id="alarmCase">
+					<div class="row gx-4" id="alarmCase" style="margin-top: 15px">
 						<!-- BEGIN col-6 -->
 						<div class="col-lg-6 mb-3 mb-lg-0">
 							<table class="w-100 fs-12px mb-0 text-truncate text-white text-opacity-60">
 								<thead>
+<!--								<tr class="text-white text-opacity-75">-->
+<!--									<th class="w-50">Alarm Case</th>-->
+<!--									<th class="w-25 text-end">Count</th>-->
+<!--									<th class="w-25 text-end">PCT%</th>-->
+<!--								</tr>								-->
 								<tr class="text-white text-opacity-75">
-									<th class="w-50">Alarm Case</th>
-									<th class="w-25 text-end">Count</th>
+									<th class="w-50">알람 케이스</th>
+									<th class="w-25 text-end">자산 수</th>
 									<th class="w-25 text-end">PCT%</th>
 								</tr>
 								</thead>
@@ -382,9 +393,9 @@
 							<div class="card">
 								<!-- BEGIN card-body -->
 								<div class="card-body py-2 h-150px">
-									<tr class="text-white text-opacity-75">
-										<th class="w-50">Total Alarm Case Top 5 (%)</th>
-									</tr>
+									<div class="text-white text-opacity-75">
+										<span class="w-50" style="font-size:12px;">총 알람 케이스 상위 5개 (%)</span>
+									</div>
 									<div>
 										<div id="apexDonutFailureCChart"></div>
 									</div>

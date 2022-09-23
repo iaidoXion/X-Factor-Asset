@@ -31,7 +31,7 @@
 </head>
 <body class='pace-top'>
 	<!-- BEGIN #app -->
-	<div id="app" class="app app-full-height app-without-header">
+	<div id="app" class="app app-full-height app-without-header theme-orange">
 		<!-- BEGIN login -->
 		<div class="login">
 			<!-- BEGIN login-content -->
@@ -50,7 +50,7 @@
 					<div class="mb-3">
 						<div class="d-flex">
 							<label class="form-label">비밀번호 <span class="text-danger">*</span></label>
-							<a href="#" class="ms-auto text-white text-decoration-none text-opacity-50">Forgot password?</a>
+<!--							<a href="#" class="ms-auto text-white text-decoration-none text-opacity-50">비밀번호 재설정</a>-->
 						</div>
 						<input type="password" class="form-control form-control-lg bg-white bg-opacity-5" value="{{ form.user_pw.value|default_if_none:'' }}" placeholder="" name="user_pw" id="user_pw"/>
 					</div>
