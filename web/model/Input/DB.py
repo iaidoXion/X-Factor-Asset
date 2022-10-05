@@ -16,9 +16,9 @@ today = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 day = datetime.today().strftime("%Y-%m-%d")
 yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
 twoago = (datetime.today() - timedelta(2)).strftime("%Y-%m-%d")
-fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
 
 def plug_in(table, day, type):
+    fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
     try:
         SDL = []
         Conn = psycopg2.connect('host={0} dbname={1} user={2} password={3}'.format(DBHost, DBName, DBUser, DBPwd))

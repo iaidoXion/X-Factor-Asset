@@ -50,7 +50,6 @@ def MenuSetting():
             DFC = ['id', 'menuID', 'menuName','menuUrl', 'menuUse', 'menuNote', 'menuCD', 'menuImg', 'menuEng']
         DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=True).reset_index(drop=True)
         DC=DF.to_dict('records')
-        print(MenuImg)
         return DC
     except:
         print(MenuTNM+' Menu Table connection(Select) Failure')
