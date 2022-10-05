@@ -145,6 +145,8 @@ def plug_in(data, day, type):
                 item = d[1]
                 list = str(d[1]).split(',')
                 if len(list) == 1:
+                    if 'current' in list[0] :
+                        continue
                     a = list[0].split(' ')
                     dus.append(a)
                 elif len(list) > 1 :
