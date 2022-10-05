@@ -24269,6 +24269,12 @@ margin-left: -1.25rem
 	font-family: 'Nanum Gothic';
 }
 
+#world-map svg, #korea-map svg, #seoul-map svg, #seongnam-map svg{
+    width: 100%;
+    height: 100% !important;
+}
+
+
 /* apexchart css customized */
 
 #apexColumnChart {
@@ -24344,13 +24350,12 @@ margin-left: -1.25rem
 
 .weak-wrap .weak-id {
     display: inline-block;
-    /* flex: 1 1 auto; */
     flex: 1 auto;
 }
 
-/*.weak-wrap .weak-id span:nth-child(1) {
-    border-bottom: 1px solid #fff;
-}*/
+.weak-wrap .weak-id span:nth-child(1) {
+    margin-left: 18px;
+}
 
 .weak-wrap .weak-content span:nth-child(2) {
     padding-right: 10px;
@@ -24375,10 +24380,41 @@ margin-left: -1.25rem
     top:0;
 }
 
-#world-map svg, #korea-map svg, #seoul-map svg, #seongnam-map svg{
-    width: 100%;
-    height: 100% !important;
+.table-report td {
+    vertical-align: middle;
 }
 
+.table-report th:nth-child(2) {
+    width: 60%;
+}
 
+.table-report th:nth-child(3) {
+    width: 20%;
+}
+
+.table-report tbody tr td:last-child {
+    text-align: center;
+}
+
+#datatableCDefault_filter {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#datatableDDefault_filter {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#datatableDDefault_filter {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.nav-border {
+    border: none;
+}
 

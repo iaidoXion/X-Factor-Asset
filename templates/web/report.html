@@ -3,7 +3,362 @@
 {% block content %}
 {% load static %}
 
+<!-- BEGIN #content -->
+<div id="content" class="app-content">
+    <!-- BEGIN page-header -->
+    <h1 class="page-header">
+        보고서
+    </h1>
+    <!-- END page-header -->
+    <!-- BEGIN row -->
+    <div class="row">
+        <div id="tabsV2" class="mb-5">
+            <ul class="nav nav-tabs nav-tabs-v2 mb-3 fw-bold justify-content-end nav-border">
+                <li class="nav-item me-3">
+                    <a href="#report-daily" class="nav-link active px-0 py-1" data-bs-toggle="tab">일/별</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a href="#report-month" class="nav-link px-0 py-1" data-bs-toggle="tab">주/별</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a href="#report-year" class="nav-link px-0 py-1" data-bs-toggle="tab">월/별</a>
+                </li>
+            </ul>
+            <div class="card">
+                <!-- BEGIN card-body -->
+                <div class="card-body">
+                    <!-- BEGIN #datatable -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="report-daily">
+                            <table id="datatableCDefault" class="table table-report text-nowrap" width="100%" >
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>리포트 이름</th>
+                                        <th>생성 일자</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>1</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="report-month">
+                            <table id="datatableDDefault" class="table table-report text-nowrap" width="100%" >
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>리포트 이름</th>
+                                        <th>생성 일자</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>1</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="report-year">
+                            <table id="datatableEDefault" class="table table-report text-nowrap" width="100%" >
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>리포트 이름</th>
+                                        <td>생성 일자</td>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <tr>
+                                        <td>1</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>A Report (그룹별 장애 징후 감지)</td>
+                                        <td>2022-05-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>B Report (자산 항목 상위 5개)</td>
+                                        <td>2022-06-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>C Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-07-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>D Report (자산 항목 일단위)</td>
+                                        <td>2022-08-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>E Report (그룹별 장애 징후 감지 모니터링)</td>
+                                        <td>2022-09-26</td>
+                                        <td><button type="button" class="btn btn-outline-warning" value="print">다운로드</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END #datatable -->
 
+                </div>
+                <!-- END card-body -->
+                <div class="card-arrow">
+							<div class="card-arrow-top-left"></div>
+							<div class="card-arrow-top-right"></div>
+							<div class="card-arrow-bottom-left"></div>
+							<div class="card-arrow-bottom-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END row -->
+
+</div>
+<!-- END #content -->
 
 
 

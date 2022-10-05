@@ -47,3 +47,15 @@ def assetweb(request):
 def report(request):
     returnData = { 'menuList': menuListDB }
     return render(request, 'web/report.html', returnData)
+
+def reportdaily(request):
+    returnData = { 'menuList': menuListDB }
+    return render(request, 'web/report_daily.html', returnData)
+
+def reportmonthly(request):
+    returnData = { 'menuList': menuListDB }
+    return render(request, 'web/report_monthly.html', returnData)
+
+def reportannual(request):
+    returnData = { 'menuList': menuListDB }
+    return render(request, 'web/report_annual.html', returnData)
