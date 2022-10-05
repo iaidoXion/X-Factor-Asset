@@ -13,4 +13,7 @@ urlpatterns = [
     path('updateform/', views.updateform, name='updateform'),
     path('update/', views.update, name='update'),
     path('dashboard/', base_views.dashboard, name='dashboard'),
+    path('reportdaily/', base_views.reportdaily, name='reportdaily'),
+    path('reportmonthly/', base_views.reportmonthly, name='reportmonthly'),
+    path('reportannual/', base_views.reportannual, name='reportannual'),
 ]

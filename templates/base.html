@@ -38,11 +38,16 @@
     <link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet" />
     <!-- ================== END core-css ================== -->
 
-   	<!-- ================== BEGIN page-css ================== -->
+   	<!-- ================== BEGIN datatable-css ================== -->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}">
-	<!-- ================== END page-css ================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}">
+	<!-- ================== END datatable-css ================== -->
+
+    <!-- ================== BEGIN daterangepicker-css ================== -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/bootstrap-daterangepicker/daterangepicker.css' %}">
+	<!-- ================== END daterangepicker-css ================== -->
 
     <!-- ================== BEGIN swiper-CSS ================== -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/swiper-bundle.min.css' %}">
@@ -107,7 +112,11 @@
 <script src="{% static 'assets/plugins/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js' %}"></script>
 <script src="{% static 'assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
 <script src="{% static 'assets/plugins/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
+<script src="{% static 'assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'assets/plugins/moment/min/moment.min.js' %}"></script>
+<script src="{% static 'assets/plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
 <script src="{% static 'assets/js/demo/table-plugins.demo.js' %}"></script>
+
 <!-- ================== END TABLE-js ================== -->
 
 <script src="{% static 'js/common/nav.js' %}"></script>

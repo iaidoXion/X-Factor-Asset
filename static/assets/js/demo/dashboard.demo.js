@@ -468,7 +468,8 @@ var apexLineChartOptions = {
 		},
 		/*colors: ['rgba(' + app.color.themeRgb + ', .37)', 'rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],*/
         /*colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c", "#41341f"],*/
-        colors: ["#FFB573", "#DB674B", "#FF8811", "#EDAD09"],
+        /*colors: ["#FFB573", "#DB674B", "#FF8811", "#EDAD09"],*/
+        colors: ["#ff9f0c", "#d08412", "#a16916", "#71501c"],
 		dataLabels: {
 			enabled: false,
 		},
