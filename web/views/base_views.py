@@ -44,6 +44,10 @@ def assetweb(request):
     returnData = { 'menuList': menuListDB }
     return render(request, 'web/asset.html', returnData)
 
+def assetDetailweb(request):
+    returnData = { 'menuList': menuListDB }
+    return render(request, 'web/asset_detail.html', returnData)
+
 def report(request):
     returnData = { 'menuList': menuListDB }
     return render(request, 'web/report.html', returnData)

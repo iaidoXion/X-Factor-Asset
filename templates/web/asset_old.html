@@ -1,0 +1,616 @@
+<!--
+{% extends 'base.html' %}
+{% load web_filter %}
+{% block content %}
+{% load static %}
+
+-->
+
+<!-- BEGIN #content -->
+<div id="content" class="app-content">
+	<!-- BEGIN page-header -->
+	<h1 class="page-header">
+		보안 취약점 진단
+	</h1>
+	<!-- END page-header -->
+	<!-- BEGIN row -->
+	<div class="row">
+		<!-- BEGIN card-body -->
+		<div class="card-body">
+			<!-- title -->
+			<div class="d-flex align-items-center mb-2">
+				<!-- BEGIN #datatable -->
+				<div id=datatable" class="datatable w-100">
+					<div class="card">
+						<div class="card-body">
+							<table id="datatableDefault" class="table text-nowrap w-100">
+								<thead>
+								<tr>
+									<th>No</th>
+									<th>컴퓨터 ID</th>
+									<th>호스트 이름</th>
+									<th>OS 버전</th>
+									<th>IP 주소</th>
+									<th>자산 타입</th>
+									<th>접속 일자</th>
+									<th>진단 항목</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>1</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>272744077</td>
+									<td>Dj Lee</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.41</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>1520637848</td>
+									<td>Laptop-7n285vtk</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>1772503912</td>
+									<td>aimaster</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.1.49</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>3492692685</td>
+									<td>Desktop-369dovsm</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>2778213263</td>
+									<td>li-macbookpro.local</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Mac</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>239410865</td>
+									<td>Desktop-s1tfsad</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>272744077</td>
+									<td>Dj Lee</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.41</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>1520637848</td>
+									<td>Laptop-7n285vtk</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>1772503912</td>
+									<td>aimaster</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.1.49</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>3492692685</td>
+									<td>Desktop-369dovsm</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>2778213263</td>
+									<td>li-macbookpro.local</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Mac</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>239410865</td>
+									<td>Desktop-s1tfsad</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>239410865</td>
+									<td>Desktop-s1tfsad</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>21</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>22</td>
+									<td>272744077</td>
+									<td>Dj Lee</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.41</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>23</td>
+									<td>1520637848</td>
+									<td>Laptop-7n285vtk</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>24</td>
+									<td>1772503912</td>
+									<td>aimaster</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.1.49</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>25</td>
+									<td>3492692685</td>
+									<td>Desktop-369dovsm</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>26</td>
+									<td>2778213263</td>
+									<td>li-macbookpro.local</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.52</td>
+									<td>Mac</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>27</td>
+									<td>239410865</td>
+									<td>Desktop-s1tfsad</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>28</td>
+									<td>239410865</td>
+									<td>Desktop-s1tfsad</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Desktop</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>29</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								<tr>
+									<td>30</td>
+									<td>1681774717</td>
+									<td>Mj Kim</td>
+									<td>Windows (10.0.19044)</td>
+									<td>192.168.0.3</td>
+									<td>Notebook</td>
+									<td>2022-08-02<br>14:00:00</td>
+									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="card-arrow">
+							<div class="card-arrow-top-left"></div>
+							<div class="card-arrow-top-right"></div>
+							<div class="card-arrow-bottom-left"></div>
+							<div class="card-arrow-bottom-right"></div>
+						</div>
+
+					</div>
+				</div>
+				<!-- END #datatable -->
+			</div>
+		</div>
+		<!-- END card-body -->
+	</div>
+	<!-- END row -->
+
+	<div class="modal fade border-none" id="modalXl">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="weak-wrap">
+					<div class="weakItem weak-id">
+						<span><i class="fas fa-user fa-fw me-1"></i>컴퓨터 ID :</span>
+						<span>1681774717</span>
+					</div>
+					<div class="weakItem weak-content">
+						<span class="weak-title">양호:</span>
+						<span class="weak-num">30(개)</span>
+						<span class="weak-title">취약:</span>
+						<span class="weak-num">10(개)</span>
+					</div>
+					<div class="weakItem weak-state">
+						<select id="weak-box" class="form-select form-select-sm weakBox">
+							<option value="">전체</option>
+							<option value="양호">양호</option>
+							<option value="취약">취약</option>
+						</select>
+					</div>
+				</div>
+				<!-- BEGIN #datatableB -->
+				<div id="datatableB" class="datatable w-100 h-100" style="margin: 0 auto;">
+					<div class="card" >
+						<div class="card-body">
+							<table id="datatableBDefault" class="table text-nowrap w-100 h-100">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>진단 항목</th>
+										<th>상태</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>관리자 계정 이름 변경 여부 (설정됨 - 양호 / 설정 안 됨 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>게스트 계정 활성화 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>현재 계정 외 활성화 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>계정 잠금 횟수 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>해독 가능 암호화 사용 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>관리자 그룹의 추가 관리자 활성화 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>Everyone 사용 권한 적용 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>계정 잠금 기간 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>패스워드 복잡성 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>패스워드 최소 암호 길이 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td>패스워드 최대 사용 기간 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td>패스워드 최소 사용 기간 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>13</td>
+										<td>마지막 사용자 이름 표시 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>14</td>
+										<td>비지정 사용자의 로컬 로그온 허용 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>15</td>
+										<td>익명 SID 변환 허용 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>16</td>
+										<td>최근 암호 기억 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>17</td>
+										<td>콘솔 로그온 시 로컬에서 빈 암호 사용 제한 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>18</td>
+										<td>원격 접속 가능한 별도의 계정 존재 여부 (존재함 - 양호 / 존재 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>19</td>
+										<td>취약한 패스워드 점검 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>20</td>
+										<td>Tomcat 기본 계정 설정 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>21</td>
+										<td>관리자 계정 이름 변경 여부 (설정됨 - 양호 / 설정 안 됨 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>22</td>
+										<td>게스트 계정 활성화 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>23</td>
+										<td>현재 계정 외 활성화 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>24</td>
+										<td>계정 잠금 횟수 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>25</td>
+										<td>해독 가능 암호화 사용 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>26</td>
+										<td>관리자 그룹의 추가 관리자 활성화 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>27</td>
+										<td>Everyone 사용 권한 적용 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>28</td>
+										<td>계정 잠금 기간 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>29</td>
+										<td>패스워드 복잡성 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>30</td>
+										<td>패스워드 최소 암호 길이 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>31</td>
+										<td>패스워드 최대 사용 기간 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>32</td>
+										<td>패스워드 최소 사용 기간 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>33</td>
+										<td>마지막 사용자 이름 표시 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>취약</td>
+									</tr>
+									<tr>
+										<td>34</td>
+										<td>비지정 사용자의 로컬 로그온 허용 여부 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>35</td>
+										<td>익명 SID 변환 허용 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>36</td>
+										<td>최근 암호 기억 설정 여부 (사용함 - 양호 / 사용 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>37</td>
+										<td>콘솔 로그온 시 로컬에서 빈 암호 사용 제한 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>38</td>
+										<td>원격 접속 가능한 별도의 계정 존재 여부 (존재함 - 양호 / 존재 안 함 - 취약)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>39</td>
+										<td>취약한 패스워드 점검 (존재함 - 취약 / 존재 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+									<tr>
+										<td>40</td>
+										<td>Tomcat 기본 계정 설정 여부 (사용함 - 취약 / 사용 안 함 - 양호)</td>
+										<td>양호</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="card-arrow">
+							<div class="card-arrow-top-left"></div>
+							<div class="card-arrow-top-right"></div>
+							<div class="card-arrow-bottom-left"></div>
+							<div class="card-arrow-bottom-right"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END #datatableB -->
+		</div>
+	</div>
+</div>
+<!-- END #content -->
+
+
+<!--
+
+
+{% endblock %}-->
