@@ -17,7 +17,7 @@ apiUrl = SETTING['API']['apiUrl']
 SesstionKeyPath = SETTING['API']['PATH']['SesstionKey']
 
 
-
+# hi
 def signup(request):
     if request.method == "GET":
         return render(request, 'common/signup.html')
