@@ -66,7 +66,7 @@ var handleRenderChart = function () {
       labels: {
         style: {
           colors: "#fff",
-          fontSize: "8px",
+          fontSize: "9px",
           fontFamily: app.font.family,
           fontWeight: 400,
           cssClass: "apexcharts-xaxis-label",
@@ -79,7 +79,7 @@ var handleRenderChart = function () {
       labels: {
         style: {
           colors: "#fff",
-          fontSize: "8px",
+          fontSize: "9px",
           fontFamily: app.font.family,
           fontWeight: 400,
           cssClass: "apexcharts-xaxis-label",
@@ -377,7 +377,7 @@ var apexColumnChartOptions = {
 				show: true,
                 style: {
 					colors: '#fff',
-					fontSize: '8px',
+					fontSize: '9px',
 					cssClass: 'apexcharts-xaxis-label',
 				}
 			}
@@ -550,7 +550,7 @@ var apexPieChartOptions = {
 		plotOptions: {
 			pie: {
 				dataLabels: {
-					offset: -10
+					offset: -8
 				}
 			}
 		},
@@ -558,12 +558,12 @@ var apexPieChartOptions = {
 			enabled: true,
 			formatter(val, opts) {
 				const name = opts.w.globals.labels[opts.seriesIndex]
-				return [name, val.toFixed(1) + '%']
+				return [val.toFixed(1) + '%']
 			},
             style: {
-                fontSize: '10px',
+                fontSize: '12px',
                 colors: [app.color.white],
-                fontWeight: 300
+                fontWeight: 400
             },
 //			dropShadow: {
 //				enabled: true,
@@ -586,12 +586,12 @@ var apexPieChartOptions = {
 		tooltip: {
 			theme: 'dark',
 			x: {
-				show: false
+				show: true
 			},
 			y: {
 				title: {
 					formatter: function (val) {
-						return "Count: "
+						return '' + val +"<br>" +" Count:"
 					}
 				},
 				formatter: (value) => { return '' + value },
@@ -634,9 +634,9 @@ var apexDonutChartOptions = {
 				return [val.toFixed(1) + '%']
 			},
             style: {
-                fontSize: '10px',
+                fontSize: '12px',
                 colors: [app.color.white],
-                fontWeight: 300
+                fontWeight: 400
             },
 //			dropShadow: {
 //				enabled: true,
@@ -934,12 +934,12 @@ var apexRadarChartOptions = {
             enabled: true,
             formatter(val, opts) {
                 const name = opts.w.globals.labels[opts.seriesIndex]
-                return [name, val.toFixed(1) + '%']
+                return [val.toFixed(1) + '%']
             },
             style: {
-                fontSize: '10px',
+                fontSize: '12px',
                 colors: [app.color.white],
-                fontWeight: 300
+                fontWeight: 400
             },
 //            dropShadow: {
 //				enabled: true,
@@ -954,7 +954,7 @@ var apexRadarChartOptions = {
             show: false
         },
         title: {
-            text: 'RAM Usage Exceeded',
+            text: 'RAM 사용량 60% 초과',
             align: 'left',
         },
         legend: {
@@ -986,7 +986,7 @@ var apexRadarChartOptions = {
             y: {
                 title: {
                     formatter: function (val) {
-                            return "Count: "
+                            return '' + val +"<br>" +" Count:"
                     }
                 },
                     formatter: (value) => { return '' + value },
@@ -1024,19 +1024,19 @@ var apexRadarChartOptions = {
 			}
 		},
 		title: {
-			text: 'CPU Consumption is Excess',
+			text: 'CPU 사용량 60% 초과',
 			align: 'left',
 		},
 		dataLabels: {
 			enabled: true,
 			formatter(val, opts) {
 				const name = opts.w.globals.labels[opts.seriesIndex]
-				return [name, val.toFixed(1) + '%']
+				return [val.toFixed(1) + '%']
 			},
             style: {
-                fontSize: '10px',
+                fontSize: '12px',
                 colors: [app.color.white],
-                fontWeight: 300
+                fontWeight: 400
             },
 //			dropShadow: {
 //				enabled: true,
@@ -1080,7 +1080,7 @@ var apexRadarChartOptions = {
 			y: {
 				title: {
 					formatter: function (val) {
-						return "Count: "
+						return '' + val +"<br>" +" Count:"
 					}
 				},
 				formatter: (value) => { return '' + value },
@@ -1133,7 +1133,7 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
             style: {
                 fontSize: '10px',
                 colors: [app.color.white],
-                fontWeight: 300
+                fontWeight: 400
             },
 //			dropShadow: {
 //				enabled: true,
@@ -1194,7 +1194,7 @@ for (var i=0; i < a.TotalTopDataList.nodeDataList.length; i++){
 			y: {
 				title: {
 					formatter: function (val) {
-						return "Count: "
+						return '' + val +"<br>" +" Count:"
 					}
 				},
 				formatter: (value) => { return '' + value },

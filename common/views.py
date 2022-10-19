@@ -8,6 +8,7 @@ with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
 DataLoadingType = SETTING['MODULE']['DataLoadingType']
 DBHost = SETTING['DB']['DBHost']
+DBPort = SETTING['DB']['DBPort']
 DBName = SETTING['DB']['DBName']
 DBUser = SETTING['DB']['DBUser']
 DBPwd = SETTING['DB']['DBPwd']
@@ -17,7 +18,7 @@ apiUrl = SETTING['API']['apiUrl']
 SesstionKeyPath = SETTING['API']['PATH']['SesstionKey']
 
 
-
+# hi
 def signup(request):
     if request.method == "GET":
         return render(request, 'common/signup.html')
@@ -116,7 +117,7 @@ def updateform(request):
             user_id = request.POST.get('user_id')
             user_pw = request.POST.get('user_pw')
             hashpassword = hashlib.sha256(user_pw.encode()).hexdigest()
-            Conn = psycopg2.connect('host={0} dbname={1} user={2} password={3}'.format(DBHost, DBName, DBUser, DBPwd))
+            Conn = psycopg2.connect('host={0} port={1} dbname={2} user={3} password={4}'.format(DBHost, DBPort, DBName, DBUser, DBPwd))
             Cur = Conn.cursor()
 
             query ="""
@@ -215,7 +216,7 @@ def selectUsers(user_id, user_pw):
         hashpassword = hashlib.sha256(user_pw.encode()).hexdigest()
         #print(hashpassword)
 
-        Conn = psycopg2.connect('host={0} dbname={1} user={2} password={3}'.format(DBHost, DBName, DBUser, DBPwd))
+        Conn = psycopg2.connect('host={0} port={1} dbname={2} user={3} password={4}'.format(DBHost, DBPort, DBName, DBUser, DBPwd))
         Cur = Conn.cursor()
 
         query = """
@@ -241,7 +242,7 @@ def selectUsers(user_id, user_pw):
 def createUsers(user_id,user_pw,user_name,user_phone,user_email,user_dep,user_team,user_rank):
     try:
         hashpassword = hashlib.sha256(user_pw.encode()).hexdigest()
-        Conn = psycopg2.connect('host={0} dbname={1} user={2} password={3}'.format(DBHost, DBName, DBUser, DBPwd))
+        Conn = psycopg2.connect('host={0} port={1} dbname={2} user={3} password={4}'.format(DBHost, DBPort, DBName, DBUser, DBPwd))
         Cur = Conn.cursor()
         query =""" 
         INSERT INTO 
@@ -273,7 +274,7 @@ def createUsers(user_id,user_pw,user_name,user_phone,user_email,user_dep,user_te
 def updateUsers(user_id,user_pw,user_name,user_phone,user_email,user_dep,user_team,user_rank):
     try:
         hashpassword = hashlib.sha256(user_pw.encode()).hexdigest()
-        Conn = psycopg2.connect('host={0} dbname={1} user={2} password={3}'.format(DBHost, DBName, DBUser, DBPwd))
+        Conn = psycopg2.connect('host={0} port={1} dbname={2} user={3} password={4}'.format(DBHost, DBPort, DBName, DBUser, DBPwd))
         Cur = Conn.cursor()
         query = """ 
         UPDATE

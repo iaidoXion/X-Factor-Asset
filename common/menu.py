@@ -7,6 +7,7 @@ with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
 DataLoadingType = SETTING['MODULE']['DataLoadingType']
 DBHost = SETTING['DB']['DBHost']
+DBPort = SETTING['DB']['DBPort']
 DBName = SETTING['DB']['DBName']
 DBUser = SETTING['DB']['DBUser']
 DBPwd = SETTING['DB']['DBPwd']
@@ -16,7 +17,7 @@ MenuTNM = SETTING['DB']['MenuTNM']
 def MenuSetting():
     try:
         MSDL = []
-        Conn = psycopg2.connect('host={0} dbname={1} user={2} password={3}'.format(DBHost, DBName, DBUser, DBPwd))
+        Conn = psycopg2.connect('host={0} port={1} dbname={2} user={3} password={4}'.format(DBHost, DBPort, DBName, DBUser, DBPwd))
         Cur = Conn.cursor()
 
         query = """
