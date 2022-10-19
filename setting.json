@@ -27,7 +27,7 @@
     }
   },
    "API" : {
-     "apiUrl": "https://192.168.5.100",
+     "apiUrl": "https://1.223.168.92:49105",
      "ContentType": "application/json",
      "PATH": {
        "SesstionKey": "/api/v2/session/login",
@@ -47,7 +47,8 @@
     "DataLoadingType" : "DB"
   },
   "DB" : {
-    "DBHost" : "192.168.5.160",
+    "DBHost" : "1.223.168.92",
+    "DBPort" : "40011",
     "DBName" : "postgres",
     "DBUser" : "postgres",
     "DBPwd" : "psql",

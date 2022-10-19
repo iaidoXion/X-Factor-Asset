@@ -24465,9 +24465,31 @@ margin-left: -1.25rem
 }
 /* end - datatable weak detail modal Table css */
 
+/* begin - table-report css */
+.table-report tr th:first-child, .table-report tr td:first-child {
+    text-align: center;
+}
+
+.table-report td {
+    vertical-align: middle;
+}
+
+.table-report th:nth-child(2) {
+    width: 70%;
+}
+
+.table-report th:nth-child(3) {
+    width: 20%;
+}
+
+.table-report tbody tr td:last-child {
+    text-align: center;
+}
+/* end - table-report css */
 
 /* begin - tab css */
 .nav-border {
     border: none;
 }
 /* end - tab css */
+
