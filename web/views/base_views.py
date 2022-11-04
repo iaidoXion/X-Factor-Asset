@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.http import HttpResponse
 from web.model.dashboard_function import DashboardData
+from web.model.dashboard_function import AssetData
 from common.menu import MenuSetting
+from pprint import pprint
 import json
 menuListDB = MenuSetting()
 
@@ -41,12 +45,27 @@ def dashboard(request):
 
 
 def assetweb(request):
-    returnData = { 'menuList': menuListDB }
-    return render(request, 'web/asset.html', returnData)
+    res_data={}
+    if not 'sessionid' in request.session :
+        res_data['error'] = '먼저 로그인을 해주세요.'
+        return render(request, 'common/login.html', res_data)
+    else :
+        Data = AssetData('Count', '')
+        returnData = { 'menuList': menuListDB, 'data' : Data}
+        return render(request, 'web/asset.html', returnData)
 
 def assetDetailweb(request):
-    returnData = { 'menuList': menuListDB }
+    swv=request.GET.get('swv')
+    Data = AssetData('SWV', swv)
+    SWV_API = AssetData('SWV_API', swv)
+    returnData = { 'menuList': menuListDB , 'data' : Data, 'swv' : SWV_API}
     return render(request, 'web/asset_detail.html', returnData)
+
+def assetDetailweb_api(request):
+    cid=request.GET.get('cid')
+    CPIDV = AssetData('CPID_API', cid)
+    returnData = {"CPIDV" : CPIDV}
+    return JsonResponse(returnData, status=200)
 
 def report(request):
     returnData = { 'menuList': menuListDB }

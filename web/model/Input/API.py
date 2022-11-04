@@ -1,5 +1,8 @@
 import requests
 import json
+import time
+from pprint import pprint
+from ast import literal_eval
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
@@ -23,32 +26,9 @@ def plug_in(SK, APITYPE):
             resCode = response.status_code
             returnData = response.json()['data']['session']
 
-        if APITYPE == 'Sensor_hyd' :
-            path = SensorAPIPath + HYD_SensorID
-            urls = apiUrl + path
-            headers = {'session': SK, 'Content-Type': ContentType}
-            response = requests.request("GET", urls, headers=headers, verify=False)
-            resCode = response.status_code
-            responseText = response.text
-            
-            responseTextJson = json.loads(responseText)
-            returnData = []
-            
-            savedQuestionId = responseTextJson['data']['result_sets'][0]['saved_question_id']
-            responseDataJson = responseTextJson['data']['result_sets'][0]['rows']
-            
-            for i in range(len(responseDataJson)) :
-                DL = []
-                if "[current result unavailable]" in responseDataJson[i]['data'][0][0]['text'] or 'TSE-Error' in responseDataJson[i]['data'][0][0]['text']:
-                    DL.append("Data cannot be read")
-                else :
-                    for j in responseDataJson[i]['data'][0] :
-                        ex = j
-                    # print(responseDataJson[i]['data'][0])
-                # if responseDataJson[i]['data']['text']
-
         if APITYPE == 'Sensor' :
             path = SensorAPIPath + Common_SensorID
+            print(path)
             urls = apiUrl + path
             headers = {'session': SK, 'Content-Type': ContentType}
             response = requests.request("GET", urls, headers=headers, verify=False)
@@ -100,4 +80,126 @@ def plug_in(SK, APITYPE):
         return returnList
     except ConnectionError as e:
         print(e)
+        
+def hyd_plug_in(SK, APITYPE, data) :
+    if APITYPE == 'Auth' :
+        path = SesstionKeyPath
+        urls = apiUrl + path
+        headers = '{"username" : "' + TNID + '","domain":"",  "password":"' + TNPWD + '"}'
+        response = requests.post(urls, data=headers, verify=False)
+        resCode = response.status_code
+        returnData = response.json()['data']['session']
+    if APITYPE == 'Count' :
+        path = '/api/v2/result_data/saved_question/3450'
+        urls = apiUrl + path
+        headers = {'session': SK, 'Content-Type': ContentType}
+        response = requests.request("GET", urls, headers=headers, verify=False)
+        resCode = response.status_code
+        list = []
+        lst = [i for i in range(1,20+1)]
+        dict = {}
+        for i in response.json()['data']['result_sets'][0]['rows'] :
+            if 'Good' in i['data'][0][0]['text'] :
+                continue
+            elif 'TSE-Error' in i['data'][0][0]['text'] :
+                continue
+            dict = literal_eval(i['data'][0][0]['text'])
+            if int(dict['SWV'][4:]) in lst :
+                lst.remove(int(dict['SWV'][4:]))
+            dict['value'] = i['data'][1][0]['text']
+            del dict['status']
+            list.append(dict)
+        for i in lst :
+            if len(str(i)) == 1 :
+                i = str(0) + str(i)
+            dict = {}
+            dict['SWV'] = 'SW1-' + str(i)
+            dict['value'] = 0
+            list.append(dict)
+        
+        list = sorted(list, key= lambda x: x['SWV'])
+        returnData = list
+    
+    if APITYPE == 'SWV' :
+        
+        query_text = ""
+        question_list = ['Tanium Client IP Address', 'Computer Name', 'OS Platform', 'Last Reboot', 'Chassis Type']
+        for i in range(len(question_list)) :
+            query_text = query_text + " and " + question_list[i]
+        query_text = "Get WEAK_SW1_WINDOW matches \"{'SWV': '" + data + "', 'status': 'Weak'}\"" + query_text +" from all machines with OS Platform contains Window"
+        
+        path = '/api/v2/questions'
+        urls = apiUrl + path
+        headers = {'session': SK, 'Content-Type': ContentType, 'Accept': 'text/plain'}
+        body = {"query_text" : query_text}
+        response = requests.post(urls, headers=headers, json=body, verify=False)
+        resCode = response.status_code
+        question_ID = response.json()['data']['id']
+        
+        if resCode == 200 :
+            time.sleep(5)
+            path = '/api/v2/result_data/question/' + str(question_ID)
+            urls = apiUrl + path
+            headers = {'session': SK, 'Content-Type': ContentType}
+            response = requests.request("GET", urls, headers=headers, verify=False)
+            resCode = response.status_code
+            list = []
+            dict_list = []
+            
+            for j in response.json()['data']['result_sets'][0]['columns'] : 
+                dict_list.append(j['name'].replace(" ", ""))
+            for i in response.json()['data']['result_sets'][0]['rows'] :
+                if i['data'][0][0]['text'] == '[no results]' or 'TSE' in i['data'][0][0]['text']:
+                    continue
+                dict = {}
+                dict['cid'] = i['cid']
+                count = 0
+                for j in dict_list :
+                    if len(i['data'][count]) > 1 :
+                        count_list = []
+                        for k in i['data'][count] :
+                            count_list.append(k['text'])
+                        dict[j] = count_list
+                    else : 
+                        dict[j] = i['data'][count][0]['text']
+                    count = count + 1
+                list.append(dict)
+            if len(list) == 0 :
+                returnData = ['취약점이 없습니다.']
+            returnData = list
+        else :
+            returnData = "Fail"      
+    
+    if APITYPE == 'CPID_API' :
+        ComputerID =data
+        
+        query_text = "Get WEAK_SW1_WINDOW and Computer ID from all machines with Computer ID contains \"" + ComputerID + "\""
+        
+        path = '/api/v2/questions'
+        urls = apiUrl + path
+        headers = {'session': SK, 'Content-Type': ContentType, 'Accept': 'text/plain'}
+        body = {"query_text" : query_text}
+        response = requests.post(urls, headers=headers, json=body, verify=False)
+        resCode = response.status_code
+        question_ID = response.json()['data']['id']
+        
+        if resCode == 200 :
+            time.sleep(4)
+            path = '/api/v2/result_data/question/' + str(question_ID)
+            urls = apiUrl + path
+            headers = {'session': SK, 'Content-Type': ContentType}
+            response = requests.request("GET", urls, headers=headers, verify=False)
+            resCode = response.status_code
+            list = []
+            dict_list = []
+            if len(response.json()['data']['result_sets'][0]['rows'][0]) == 0:
+                returnData = "Fail"
+            else :
+                for i in response.json()['data']['result_sets'][0]['rows'][0]['data'][0] : 
+                    list.append(i['text'])
+            returnData = list
+        else :
+            returnData = "Fail"  
+    return returnData
+
 

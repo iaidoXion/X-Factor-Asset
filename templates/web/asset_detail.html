@@ -3,7 +3,30 @@
 {% block content %}
 {% load static %}
 
+<script src="{% static 'js/jquery/ajax.jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery/httpRequest.js' %}"></script>
+<script>
+	function send_api(data){
+        $.ajax({
+            type:"GET",
+            url:"api",
+            async : false,
+			data : {
+				"cid" : data
+			},
+            success : function(data){ 
+				alert('success');
+				console.log(data);
+			},
+            error : function(data1){
+                alert('호출실패');
+                alert(JSON.stringify(data1));
+            }
+        });
 
+
+	}
+</script>
 <!-- BEGIN #content -->
 <div id="content" class="app-content">
 	<!-- BEGIN page-header -->
@@ -18,13 +41,17 @@
 			<div class="card-body h-130px p-2">
 				<div class="detail-content">
 					<ul>
-						<li>분류: SW1-01</li>
-						<li>진단 항목: Administrator 계정 이름 바꾸기</li>
-						<li>진단 항목 설명: 일반적으로 관리자 계정을 Administrator로 설정한 경우 로그온 시도 실패 횟수의 제한이 없는 점을 이용해 악의적인 사용자가 패스워드 유추 공격을 계속해서 시도할 수 있으므로 점검한다.</li>
-						<li>판단기준:
-							<p>- 양호: Administrator Default 계정 이름을 변경한 경우</p>
-							<p>- 취약: Administrator Default 계정 이름을 변경하지 않은 경우</p>
-						</li>
+						{% if data.item %}
+							<li>분류 : {{data.item.0.SWV}}</li>
+							<li>진단 항목 : {{data.item.0.Title}}</li>
+							<li>진단 항목 설명: {{data.item.0.Text}}</li>
+							<li>판단기준:
+								<p>- 양호: {{data.item.0.Judge.0}}</p>
+								<p>- 취약: {{data.item.0.Judge.1}}</p>
+							</li>
+						{% else %}
+							<li> Data 연동에 실패했습니다 </li>
+						{% endif%}
 					</ul>
 				</div>
 			</div>
@@ -40,7 +67,9 @@
 				<!-- BEGIN #weak detail datatable -->
 				<div class="datatable w-100">
 					<div class="card">
-						<div class="card-body">
+						<div class="ex">
+						</div>
+						<div class="card-body" id='swv_api'>
 							<table id="weakTableDetail" class="table weakDetail text-nowrap" width="100%">
 								<thead>
 								<tr>
@@ -55,206 +84,24 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td>1</td>
-									<td>1681774717</td>
-									<td>Mj Kim</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>272744077</td>
-									<td>Dj Lee</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.41</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>1520637848</td>
-									<td>Laptop-7n285vtk</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.52</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>1772503912</td>
-									<td>aimaster</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.1.49</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>3492692685</td>
-									<td>Desktop-369dovsm</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.52</td>
-									<td>Desktop</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>2778213263</td>
-									<td>li-macbookpro.local</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.52</td>
-									<td>Mac</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>239410865</td>
-									<td>Desktop-s1tfsad</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Desktop</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>1681774717</td>
-									<td>Mj Kim</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td>1681774717</td>
-									<td>Mj Kim</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>1681774717</td>
-									<td>Mj Kim</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>11</td>
-									<td>1681774717</td>
-									<td>Mj Kim</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>12</td>
-									<td>272744077</td>
-									<td>Dj Lee</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.41</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>13</td>
-									<td>1520637848</td>
-									<td>Laptop-7n285vtk</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.52</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>14</td>
-									<td>1772503912</td>
-									<td>aimaster</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.1.49</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>15</td>
-									<td>3492692685</td>
-									<td>Desktop-369dovsm</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.52</td>
-									<td>Desktop</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>16</td>
-									<td>2778213263</td>
-									<td>li-macbookpro.local</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.52</td>
-									<td>Mac</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>17</td>
-									<td>239410865</td>
-									<td>Desktop-s1tfsad</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Desktop</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>18</td>
-									<td>239410865</td>
-									<td>Desktop-s1tfsad</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Desktop</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>19</td>
-									<td>1681774717</td>
-									<td>Mj Kim</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
-								<tr>
-									<td>20</td>
-									<td>1681774717</td>
-									<td>Mj Kim</td>
-									<td>Windows (10.0.19044)</td>
-									<td>192.168.0.3</td>
-									<td>Notebook</td>
-									<td>2022-08-02</td>
-									<td><button type="button" class="btn btn-warning me-2" value="팝업창 호출" data-bs-toggle="modal" data-bs-target="#modalXl">확인</button></td>
-								</tr>
+									{% if swv %}
+									{%for item in swv.swv%}
+										<tr>
+											<td>{{forloop.counter}}</td>
+											<td>{{item.cid}}</td>
+											<td>{{item.ComputerName}}</td>
+											<td>{{item.OSPlatform}}</td>
+											<td>{{item.TaniumClientIPAddress}}</td>
+											<td>{{item.ChassisType}}</td>
+											<td>{{item.LastReboot}}</td>
+											<td><button type="button" class="btn btn-warning me-2" value=" " data-bs-toggle="modal" data-bs-target="#modalXl" onclick="send_api({{item.cid}});">확인</button></td>
+										</tr>
+									{% endfor %}
+									{% else %}
+									<tr>
+										<td> Data 연동에 실패했습니다 </td>
+									</tr>
+									{% endif%}
 								</tbody>
 							</table>
 						</div>
@@ -278,7 +125,7 @@
 				<div class="weak-wrap">
 					<div class="weak-item weak-id">
 						<span><i class="fas fa-user fa-fw me-1"></i>컴퓨터 ID :</span>
-						<span>1681774717</span>
+						<span>{{CPIDV}}</span>
 					</div>
 					<div class="weak-item weak-content">
 						<span class="weak-title">양호:</span>
