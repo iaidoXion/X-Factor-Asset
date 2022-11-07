@@ -104,10 +104,15 @@ def line_chart(data) :
         last = pd.merge(pd.merge(pd_list[0],pd_list[1],on='name', how='left', suffixes=["_1", '_2']),pd_list[2], on='name', how='left', suffixes=['_2', '_3'])
     elif len(ext_time) == 4 :
         last = pd.merge(pd.merge(pd.merge(pd_list[0],pd_list[1],on='name', how='left', suffixes=["_1", '_2']),pd_list[2], on='name', how='left', suffixes=['_2', '_3']), pd_list[3], on='name', how='left', suffixes=['_3', '_4'])
-    elif len(ext_time) == 5 :    
+    elif len(ext_time) == 5 : 
         last = pd.merge(pd.merge(pd.merge(pd.merge(pd_list[0],pd_list[1],on='name', how='left', suffixes=["_1", '_2']),pd_list[2], on='name', how='left', suffixes=['_2', '_3']), pd_list[3], on='name', how='left', suffixes=['_3', '_4']), pd_list[4], on='name', how='left', suffixes=['_4', '_5'])
-    
-    RD = last
+    for i in last.columns:
+        if 'value' in i:
+            for j in last[i] :
+                if str(j) == 'nan' :
+                    last[i] = last[i].fillna(0)
+
+    RD = last.fillna(method='ffill')
     return RD
 
 def alarm(data, type, case) :

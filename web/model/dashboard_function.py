@@ -1,6 +1,9 @@
 from web.model.Input.API import plug_in as IAPI
+from web.model.Input.API import hyd_plug_in as HYAPI
 from web.model.Input.DB import plug_in as IDPI
+from web.model.Input.DB import hyd_plug_in as HYDPI
 from web.model.Transform.DataFrame import plug_in as TDFPI
+from web.model.Transform.DataFrame import hyd_plug_in as HTDFPI
 from web.model.Transform.Dashboard import banner as TDBA, alarm as TDAL, line_chart as TDLC, chart_data as TDCD
 from web.model.Analysis.Statistics.Dashboard import calculation as ASDC, alarm_case_detection as ASDACD, network as ASDN, chart_data as ASDCD
 from collections import Counter
@@ -24,7 +27,6 @@ def DashboardData() :
             SK = IAPI('', 'Auth')
             EAYL = IDPI('asset', 'yesterday', '')
             sensorData = IAPI(SK['dataList'], 'Sensor')
-            sensorData_hyd = IAPI(SK['dataList'], 'Sensor_hyd')
             sensorAPI = sensorData['dataList']
             if ProjectType == 'System' :
                 # Asset Item Statistics
@@ -220,7 +222,33 @@ def DashboardData() :
     }
     return RD
 
-
+def AssetData(Param, data) :
+    SK = HYAPI('', 'Auth', '')
+    if Param == "Count" :
+        COUNT = HYAPI(SK, 'Count', '')
+        DB = HYDPI('sw1', '')
+        Merge = [COUNT, DB]
+        
+        ADJ = HTDFPI(Merge, 'Count')
+        
+        RD = {
+            'session' : SK,
+            'item' : ADJ.to_dict('records')
+        }
+    if Param == 'SWV' :
+        DB = HYDPI('SWV', data)
+        RD = {
+            'item' : DB
+        }
+    if Param == 'SWV_API' :
+        SWV = HYAPI(SK, 'SWV', data)
+        RD = {'swv' : SWV}
+    
+    if Param == 'CPID_API' :
+        CPV = HYAPI(SK, 'CPID_API', data)
+        RD = {'cpv' : CPV}
+    return RD
+    # sensorData_hyd = IAPI(SK['dataList'], 'Sensor_hyd')
 
 
 

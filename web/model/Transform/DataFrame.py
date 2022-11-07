@@ -4,6 +4,7 @@ from operator import itemgetter
 import pandas as pd
 from datetime import datetime
 from collections import Counter
+from pprint import pprint
 today = datetime.today().strftime("%Y-%m-%d")
 def plug_in(data, day, type):
     DFL = []
@@ -233,3 +234,11 @@ def plug_in(data, day, type):
         DFC = ['id', itemIndex, 'ip']
         DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
         return DF
+    
+def hyd_plug_in (data, type) :
+    if type == 'Count' :
+        data_A = pd.DataFrame(data[0])
+        data_B = pd.DataFrame(data[1])
+        DF = pd.merge(data_A, data_B, left_on='SWV', right_on='SWV', how='outer')
+        
+    return DF
