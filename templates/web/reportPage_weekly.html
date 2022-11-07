@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Factor Weekly Report</title>
+    <link rel="shortcunt icon" href='http://192.168.5.160:8000/static/img/X-Factor_favicon/favicon.ico'>
+
+    <link rel="stylesheet" href='http://192.168.5.160:8000/static/assets/css/vendor.min.css'>
+    <link rel="stylesheet" href='http://192.168.5.160:8000/static/assets/css/app.min.css'>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reportPageStyle/font/reportPage_font.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reportPageStyle/reportPage_daily.css' %}">
+</head>
+
+<body class="theme-orange">
+<div id="app" class="app pt-0">
+    <div class="weekly-report-wrap">
+        <!-- BEGIN weekly-report 1 page -->
+        <div class="weekly-report">
+            <div class="weekly-sub-page">
+                <!-- brand logo -->
+                <div class="sub-content brand">
+                    <div class="brand-logo">
+                        <img src="{% static 'css/reportPageStyle/images/XFactor_logo.png' %}" alt="x-factor로고">
+                    </div>
+                    <p class="brand-title">자산 리포트</p>
+                </div>
+                <!-- weekly-report-content -->
+                <div class="sub-content weekly-report-content">
+                    <div class="weekly-report-content-right">
+                        <div class="weekly-report-logo">
+                            <img src="{% static 'css/reportPageStyle/images/Tanium_logo.png' %}" alt="Tanium로고">
+                        </div>
+                        <p class="weekly-report-text">
+                            주간 자산 리포트
+                        </p>
+                    </div>
+                    <div class="weekly-report-content-left">
+                        <ul>
+                            <li>
+                                <p>리포트 생성일</p>
+                                <p>2022-09-28</p>
+                            </li>
+                            <li>
+                                <p>데이터 기간</p>
+                                <p>2022-09-20 00:00:00 ~ 2022-09-26 00:00:00</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BEGIN weekly-asset-state -->
+                <div class="sub-content weekly-asset-state">
+                    <div class="weekly-asset-state-title">
+                        <p>자산 통계 정보</p>
+                    </div>
+                    <div class="weekly-asset-state-content">
+                        <div class="weekly-asset-state-item">
+                            <div class="card h-100">
+                                <div class="card-body weekly-asset-state-frame">
+                                    <p class="weekly-asset-state-text">총 자산 수
+                                    </p>
+                                    <p class="weekly-asset-state-count">54</p>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weekly-asset-state-item">
+                            <div class="card h-100">
+                                <div class="card-body weekly-asset-state-frame">
+                                    <p class="weekly-asset-state-text">전주 대비 자산증감 수</p>
+                                    <p class="weekly-asset-state-count">35</p>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weekly-asset-state-item">
+                            <div class="card h-100">
+                                <div class="card-body weekly-asset-state-frame">
+                                    <p class="weekly-asset-state-text">주간 조치대상 자산 수</p>
+                                    <p class="weekly-asset-state-count">54</p>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weekly-asset-state-item">
+                            <div class="card h-100">
+                                <div class="card-body weekly-asset-state-frame">
+                                    <p class="weekly-asset-state-text">조치 완료된 자산 수</p>
+                                    <p class="weekly-asset-state-count">35</p>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END weekly-asset-state -->
+
+                <!-- BEGIN asset-device-state -->
+                <div class="sub-content asset-device-state">
+                    <div class="asset-device-state-title">
+                        <p>주간 자산 정보</p>
+                    </div>
+                    <div class="asset-device-state-sub-title">
+                        <p>자산 증감 현황 (Top 3)</p>
+                        <p>2022/09/20 ~ 2022/09/26</p>
+                    </div>
+                    <div class="asset-device-state-content">
+                        <div class="card h-280px">
+                            <div class="card-body asset-device-state-item d-flex">
+                                <div class="col-3 d-flex asset-device-item-content">
+                                    <div class="col-9 small">
+                                        <p class="asset-device-item text-truncate">Virtual</p>
+                                        <p class="asset-device-item text-truncate">Desktop</p>
+                                        <p class="asset-device-item text-truncate">NoteBook</p>
+                                        <p class="asset-device-item text-truncate">Rack</p>
+                                        <p class="asset-device-item text-truncate">Etc</p>
+                                    </div>
+                                    <div class="col-3 small">
+                                        <p class="asset-device-count">10</p>
+                                        <p class="asset-device-count">21</p>
+                                        <p class="asset-device-count">10</p>
+                                        <p class="asset-device-count">21</p>
+                                        <p class="asset-device-count">5</p>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div id="weeklyChart_deviceAsset"></div>
+                                </div>
+                            </div>
+                            <div class="card-arrow">
+                                <div class="card-arrow-top-left"></div>
+                                <div class="card-arrow-top-right"></div>
+                                <div class="card-arrow-bottom-left"></div>
+                                <div class="card-arrow-bottom-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END asset-device-state -->
+
+                <!-- BEGIN asset-device-list -->
+                <div class="sub-content asset-device-list">
+                    <div class="asset-action-frame">
+                        <div class="asset-action-sub-title">
+                            <p>금주 발생 조치 대상 자산 리스트 (Top 3)</p>
+                        </div>
+                        <div class="asset-action-content">
+                            <div class="card h-245px">
+                                <div class="card-body asset-action-item">
+                                    <div id="weeklyChart_actionAsset"></div>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="asset-completed-frame">
+                        <div class="asset-completed-sub-title">
+                            <p>금주 조치 완료된 자산 리스트</p>
+                        </div>
+                        <div class="asset-completed-content">
+                            <div class="card h-245px">
+                                <div class="card-body asset-completed-item">
+                                    <div id="weeklyChart_completedAsset"></div>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END asset-device-list -->
+            </div>
+        </div>
+        <!-- END weekly-report 1 page -->
+
+        <!-- BEGIN weekly-report 2 page -->
+        <div class="weekly-report">
+            <div class="weekly-sub-page">
+                <!-- BEGIN failure-symptom-state -->
+                <div class="sub-content failure-symptom-state">
+                    <div class="failure-symptom-state-title">
+                        <p>장애 징후</p>
+                    </div>
+                    <div class="failure-symptom-state-content">
+                        <div class="failure-symptom-case">
+                            <div class="failure-symptom-case-sub-title">
+                                <p>장애 징후 케이스별 주간 발생 현황</p>
+                            </div>
+                            <div class="failure-symptom-case-content">
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">CPU 사용량 > 80%
+                                            </p>
+                                            <p class="failure-symptom-case-count">54</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">메모리 사용량 > 80%
+                                            </p>
+                                            <p class="failure-symptom-case-count">35</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">Disk 사용량 > 90%
+                                            </p>
+                                            <p class="failure-symptom-case-count">36</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">시스템 Crash 발생 건</p>
+                                            <p class="failure-symptom-case-count">23</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="failure-symptom-case-content mt-2">
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">필수 S/W1 패치 필요</p>
+                                            <p class="failure-symptom-case-count">54</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">필수 S/W2 패치 필요</p>
+                                            <p class="failure-symptom-case-count">35</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">필수 S/W3 패치 필요</p>
+                                            <p class="failure-symptom-case-count">36</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="failure-symptom-case-item">
+                                    <div class="card h-100">
+                                        <div class="card-body failure-symptom-case-frame">
+                                            <p class="failure-symptom-case-text">필수 S/W4 패치 필요</p>
+                                            <p class="failure-symptom-case-count">23</p>
+                                        </div>
+                                        <div class="card-arrow">
+                                            <div class="card-arrow-top-left"></div>
+                                            <div class="card-arrow-top-right"></div>
+                                            <div class="card-arrow-bottom-left"></div>
+                                            <div class="card-arrow-bottom-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="failure-symptom-chart">
+                            <div class="failure-symptom-chart-sub-title">
+                                <p>주차별 장애 징후별 증감 그래프</p>
+                            </div>
+                            <div class="failure-symptom-chart-content">
+                                <div class="card">
+                                    <div class="card-body failure-symptom-chart-item">
+                                        <div class="failure-Symptom-chart-frame">
+                                            <div class="failure-Symptom-chart-list-frame">
+                                                <div id="weeklyChart_usedCPU"></div>
+                                                <p class="weeklyChart_text">CPU 사용량 > 80%</p>
+                                            </div>
+                                            <div class="failure-Symptom-chart-list-frame">
+                                                <div id="weeklyChart_usedMemory"></div>
+                                                <p class="weeklyChart_text">Memory 사용량 > 80%</p>
+                                            </div>
+                                            <div class="failure-Symptom-chart-list-frame">
+                                                <div id="weeklyChart_usedDisk"></div>
+                                                <p class="weeklyChart_text">Disk 사용량 > 80%</p>
+                                            </div>
+                                        </div>
+                                        <div class="failure-Symptom-chart-frame mt-3">
+                                            <div class="failure-Symptom-chart-list-frame">
+                                                <div id="weeklyChart_usedSystem"></div>
+                                                <p class="weeklyChart_text">시스템 Crash 발생 건</p>
+                                            </div>
+                                            <div class="failure-Symptom-chart-list-frame">
+                                                <div id="weeklyChart_usedSw1"></div>
+                                                <p class="weeklyChart_text">필수 S/W1 패치 필요</p>
+                                            </div>
+                                            <div class="failure-Symptom-chart-list-frame">
+                                                <div id="weeklyChart_usedSw2"></div>
+                                                <p class="weeklyChart_text">필수 S/W2 패치 필요</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <div class="card-arrow-top-left"></div>
+                                        <div class="card-arrow-top-right"></div>
+                                        <div class="card-arrow-bottom-left"></div>
+                                        <div class="card-arrow-bottom-right"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END failure-symptom-state -->
+
+        </div>
+    </div>
+    <!-- END weekly-report 2 page -->
+
+</div>
+
+<script src='http://192.168.5.160:8000/static/js/jquery/jquery-3.6.0.min.js'></script>
+<script src='http://192.168.5.160:8000/static/assets/plugins/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='http://192.168.5.160:8000/static/assets/js/vendor.min.js'></script>
+<script src='http://192.168.5.160:8000/static/assets/js/app.min.js'></script>
+
+<!-- apexchart -->
+<script src='http://192.168.5.160:8000/static/assets/plugins/apexcharts/dist/apexcharts.min.js'></script>
+<script src="{% static 'js/reportPageJS/reportPage_weeklyChart.js' %}"></script>
+
+
+<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-53034621-1', 'auto');
+        ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>

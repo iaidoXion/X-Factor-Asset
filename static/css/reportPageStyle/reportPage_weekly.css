@@ -1,0 +1,617 @@
+@charset "utf-8";
+
+/*reset css*/
+
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+em,
+i,
+address {
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+header,
+main,
+footer,
+section,
+nav,
+aside,
+article {
+    display: block;
+}
+
+
+/* BEGIN a4 css*/
+
+.weekly-report {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 10mm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: #fff !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.weekly-sub-page {
+    /* padding: 1cm; */
+    height: 257mm;
+    /*     border: 1px red solid;
+    outline: 2cm #FFEAEA solid; */
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+    }
+
+    .weekly-report {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+}
+
+/* END a4 css*/
+
+
+/* BEGIN card height size */
+
+.h-225px {
+    height: 225px !important;
+}
+
+.h-245px {
+    height: 245px !important;
+}
+
+.h-280px {
+    height: 280px !important
+}
+
+.card {
+    --bs-border-color: #a4a9ad !important;
+    position: relative;
+    border: none
+}
+
+/* END card height size */
+
+
+/* BEGIN daily sub page */
+
+.sub-content {
+    margin-bottom: 10px;
+    color: #888;
+    font-family: 'NotoSansKR-Regular-Alphabetic';
+    /* background: rgb(255, 255, 213); */
+    /* border: 1px solid #c99; */
+}
+
+/* END daily sub page */
+
+
+/* BEGIN brand logo */
+
+.brand {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    border: 1px solid #dcdcdc;
+}
+
+.brand-logo {
+    width: 394px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo img {
+    width: 140px;
+    height: 32px;
+    padding-left: 10px;
+}
+
+.brand-title {
+    width: 170px;
+    height: 50px;
+    font-size: 12px;
+    text-align: right;
+    line-height: 50px;
+    color: #888;
+    font-family: 'NotoSansKR-Regular-Alphabetic';
+    padding-right: 10px;
+}
+
+/* END brand logo */
+
+
+/* BEGIN weekly-report-content */
+.weekly-report-content {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weekly-report-content-right {
+    width: 234px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weekly-report-logo img {
+    width: 170px;
+    height: 30px;
+}
+
+.weekly-report-text {
+    font-size: 25px;
+    font-weight: 900;
+    color: #000;
+}
+
+.weekly-report-content-left {
+    width: 380px;
+    height: 100px;
+    padding: 20px 0;
+}
+
+.weekly-report-content-left ul {
+    width: 380px;
+    height: 60px;
+}
+
+.weekly-report-content-left ul li {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    line-height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.weekly-report-content-left ul li p:nth-child(1) {
+    width: 100px;
+    font-weight: bold;
+    border: 1px solid #dbdbdb;
+    background-color: #f8f8f8;
+}
+
+.weekly-report-content-left ul li p:nth-child(2) {
+    width: 280px;
+    text-align: left;
+    text-indent: 8px;
+    border: 1px solid #dbdbdb;
+}
+
+.weekly-report-content-left ul li:first-child p:nth-child(2) {
+    border-bottom: 1px solid transparent;
+    border-left: 0;
+}
+
+.weekly-report-content-left ul li:last-child p:nth-child(2) {
+    border-left: 0;
+}
+
+/* END weekly-report-content */
+
+
+/* BEGIN weekly-asset-state */
+.weekly-asset-state {
+    height: 150px;
+}
+
+.weekly-asset-state-title {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.weekly-asset-state-title p {
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF8A00;
+    border-bottom: 2px solid #FF8A00;
+}
+
+.weekly-asset-state-content {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.weekly-asset-state-item {
+    width: 153px;
+    box-sizing: border-box;
+}
+
+.weekly-asset-state-frame {
+    text-align: center;
+    padding: 5px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weekly-asset-state-text {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.weekly-asset-state-count {
+    font-size: 40px;
+    font-weight: bold;
+    color: #FF8A00;
+}
+
+/* END weekly-asset-state */
+
+
+/* BEGIN asset-device-state */
+
+.asset-device-state {
+    height: 355px;
+}
+
+.asset-device-state-title {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.asset-device-state-title p {
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF8A00;
+    border-bottom: 2px solid #FF8A00;
+}
+
+.asset-device-state-sub-title {
+    width: 100%;
+    height: 20px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.asset-device-state-sub-title p {
+    height: 20px;
+    font-size: 12px;
+    padding-left: 20px;
+    line-height: 20px;
+    float: left;
+}
+
+.asset-device-state-sub-title p::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background-color: #FF8A00;
+    left: 0;
+    top: 0;
+}
+
+.asset-device-state-sub-title p:last-child {
+    padding-left: 10px;
+    font-size: 10px;
+    padding-bottom: 5px;
+}
+
+.asset-device-state-item {
+    width: 100%;
+    height: 280px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.asset-device-item-content {
+    height: 100px;
+    /* border: 1px solid #dbdbdb; */
+    align-items: center;
+}
+
+.asset-device-item {
+    width: 116px;
+    height: 20px;
+    text-indent: 15px;
+    font-weight: bold;
+    border: 1px solid #dbdbdb;
+    background-color: #f8f8f8;
+}
+
+.asset-device-item:nth-child(1),
+.asset-device-item:nth-child(2),
+.asset-device-item:nth-child(3),
+.asset-device-item:nth-child(4) {
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.asset-device-item:nth-child(5) {
+    border-right: 0;
+}
+
+.asset-device-count {
+    text-align: center;
+    height: 20px;
+    border: 1px solid #dbdbdb;
+}
+
+.asset-device-count:nth-child(1),
+.asset-device-count:nth-child(2),
+.asset-device-count:nth-child(3),
+.asset-device-count:nth-child(4) {
+    border-bottom: 0;
+}
+
+#weeklyChart_actionAsset .apexcharts-legend {
+    justify-content: space-between;
+    padding: 0;
+}
+
+#weeklyChart_actionAsset .chartLegend {
+    padding-left: 3px;
+}
+
+/* END asset-device-state */
+
+
+/* BEGIN asset-device-list */
+
+.asset-device-list {
+    height: 275px;
+    margin-bottom: 0;
+    display: flex;
+}
+
+.asset-action-frame {
+    width: 50%;
+    height: 275px;
+    margin-right: 10px;
+}
+
+.asset-completed-frame {
+    width: 50%;
+    height: 275px;
+}
+
+.asset-action-sub-title,
+.asset-completed-sub-title {
+    width: 100%;
+    height: 20px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.asset-action-sub-title p,
+.asset-completed-sub-title p {
+    height: 20px;
+    font-size: 12px;
+    padding-left: 20px;
+    line-height: 20px;
+}
+
+.asset-action-sub-title p::after,
+.asset-completed-sub-title p::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background-color: #FF8A00;
+    left: 0;
+    top: 0;
+}
+
+.asset-action-item,
+.asset-completed-item {
+    width: 100%;
+    height: 245px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#weeklyChart_completedAsset .apexcharts-legend {
+    justify-content: space-between;
+    padding: 0;
+}
+
+#weeklyChart_completedAsset .chartLegend {
+    padding-left: 3px;
+}
+
+/* END asset-device-list */
+
+
+/* BEGIN failure-symptom-state */
+
+.failure-symptom-state {
+    height: 969px;
+    margin-bottom: 0;
+}
+
+.failure-symptom-state-title {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.failure-symptom-state-title p {
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF8A00;
+    border-bottom: 2px solid #FF8A00;
+}
+
+.failure-symptom-state-content {
+    height: 924px;
+}
+
+.failure-symptom-case {
+    height: 238px;
+}
+
+.failure-symptom-chart {
+    height: 676px;
+    margin-top: 10px;
+}
+
+.failure-symptom-case-sub-title,
+.failure-symptom-chart-sub-title {
+    width: 100%;
+    height: 20px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.failure-symptom-case-sub-title p,
+.failure-symptom-chart-sub-title p {
+    height: 20px;
+    font-size: 12px;
+    padding-left: 20px;
+    line-height: 20px;
+    float: left;
+}
+
+.failure-symptom-case-sub-title p::after,
+.failure-symptom-chart-sub-title p::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background-color: #FF8A00;
+    left: 0;
+    top: 0;
+}
+
+.failure-symptom-case-content {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.failure-symptom-case-item {
+    width: 153px;
+    box-sizing: border-box;
+}
+
+.failure-symptom-case-frame {
+    text-align: center;
+    padding: 5px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.failure-symptom-case-text {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.failure-symptom-case-count {
+    font-size: 40px;
+    font-weight: bold;
+    color: #FF8A00;
+}
+
+.failure-symptom-chart-item {
+    width: 100%;
+    height: 646px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.failure-Symptom-chart-frame {
+    display: flex;
+    justify-content: space-between;
+}
+
+.failure-Symptom-chart-list-frame {
+    width: 198px;
+    height: 300px;
+}
+
+.weeklyChart_text {
+    background: #fff !important;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#weeklyChart_usedCPU .apexcharts-canvas,
+#weeklyChart_usedMemory .apexcharts-canvas,
+#weeklyChart_usedDisk .apexcharts-canvas,
+#weeklyChart_usedSystem .apexcharts-canvas,
+#weeklyChart_usedSw1 .apexcharts-canvas,
+#weeklyChart_usedSw2 .apexcharts-canvas {
+    background-color: #f8f8f8;
+}
+
+/* END failure-symptom-state */
