@@ -11,8 +11,9 @@
     <link rel="stylesheet" href='http://192.168.5.160:8000/static/assets/css/vendor.min.css'>
     <link rel="stylesheet" href='http://192.168.5.160:8000/static/assets/css/app.min.css'>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reportPageStyle/font/reportPage_font.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reportPageStyle/reportPage_daily.css' %}">
+    <link rel="stylesheet" type="text/css" href='\xion\static\css\reportPageStyle\font\reportPage_font.css'>
+    <link rel="stylesheet" type="text/css" href='\xion\static\css\reportPageStyle\reportPage_weekly.css'>
+
 </head>
 
 <body class="theme-orange">
@@ -24,7 +25,7 @@
                 <!-- brand logo -->
                 <div class="sub-content brand">
                     <div class="brand-logo">
-                        <img src="{% static 'css/reportPageStyle/images/XFactor_logo.png' %}" alt="x-factor로고">
+                        <img src="\xion\static\css\reportPageStyle\images\XFactor_logo.png" alt="x-factor로고">
                     </div>
                     <p class="brand-title">자산 리포트</p>
                 </div>
@@ -32,7 +33,7 @@
                 <div class="sub-content weekly-report-content">
                     <div class="weekly-report-content-right">
                         <div class="weekly-report-logo">
-                            <img src="{% static 'css/reportPageStyle/images/Tanium_logo.png' %}" alt="Tanium로고">
+                            <img src="\xion\static\css\reportPageStyle\images\Tanium_logo.png" alt="Tanium로고">
                         </div>
                         <p class="weekly-report-text">
                             주간 자산 리포트
@@ -402,7 +403,7 @@
 
 <!-- apexchart -->
 <script src='http://192.168.5.160:8000/static/assets/plugins/apexcharts/dist/apexcharts.min.js'></script>
-<script src="{% static 'js/reportPageJS/reportPage_weeklyChart.js' %}"></script>
+<script src='\xion\static\js\reportPageJS\reportPage_weeklyChart.js'></script>
 
 
 <script>
@@ -415,6 +416,7 @@
 
         ga('create', 'UA-53034621-1', 'auto');
         ga('send', 'pageview');
+
 </script>
 
 </body>
