@@ -193,6 +193,7 @@ article {
 .daily-report-text {
     font-size: 25px;
     font-weight: 900;
+    color: #000;
 }
 
 .daily-report-content-left {
@@ -294,7 +295,7 @@ article {
 }
 
 .daily-asset-state-text {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
 }
 
