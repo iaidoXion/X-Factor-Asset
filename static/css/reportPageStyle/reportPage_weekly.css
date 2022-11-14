@@ -208,13 +208,13 @@ article {
 }
 
 .weekly-report-content-left {
-    width: 380px;
+    width: 400px;
     height: 100px;
     padding: 20px 0;
 }
 
 .weekly-report-content-left ul {
-    width: 380px;
+    width: 400px;
     height: 60px;
 }
 
@@ -236,7 +236,7 @@ article {
 }
 
 .weekly-report-content-left ul li p:nth-child(2) {
-    width: 280px;
+    width: 300px;
     text-align: left;
     text-indent: 8px;
     border: 1px solid #dbdbdb;
