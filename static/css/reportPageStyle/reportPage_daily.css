@@ -486,7 +486,7 @@ article {
 
 .w10,
 .w11 {
-    width: 30%;
+    width: 31%;
 }
 
 /* END asset-usage-list */
@@ -515,12 +515,13 @@ article {
     height: 20px;
     position: relative;
     margin-bottom: 10px;
+    letter-spacing: -0.5;
 }
 
 .listenPort-usage-sub-title p,
 .establishedPort-usage-sub-title p {
     height: 20px;
-    font-size: 12px;
+    font-size: 10px;
     padding-left: 20px;
     line-height: 20px;
 }
