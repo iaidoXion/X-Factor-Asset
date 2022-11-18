@@ -5,7 +5,8 @@ from web.model.Input.DB import hyd_plug_in as HYDPI
 from web.model.Transform.DataFrame import plug_in as TDFPI
 from web.model.Transform.DataFrame import hyd_plug_in as HTDFPI
 from web.model.Transform.Dashboard import banner as TDBA, alarm as TDAL, line_chart as TDLC, chart_data as TDCD
-from web.model.Analysis.Statistics.Dashboard import calculation as ASDC, alarm_case_detection as ASDACD, network as ASDN, chart_data as ASDCD
+from web.model.Analysis.Statistics.Dashboard import calculation as ASDC, alarm_case_detection as ASDACD, \
+    network as ASDN, chart_data as ASDCD
 from collections import Counter
 import numpy as np
 import urllib3
@@ -21,41 +22,43 @@ Customer = SETTING['PROJECT']['CUSTOMER']
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def DashboardData() :
-    if Customer == 'NC' or 'Xfactor':
-        if core == 'Tanium' :
-            SK = IAPI('', 'Auth')
-            EAYL = IDPI('asset', 'yesterday', '')
-            sensorData = IAPI(SK['dataList'], 'Sensor')
-            sensorAPI = sensorData['dataList']
-            if ProjectType == 'System' :
+
+def DashboardData():
+    if Customer == 'Xfactor':
+        if ProjectType == 'System':
+            if core == 'Tanium':
+                SK = IAPI('', 'Auth')
+                EAYL = IDPI('asset', 'yesterday', '')
+                sensorData = IAPI(SK['dataList'], 'Sensor')
+                sensorAPI = sensorData['dataList']
+
                 # Asset Item Statistics
                 TAIDL = TDFPI(sensorAPI, "today", "assetItem")
                 SAIDL = ASDCD(TAIDL, "assetItem", "group")
-                
+
                 # Line Chart
                 TAIDL2 = TDFPI(sensorAPI, "today", "line")
                 LINEGROUP = ASDCD(TAIDL2, "assetItem", "group")
-                
+
                 # OS Item Statistics
                 TOIDL = TDFPI(sensorAPI, "today", "osItem")
                 SOIDL = ASDCD(TOIDL, "osItem", "group")
-                                
+
                 # Drive Use Size Statistics
                 ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
                 TDUSDLT = TDFPI(sensorAPI, "today", "DUS")
                 TDUSDLY = TDFPI(EAYL, "yesterday", "DUS")
                 DUSCTDL = [TDUSDLT, TDUSDLY]
                 SDUSDLT = ASDCD(DUSCTDL, "DUS", "count")
-                
-                #CPU Consumption
+
+                # CPU Consumption
                 TCCDLT = TDFPI(sensorAPI, "today", "CCDL")
                 CCSDLT = ASDCD(TCCDLT, "CCDL", "count")
-                
-                #Running Process
+
+                # Running Process
                 TRPDL = TDFPI(sensorAPI, "today", "RP")
                 RPDLA = ASDCD(TRPDL, "RP", "count")
-                
+
                 # No Login History Statistics
                 ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
                 TNLHDLT = TDFPI(sensorAPI, "today", "LH")
@@ -97,19 +100,18 @@ def DashboardData() :
                 SBNDL = ASDC(TSDLY, TSDLT)
                 # 5Days Asset Item Statistics Data Combination
                 ## Past Data Input(Statistics Table Data 5Days ago)
-                ESDLF = IDPI('statistics','fiveDay','asset')
+                ESDLF = IDPI('statistics', 'fiveDay', 'asset')
                 ## Past & Today Data Combination Transform
                 # AIFD = [ESDLF, SAIDL]
-                
+
                 ## LineChart
                 LNFD = [ESDLF, LINEGROUP]
-                ESAIDL = TDLC(LNFD)#Line Chart
-
+                ESAIDL = TDLC(LNFD)  # Line Chart
 
                 # Alarm
                 ## Alarm Statistics(Alarm case detection)
                 SDUSADL = ASDACD(DUSCTDL, 'DUS')
-                SLHADL = ASDACD(NLHCTDL,  'LH')
+                SLHADL = ASDACD(NLHCTDL, 'LH')
                 SRUSADL = ASDACD(RUSCTDL, 'RUE')
                 SLPCADL = ASDACD(LPCCTDL, 'LPC')
                 SEPCADL = ASDACD(EPCCTDL, 'EPC')
@@ -125,7 +127,7 @@ def DashboardData() :
                 TEPCALDL = TDAL(SEPCADL, 'list', 'EPC')
                 TCCSADL = TDAL(SCCSADL, 'list', 'CCDL')
                 TRPSADL = TDAL(SRPSADL, 'list', 'RP')
-                
+
                 ALD = [TDUSALDL, TLHALDL, TRUSALDL, TLPCALDL, TEPCALDL, TCCSADL, TRPSADL]
 
                 ## Network
@@ -137,7 +139,7 @@ def DashboardData() :
                 SEPCND = ASDN(SEPCADL, 'group', 'EPC')
                 SCCSAD = ASDN(SCCSADL, 'group', 'CCDL')
                 SRPSAD = ASDN(SRPSADL, 'group', 'RP')
-                
+
                 ## Donut Chart
                 SDCCC = ASDN(SCCSADL, 'MD', 'CCDL')
                 SDDRU = ASDN(SRUSADL, 'MD', 'RUE')
@@ -149,28 +151,28 @@ def DashboardData() :
                 TEPCND = TDAL(SEPCND, 'network', 'EPC')
                 TSCCSA = TDAL(SCCSAD, 'network', 'CCDL')
                 TSRPSA = TDAL(SRPSAD, 'network', 'RP')
-                
+
                 ## DONU chart
                 TMDCD = TDAL(SDCCC, 'network', 'CCDL')
                 TMRUE = TDAL(SDDRU, 'network', 'RUE')
                 MDC = [TMDCD[1], TMRUE[1]]
-                
-                NDL = [TDUSND[0], TDUSND[1]+TLHND[1]+TRUSND[1]+TLPCND[1]+TEPCND[1] + TSCCSA[1] + TSRPSA[1]]
+
+                NDL = [TDUSND[0], TDUSND[1] + TLHND[1] + TRUSND[1] + TLPCND[1] + TEPCND[1] + TSCCSA[1] + TSRPSA[1]]
                 NCDL = ASDN(NDL, 'all', 'all')
-                #RADCDL = ASDN(NDL, 'max', 'all')
+                # RADCDL = ASDN(NDL, 'max', 'all')
 
                 # BAR Chart
                 BDL = TDCD(SAIDL, "Bar")
                 # Line Chart
                 LDL = TDCD(ESAIDL, "Line")
-                #LDL = {}
+                # LDL = {}
                 # Pie Chart
                 PDL = TDCD(SOIDL, "Pie")
                 # Banner
                 BNDL = TDCD(SBNDL, "Banner")
                 # Alarm List
                 ALDL = TDCD(ALD, "alarmList")
-                #Mini Donut Chart(RAM)
+                # Mini Donut Chart(RAM)
                 MDRU = TDCD(MDC, "MDC")
 
                 # Donut Chart
@@ -201,52 +203,61 @@ def DashboardData() :
                 WMCCDL = TDAL(SCCSADL, 'world', 'CCDL')
                 WNRP = TDAL(SRPSADL, 'world', 'RP')
                 WMCDL = [WMDUS + WMLH + WMRUE + WMLPC + WMEPC + WMCCDL + WNRP]
-
-            elif ProjectType == 'Service':
+            elif core == 'Zabbix':
                 print()
-    elif core == 'Zabbix':
-        print()
+        elif ProjectType == 'Service':
+            print()
+
+    if Customer == 'NC':
+        if ProjectType == 'System':
+            if core == 'Tanium':
+                print()
+            elif core == 'Zabbix':
+                print()
+        elif ProjectType == 'Service':
+            print()
 
     RD = {
         "barChartData": BDL,
-        "lineChartData" : LDL,
-        "pieChartData" : PDL,
-        "bannerData" : BNDL,
-        "alarmListData" : ALDL[0],
-        "AssociationDataList" : NCDL,
+        "lineChartData": LDL,
+        "pieChartData": PDL,
+        "bannerData": BNDL,
+        "alarmListData": ALDL[0],
+        "AssociationDataList": NCDL,
         "TotalDataList": TACC,
         "TotalTopDataList": TACT,
-        "WorldMapDataList":WMCDL,
-        "MiniDonutChart" : MDRU,
+        "WorldMapDataList": WMCDL,
+        "MiniDonutChart": MDRU,
         "donutChartDataList": DDLC
     }
     return RD
 
-def AssetData(Param, data) :
+
+def AssetData(Param, data):
     SK = HYAPI('', 'Auth', '')
-    if Param == "Count" :
+    if Param == "Count":
         COUNT = HYAPI(SK, 'Count', '')
         DB = HYDPI('sw1', '')
         Merge = [COUNT, DB]
-        
+
         ADJ = HTDFPI(Merge, 'Count')
-        
+
         RD = {
-            'session' : SK,
-            'item' : ADJ.to_dict('records')
+            'session': SK,
+            'item': ADJ.to_dict('records')
         }
-    if Param == 'SWV' :
+    if Param == 'SWV':
         DB = HYDPI('SWV', data)
         RD = {
-            'item' : DB
+            'item': DB
         }
-    if Param == 'SWV_API' :
+    if Param == 'SWV_API':
         SWV = HYAPI(SK, 'SWV', data)
-        RD = {'swv' : SWV}
-    
-    if Param == 'CPID_API' :
+        RD = {'swv': SWV}
+
+    if Param == 'CPID_API':
         CPV = HYAPI(SK, 'CPID_API', data)
-        RD = {'cpv' : CPV}
+        RD = {'cpv': CPV}
     return RD
     # sensorData_hyd = IAPI(SK['dataList'], 'Sensor_hyd')
 

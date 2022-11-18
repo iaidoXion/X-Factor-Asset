@@ -43,7 +43,9 @@ def plug_in(table, day, type):
                     from 
                         """ + StatisticsTNM + """ 
                     where 
-                        to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """' 
+                        to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'
+                    and 
+                        NOT classification IN ('installed_applications_name')
                     """
             if day == 'fiveDay' :
                 query = """ 
