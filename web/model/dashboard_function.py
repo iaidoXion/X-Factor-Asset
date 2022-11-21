@@ -211,7 +211,26 @@ def DashboardData():
     if Customer == 'NC':
         if ProjectType == 'System':
             if core == 'Tanium':
-                print()
+                SK = IAPI('', 'Auth')
+                sensorData = IAPI(SK['dataList'], 'Sensor')
+                sensorAPI = sensorData['dataList']
+                TAIVDL = TDFPI(sensorAPI, "today", "virtual")
+                TAIVS = ASDCD(TAIVDL, "virtual", "group")
+                #print(TAIVS)
+                #EAYL = IDPI('asset', 'yesterday', '')
+                EAML = IDPI('asset', 'monthly', '')
+                #print(EAML)
+                BDL= []
+                LDL = []
+                PDL = []
+                BNDL = []
+                ALDL = [[]]
+                NCDL = []
+                TACC = []
+                TACT = []
+                WMCDL = []
+                MDRU = []
+                DDLC = []
             elif core == 'Zabbix':
                 print()
         elif ProjectType == 'Service':
