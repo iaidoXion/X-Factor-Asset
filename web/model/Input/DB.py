@@ -26,7 +26,7 @@ def plug_in(table, day, type):
         Conn = psycopg2.connect('host={0} port={1} dbname={2} user={3} password={4}'.format(DBHost, DBPort, DBName, DBUser, DBPwd))
         Cur = Conn.cursor()
         if table == 'asset' :
-            if day == 'yesterday ' :
+            if day == 'yesterday' :
                 query = """
                     select 
                         computer_id, disk_used_space, listen_port_count, established_port_count, asset_collection_date
