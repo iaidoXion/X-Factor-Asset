@@ -137,6 +137,12 @@ def plug_in(data, day, type):
                         value = x['text']
                         item.append(value)
                 itemIndex = 'installApplicationsName'
+
+            if type == 'virtual' :
+                if not d[7][0]['text'].startswith('[current') and not d[7][0]['text'].startswith('Unknown') and not d[7][0]['text'].startswith('TSE-Error') :
+                    item = d[7][0]['text']
+                itemIndex = 'virtual'
+
         elif day == 'yesterday' :
             CI = d[0]
             IP = ''

@@ -208,12 +208,16 @@ def chart_data(data, type, statistics) :
             GBI = 'assetItem'
         elif type == 'osItem' :
             GBI = 'os'
+        elif type == 'virtual' :
+            GBI = 'virtual'
         IG = data.groupby([GBI])
         IGR = IG.size().reset_index(name='counts')
         if type == 'assetItem':
             INML = IGR.assetItem
         elif type == 'osItem':
             INML = IGR.os
+        elif type == 'virtual':
+            INML = IGR.virtual
         INM = INML.tolist()
         ICL = IGR.counts
         IC = ICL.tolist()
