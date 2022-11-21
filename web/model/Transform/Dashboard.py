@@ -1,4 +1,3 @@
-from re import S
 import pandas as pd
 import json
 from datetime import datetime, timedelta
@@ -23,7 +22,7 @@ def banner(data, type) :
         if type == 'past' :
             if data[i][0] == 'asset' or data[i][0] == 'os' :
                 if data[i][1] == 'all' :
-                    name = 'Asset Total'
+                    name = 'Asset Online'
                 else :
                     if  data[i][1] == "Rack Mount Chassis" :
                         name = "Server"
@@ -75,7 +74,7 @@ def line_chart(data) :
         if data[0][j][1] != 'all':
             DL.append([data[0][j][1], data[0][j][2], data[0][j][3].strftime("%Y-%m-%d")])
     df = pd.DataFrame(DL,columns=['name','value','date']).sort_values(by="date", ascending=True).reset_index(drop=True)
-    
+
     for i in df['date'].drop_duplicates() :
         time_array.append(i)
     ext_time = list(set(time_array).intersection(timelist))
@@ -168,7 +167,7 @@ def alarm(data, type, case) :
                     IPS = data['value'][i].split('.')
                     if len(IPS) == 4 :
                         GROUP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
-                        GPS = [37.498095,127.027610]
+                        GPS = [37.396010776217,127.10864340523]
                     # if int(IPS[3]) % 2 == 1 :
                     #     GPS = [37.39962807731903,127.10910445171359]
                     # else :
@@ -248,10 +247,10 @@ def chart_data(data, type) :
             elif type == 'Banner' :
                 ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc" : data['ROC'][i]})
     if type == 'Bar' :
-        x = sorted(ChartDataList , key= lambda x: x['value'], reverse=True)
+        x = sorted(ChartDataList , key= lambda x: x['value'], reverse=True)[0:3]
         ChartDataList = x
     elif type == 'Pie' :
-        x = sorted(ChartDataList , key= lambda x: x['value'], reverse=True)
+        x = sorted(ChartDataList , key= lambda x: x['value'], reverse=True)[0:3]
         ChartDataList = x
     RD = ChartDataList
     return RD

@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.http import HttpResponse
 from web.model.dashboard_function import DashboardData
 from web.model.dashboard_function import AssetData
 from common.menu import MenuSetting
-from pprint import pprint
 import json
 menuListDB = MenuSetting()
 

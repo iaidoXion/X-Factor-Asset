@@ -10,7 +10,6 @@ from web.model.Analysis.Statistics.Dashboard import calculation as ASDC, alarm_c
 from collections import Counter
 import numpy as np
 import urllib3
-import pandas as pd
 import json
 import itertools
 
@@ -93,7 +92,7 @@ def DashboardData():
                 TSDLY = TDBA(ESDLY, 'past')
                 ## Today Statistics Data Transform
                 ## Today Asset Total Count Calculation
-                ATCDL = {'name': ['Asset Total'], 'value': [sum(SAIDL['value'])]}
+                ATCDL = {'name': ['Asset Online'], 'value': [sum(SAIDL['value'])]}
                 TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT
                 TSDLT = TDBA(TSDL, 'today')
                 ## Banner ROC Calculation
@@ -155,9 +154,10 @@ def DashboardData():
                 ## DONU chart
                 TMDCD = TDAL(SDCCC, 'network', 'CCDL')
                 TMRUE = TDAL(SDDRU, 'network', 'RUE')
-                MDC = [TMDCD[1], TMRUE[1]]
+                MDC = [TMDCD[1][0:5], TMRUE[1][0:5]]
 
                 NDL = [TDUSND[0], TDUSND[1] + TLHND[1] + TRUSND[1] + TLPCND[1] + TEPCND[1] + TSCCSA[1] + TSRPSA[1]]
+
                 NCDL = ASDN(NDL, 'all', 'all')
                 # RADCDL = ASDN(NDL, 'max', 'all')
 
@@ -170,6 +170,7 @@ def DashboardData():
                 PDL = TDCD(SOIDL, "Pie")
                 # Banner
                 BNDL = TDCD(SBNDL, "Banner")
+
                 # Alarm List
                 ALDL = TDCD(ALD, "alarmList")
                 # Mini Donut Chart(RAM)

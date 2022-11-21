@@ -9,7 +9,7 @@
       "Korea" : "block",
       "Area" : {
         "use": "block",
-        "type" : "seoul-map"
+        "type" : "seongnam-map"
       }
     },
     "Alarm" : {

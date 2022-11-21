@@ -1,7 +1,6 @@
 import requests
 import json
 import time
-from pprint import pprint
 from ast import literal_eval
 
 with open("setting.json", encoding="UTF-8") as f:
@@ -28,7 +27,6 @@ def plug_in(SK, APITYPE):
 
         if APITYPE == 'Sensor' :
             path = SensorAPIPath + Common_SensorID
-            print(path)
             urls = apiUrl + path
             headers = {'session': SK, 'Content-Type': ContentType}
             response = requests.request("GET", urls, headers=headers, verify=False)
