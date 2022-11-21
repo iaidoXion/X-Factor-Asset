@@ -327,19 +327,10 @@ var handleRenderChart = function () {
 //---------------------------------------
    var barValue = []
    var barName = []
-   if (a.barChartDataList.length > 4){
-    for (var i = 0; i <4; i++){
+    for (var i = 0; i < a.barChartDataList.length; i++){
         barValue.push(JSON.stringify(a.barChartDataList[i]['value']))
         barName.push(a.barChartDataList[i]['name']);
-
     };
-   }
-   else {
-    for (var i = 0; i < a.barChartDataList.length; i++){
-        barValue.push(a.barChartDataList[i]['value']);
-        barName.push(a.barChartDataList[i]['name']);
-    };
-   };
 
 var apexColumnChartOptions = {
 		chart: {
@@ -457,7 +448,6 @@ var apexColumnChartOptions = {
 //{name: 'Desktop',data: [10, 5, 6, 8, 5]}, {name: 'Notebook',data: [5, 6, 2, 8, 5]}
 //
 //]
-
 var apexLineChartOptions = {
 		chart: {
 			height: 120,
@@ -688,7 +678,7 @@ var apexDonutChartOptions = {
 	for (var i = 0; i < 5; i++) {
 		group.push(a.AssociationDataList.nodeDataList[i].group);
 	}
-	
+
 	for (var i = 0; i < group.length; i++){
 		list = [];
 		alarm_list = [];
@@ -1404,7 +1394,6 @@ svg.selectAll("circle")
           {
             return "translate(" +  projection([datum[1], datum[0]]) + ")";
           };
-
         setInterval(function(){
 	      worldMapData.forEach(function(datum)
           {

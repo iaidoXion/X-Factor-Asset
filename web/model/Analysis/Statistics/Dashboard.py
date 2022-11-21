@@ -1,9 +1,5 @@
-from datetime import datetime, timedelta
 import pandas as pd
 import json
-
-weekAgo = (datetime.today() - timedelta(7)).strftime("%Y-%m-%d")
-today = datetime.today().strftime("%Y-%m-%d")
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())

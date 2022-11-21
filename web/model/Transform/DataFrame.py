@@ -1,11 +1,6 @@
-from audioop import reverse
-from itertools import count
 from operator import itemgetter
 import pandas as pd
 from datetime import datetime
-from collections import Counter
-from pprint import pprint
-today = datetime.today().strftime("%Y-%m-%d")
 def plug_in(data, day, type):
     DFL = []
     for d in data :
@@ -13,7 +8,7 @@ def plug_in(data, day, type):
             CI = d[0][0]['text']
             IP = d[9][0]['text']
             if type == 'assetItem':
-                if d[8][0]['text'] != None:
+                if d[8][0]['text'] != None and not d[8][0]['text'].startswith('TSE-Error') and not d[8][0]['text'].startswith('[current'):
                     item = d[8][0]['text']
                     itemPer = item.lower()
                 if itemPer.startswith('macbook'):
@@ -22,11 +17,10 @@ def plug_in(data, day, type):
                     item = 'Desktop'
                 if itemPer.startswith('rack'):
                     item = 'Server'
-                if itemPer == '[current result unavailable]':
-                    item = 'Other'
                 itemIndex = 'assetItem'
+
             if type == 'line':
-                if d[8][0]['text'] != None:
+                if d[8][0]['text'] != None and not d[8][0]['text'].startswith('TSE-Error') and not d[8][0]['text'].startswith('[current'):
                     item = d[8][0]['text']
                     itemPer = item.lower()
                 if itemPer.startswith('macbook'):
@@ -35,17 +29,14 @@ def plug_in(data, day, type):
                     item = 'Desktop'
                 if itemPer.startswith('rack'):
                     item = 'Server'
-                if itemPer == '[current result unavailable]':
-                    item = 'Other'
                 itemIndex = 'assetItem'
-                    
+
             if type == 'osItem':
-                item = d[5][0]['text']
-                itemPer = item.lower()
-                if itemPer == '[current result unavailable]':
-                    item = 'Other'
+                if d[5][0]['text'] != None and not d[5][0]['text'].startswith('TSE-Error') and not d[5][0]['text'].startswith('[current'):
+                    item = d[5][0]['text']
+                    itemPer = item.lower()
                 itemIndex = 'os'
-            if type == 'DUS': 
+            if type == 'DUS':
                 item = d[4][0]['text']
                 sum = 0
                 list = []
@@ -82,7 +73,7 @@ def plug_in(data, day, type):
                 item = str(result) + "GB"
                 itemIndex = 'driveSize'
             if type == 'LH': #값 안찍힘
-                if d[2][0]['text'] != '[current result unavailable]':
+                if d[2][0]['text'] != None and not d[2][0]['text'].startswith('TSE-Error') and not d[2][0]['text'].startswith('[current'):
                     if ('-' in d[2][0]['text']) :
                         date = datetime.strptime(d[2][0]['text'].split(' -')[0], "%a, %d %b %Y %H:%M:%S")
                     else :
@@ -90,7 +81,6 @@ def plug_in(data, day, type):
                     item = str(date).split(' ')[0]
                 else :
                     item = "Other"
-
                 itemIndex = 'lastLogin'
             if type == 'RUET':#값 안찍힘
                 item = d[13][0]['text'].split(' ')[0]
@@ -99,6 +89,7 @@ def plug_in(data, day, type):
                 else:
                     item = 0
                 itemIndex = 'ramSize'
+
             if type == 'RUEU': #값 안찍힘
                 item = d[12][0]['text'].split(' ')[0]
                 if item.isdigit():
@@ -106,12 +97,17 @@ def plug_in(data, day, type):
                 else:
                     item = 0
                 itemIndex = 'ramSize'
+
             if type == 'LPC':
+                #if d[10][0]['text'] != None and not d[10][0]['text'].startswith('TSE-Error') and not d[10][0]['text'].startswith('[current'):
                 item = d[10][0]['text']
                 itemIndex = 'listenPortCount'
+
             if type == 'EPC':
+                #if d[11][0]['text'] != None and not d[11][0]['text'].startswith('TSE-Error') and not d[11][0]['text'].startswith('[current'):
                 item = d[11][0]['text']
                 itemIndex = 'establishedPortCount'
+
             if type == 'CCDL' :
                 value = d[20][0]['text'].split(' ')
                 if "current" in d[20][0]['text'] :
@@ -180,15 +176,19 @@ def plug_in(data, day, type):
                 result = round(int(sum)/1024/1024, -1)
                 item = str(result) + "GB"
                 itemIndex = 'driveSize'
+
             elif type == 'LH':
                 item = str(d[4]).split(' ')[0]
                 itemIndex = 'lastLogin'
             elif type == 'LPC':
-                item = str(d[2])
+                if d[2] != None and not d[2].startswith('TSE-Error') and not d[2].startswith('[current'):
+                    item = str(d[2])
                 itemIndex = 'listenPortCount'
             elif type == 'EPC':
-                item = str(d[3])
+                if d[3] != None and not d[3].startswith('TSE-Error') and not d[3].startswith('[current'):
+                    item = str(d[3])
                 itemIndex = 'establishedPortCount'
+
 
         DFL.append([CI, item, IP])
     if type == 'line' :
