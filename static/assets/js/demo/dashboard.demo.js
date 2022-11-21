@@ -2,7 +2,7 @@
 Template Name: HUD - Responsive Bootstrap 5 Admin Template
 Version: 1.8.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/hud/
+
 */
 
 
@@ -954,7 +954,7 @@ var apexRadarChartOptions = {
             show: false
         },
         title: {
-            text: 'RAM 사용량 60% 초과',
+            text: 'RAM 사용량 60% 초과 (상위 5개)',
             align: 'left',
         },
         legend: {
@@ -1024,7 +1024,7 @@ var apexRadarChartOptions = {
 			}
 		},
 		title: {
-			text: 'CPU 사용량 60% 초과',
+			text: 'CPU 사용량 60% 초과 (상위 5개)',
 			align: 'left',
 		},
 		dataLabels: {
