@@ -2,7 +2,7 @@
 Template Name: HUD - Responsive Bootstrap 5 Admin Template
 Version: 1.8.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/hud/
+
 */
 
 var handleRenderDatepicker = function() {
