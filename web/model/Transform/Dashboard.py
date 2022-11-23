@@ -193,8 +193,8 @@ def chart_data(data, type) :
     elif type == "MDC" :
         check = []
         if data is None:
-            ChartDataList.append({"name": "CPU Consumption is Excess" ,"ip": "-", "value": 1})
-            ChartDataList.append({"name": "RAM Usage Exceeded" ,"ip": "-", "value": 1})
+            ChartDataList.append({"name": "CPU Consumption is Excess" ,"ip": "-", "value": 0})
+            ChartDataList.append({"name": "RAM Usage Exceeded" ,"ip": "-", "value": 0})
         else:
             for i in range(len(data)) :
                 for j in range(len(data[i])) :
@@ -202,9 +202,9 @@ def chart_data(data, type) :
             for i in ChartDataList :
                 check.append(i['name'])
             if  "CPU Consumption is Excess" not in check :
-                ChartDataList.append({"name": "CPU Consumption is Excess" ,"ip": "-", "value": int(1)})
+                ChartDataList.append({"name": "CPU Consumption is Excess" ,"ip": "-", "value": int(0)})
             elif "RAM Usage Exceeded" not in check :
-                ChartDataList.append({"name": "RAM Usage Exceeded" ,"ip": "-", "value": int(1)})
+                ChartDataList.append({"name": "RAM Usage Exceeded" ,"ip": "-", "value": int(0)})
     else :
         if type == 'Line' :
             asset_list = []
