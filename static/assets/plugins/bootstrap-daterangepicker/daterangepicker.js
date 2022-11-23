@@ -1,11 +1,11 @@
 /**
 * @version: 3.1
-* @author: Dan Grossman http://www.dangrossman.info/
+* @author: Dan Grossman
 * @copyright: Copyright (c) 2012-2019 Dan Grossman. All rights reserved.
-* @license: Licensed under the MIT license. See http://www.opensource.org/licenses/mit-license.php
-* @website: http://www.daterangepicker.com/
+* @license: Licensed under the MIT license.
+*
 */
-// Following the UMD template https://github.com/umdjs/umd/blob/master/templates/returnExportsGlobal.js
+// Following the UMD template
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Make globaly available as well

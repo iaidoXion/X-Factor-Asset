@@ -1,6 +1,6 @@
 /*!
- * Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com
- * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Font Awesome Free 6.1.1 by @fontawesome
+ * License (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2022 Fonticons, Inc.
  */
 (function () {
@@ -3307,7 +3307,7 @@
   /**
    * ucs2decode() and codePointAt() are both works of Mathias Bynens and licensed under MIT
    *
-   * Copyright Mathias Bynens <https://mathiasbynens.be/>
+   * Copyright Mathias Bynens
 
    * Permission is hereby granted, free of charge, to any person obtaining
    * a copy of this software and associated documentation files (the

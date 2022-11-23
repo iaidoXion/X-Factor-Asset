@@ -65,7 +65,7 @@
             return (
                 number +
                 (number === 1 || number === 8 || number >= 20 ? 'ste' : 'de')
-            ); // Thanks to Joris Röling : https://github.com/jjupiter
+            );
         },
         week: {
             dow: 1, // Maandag is die eerste dag van die week.
@@ -4454,7 +4454,7 @@
             switch (period) {
                 // TODO: Return 'e' when day of month > 1. Move this case inside
                 // block for masculine words below.
-                // See https://github.com/moment/moment/issues/3375
+
                 case 'D':
                     return number + (number === 1 ? 'er' : '');
 
@@ -9335,9 +9335,6 @@
         /^дек/i,
     ];
 
-    // http://new.gramota.ru/spravka/rules/139-prop : § 103
-    // Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
-    // CLDR data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
     moment.defineLocale('ru', {
         months: {
             format: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split(
@@ -10604,7 +10601,7 @@
                 return symbolMap$g[match];
             });
         },
-        // refer http://ta.wikipedia.org/s/1er1
+
         meridiemParse: /யாமம்|வைகறை|காலை|நண்பகல்|எற்பாடு|மாலை/,
         meridiem: function (hour, minute, isLower) {
             if (hour < 2) {
