@@ -1,9 +1,10 @@
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 import pandas as pd
 import json
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
-AlarmStandard = SETTING['PROJECT']['Alarm']['StandardDate']
 AlarmRamUsage = SETTING['PROJECT']['Alarm']['RamUsage']
 alarmCaseFirst = SETTING['PROJECT']['Alarm']['Case']['First']
 alarmCaseSecond = SETTING['PROJECT']['Alarm']['Case']['Second']
@@ -12,7 +13,6 @@ alarmCaseFourth = SETTING['PROJECT']['Alarm']['Case']['Fourth']
 alarmCaseFifth = SETTING['PROJECT']['Alarm']['Case']['Fifth']
 alarmCaseSix = SETTING['PROJECT']['Alarm']['Case']['Six']
 alarmCaseSeven = SETTING['PROJECT']['Alarm']['Case']['Seven']
-
 
 def calculation(pastData, todayData) :
     PTDLMerge = pd.merge(left=pastData, right=todayData, how="outer", on="name").sort_values(by="name", ascending=True).reset_index(drop=True)
@@ -31,6 +31,8 @@ def alarm_case_detection(data, case) :
     if case == 'DUS':
         AT = alarmCaseFirst
     elif case == 'LH':
+        now = datetime.now()
+        six_month_str = (now - relativedelta(months=6)).strftime("%Y-%m-%d")
         AT = alarmCaseSecond
     elif case == 'RUE':
         AT = alarmCaseThird
@@ -42,7 +44,6 @@ def alarm_case_detection(data, case) :
         AT = alarmCaseSix
     elif case == "RP" :
         AT = alarmCaseSeven
-    
 
     if case == 'CCDL' or case == 'RP' :
         DLMerge = data
@@ -50,16 +51,13 @@ def alarm_case_detection(data, case) :
         TDL = data[0]
         PDL = data[1]
         DLMerge = pd.merge(left=TDL, right=PDL, how="outer", on="id").sort_values(by="id", ascending=True).reset_index(drop=True).drop(['ip_y'], axis=1)
-        #DLMerge = DLMerge.dropna(axis=0)
         DLMerge.columns = ['id', 'Today', 'ip', 'Past']
     DL = []
     DLC =['name', 'value', 'alarmText']
     for j in range(len(DLMerge)):
         if case == 'LH':
             if type(DLMerge['Today'][j]) != float and DLMerge['Today'][j] != '[current result unavailable]':
-                #date = datetime.strptime(DLMerge['Today'][j].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
-                #date = str(date).split(' ')[0]
-                if DLMerge['Today'][j] < AlarmStandard :
+                if DLMerge['Today'][j] < six_month_str :
                     AI = DLMerge['id'][j]
                     IP = DLMerge['ip'][j]
                     DL.append([AI, IP, AT])
@@ -90,7 +88,6 @@ def alarm_case_detection(data, case) :
     RD = pd.DataFrame(DL, columns=DLC)
     return RD
 
-
 def network(data, type, case) :
     if case == 'DUS':
         AT = alarmCaseFirst
@@ -106,7 +103,6 @@ def network(data, type, case) :
         AT = alarmCaseSix
     elif case == "RP" :
         AT = alarmCaseSeven
-        
 
     if type == 'group' :
         ADL = []
@@ -115,7 +111,6 @@ def network(data, type, case) :
         else :
             if data['value'][0]:
                 for i in range(len(data['value'])):
-
                     if "current result" in data['value'][i] :
                         continue
                     IPS = data['value'][i].split('.')
@@ -124,7 +119,6 @@ def network(data, type, case) :
                     ADL.append([IP])
         RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts')
         RD['alarmCase'] = AT
-        #print(RD)
     if type == 'MD' :
         ADL = []
         if data.empty:
@@ -230,7 +224,9 @@ def chart_data(data, type, statistics) :
             DUSCY = len(DLMerge['driveSize_x'].compare(DLMerge['driveSize_y']))
             INM = [alarmCaseFirst]
         elif type == 'LH':
-            DUSCY = len(DLMerge[(DLMerge['lastLogin_x'] < AlarmStandard)])
+            now = datetime.now()
+            six_month_str = (now - relativedelta(months=6)).strftime("%Y-%m-%d")
+            DUSCY = len(DLMerge[(DLMerge['lastLogin_x'] < six_month_str)])
             INM = [alarmCaseSecond]
         elif type == 'RUE':
             DUSCY = 0
@@ -255,10 +251,6 @@ def chart_data(data, type, statistics) :
                     i = i + 1
             DUSCY = i
             INM = [alarmCaseSix]
-            # DLMerge['cpuconsumption'][0].astype(float)
-            # DUSCY = len(DLMerge[(float(DLMerge['cpuconsumption']) > 60.0)])
-            # INM = [alarmCaseSix]
-            # DUSCY = len()
         elif type == 'RP' :
             i = 0;
             for x in DLMerge['runningprocess'] :
@@ -270,8 +262,6 @@ def chart_data(data, type, statistics) :
             IC = [DUSCY]
         else :
             IC = [DTC-DUSCY]
-
-
     RD = {"name": INM, "value": IC}
     return RD
 

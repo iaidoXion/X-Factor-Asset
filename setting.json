@@ -13,7 +13,6 @@
       }
     },
     "Alarm" : {
-      "StandardDate" : "2022-07-11",
       "RamUsage" : 60,
       "Case" : {
         "First" : "Drive Size No Change",
