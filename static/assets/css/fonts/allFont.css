@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'ChakraPetch-Regular';
+  src: url('ChakraPetch-Regular.eot');
+  src: url('ChakraPetch-Regular.eot?#iefix') format('embedded-opentype'),
+       url('ChakraPetch-Regular.ttf') format('truetype'),
+       url('ChakraPetch-Regular.woff') format('woff'),
+       url('ChakraPetch-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+

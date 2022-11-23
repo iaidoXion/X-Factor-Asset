@@ -1,7 +1,7 @@
 /**
  * Swiper 8.3.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
- * https://swiperjs.com
+ *
  *
  * Copyright 2014-2022 Vladimir Kharlampidi
  *
