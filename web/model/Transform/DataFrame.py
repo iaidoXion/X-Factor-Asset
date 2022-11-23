@@ -11,30 +11,28 @@ def plug_in(data, day, type):
                 if d[8][0]['text'] != None and not d[8][0]['text'].startswith('TSE-Error') and not d[8][0]['text'].startswith('[current'):
                     item = d[8][0]['text']
                     itemPer = item.lower()
-                if itemPer.startswith('macbook'):
-                    item = 'Notebook'
-                if itemPer.startswith('imac'):
-                    item = 'Desktop'
-                if itemPer.startswith('rack'):
-                    item = 'Server'
+                    if itemPer.startswith('macbook'):
+                        item = 'Notebook'
+                    if itemPer.startswith('imac'):
+                        item = 'Desktop'
+                    if itemPer.startswith('rack'):
+                        item = 'Server'
                 itemIndex = 'assetItem'
-
             if type == 'line':
                 if d[8][0]['text'] != None and not d[8][0]['text'].startswith('TSE-Error') and not d[8][0]['text'].startswith('[current'):
                     item = d[8][0]['text']
                     itemPer = item.lower()
-                if itemPer.startswith('macbook'):
-                    item = 'Notebook'
-                if itemPer.startswith('imac'):
-                    item = 'Desktop'
-                if itemPer.startswith('rack'):
-                    item = 'Server'
+                    if itemPer.startswith('macbook'):
+                        item = 'Notebook'
+                    if itemPer.startswith('imac'):
+                        item = 'Desktop'
+                    if itemPer.startswith('rack'):
+                        item = 'Server'
                 itemIndex = 'assetItem'
 
             if type == 'osItem':
                 if d[5][0]['text'] != None and not d[5][0]['text'].startswith('TSE-Error') and not d[5][0]['text'].startswith('[current'):
                     item = d[5][0]['text']
-                    itemPer = item.lower()
                 itemIndex = 'os'
             if type == 'DUS':
                 item = d[4][0]['text']
