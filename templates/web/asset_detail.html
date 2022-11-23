@@ -84,22 +84,26 @@
 								</tr>
 								</thead>
 								<tbody>
-									{% if swv %}
-									{%for item in swv.swv%}
+									{% if data.item %}
+									{%for item in data.item%}
 										<tr>
 											<td>{{forloop.counter}}</td>
 											<td>{{item.cid}}</td>
-											<td>{{item.ComputerName}}</td>
-											<td>{{item.OSPlatform}}</td>
-											<td>{{item.TaniumClientIPAddress}}</td>
-											<td>{{item.ChassisType}}</td>
-											<td>{{item.LastReboot}}</td>
-											<td><button type="button" class="btn btn-warning me-2" value=" " data-bs-toggle="modal" data-bs-target="#modalXl" onclick="send_api({{item.cid}});">확인</button></td>
+											<td>{{item.cpnm}}</td>
+											<td>{{item.os}}</td>
+											<td>{{item.ip}}</td>
+											<td>{{item.type}}</td>
+											<td>{{item.last_login}}</td>
+											<td><button style="display:none;" type="button" class="btn btn-warning me-2" value=" " data-bs-toggle="modal" data-bs-target="#modalXl" onclick="send_api({{item}});">확인</button></td>
 										</tr>
 									{% endfor %}
 									{% else %}
 									<tr>
-										<td> Data 연동에 실패했습니다 </td>
+										<td colspan="8">
+											----------------------------------------------------------------------------------
+											----------------------------------------------------------------------------------
+											----------------------------------------------------------------------------------
+										</td>
 									</tr>
 									{% endif%}
 								</tbody>
@@ -124,7 +128,7 @@
 			<div class="modal-content">
 				<div class="weak-wrap">
 					<div class="weak-item weak-id">
-						<span><i class="fas fa-user fa-fw me-1"></i>컴퓨터 ID :</span>
+						<span id = 'cid'><i class="fas fa-user fa-fw me-1"></i></span>
 						<span>{{CPIDV}}</span>
 					</div>
 					<div class="weak-item weak-content">

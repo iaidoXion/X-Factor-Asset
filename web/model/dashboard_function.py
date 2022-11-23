@@ -253,31 +253,19 @@ def DashboardData():
     return RD
 
 
-def AssetData(Param, data):
+def AssetData(Param, data) :
     SK = HYAPI('', 'Auth', '')
-    if Param == "Count":
-        COUNT = HYAPI(SK, 'Count', '')
-        DB = HYDPI('sw1', '')
-        Merge = [COUNT, DB]
-
-        ADJ = HTDFPI(Merge, 'Count')
-
+    if Param == "Count" :
+        DB = HYDPI('list', '')
         RD = {
-            'session': SK,
-            'item': ADJ.to_dict('records')
+            'session' : SK,
+            'item' : DB
         }
-    if Param == 'SWV':
-        DB = HYDPI('SWV', data)
+    if Param == 'SWV' :
+        SDL = HYDPI('swv_detail', data)
         RD = {
-            'item': DB
+            'item' : SDL
         }
-    if Param == 'SWV_API':
-        SWV = HYAPI(SK, 'SWV', data)
-        RD = {'swv': SWV}
-
-    if Param == 'CPID_API':
-        CPV = HYAPI(SK, 'CPID_API', data)
-        RD = {'cpv': CPV}
     return RD
     # sensorData_hyd = IAPI(SK['dataList'], 'Sensor_hyd')
 
