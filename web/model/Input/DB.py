@@ -100,54 +100,109 @@ def hyd_plug_in(table, data):
         SDL = []
         Conn = psycopg2.connect('host={0} port={1} dbname={2} user={3} password={4}'.format(DBHost, DBPort, DBName, DBUser, DBPwd))
         Cur = Conn.cursor()
-        if table == 'sw1' :
+        
+        if table == 'list' :
             query = """
-                select 
-                    vulnerability_num, 
-                    vulnerability_classification, 
-                    vulnerability_code, 
-                    vulnerability_item, 
-                    vulnerability_explanation,
-                    vulnerability_standard_good,
-                    vulnerability_standard_weak,
-                    to_char(vulnerability_create_date, 'YYYY-MM-DD')
-                from
-                    vulnerability_list
-                where 
-                	vulnerability_code like 'SW1%'
-                order by vulnerability_num
-            """
-
-        if table == 'SWV' :
+                SELECT 
+                    vl.vulnerability_num, 
+                    vl.vulnerability_classification, 
+                    vl.vulnerability_code, 
+                    vl.vulnerability_item, 
+                    vl.vulnerability_explanation,
+                    vl.vulnerability_standard_good,
+                    vl.vulnerability_standard_weak,
+                    count(case when vj.vulnerability_judge_result = 'Weak' then 1 end) as count,
+                    to_char(vl.vulnerability_create_date, 'YYYY-MM-DD')
+                FROM
+                    vulnerability_list vl
+                JOIN
+                    vulnerability_judge vj 
+                    ON 
+                        vl.vulnerability_code = vj.vulnerability_code
+                GROUP BY vl.vulnerability_num
+                ORDER BY vl.vulnerability_num
+                """
+                
+        if table == 'swv_detail' :
             query = """
-                select 
-                    vulnerability_num, 
-                    vulnerability_classification, 
-                    vulnerability_code, 
-                    vulnerability_item, 
-                    vulnerability_explanation,
-                    vulnerability_standard_good,
-                    vulnerability_standard_weak,
-                    to_char(vulnerability_create_date, 'YYYY-MM-DD')
-                from
-                    vulnerability_list
-                where 
-                	vulnerability_code = '""" + data + """'
-            """
+                SELECT
+                    VL.vulnerability_num, 
+                    VL.vulnerability_classification, 
+                    VL.vulnerability_code, 
+                    VL.vulnerability_item, 
+                    VL.vulnerability_explanation,
+                    VL.vulnerability_standard_good,
+                    VL.vulnerability_standard_weak,
+                    VJ.computer_id,
+                    VJ.vulnerability_judge_result,
+                    VJ.vulnerability_judge_reason,
+                    VJ.computer_name,
+                    VJ.chassis_type,
+                    VJ.tanium_client_nat_ip_address,
+                    VJ.last_reboot,
+                    VJ.operating_system,
+                    to_char(VJ.vulnerability_judge_update_time, 'YYYY-MM-DD HH:MM:SS')
+                FROM
+                    vulnerability_list VL
+                JOIN 
+                    vulnerability_judge VJ
+                ON 
+                    vl.vulnerability_code = vj.vulnerability_code
+                WHERE 
+                    vj.vulnerability_judge_result = 'Weak' 
+                    AND 
+                    vj.vulnerability_code = '""" + data + """'
+                """
         Cur.execute(query)
         RS = Cur.fetchall()
         for R in RS:
-            SDL.append(dict(
-                        (
-                            ('index', R[0]), 
-                            ('SWV', R[2]), 
-                            ('Title', R[3]), 
-                            ('Text', R[4]),
-                            ('Judge', [R[5], R[6]])
-                            )
-                            )
-                    )
+            if table == 'list' :
+                SDL.append(dict(
+                                    (
+                                        ('index', R[0]), 
+                                        ('SWV', R[2]), 
+                                        ('Title', R[3]), 
+                                        ('Text', R[4]),
+                                        ('Judge', [R[5], R[6]]),
+                                        ('Count', R[7])
+                                    )
+                                )
+                        )
+            if table == 'swv_detail' :
+                SDL.append(dict(
+                                    (
+                                        ('index', R[0]), 
+                                        ('SWV', R[2]), 
+                                        ('Title', R[3]), 
+                                        ('Text', R[4]),
+                                        ('Judge', [R[5], R[6]]),
+                                        ('cid', R[7]),
+                                        ('result', R[8]),
+                                        ('reason', R[9]),
+                                        ('cpnm', R[10]),
+                                        ('type', R[11]),
+                                        ('ip', R[12]),
+                                        ('last_login', R[13]),
+                                        ('os', R[14]),
+                                        ('update_time', R[15])
+                                    )
+                                )
+                        )
+            if table == 'swv_data':
+                SDL.append(dict(
+                                    (
+                                        ('cid', R[0]), 
+                                        ('host', R[1]), 
+                                        ('os', R[2]), 
+                                        ('ip', R[3]),
+                                        ('asset', R[4]),
+                                        ('lastlogin', R[5]),
+                                        ('update_date', R[6])
+                                    )
+                                )
+                        )
         return SDL
     except:
         print(table+' Daily Table connection(Select) Failure')
+
 

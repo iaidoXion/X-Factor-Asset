@@ -55,15 +55,8 @@ def assetweb(request):
 def assetDetailweb(request):
     swv=request.GET.get('swv')
     Data = AssetData('SWV', swv)
-    SWV_API = AssetData('SWV_API', swv)
-    returnData = { 'menuList': menuListDB , 'data' : Data, 'swv' : SWV_API}
+    returnData = { 'menuList': menuListDB , 'data' : Data}
     return render(request, 'web/asset_detail.html', returnData)
-
-def assetDetailweb_api(request):
-    cid=request.GET.get('cid')
-    CPIDV = AssetData('CPID_API', cid)
-    returnData = {"CPIDV" : CPIDV}
-    return JsonResponse(returnData, status=200)
 
 def report(request):
     returnData = { 'menuList': menuListDB }

@@ -170,7 +170,6 @@ def hyd_plug_in(SK, APITYPE, data) :
     
     if APITYPE == 'CPID_API' :
         ComputerID =data
-        
         query_text = "Get WEAK_SW1_WINDOW and Computer ID from all machines with Computer ID contains \"" + ComputerID + "\""
         
         path = '/api/v2/questions'
@@ -190,11 +189,13 @@ def hyd_plug_in(SK, APITYPE, data) :
             resCode = response.status_code
             list = []
             dict_list = []
-            if len(response.json()['data']['result_sets'][0]['rows'][0]) == 0:
+            if len(response.json()['data']['result_sets'][0]['rows']) == 0:
                 returnData = "Fail"
             else :
                 for i in response.json()['data']['result_sets'][0]['rows'][0]['data'][0] : 
-                    list.append(i['text'])
+
+                    dict = literal_eval(i['text'])
+                    list.append(dict)
             returnData = list
         else :
             returnData = "Fail"  
