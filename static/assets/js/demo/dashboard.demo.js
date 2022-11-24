@@ -881,7 +881,7 @@ var apexRadarChartOptions = {
     labels: {
       formatter: function (val, i) {
         if (i % 1 === 0) {
-          return val;
+          return Math.round(val);
 		} else {
           return "";
         }
