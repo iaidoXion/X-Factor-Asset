@@ -31,7 +31,7 @@ var handleRenderChart = function () {
     },
     tooltip: {
       style: {
-        fontSize: "5px",
+        fontSize: "10px",
         fontFamily: app.font.family,
       },
     },
@@ -325,12 +325,20 @@ var handleRenderChart = function () {
 //----------------------------------------
 // Asset Count By Item - bar chart
 //---------------------------------------
-   var barValue = []
+  var barValue = []
    var barName = []
     for (var i = 0; i < a.barChartDataList.length; i++){
         barValue.push(JSON.stringify(a.barChartDataList[i]['value']))
-        barName.push(a.barChartDataList[i]['name']);
+        if(a.barChartDataList[i]['name'].length > 10){
+            barName.push (a.barChartDataList[i]['name'].substr(0,10)+"...")
+        }
+        else barName.push(a.barChartDataList[i]['name'])
     };
+   var barToolTip = []
+    for (var i = 0; i < a.barChartDataList.length; i++){
+        barToolTip.push(a.barChartDataList[i]['name']);
+    };
+
 
 var apexColumnChartOptions = {
 		chart: {
@@ -376,17 +384,29 @@ var apexColumnChartOptions = {
 		yaxis: {
 			labels: {
 				show: true,
+				formatter : function (val) {
+					return Math.round(val);
+				}
 			}
 		},
 		fill: {
 			opacity: 1
 		},
-		tooltip: {
-			theme: 'dark',
-			x: {
-				show: true
-			},
-			y: {
+
+tooltip: {
+          x: {
+            show: true,
+            formatter: function(value){
+            for (var i = 0; i < barToolTip.length; i++){
+                if (barToolTip[i].includes(value.substring(0,10))) {
+                    value = barToolTip[i];
+                    break
+                }
+            }
+            return ''+ value
+            },
+          },
+          			y: {
 				title: {
 					formatter: function (seriesName) {
 						return ''
@@ -394,6 +414,7 @@ var apexColumnChartOptions = {
 				},
 				formatter: (value) => { return '' + value },
 			}
+
 		}
 	};
 	var apexColumnChart = new ApexCharts(
@@ -401,7 +422,6 @@ var apexColumnChartOptions = {
 		apexColumnChartOptions
 	);
 	apexColumnChart.render();
-
 
 
 //---------------------------------------
@@ -489,7 +509,11 @@ var apexLineChartOptions = {
 		yaxis: {
 			labels: {
 				show: true,
+					formatter: function (val){
+						return Math.round(val);
+					}
 			}
+
 		},
 		tooltip: {
 			theme: 'dark',
@@ -674,7 +698,7 @@ var apexDonutChartOptions = {
 	group = [];
 	var radar_list = [];
 	var category_list = [];
-	
+
 	for (var i = 0; i < 5; i++) {
 		group.push(a.AssociationDataList.nodeDataList[i].group);
 	}
@@ -790,11 +814,11 @@ var apexDonutChartOptions = {
 						alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
 					}
 				}
-				
+
           		name = group[i];
 			}
 		}
-		
+
 		var radar_dict = { "name" : name, "data" : list};
 		radar_list.push(radar_dict);
 	};
@@ -881,7 +905,7 @@ var apexRadarChartOptions = {
     labels: {
       formatter: function (val, i) {
         if (i % 1 === 0) {
-          return val;
+          return Math.round(val);
 		} else {
           return "";
         }
