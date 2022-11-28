@@ -78,7 +78,7 @@ def line_chart(data) :
     for i in df['date'].drop_duplicates() :
         time_array.append(i)
     ext_time = list(set(time_array).intersection(timelist))
-    asset = df.replace('Rack Mount Chassis', 'Server')
+    #asset = df.replace('Rack Mount Chassis', 'Server')
     timelist = []
     
     for i in ext_time :
@@ -93,7 +93,7 @@ def line_chart(data) :
         ext_time.append(d)
         
     for i in range(len(ext_time)) :
-        pd_list.append(asset[asset['date'] == ext_time[i]].sort_values(by="name", ascending=True).reset_index(drop=True))
+        pd_list.append(df[df['date'] == ext_time[i]].sort_values(by="name", ascending=True).reset_index(drop=True))
     
     if len(ext_time) == 1 :
         last = pd_list[0]

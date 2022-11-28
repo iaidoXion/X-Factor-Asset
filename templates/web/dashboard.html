@@ -28,37 +28,11 @@
 					</div>
 					<!-- END title -->
 					<!-- BEGIN stat-lg -->
-					<div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
-						<div class="small text-white text-opacity-50 text-truncate col-3">
-							{% if chartData.barChartDataList %}
-							{% for data in chartData.barChartDataList %}
-							{% if data.name == "Desktop" %}
-							<i class="fas fa-tv fa-fw me-1"></i>
-							{% elif data.name == "Notebook" %}
-							<i class="fas fa-laptop fa-fw me-1"></i>
-							{% elif data.name == "Server" %}
-							<i class="fas fa-server fa-fw me-1"></i>
-							{% elif data.name == "Virtual" %}
-							<i class="fas fa-window-restore fa-fw me-1"></i>
-							{% else %}
-							<i class="fas fa-ellipsis-h fa-fw me-1"></i>
-							{% endif %}
-							{{data.name}}
-							<br>
-							{% endfor %}
-							{% endif %}
-						</div>
-						<div class="small text-white text-opacity-50 text-truncate col-1">
-							{% if chartData.barChartDataList %}
-							{% for data in chartData.barChartDataList %}
-							{{data.value}}<br>
-							{% endfor %}
-							{% endif %}
-						</div>
+					<div class="h-100px">
 						<!-- END stat-sm -->
 						<div>
 							<div class="col-12">
-								<div class="h-100px" id="apexColumnChart"></div>
+								<div class="mt-n3 mb-n2 h-100px" id="apexColumnChart"></div>
 							</div>
 						</div>
 					</div>
