@@ -24,6 +24,7 @@ def dashboard(request):
         return render(request, 'common/login.html', res_data)
     else :
         DCDL = DashboardData()
+        dashboardType = 'web/dashboard.html'
         barChartData = DCDL["barChartData"]
         lineChartData = DCDL["lineChartData"]
         pieChartData = DCDL["pieChartData"]
@@ -38,7 +39,9 @@ def dashboard(request):
         MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
         chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
         returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
-        return render(request, 'web/dashboard.html', returnData)
+        if Customer == 'NC':
+            dashboardType = 'web/dashboard_NC.html'
+        return render(request, dashboardType, returnData)
 
 
 
