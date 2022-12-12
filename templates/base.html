@@ -102,8 +102,11 @@
   <script src="{% static 'assets/plugins/jvectormap-content/kr-mill.js' %}"></script>
   <script src="{% static 'assets/plugins/jvectormap-content/sn-mill.js' %}"></script>
   <script src="{% static 'assets/plugins/apexcharts/dist/apexcharts.min.js' %}"></script>
+  {% if Customer == 'NC%}
+  <script src="{% static 'assets/js/demo/dashboard.demo.NC.js' %}"></script>
+  {% else %}
   <script src="{% static 'assets/js/demo/dashboard.demo.js' %}"></script>
-<!--  <script src="{% static 'assets/js/demo/dashboard.demo.NC.js' %}"></script>-->
+  {% endif %}
   <!-- ================== END page-js ================== -->
 
   <!-- ================== BEGIN dashboard-js ================== -->

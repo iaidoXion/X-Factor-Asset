@@ -17,4 +17,5 @@ urlpatterns = [
     path('reportdaily/', base_views.reportdaily, name='reportdaily'),
     path('reportmonthly/', base_views.reportmonthly, name='reportmonthly'),
     path('reportannual/', base_views.reportannual, name='reportannual'),
+    path('NC_banner/', base_views.ncBanner, name='NC_banner'),
 ]

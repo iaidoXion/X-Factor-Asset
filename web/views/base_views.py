@@ -76,3 +76,7 @@ def reportmonthly(request):
 def reportannual(request):
     returnData = { 'menuList': menuListDB }
     return render(request, 'web/report_annual.html', returnData)
+
+def ncBanner(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'web/dashboard_NC_banner.html', returnData)
