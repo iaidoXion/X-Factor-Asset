@@ -633,6 +633,61 @@
         </div>
         <!-- END col-3 -->
 
+        		<!-- BEGIN col-6 -->
+		<div class="col-xl-12 h-130px" >
+			<!-- BEGIN card -->
+			<div class="card mb-3">
+				<!-- BEGIN card-body -->
+				<div class="card-body h-130px">
+					<!-- BEGIN swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							{% if chartData.bannerDataList %}
+							{% for bannerData in chartData.bannerDataList %}
+							<div class="swiper-slide">
+								<div class="conBanner">
+									<div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px" title="{{bannerData.name}} Count">{{bannerData.name}} Count</div>
+									<div class="count-num">
+										<span class="conTotalnum fw-bold text-opacity-60 fs-4">{{bannerData.value}}</span>
+										<div class="conNumImg">
+											{% if bannerData.roc == 0 %}
+											<a class="conNumIcon text-decoration-none"> - </a>
+											{% elif bannerData.roc > 0 %}
+											<img class="conArrow" src="{% static 'img/common/dashboard/arrowTop.png' %}">
+											{% else %}
+											<img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
+											{% endif %}
+										</div>
+										<span class="conNum text-theme fw-bold">
+											{% if bannerData.roc < 0 %}
+											{% widthratio bannerData.roc 1 -1 %}
+											{% else %}
+											{{bannerData.roc}}
+											{% endif %}
+										</span>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+					<!-- END swiper -->
+				</div>
+				<!-- END card-body -->
+
+				<!-- BEGIN card-arrow -->
+				<div class="card-arrow">
+					<div class="card-arrow-top-left"></div>
+					<div class="card-arrow-top-right"></div>
+					<div class="card-arrow-bottom-left"></div>
+					<div class="card-arrow-bottom-right"></div>
+				</div>
+				<!-- END card-arrow -->
+			</div>
+			<!-- END card -->
+		</div>
+		<!-- END col-6 -->
     </div>
     <!-- END row -->
 </div>
