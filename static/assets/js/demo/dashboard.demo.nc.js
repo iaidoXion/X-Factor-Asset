@@ -126,7 +126,7 @@ var apexOSversionChartOptions = {
 		},
         colors: ["#FFF3CE", "#FFE49D", "#FFD16D", "#FFBE48", "#ff9f0c", "#DB7F08", "#B76306", "#934903"],
 		labels: ["Windows 11","Windows 10","CentOS 7","Ubuntu 20","Windows 9","Windows 7","Ubuntu 21","CentOS 8"],
-		series: [10, 20, 30, 40, 10, 20, 30, 40],
+		series: [10, 22, 30, 40, 10, 22, 30, 40],
 		tooltip: {
 			theme: 'dark',
 			x: {
