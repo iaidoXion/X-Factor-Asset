@@ -10572,6 +10572,10 @@ fieldset:disabled .btn {
     width: 75% !important
 }
 
+.w-90 {
+    width: 90% !important
+}
+
 .w-100 {
     width: 100% !important
 }
@@ -18803,6 +18807,10 @@ fieldset:disabled .btn {
     height: 200px !important
 }
 
+.h-242px {
+    height: 242px !important
+}
+
 .h-250px {
     height: 250px !important
 }
@@ -18823,8 +18831,16 @@ fieldset:disabled .btn {
     height: 400px !important
 }
 
+.h-430px {
+    height: 430px !important
+}
+
 .h-450px {
     height: 450px !important
+}
+
+.h-459px {
+    height: 459px !important
 }
 
 .h-500px {
@@ -23406,7 +23422,18 @@ body {
     letter-spacing: 0.046875rem;
     position: relative;
     min-height: 100vh;
-    z-index: 9999
+    z-index: 9999;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* Internet explorer */
+    scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera, Edge*/
+}
+
+#test::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
 body:before {
