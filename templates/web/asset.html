@@ -42,8 +42,8 @@
 								</tr>
 								</thead>
 								<tbody>
-									{% if data.item %}
-										{% for db in data.item%}
+									{% if data %}
+										{% for db in data%}
 											<tr data-toggle="tooltop" data-placement="top">
 												<td>{{db.index}}</td>
 												<td>{{db.SWV}}</td>
@@ -60,6 +60,39 @@
 									{% endif%}
 								</tbody>
 							</table>
+							<ul class="pagination justify-content-center">
+								{% if data.has_previous %}
+								<li class="page-item">
+									<a class="page-link" href="?page={{ data.previous_page_number }}">이전</a>
+								</li>
+								{% else %}
+								<li class="page-item disabled">
+									<a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+								</li>
+								{% endif %}
+
+								{% for page_number in data.paginator.page_range %}
+								{% if page_number == data.number %}
+								<li class="page-item active" aria-current="page">
+									<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+								</li>
+								{% else %}
+								<li class="page-item">
+									<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+								</li>
+								{% endif %}
+								{% endfor %}
+
+								{% if data.has_next %}
+								<li class="page-item">
+									<a class="page-link" href="?page={{ data.next_page_number }}">다음</a>
+								</li>
+								{% else %}
+								<li class="page-item disabled">
+									<a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+								</li>
+								{% endif %}
+							</ul>
 						</div>
 						<!-- END #weak windows datatable -->
 						<!-- BEGIN #weak unix datatable -->
@@ -199,6 +232,7 @@
 								</tr>
 								</tbody>
 							</table>
+
 						</div>
 						<!-- END #weak unix datatable -->
 					</div>
