@@ -1,3 +1,7 @@
+from pprint import pprint
+
+import requests
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import JsonResponse
 from web.model.dashboard_function import DashboardData
@@ -53,8 +57,17 @@ def assetweb(request):
         return render(request, 'common/login.html', res_data)
     else :
         Data = AssetData('Count', '')
-        returnData = { 'menuList': menuListDB, 'data' : Data}
+        page = request.GET.get('page', '1')
+        list = Data['item']
+        paginator = Paginator(list, 10)
+        page_obj = paginator.get_page(page)
+        start = page_obj.start_index()
+        end = page_obj.end_index()
+        total = len(Data['item'])
+        select = request.GET.get('asset count')
+        returnData = { 'menuList': menuListDB, 'data': page_obj, 'start': start, 'end': end, 'total': total}
         return render(request, 'web/asset.html', returnData)
+
 
 def assetDetailweb(request):
     swv=request.GET.get('swv')
