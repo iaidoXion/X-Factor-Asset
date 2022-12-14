@@ -30,6 +30,17 @@
 					<div class="tab-content">
 						<!-- BEGIN #weak windows datatable -->
 						<div class="tab-pane fade show active" id="weak-windows">
+							<div>
+								페이지당
+								<label>
+									<select class="form-select for-select-sm">
+											<option value="10">10</option>
+											<option value="20">20</option>
+											<option value="30">30</option>
+									</select>
+								</label>
+								 개씩 보기
+							</div>
 							<table id="weakTable-windows" class="table weakTable text-nowrap w-100">
 								<thead>
 								<tr>
@@ -60,39 +71,44 @@
 									{% endif%}
 								</tbody>
 							</table>
-							<ul class="pagination justify-content-center">
-								{% if data.has_previous %}
-								<li class="page-item">
-									<a class="page-link" href="?page={{ data.previous_page_number }}">이전</a>
-								</li>
-								{% else %}
-								<li class="page-item disabled">
-									<a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-								</li>
+							<div class="row align-items-center">
+								{% if start and end and total %}
+								<div> 현재 {{ start }} 건 - {{ end }} / 전체 {{ total}} 건 </div>
 								{% endif %}
+								<ul class="pagination justify-content-center">
+									{% if data.has_previous %}
+									<li class="page-item">
+										<a class="page-link" href="?page={{ data.previous_page_number }}">이전</a>
+									</li>
+									{% else %}
+									<li class="page-item disabled">
+										<a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+									</li>
+									{% endif %}
 
-								{% for page_number in data.paginator.page_range %}
-								{% if page_number == data.number %}
-								<li class="page-item active" aria-current="page">
-									<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-								</li>
-								{% else %}
-								<li class="page-item">
-									<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-								</li>
-								{% endif %}
-								{% endfor %}
+									{% for page_number in data.paginator.page_range %}
+									{% if page_number == data.number %}
+									<li class="page-item active" aria-current="page">
+										<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+									</li>
+									{% else %}
+									<li class="page-item">
+										<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+									</li>
+									{% endif %}
+									{% endfor %}
 
-								{% if data.has_next %}
-								<li class="page-item">
-									<a class="page-link" href="?page={{ data.next_page_number }}">다음</a>
-								</li>
-								{% else %}
-								<li class="page-item disabled">
-									<a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-								</li>
-								{% endif %}
-							</ul>
+									{% if data.has_next %}
+									<li class="page-item">
+										<a class="page-link" href="?page={{ data.next_page_number }}">다음</a>
+									</li>
+									{% else %}
+									<li class="page-item disabled">
+										<a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+									</li>
+									{% endif %}
+								</ul>
+							</div>
 						</div>
 						<!-- END #weak windows datatable -->
 						<!-- BEGIN #weak unix datatable -->
@@ -253,7 +269,14 @@
 </div>
 <!-- END #content -->
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("select[name=asset count]").change(function () {
+        $("#asset count").submit();
 
+        });
+    });
+</script>
 
 
 {% endblock %}

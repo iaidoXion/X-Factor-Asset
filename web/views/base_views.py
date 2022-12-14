@@ -60,7 +60,11 @@ def assetweb(request):
         list = Data['item']
         paginator = Paginator(list, 10)
         page_obj = paginator.get_page(page)
-        returnData = { 'menuList': menuListDB, 'data': page_obj}
+        start = page_obj.start_index()
+        end = page_obj.end_index()
+        total = len(Data['item'])
+        select = request.GET.get('asset count')
+        returnData = { 'menuList': menuListDB, 'data': page_obj, 'start': start, 'end': end, 'total': total}
         return render(request, 'web/asset.html', returnData)
 
 
