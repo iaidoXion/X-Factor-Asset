@@ -227,10 +227,10 @@
                 <!-- BEGIN card -->
                 <div class="card mb-3">
                     <!-- BEGIN card-body -->
-                    <div class="card-body h-170px">
+                    <div class="card-body h-284px">
                         <!-- BEGIN title -->
                         <div style="position: relative;">
-                            <div class="btn-group">
+                            <div class="btn-group mb-3">
                                 <button type="button" class="btn btn-outline-warning btn-sm active">메모리</button>
                                 <button type="button" class="btn btn-outline-warning btn-sm">CPU</button>
                                 <button type="button" class="btn btn-outline-warning btn-sm">디스크</button>
@@ -270,7 +270,7 @@
                 <!-- BEGIN card -->
                 <div class="card mb-3">
                     <!-- BEGIN card-body -->
-                    <div class="card-body h-459px">
+                    <div class="card-body h-205px">
                         <!-- BEGIN title -->
                         <div class="d-flex fw-bold small mb-2">
                             <div class="flex-grow-1">서버 총 수량 추이 그래프 (최근 30일)</div>
@@ -305,9 +305,9 @@
                 <!-- BEGIN card -->
                 <div class="card mb-3">
                     <!-- BEGIN card-body -->
-                    <div class="card-body h-430px">
+                    <div class="card-body h-284px">
                         <!-- BEGIN title -->
-                        <div class="d-flex fw-bold small mb-3">
+                        <div class="d-flex fw-bold small">
                             <div class="flex-grow-1" style="position: relative;">
                                 그룹별 장애 징후 감지 모니터링
                                 <div class="btn-group ps-3" style="position: absolute; right:20px;">
@@ -330,7 +330,7 @@
                         </div>
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-21x9" style="width: 95%;">
+                        <div class="ratio ratio-21x9" style="width: 100%; height: 95%; margin: 0 auto;">
                             {% if MapUse.WorldUse == 'block' %}
                             <div id="world-map" style="display:{{MapUse.WorldUse}}"></div>
                             {%endif%}
@@ -361,9 +361,9 @@
                     <!-- BEGIN card -->
                     <div class="card mb-3 ">
                         <!-- BEGIN card-body -->
-                        <div class="card-body h-200px">
+                        <div class="card-body h-205px" style="display: inline-flex;">
                             <table class="table w-90 fs-12px mb-0 text-truncate text-white text-opacity-60"
-                                   style="margin: 0 auto;">
+                                   style="margin: 0 auto; vertical-align: middle;">
                                 <thead>
                                 <tr class="text-white text-opacity-75">
                                     <th class="w-50">알람 케이스</th>
@@ -406,8 +406,8 @@
                     <!-- BEGIN card -->
                     <div class="card mb-3">
                         <!-- BEGIN card-body -->
-                        <div class="card-body h-200px">
-                            <div class="text-white text-opacity-75">
+                        <div class="card-body h-205px">
+                            <div class="text-white text-opacity-75 mb-2">
                                 <span class="w-50" style="font-size:12px;">IP 대역별 총 알람 수 (상위 5개)</span>
                             </div>
                             <div id="apexTotalAlarmChart"></div>
@@ -632,62 +632,65 @@
             <!-- END card -->
         </div>
         <!-- END col-3 -->
-
-        		<!-- BEGIN col-6 -->
-		<div class="col-xl-12 h-130px" >
-			<!-- BEGIN card -->
-			<div class="card mb-3">
-				<!-- BEGIN card-body -->
-				<div class="card-body h-130px">
-					<!-- BEGIN swiper -->
-					<div class="swiper-container">
-						<div class="swiper-wrapper">
-							{% if chartData.bannerDataList %}
-							{% for bannerData in chartData.bannerDataList %}
-							<div class="swiper-slide">
-								<div class="conBanner">
-									<div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px" title="{{bannerData.name}} Count">{{bannerData.name}} Count</div>
-									<div class="count-num">
-										<span class="conTotalnum fw-bold text-opacity-60 fs-4">{{bannerData.value}}</span>
-										<div class="conNumImg">
-											{% if bannerData.roc == 0 %}
-											<a class="conNumIcon text-decoration-none"> - </a>
-											{% elif bannerData.roc > 0 %}
-											<img class="conArrow" src="{% static 'img/common/dashboard/arrowTop.png' %}">
-											{% else %}
-											<img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
-											{% endif %}
-										</div>
-										<span class="conNum text-theme fw-bold">
+        <!-- BEGIN col-6 -->
+        <div class="col-xl-12 h-130px">
+            <!-- BEGIN card -->
+            <div class="card mb-3">
+                <!-- BEGIN card-body -->
+                <div class="card-body h-130px">
+                    <!-- BEGIN swiper -->
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {% if chartData.bannerDataList %}
+                            {% for bannerData in chartData.bannerDataList %}
+                            <div class="swiper-slide">
+                                <div class="conBanner">
+                                    <div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px"
+                                         title="{{bannerData.name}} Count">{{bannerData.name}} Count
+                                    </div>
+                                    <div class="count-num">
+                                        <span class="conTotalnum fw-bold text-opacity-60 fs-4">{{bannerData.value}}</span>
+                                        <div class="conNumImg">
+                                            {% if bannerData.roc == 0 %}
+                                            <a class="conNumIcon text-decoration-none"> - </a>
+                                            {% elif bannerData.roc > 0 %}
+                                            <img class="conArrow"
+                                                 src="{% static 'img/common/dashboard/arrowTop.png' %}">
+                                            {% else %}
+                                            <img class="conArrow"
+                                                 src="{% static 'img/common/dashboard/arrowBot.png' %}">
+                                            {% endif %}
+                                        </div>
+                                        <span class="conNum text-theme fw-bold">
 											{% if bannerData.roc < 0 %}
 											{% widthratio bannerData.roc 1 -1 %}
 											{% else %}
 											{{bannerData.roc}}
 											{% endif %}
 										</span>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-							{% endif %}
-						</div>
-					</div>
-					<!-- END swiper -->
-				</div>
-				<!-- END card-body -->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- END swiper -->
+                </div>
+                <!-- END card-body -->
 
-				<!-- BEGIN card-arrow -->
-				<div class="card-arrow">
-					<div class="card-arrow-top-left"></div>
-					<div class="card-arrow-top-right"></div>
-					<div class="card-arrow-bottom-left"></div>
-					<div class="card-arrow-bottom-right"></div>
-				</div>
-				<!-- END card-arrow -->
-			</div>
-			<!-- END card -->
-		</div>
-		<!-- END col-6 -->
+                <!-- BEGIN card-arrow -->
+                <div class="card-arrow">
+                    <div class="card-arrow-top-left"></div>
+                    <div class="card-arrow-top-right"></div>
+                    <div class="card-arrow-bottom-left"></div>
+                    <div class="card-arrow-bottom-right"></div>
+                </div>
+                <!-- END card-arrow -->
+            </div>
+            <!-- END card -->
+        </div>
+        <!-- END col-6 -->
     </div>
     <!-- END row -->
 </div>
@@ -696,30 +699,6 @@
 
 <script>
 	window.setTimeout('window.location.reload()',600000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

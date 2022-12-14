@@ -18807,8 +18807,12 @@ fieldset:disabled .btn {
     height: 200px !important
 }
 
-.h-242px {
-    height: 242px !important
+.h-205px {
+    height: 205px !important
+}
+
+.h-240px {
+    height: 240px !important
 }
 
 .h-250px {
@@ -18817,6 +18821,10 @@ fieldset:disabled .btn {
 
 .h-270px {
     height: 270px !important
+}
+
+.h-284px {
+    height: 284px !important
 }
 
 .h-300px {
@@ -29860,6 +29868,10 @@ body .note-modal-backdrop {
 #apexDonutFailureCChart .chartLegend {
     display: inline-block;
     float: right;
+}
+
+#apexTotalAlarmChart .apexcharts-legend {
+    top: 10px !important;
 }
 
 /* end - apexchart css */
