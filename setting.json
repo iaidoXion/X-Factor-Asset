@@ -2,7 +2,7 @@
   "PROJECT" : {
     "CORE" : "Tanium",
     "LOGIN" : "WEB",
-    "CUSTOMER" : "Xfactor",
+    "CUSTOMER" : "NC",
     "TYPE" : "System",
     "MAP" : {
       "World" : "block",
