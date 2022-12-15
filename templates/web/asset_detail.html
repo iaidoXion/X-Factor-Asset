@@ -14,7 +14,7 @@
 			data : {
 				"cid" : data
 			},
-            success : function(data){ 
+            success : function(data){
 				alert('success');
 				console.log(data);
 			},
@@ -94,7 +94,7 @@
 											<td>{{item.ip}}</td>
 											<td>{{item.type}}</td>
 											<td>{{item.last_login}}</td>
-											<td><button style="display:none;" type="button" class="btn btn-warning me-2" value=" " data-bs-toggle="modal" data-bs-target="#modalXl" onclick="send_api({{item}});">확인</button></td>
+											<td><i class="caret"></i><!-- <button style="display:none;" type="button" class="btn btn-warning me-2" value=" " data-bs-toggle="modal" data-bs-target="#modalXl" onclick="send_api({{item}});">확인</button> --></td>
 										</tr>
 									{% endfor %}
 									{% else %}

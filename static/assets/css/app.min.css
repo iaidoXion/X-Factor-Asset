@@ -29913,9 +29913,42 @@ body .note-modal-backdrop {
     color: #fff;
     font-size: 0.75rem;
 }
+#weakTableDetail thead tr th:nth-child(1){
+   width:5%;
+}
+#weakTableDetail thead tr th:nth-child(2),
+#weakTableDetail thead tr th:nth-child(7){
+   width:15%;
+}
+#weakTableDetail thead tr th:nth-child(3){
+   width:16%;
+}
+#weakTableDetail thead tr th:nth-child(4){
+   width:20%;
+}
+#weakTableDetail thead tr th:nth-child(5){
+   width:14%;
+}
+#weakTableDetail thead tr th:nth-child(6){
+   width:10%;
+}
+#weakTableDetail thead tr th:nth-child(8){
+   width:5%;
+}
+
+
+#weakTableDetail tbody tr td:nth-child(8){
+    text-align:center;
+}
+
+#weakTableDetail tbody tr td:nth-child(8) i.caret{
+    cursor:pointer;
+}
 
 .detail-content ul {
     margin-bottom: 0 !important;
+    font-size:12px;
+    color:#fff
 }
 
 .detail-content ul li p {
