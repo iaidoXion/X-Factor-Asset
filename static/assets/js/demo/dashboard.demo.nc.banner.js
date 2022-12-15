@@ -616,7 +616,7 @@ var apexMemory60usageOptions = {
 var apexTotalServerOptions = {
 		chart: {
 		    width: '100%',
-			height: 130,
+			height: 145,
 			type: 'line',
 			toolbar: {
 				show: false
@@ -708,7 +708,7 @@ var apexTotalServerOptions = {
 	var apexTotalAlarmOptions = {
 		chart: {
 		    width: '100%',
-			height: 130,
+			height: 150,
 			type: 'donut',
 		},
 		plotOptions: {

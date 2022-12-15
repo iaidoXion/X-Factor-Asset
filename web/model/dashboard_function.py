@@ -212,15 +212,7 @@ def DashboardData():
     if Customer == 'NC':
         if ProjectType == 'System':
             if core == 'Tanium':
-                SK = IAPI('', 'Auth')
-                sensorData = IAPI(SK['dataList'], 'Sensor')
-                sensorAPI = sensorData['dataList']
-                TAIVDL = TDFPI(sensorAPI, "today", "virtual")
-                TAIVS = ASDCD(TAIVDL, "virtual", "group")
-                #print(TAIVS)
-                #EAYL = IDPI('asset', 'yesterday', '')
-                EAML = IDPI('asset', 'monthly', '')
-                #print(EAML)
+
                 BDL= []
                 LDL = []
                 PDL = []
