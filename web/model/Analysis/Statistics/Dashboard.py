@@ -16,6 +16,7 @@ alarmCaseSeven = SETTING['PROJECT']['Alarm']['Case']['Seven']
 
 def calculation(pastData, todayData) :
     PTDLMerge = pd.merge(left=pastData, right=todayData, how="outer", on="name").sort_values(by="name", ascending=True).reset_index(drop=True)
+    # print(PTDLMerge)
     ROCDFDL = []
     ROCDFCNM = ['name','ROC']
     PTDLMerge = PTDLMerge.fillna(0)

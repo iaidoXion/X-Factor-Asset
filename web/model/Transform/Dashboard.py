@@ -16,31 +16,65 @@ alarmCaseSeven = SETTING['PROJECT']['Alarm']['Case']['Seven']
 
 
 def banner(data, type) :
+    online_count = 0
     DFDL = []
     DFCNM=['name', 'value']
+    # if type =='past':
+        # print(data)
     for i in range(len(data)):
         if type == 'past' :
+            if data[i][0] == 'virtual':
+                continue
             if data[i][0] == 'asset' or data[i][0] == 'os' :
-                if data[i][1] == 'all' :
-                    name = 'Asset Online'
-                else :
-                    if  data[i][1] == "Rack Mount Chassis" :
-                        name = "Server"
-                    else :
-                        name = data[i][1]
-            elif data[i][0] == 'drive_size' :
-                name = 'Drive Size No Change'
-            elif data[i][0] == 'login_history' :
-                name = 'No Login History'
-            elif data[i][0] == 'listen_port_count' :
-                name = 'Listen Port No Change'
-            elif data[i][0] == 'established_port_count' :
-                name = 'Established Port No Change'
-            elif data[i][0] == 'ram_use_size' :
-                name = 'RAM Usage Exceeded'
-                
+
+                if  data[i][1] == "Rack Mount Chassis" :
+                    name = "Server"
+                elif data[i][1].startswith('Mac'):
+                    continue
+                else:
+                    name = data[i][1]
+
+            elif data[i][0] == 'listen_port_count_change':
+                if data[i][1] == 'No':
+                    name = 'Listen Port No Change'
+                else:
+                    continue
+            elif data[i][0] == 'established_port_count_change':
+                if data[i][1] == 'no':
+                    name = 'Established Port No Change'
+                else:
+                    continue
+
+            # elif data[i][0] == 'ram_use_size' :
+            #     name = 'RAM Usage Exceeded'
+            # for j in range(len(data)):
+            #     if data[i][0] == data[j][0]:
+            #         data[i][2] = int(data[i][2])+int(data[j][2])
             DFDL.append([name, data[i][2]])
-            
+
+        elif type == 'miToday':
+            if data[i][0] == 'asset' or data[i][0] == 'os':
+                if data[i][0] == 'asset':
+
+                    name = 'Asset Online'
+                else:
+                    if data[i][1] == "Rack Mount Chassis":
+                        name = "Server"
+                    else:
+                        name = data[i][1]
+            elif data[i][0] == 'drive_size':
+                name = 'Drive Size No Change'
+            elif data[i][0] == 'login_history':
+                name = 'No Login History'
+            elif data[i][0] == 'listen_port_count':
+                name = 'Listen Port No Change'
+            elif data[i][0] == 'established_port_count':
+                name = 'Established Port No Change'
+            elif data[i][0] == 'ram_use_size':
+                name = 'RAM Usage Exceeded'
+
+            DFDL.append([name, data[i][2]])
+
         elif type == 'today' :
             for j in range(len(data[i]['name'])) :
                 name = data[i]['name'][j]
@@ -254,3 +288,4 @@ def chart_data(data, type) :
         ChartDataList = x
     RD = ChartDataList
     return RD
+

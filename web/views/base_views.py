@@ -1,7 +1,3 @@
-from pprint import pprint
-
-import requests
-from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import JsonResponse
 from web.model.dashboard_function import DashboardData
@@ -43,9 +39,8 @@ def dashboard(request):
         MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
         chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
         returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
-        if Customer == 'NC':
-            #dashboardType = 'web/dashboard_NC.html'
-            dashboardType = 'web/dashboard_NC_banner.html'
+        # if Customer == 'NC':
+        #     dashboardType = 'web/dashboard_NC.html'
         return render(request, dashboardType, returnData)
 
 
@@ -57,17 +52,8 @@ def assetweb(request):
         return render(request, 'common/login.html', res_data)
     else :
         Data = AssetData('Count', '')
-        page = request.GET.get('page', '1')
-        list = Data['item']
-        paginator = Paginator(list, 10)
-        page_obj = paginator.get_page(page)
-        start = page_obj.start_index()
-        end = page_obj.end_index()
-        total = len(Data['item'])
-        select = request.GET.get('asset count')
-        returnData = { 'menuList': menuListDB, 'data': page_obj, 'start': start, 'end': end, 'total': total}
+        returnData = { 'menuList': menuListDB, 'data' : Data}
         return render(request, 'web/asset.html', returnData)
-
 
 def assetDetailweb(request):
     swv=request.GET.get('swv')
@@ -90,7 +76,3 @@ def reportmonthly(request):
 def reportannual(request):
     returnData = { 'menuList': menuListDB }
     return render(request, 'web/report_annual.html', returnData)
-
-def ncBanner(request):
-    returnData = {'menuList': menuListDB}
-    return render(request, 'web/dashboard_NC_banner.html', returnData)

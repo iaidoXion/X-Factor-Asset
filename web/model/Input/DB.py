@@ -64,7 +64,9 @@ def plug_in(table, day, type):
                     where 
                         to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'
                     and 
-                        NOT classification IN ('installed_applications_name')
+                        NOT classification IN ('installed_applications')
+                    and 
+                        NOT classification IN ('running_processes')
                     and 
                         item NOT like '%[current%'
                     and 
@@ -78,7 +80,7 @@ def plug_in(table, day, type):
                         item_count, 
                         statistics_collection_date
                     from 
-                        """ + StatisticsTNM + """ 
+                        daily_statistics
                     where 
                         to_char(statistics_collection_date, 'YYYY-MM-DD') > '""" + fiveDay + """' 
                     and

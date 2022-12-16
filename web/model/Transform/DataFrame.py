@@ -7,6 +7,8 @@ def plug_in(data, day, type):
         if day == 'today' :
             CI = d[0][0]['text']
             IP = d[9][0]['text']
+            # print(CI)
+            # print(IP)
             if type == 'assetItem':
                 if d[8][0]['text'] != None and not d[8][0]['text'].startswith('TSE-Error') and not d[8][0]['text'].startswith('[current'):
                     item = d[8][0]['text']
@@ -42,6 +44,7 @@ def plug_in(data, day, type):
                     for x in d[4] :
                         value = x['text'].split(' ')
                         list.append(value)
+                        # print(list)
                 elif(len(d[4]) == 1) :
                     value= d[4][0]['text'].split(' ')
                     if ("[current" in value[0]) :
@@ -193,7 +196,6 @@ def plug_in(data, day, type):
                     item = str(d[3])
                 itemIndex = 'establishedPortCount'
 
-
         DFL.append([CI, item, IP])
     if type == 'line' :
         DFC = ['id', itemIndex, 'ip']
@@ -246,3 +248,33 @@ def hyd_plug_in (data, type) :
         DF = pd.merge(data_A, data_B, left_on='SWV', right_on='SWV', how='outer')
         
     return DF
+
+def Rplug_in(data, type):
+    if type == 'rdonut':
+        DFL = []
+        itemIndex = 'cpuconsumption'
+        for i in range(len(data)):
+            CI = data[i][0]
+            IP = data[i][2]
+            if data[i][1].startswith("[current" or "TSE-Error"):
+                item = 'Other'
+            else:
+                item = data[i][1]
+            DFL.append([CI, item, IP])
+        DFC = ['id', itemIndex, 'ip']
+        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
+        # print(DF)
+    if type == 'totalcase':
+        DFL = []
+        itemIndex = 'drivesize'
+        for i in range(len(data)):
+            CI = data[i][0]
+            IP = data[i][2]
+            if data[i][1].startswith("[current" or "TSE-Error"):
+                item = 'Other'
+            else:
+                item = data[i][1]
+            DFL.append([CI, item, IP])
+        DFC = ['id', itemIndex, 'ip']
+        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
+        return DF

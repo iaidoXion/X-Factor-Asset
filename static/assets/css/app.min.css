@@ -10572,10 +10572,6 @@ fieldset:disabled .btn {
     width: 75% !important
 }
 
-.w-90 {
-    width: 90% !important
-}
-
 .w-100 {
     width: 100% !important
 }
@@ -18807,24 +18803,12 @@ fieldset:disabled .btn {
     height: 200px !important
 }
 
-.h-205px {
-    height: 205px !important
-}
-
-.h-240px {
-    height: 240px !important
-}
-
 .h-250px {
     height: 250px !important
 }
 
 .h-270px {
     height: 270px !important
-}
-
-.h-284px {
-    height: 284px !important
 }
 
 .h-300px {
@@ -18839,16 +18823,8 @@ fieldset:disabled .btn {
     height: 400px !important
 }
 
-.h-430px {
-    height: 430px !important
-}
-
 .h-450px {
     height: 450px !important
-}
-
-.h-459px {
-    height: 459px !important
 }
 
 .h-500px {
@@ -23430,18 +23406,7 @@ body {
     letter-spacing: 0.046875rem;
     position: relative;
     min-height: 100vh;
-    z-index: 9999;
-    overflow-y: scroll;
-    -ms-overflow-style: none; /* Internet explorer */
-    scrollbar-width: none; /* Firefox */
-}
-
-body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera, Edge*/
-}
-
-#test::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+    z-index: 9999
 }
 
 body:before {
@@ -29870,10 +29835,6 @@ body .note-modal-backdrop {
     float: right;
 }
 
-#apexTotalAlarmChart .apexcharts-legend {
-    top: 10px !important;
-}
-
 /* end - apexchart css */
 
 
@@ -29895,19 +29856,10 @@ body .note-modal-backdrop {
     white-space: normal;
 }
 
-.weakTable tbody tr td:nth-child(3) span:hover{
-    cursor : pointer;
-    border-bottom : 1px solid;
-}
-
-.weakTable tbody tr td:nth-child(6) a i:hover{
-    cursor : pointer;
-}
 /* end - datatable weak Table css */
 
 
 /* begin - datatable weak detail Table css */
-#weakTableDetail thead tr td:nth-child()
 .detail-content {
     width: 100%;
     color: #fff;
