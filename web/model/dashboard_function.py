@@ -398,7 +398,7 @@ def DashboardData():
                 TACC = []
                 TACT = []
                 WMCDL = []
-                MDRU = []
+                MDRCC = []
                 DDLC = []
             elif core == 'Zabbix':
                 print()
