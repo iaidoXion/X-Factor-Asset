@@ -2,9 +2,20 @@
 {% load web_filter %}
 {% block content %}
 {% load static %}
+<script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/jquery/ajax.jquery.min.js' %}"></script>
 <script>
-	console.log({{data|safe}});
+    $(document).ready(function(){
+        $("select[name=menu]").change(function () {
+        this.form.submit();
+        });
+	history.replaceState({},null,location.pathname);
+	$("#menu").val("{{ count }}").prop("selected",true);
+    });
+<!--	console.log({{data|safe}});-->
+
 </script>
+
 <!-- BEGIN #content -->
 <div id="content" class="app-content">
 	<!-- BEGIN page-header -->
@@ -31,15 +42,17 @@
 						<!-- BEGIN #weak windows datatable -->
 						<div class="tab-pane fade show active" id="weak-windows">
 							<div>
-								페이지당
+							페이지당
 								<label>
-									<select class="form-select for-select-sm">
-											<option value="10">10</option>
-											<option value="20">20</option>
-											<option value="30">30</option>
-									</select>
+									<form action="{% url 'asset' %}" method="GET" id="count_menu" >
+										<select class="form-select for-select-sm" name="menu" id="menu">
+s												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="30">30</option>
+										</select>
+									</form>
 								</label>
-								 개씩 보기
+							 개씩 보기
 							</div>
 							<table id="weakTable-windows" class="table weakTable text-nowrap w-100">
 								<thead>
@@ -76,9 +89,9 @@
 								<div> 현재 {{ start }} 건 - {{ end }} / 전체 {{ total}} 건 </div>
 								{% endif %}
 								<ul class="pagination justify-content-center">
-									{% if data.has_previous %}
+									{% if data.has_previous and count%}
 									<li class="page-item">
-										<a class="page-link" href="?page={{ data.previous_page_number }}">이전</a>
+										<a class="page-link" href="?menu={{ count }}&page={{ data.previous_page_number }}">이전</a>
 									</li>
 									{% else %}
 									<li class="page-item disabled">
@@ -89,18 +102,18 @@
 									{% for page_number in data.paginator.page_range %}
 									{% if page_number == data.number %}
 									<li class="page-item active" aria-current="page">
-										<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+										<a class="page-link" href="?menu={{ count }}&page={{ page_number }}">{{ page_number }}</a>
 									</li>
 									{% else %}
 									<li class="page-item">
-										<a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+										<a class="page-link" href="?menu={{ count }}&page={{ page_number }}">{{ page_number }}</a>
 									</li>
 									{% endif %}
 									{% endfor %}
 
 									{% if data.has_next %}
 									<li class="page-item">
-										<a class="page-link" href="?page={{ data.next_page_number }}">다음</a>
+										<a class="page-link" href="?menu={{ count }}&page={{ data.next_page_number }}">다음</a>
 									</li>
 									{% else %}
 									<li class="page-item disabled">
@@ -268,15 +281,6 @@
 	<!-- END row -->
 </div>
 <!-- END #content -->
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("select[name=asset count]").change(function () {
-        $("#asset count").submit();
-
-        });
-    });
-</script>
 
 
 {% endblock %}
