@@ -3,7 +3,7 @@ from pprint import pprint
 import requests
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from web.model.dashboard_function import DashboardData
 from web.model.dashboard_function import AssetData
 from common.menu import MenuSetting
@@ -44,8 +44,7 @@ def dashboard(request):
         chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
         returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         if Customer == 'NC':
-            #dashboardType = 'web/dashboard_NC.html'
-            dashboardType = 'web/dashboard_NC_banner.html'
+            dashboardType = 'web/dashboard_NC.html'
         return render(request, dashboardType, returnData)
 
 
@@ -57,22 +56,47 @@ def assetweb(request):
         return render(request, 'common/login.html', res_data)
     else :
         Data = AssetData('Count', '')
-        page = request.GET.get('page', '1')
         list = Data['item']
-        paginator = Paginator(list, 10)
+        page = request.GET.get('page', '1')
+        count_menu = request.GET.get('menu')
+        count = 10
+        if count_menu :
+            if count_menu == '10' :
+                count = 10
+            elif count_menu == '20' :
+                count = 20
+            else :
+                count = 30
+        paginator = Paginator(list, count)
         page_obj = paginator.get_page(page)
         start = page_obj.start_index()
         end = page_obj.end_index()
         total = len(Data['item'])
-        select = request.GET.get('asset count')
-        returnData = { 'menuList': menuListDB, 'data': page_obj, 'start': start, 'end': end, 'total': total}
-        return render(request, 'web/asset.html', returnData)
 
+        returnData = {'menuList': menuListDB, 'data': page_obj, 'start': start, 'end': end, 'total': total, 'count': count}
+        return render(request, 'web/asset.html', returnData)
 
 def assetDetailweb(request):
     swv=request.GET.get('swv')
+    print(swv)
     Data = AssetData('SWV', swv)
-    returnData = { 'menuList': menuListDB , 'data' : Data}
+    list = Data['item']
+    count_menu = request.GET.get('menu')
+    page = request.GET.get('page', '1')
+    count = 10
+    if count_menu:
+        if count_menu == '10':
+            count = 10
+        elif count_menu == '20':
+            count = 20
+        else:
+            count = 30
+    paginator = Paginator(list, count)
+    page_obj = paginator.get_page(page)
+    start = page_obj.start_index()
+    end = page_obj.end_index()
+    total = len(list)
+    returnData = { 'menuList': menuListDB, 'data' : page_obj, 'start': start, 'end': end, 'total': total, 'count': count, 'swv': swv}
     return render(request, 'web/asset_detail.html', returnData)
 
 def report(request):
