@@ -106,7 +106,7 @@ var apexOSversionChartOptions = {
 			},
 		},
 		dataLabels: {
-			enabled: false,
+			enabled: true,
 			formatter(val, opts) {
 				const name = opts.w.globals.labels[opts.seriesIndex]
 				return [val.toFixed(1) + '%']
@@ -149,64 +149,6 @@ var apexOSversionChartOptions = {
 	apexOSversionChart.render();
 
 
-//--------------------------------------------------------------------------
-// Number of servers by type of OS - apexOSquantityChart
-//--------------------------------------------------------------------------
-var apexOSquantityOptions = {
-		chart: {
-		    width: '100%',
-			height: 130,
-			type: 'donut',
-		},
-		plotOptions: {
-			pie: {
-				dataLabels: {
-					offset: 8
-				},
-			},
-		},
-		dataLabels: {
-			enabled: true,
-			formatter(val, opts) {
-				const name = opts.w.globals.labels[opts.seriesIndex]
-				return [val.toFixed(1) + '%']
-			},
-            style: {
-                fontSize: '12px',
-                colors: [app.color.white],
-                fontWeight: 400
-            },
-		},
-		stroke: {
-			show: false
-		},
-		legend: {
-			show: false,
-			position: 'left',
-		},
-        colors: ["#f39c12", "#fdb43f", "#ffc365", "#c58a2e", "#e6b567"],
-		labels: ["A","A","A","A","A"],
-		series: [44, 55, 41, 17, 15],
-		tooltip: {
-			theme: 'dark',
-			x: {
-				show: true
-			},
-			y: {
-				title: {
-					formatter: function (val) {
-						return '' + val +"<br>" +" Count:"
-					}
-				},
-				formatter: (value) => { return '' + value },
-			}
-		}
-	};
-	var apexOSquantityChart = new ApexCharts(
-		document.querySelector('#apexOSquantityChart'),
-		apexOSquantityOptions
-	);
-	apexOSquantityChart.render();
 
 
 //--------------------------------------------------------------------------
