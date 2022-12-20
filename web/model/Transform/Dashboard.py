@@ -53,6 +53,32 @@ def banner(data, type) :
                 value = data[i]['value'][j]
                 DFDL.append([name, value])
 
+    for i in range(len(data)):
+        if type == 'yetoday':
+            if data[i][0] == 'asset':
+                if data[i][1] == "Rack Mount Chassis":
+                    name = "Server"
+                else:
+                    name = data[i][1]
+            elif data[i][0] == 'virtual' and data[i][0] == 'No':
+                name = 'Virtual'
+            # elif data[i][0] == 'drive_size':
+            #     name = 'Drive Size No Change'
+            # elif data[i][0] == 'login_history':
+            #     name = 'No Login History'
+            elif data[i][0] == 'listen_port_count_change' and data[i][1] == 'No':
+                name = 'Listen Port No Change'
+            elif data[i][0] == 'established_port_count_change' and data[i][1] == 'no':
+                name = 'Established Port No Change'
+            else:
+                continue
+            # else:inue
+            # elif data[i][0] == 'ram_use_size':
+            #     name = 'RAM Usage Exceeded'
+            DFDL.append([name, data[i][2]])
+
+
+
     RD = pd.DataFrame(DFDL, columns=DFCNM)
     return RD
 

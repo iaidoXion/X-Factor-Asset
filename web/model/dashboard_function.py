@@ -1,4 +1,8 @@
+import pandas as pd
+
 from web.model.Input.API import plug_in as IAPI
+from common.Input.DB.Tanium.Postgresql.Dashboard import plug_in as PDPI
+from web.model.Transform.DataFrame import Rplug_in as TDFRPI
 from web.model.Input.API import hyd_plug_in as HYAPI
 from web.model.Input.DB import plug_in as IDPI
 from web.model.Input.DB import hyd_plug_in as HYDPI
@@ -26,184 +30,356 @@ def DashboardData():
     if Customer == 'Xfactor':
         if ProjectType == 'System':
             if core == 'Tanium':
-                SK = IAPI('', 'Auth')
-                EAYL = IDPI('asset', 'yesterday', '')
-                sensorData = IAPI(SK['dataList'], 'Sensor')
-                sensorAPI = sensorData['dataList']
 
-                # Asset Item Statistics
-                TAIDL = TDFPI(sensorAPI, "today", "assetItem")
-                SAIDL = ASDCD(TAIDL, "assetItem", "group")
+                # SK = IAPI('', 'Auth')
+                # EAYL = IDPI('asset', 'yesterday', '')
+                # sensorData = IAPI(SK['dataList'], 'Sensor')
+                # sensorAPI = sensorData['dataList']
+                #
+                # # Asset Item Statistics
+                # TAIDL = TDFPI(sensorAPI, "today", "assetItem")
+                # SAIDL = ASDCD(TAIDL, "assetItem", "group")
+                #
+                # # Line Chart
+                # TAIDL2 = TDFPI(sensorAPI, "today", "line")
+                # LINEGROUP = ASDCD(TAIDL2, "assetItem", "group")
+                #
+                # # OS Item Statistics
+                # TOIDL = TDFPI(sensorAPI, "today", "osItem")
+                # SOIDL = ASDCD(TOIDL, "osItem", "group")
+                #
+                # # Drive Use Size Statistics
+                # ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
+                # TDUSDLT = TDFPI(sensorAPI, "today", "DUS")
+                # TDUSDLY = TDFPI(EAYL, "yesterday", "DUS")
+                # DUSCTDL = [TDUSDLT, TDUSDLY]
+                # SDUSDLT = ASDCD(DUSCTDL, "DUS", "count")
+                #
+                # # CPU Consumption
+                # TCCDLT = TDFPI(sensorAPI, "today", "CCDL")
+                # CCSDLT = ASDCD(TCCDLT, "CCDL", "count")
+                #
+                # # Running Process
+                # TRPDL = TDFPI(sensorAPI, "today", "RP")
+                # RPDLA = ASDCD(TRPDL, "RP", "count")
+                #
+                # # No Login History Statistics
+                # ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
+                # TNLHDLT = TDFPI(sensorAPI, "today", "LH")
+                # TNLHDLY = TDFPI(EAYL, "yesterday", "LH")
+                # NLHCTDL = [TNLHDLT, TNLHDLY]
+                # SNLHDLT = ASDCD(NLHCTDL, "LH", "count")
+                #
+                # # RAM USE Size Statistics
+                # ## Today compare Count (now sensor API Data & yesterday Asset Table Data)
+                # TRUSDLT = TDFPI(sensorAPI, "today", "RUET")
+                # TRUSDLU = TDFPI(sensorAPI, "today", "RUEU")
+                # RUSCTDL = [TRUSDLT, TRUSDLU]
+                # SRUSDLT = ASDCD(RUSCTDL, "RUE", "count")
+                #
+                # # Listen Port Count Statistics
+                # ## Today compare Count (now sensor API Data & yesterday Asset Table Data)
+                # TLPCDLT = TDFPI(sensorAPI, "today", "LPC")
+                # TLPCDLY = TDFPI(EAYL, "yesterday", "LPC")
+                # LPCCTDL = [TLPCDLT, TLPCDLY]
+                # LPCDLT = ASDCD(LPCCTDL, "LPC", "count")
+                #
+                # # Established Port Count Statistics
+                # ## Today compare Count (now sensor API Data & yesterday Asset Table Data)
+                # TEPCDLT = TDFPI(sensorAPI, "today", "EPC")
+                # TEPCDLY = TDFPI(EAYL, "yesterday", "EPC")
+                # EPCCTDL = [TEPCDLT, TEPCDLY]
+                # EPCDLT = ASDCD(EPCCTDL, "EPC", "count")
+                #
+                # # Banner ROC Calculation (yesterday Statistics Table Data & API Data Statistics)
+                # ## Yesterday Statistics Table Data Input & Transform
+                # ESDLY = IDPI('statistics', 'yesterday', '')
+                # TSDLY = TDBA(ESDLY, 'past')
+                # ## Today Statistics Data Transform
+                # ## Today Asset Total Count Calculation
+                # ATCDL = {'name': ['Asset Online'], 'value': [sum(SAIDL['value'])]}
+                # TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT
+                # TSDLT = TDBA(TSDL, 'today')
+                # ## Banner ROC Calculation
+                # SBNDL = ASDC(TSDLY, TSDLT)
+                # # 5Days Asset Item Statistics Data Combination
+                # ## Past Data Input(Statistics Table Data 5Days ago)
+                # ESDLF = IDPI('statistics', 'fiveDay', 'asset')
+                # ## Past & Today Data Combination Transform
+                # # AIFD = [ESDLF, SAIDL]
+                #
+                # ## LineChart
+                # LNFD = [ESDLF, LINEGROUP]
+                # ESAIDL = TDLC(LNFD)  # Line Chart
+                #
+                # # Alarm
+                # ## Alarm Statistics(Alarm case detection)
+                # SDUSADL = ASDACD(DUSCTDL, 'DUS')
+                # SLHADL = ASDACD(NLHCTDL, 'LH')
+                # SRUSADL = ASDACD(RUSCTDL, 'RUE')
+                # SLPCADL = ASDACD(LPCCTDL, 'LPC')
+                # SEPCADL = ASDACD(EPCCTDL, 'EPC')
+                # SCCSADL = ASDACD(TCCDLT, 'CCDL')
+                # SRPSADL = ASDACD(TRPDL, 'RP')
+                #
+                # ## List
+                # ### Transform by case
+                # TDUSALDL = TDAL(SDUSADL, 'list', 'DUS')
+                # TLHALDL = TDAL(SLHADL, 'list', 'LH')
+                # TRUSALDL = TDAL(SRUSADL, 'list', 'RUE')
+                # TLPCALDL = TDAL(SLPCADL, 'list', 'LPC')
+                # TEPCALDL = TDAL(SEPCADL, 'list', 'EPC')
+                # TCCSADL = TDAL(SCCSADL, 'list', 'CCDL')
+                # TRPSADL = TDAL(SRPSADL, 'list', 'RP')
+                #
+                # ALD = [TDUSALDL, TLHALDL, TRUSALDL, TLPCALDL, TEPCALDL, TCCSADL, TRPSADL]
+                #
+                # ## Network
+                # ### Data Grouping(Statistics) by case
+                # SDUSND = ASDN(SDUSADL, 'group', 'DUS')
+                # SLHND = ASDN(SLHADL, 'group', 'LH')
+                # SRUSND = ASDN(SRUSADL, 'group', 'RUE')
+                # SLPCND = ASDN(SLPCADL, 'group', 'LPC')
+                # SEPCND = ASDN(SEPCADL, 'group', 'EPC')
+                # SCCSAD = ASDN(SCCSADL, 'group', 'CCDL')
+                # SRPSAD = ASDN(SRPSADL, 'group', 'RP')
+                #
+                # ## Donut Chart
+                # SDCCC = ASDN(SCCSADL, 'MD', 'CCDL')
+                # SDDRU = ASDN(SRUSADL, 'MD', 'RUE')
+                #
+                # TDUSND = TDAL(SDUSND, 'network', 'DUS')
+                # TLHND = TDAL(SLHND, 'network', 'LH')
+                # TRUSND = TDAL(SRUSND, 'network', 'RUE')
+                # TLPCND = TDAL(SLPCND, 'network', 'LPC')
+                # TEPCND = TDAL(SEPCND, 'network', 'EPC')
+                # TSCCSA = TDAL(SCCSAD, 'network', 'CCDL')
+                # TSRPSA = TDAL(SRPSAD, 'network', 'RP')
+                #
+                # ## DONU chart
+                # TMDCD = TDAL(SDCCC, 'network', 'CCDL')
+                # TMRUE = TDAL(SDDRU, 'network', 'RUE')
+                # MDC = [TMDCD[1][0:5], TMRUE[1][0:5]]
+                #
+                # NDL = [TDUSND[0], TDUSND[1] + TLHND[1] + TRUSND[1] + TLPCND[1] + TEPCND[1] + TSCCSA[1] + TSRPSA[1]]
+                #
+                # NCDL = ASDN(NDL, 'all', 'all')
+                # # print(NDL)
+                # # RADCDL = ASDN(NDL, 'max', 'all')
+                # print('-----------------------------------------------------------')
+                # # print(NCDL)
+                # # BAR Chart
+                # BDL = TDCD(SAIDL, "Bar")
+                # # Line Chart
+                # LDL = TDCD(ESAIDL, "Line")
+                # # LDL = {}
+                # # Pie Chart
+                # PDL = TDCD(SOIDL, "Pie")
+                # # Banner
+                # # BNDL = TDCD(SBNDL, "Banner")
+                # BNDL = []
+                #
+                # # Alarm List
+                # ALDL = TDCD(ALD, "alarmList")
+                # # Mini Donut Chart(RAM)
+                # MDRU = TDCD(MDC, "MDC")
+                # # print(MDRU)
+                #
+                # # ram, cpu 사용량 초과 mini donut
+                # MDRC = PDPI('statistics', '', 'ram')
+                # MDCC = PDPI('statistics', '', 'cpu')
+                # # print(MDRU1)
+                # Ramdonut = []
+                # Cpudonut = []
+                # for i in range(len(MDRC)):
+                #     Ramdonut.append({'name': 'RAM Usage Exceeded', 'ip': MDRC[i][1], 'value': MDRC[i][2]})
+                # # print(aa)
+                # for i in range(len(MDCC)):
+                #     Cpudonut.append({'name': 'CPU Consumption is Excess', 'ip': MDCC[i][1], 'value': MDCC[i][2]})
+                # # print(bb)
+                # MDRCC = Ramdonut + Cpudonut
+                # # print(MDRCC)
+                #
+                # # Donut Chart
+                # DDL = TDFPI(sensorAPI, "today", "IANL")
+                # DDLA = np.array(DDL["installApplicationsName"])  # np.ndarray()
+                # DDLAR = DDLA.tolist()  # list
+                # DDLF = list(itertools.chain(*DDLAR))
+                # counter = dict(Counter(DDLF))
+                # sorted_dict = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+                # a = (list(sorted_dict.keys()))
+                # b = (list(sorted_dict.values()))
+                # c = []
+                # for i in range(5):
+                #     c.append({"name": a[i], "value": b[i]})
+                # DDLC = c
+                # # print(NCDL)
+                # # Total alarm Case
+                # TACC = ASDN(NDL, 'max', 'all')
+                # # Total alarm TOP 5
+                # TACT = ASDN(NDL, 'top', 'all')
+                #
+                # # WorldMapChartData
+                # WMDUS = TDAL(SDUSADL, 'world', 'DUS')
+                # WMLH = TDAL(SLHADL, 'world', 'LH')
+                # WMRUE = TDAL(SRUSADL, 'world', 'RUE')
+                # WMLPC = TDAL(SLPCADL, 'world', 'LPC')
+                # WMEPC = TDAL(SEPCADL, 'world', 'EPC')
+                # WMCCDL = TDAL(SCCSADL, 'world', 'CCDL')
+                # WNRP = TDAL(SRPSADL, 'world', 'RP')
+                # WMCDL = [WMDUS + WMLH + WMRUE + WMLPC + WMEPC + WMCCDL + WNRP]
+                # print(WMCDL)
 
-                # Line Chart
-                TAIDL2 = TDFPI(sensorAPI, "today", "line")
-                LINEGROUP = ASDCD(TAIDL2, "assetItem", "group")
+                BChartDataList = []
+                PChartDataList = []
+                LChartDataList = []
+                DChartDataList = []
+                BNChartDataList = []
+                LINEGROUP = []
+                if ProjectType == 'System':
+                    if core == 'Tanium':
+                        BCQ = PDPI('statistics', 'today', 'bar')
+                        for i in range(len(BCQ)):
+                            BChartDataList.append({"name": BCQ[i][0], "value": int(BCQ[i][1])})
 
-                # OS Item Statistics
-                TOIDL = TDFPI(sensorAPI, "today", "osItem")
-                SOIDL = ASDCD(TOIDL, "osItem", "group")
+                        PCQ = PDPI('statistics', 'today', 'pie')
+                        for i in range(len(PCQ)):
+                            PChartDataList.append({"name": PCQ[i][0], "value": int(PCQ[i][1])})
 
-                # Drive Use Size Statistics
-                ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
-                TDUSDLT = TDFPI(sensorAPI, "today", "DUS")
-                TDUSDLY = TDFPI(EAYL, "yesterday", "DUS")
-                DUSCTDL = [TDUSDLT, TDUSDLY]
-                SDUSDLT = ASDCD(DUSCTDL, "DUS", "count")
+                        LG = PDPI('statistics', "assetItem", "Group")
+                        # print(LG)
+                        LINEGROUP = {"name": [LG[0][0], LG[1][0], LG[2][0], LG[3][0]],
+                                     "value": [LG[0][1], LG[1][1], LG[2][1], LG[3][1]]}
+                        LCQ = PDPI('statistics', 'fiveDay', 'asset')
+                        LNFD = [LCQ, LINEGROUP]
+                        ESAIDL = TDLC(LNFD)
+                        # print(ESAIDL)
+                        LChartDataList = TDCD(ESAIDL, "Line")
 
-                # CPU Consumption
-                TCCDLT = TDFPI(sensorAPI, "today", "CCDL")
-                CCSDLT = ASDCD(TCCDLT, "CCDL", "count")
+                        DCQ = PDPI('statistics', 'today', 'donut')
+                        for i in range(len(DCQ)):
+                            DChartDataList.append({"name": DCQ[i][0], "value": int(DCQ[i][1])})
+                        # EAYL = IDPI('asset', 'yesterday', '')
+                        # print(EAML)
 
-                # Running Process
-                TRPDL = TDFPI(sensorAPI, "today", "RP")
-                RPDLA = ASDCD(TRPDL, "RP", "count")
+                        # banner chart
+                        BNY = PDPI('statistics', 'yesterday', '')
+                        # print(BNY)
+                        TSDLY = TDBA(BNY, 'yetoday')
+                        # print(TSDLY)
+                        BNT = PDPI('statistics', 'today', '')
+                        # print(BNT)
+                        TSDLT = TDBA(BNT, 'yetoday')
+                        # print(TSDLT)
+                        SBNDL = ASDC(TSDLY, TSDLT)
+                        # print(SBNDL)
+                        BNChartDataList = TDCD(SBNDL, 'Banner')
+                        # print(BNChartDataList)
 
-                # No Login History Statistics
-                ## Today compare Count (now Asset API Data & yesterday Asset Table Data)
-                TNLHDLT = TDFPI(sensorAPI, "today", "LH")
-                TNLHDLY = TDFPI(EAYL, "yesterday", "LH")
-                NLHCTDL = [TNLHDLT, TNLHDLY]
-                SNLHDLT = ASDCD(NLHCTDL, "LH", "count")
+                        # ram 사용량 차트
+                        RDQ = PDPI('statistics', 'today', 'Rdonut')
+                        # print(RDQ)
+                        RDQF = TDFRPI(RDQ, 'rdonut')
+                        # print(RDQF)
 
-                # RAM USE Size Statistics
-                ## Today compare Count (now sensor API Data & yesterday Asset Table Data)
-                TRUSDLT = TDFPI(sensorAPI, "today", "RUET")
-                TRUSDLU = TDFPI(sensorAPI, "today", "RUEU")
-                RUSCTDL = [TRUSDLT, TRUSDLU]
-                SRUSDLT = ASDCD(RUSCTDL, "RUE", "count")
+                        # AlarmCase Total
+                        DTACQ = PDPI('statistics_list', 'today', 'DUS')
+                        YTACQ = PDPI('statistics_list', 'yesterday', 'DUS')
 
-                # Listen Port Count Statistics
-                ## Today compare Count (now sensor API Data & yesterday Asset Table Data)
-                TLPCDLT = TDFPI(sensorAPI, "today", "LPC")
-                TLPCDLY = TDFPI(EAYL, "yesterday", "LPC")
-                LPCCTDL = [TLPCDLT, TLPCDLY]
-                LPCDLT = ASDCD(LPCCTDL, "LPC", "count")
+                        DF = ['id', 'driveSize', 'ip']
+                        DTACQDF = pd.DataFrame(DTACQ, columns=DF)
+                        YTACQDF = pd.DataFrame(YTACQ, columns=DF)
 
-                # Established Port Count Statistics
-                ## Today compare Count (now sensor API Data & yesterday Asset Table Data)
-                TEPCDLT = TDFPI(sensorAPI, "today", "EPC")
-                TEPCDLY = TDFPI(EAYL, "yesterday", "EPC")
-                EPCCTDL = [TEPCDLT, TEPCDLY]
-                EPCDLT = ASDCD(EPCCTDL, "EPC", "count")
+                        DUSCTDL = [DTACQDF, YTACQDF]
 
-                # Banner ROC Calculation (yesterday Statistics Table Data & API Data Statistics)
-                ## Yesterday Statistics Table Data Input & Transform
-                ESDLY = IDPI('statistics', 'yesterday', '')
-                TSDLY = TDBA(ESDLY, 'past')
-                ## Today Statistics Data Transform
-                ## Today Asset Total Count Calculation
-                ATCDL = {'name': ['Asset Online'], 'value': [sum(SAIDL['value'])]}
-                TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT
-                TSDLT = TDBA(TSDL, 'today')
-                ## Banner ROC Calculation
-                SBNDL = ASDC(TSDLY, TSDLT)
-                # 5Days Asset Item Statistics Data Combination
-                ## Past Data Input(Statistics Table Data 5Days ago)
-                ESDLF = IDPI('statistics', 'fiveDay', 'asset')
-                ## Past & Today Data Combination Transform
-                # AIFD = [ESDLF, SAIDL]
+                        SDUSDLT = ASDCD(DUSCTDL, "DUS", "count")
 
-                ## LineChart
-                LNFD = [ESDLF, LINEGROUP]
-                ESAIDL = TDLC(LNFD)  # Line Chart
+                        ACDT = PDPI('statistics_list', 'today', 'statistics')
 
-                # Alarm
-                ## Alarm Statistics(Alarm case detection)
-                SDUSADL = ASDACD(DUSCTDL, 'DUS')
-                SLHADL = ASDACD(NLHCTDL, 'LH')
-                SRUSADL = ASDACD(RUSCTDL, 'RUE')
-                SLPCADL = ASDACD(LPCCTDL, 'LPC')
-                SEPCADL = ASDACD(EPCCTDL, 'EPC')
-                SCCSADL = ASDACD(TCCDLT, 'CCDL')
-                SRPSADL = ASDACD(TRPDL, 'RP')
+                        AADF = ['alarmCount', 'alarmCase']
+                        nodeDataList = []
+                        ACList = []
+                        for i in range(len(ACDT)):
+                            if ACDT[i][0] == 'listen_port_count_change' and ACDT[i][1] == 'No':
+                                alarmCount = ACDT[i][2]
+                                alarmCase = 'Listen Port No Change'
+                            elif ACDT[i][0] == 'established_port_count_change' and ACDT[i][1] == 'no':
+                                alarmCount = ACDT[i][2]
+                                alarmCase = 'Established Port No Change'
+                            elif ACDT[i][0] == 'group_running_processes_count_exceeded':
+                                alarmCount = ACDT[i][2]
+                                alarmCase = 'Running Process is Exceeded'
+                            elif ACDT[i][0] == 'group_ram_usage_exceeded':
+                                alarmCount = ACDT[i][2]
+                                alarmCase = 'RAM Usage Exceeded'
+                            elif ACDT[i][0] == 'group_cpu_usage_exceeded':
+                                alarmCount = ACDT[i][2]
+                                alarmCase = 'CPU Consumption is Excess'
+                            else:
+                                continue
+                            ACList.append({'alarmCount': int(alarmCount), 'alarmCase': alarmCase})
+                        ACList.append({'alarmCount': int(SDUSDLT['value'][0]), 'alarmCase': SDUSDLT['name'][0]})
+                        ACDF = pd.DataFrame(ACList, columns=AADF)
+                        DFG = ACDF.groupby(['alarmCase']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
+                        TOT = DFG['alarmCount'].sum()
+                        ACPER = round((DFG['alarmCount'] / TOT) * 100, 2)
+                        for j in range(len(DFG.alarmCase)):
+                            nodeDataList.append(
+                                {'alarmCount': str(DFG.alarmCount[j]), 'alarmCase': DFG.alarmCase[j], 'alarmpertage': ACPER[j]})
+                        RDCase = {'nodeDataList': nodeDataList}
 
-                ## List
-                ### Transform by case
-                TDUSALDL = TDAL(SDUSADL, 'list', 'DUS')
-                TLHALDL = TDAL(SLHADL, 'list', 'LH')
-                TRUSALDL = TDAL(SRUSADL, 'list', 'RUE')
-                TLPCALDL = TDAL(SLPCADL, 'list', 'LPC')
-                TEPCALDL = TDAL(SEPCADL, 'list', 'EPC')
-                TCCSADL = TDAL(SCCSADL, 'list', 'CCDL')
-                TRPSADL = TDAL(SRPSADL, 'list', 'RP')
+                        GADF = ['group', 'alarmCount']
+                        TAC = []
+                        for i in range(len(ACDT)):
+                            if ACDT[i][1].startswith('192.') or ACDT[i][1].startswith('172.'):
+                                group = ACDT[i][1]
+                                alarmCount = ACDT[i][2]
+                                TAC.append({'group': group, 'alarmCount': int(alarmCount)})
+                        TDF = pd.DataFrame(TAC, columns=GADF)
+                        DFGX = TDF.groupby(['group']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
+                        TOTX = DFGX['alarmCount'].sum()
+                        TOTPER = round((DFGX['alarmCount'] / TOTX) * 100, 2)
 
-                ALD = [TDUSALDL, TLHALDL, TRUSALDL, TLPCALDL, TEPCALDL, TCCSADL, TRPSADL]
+                        nodeDataListx = []
+                        for j in range(len(DFGX.group)):
+                            groupNameCountSplit = DFGX.group[j].split('.')
+                            groupNameCount = groupNameCountSplit[0] + groupNameCountSplit[1] + groupNameCountSplit[2]
+                            nodeDataListx.append({'group': DFGX.group[j], 'alarmCount': str(DFGX.alarmCount[j]),
+                                                'id': 'groupCenter' + str(groupNameCount), 'name': DFGX.group[j],
+                                                'alarmCase': DFGX.group[j], 'totalPertage': TOTPER[j]})
+                        RDLCase = {'nodeDataList': nodeDataListx}
+                        # print(RDLCase)
 
-                ## Network
-                ### Data Grouping(Statistics) by case
-                SDUSND = ASDN(SDUSADL, 'group', 'DUS')
-                SLHND = ASDN(SLHADL, 'group', 'LH')
-                SRUSND = ASDN(SRUSADL, 'group', 'RUE')
-                SLPCND = ASDN(SLPCADL, 'group', 'LPC')
-                SEPCND = ASDN(SEPCADL, 'group', 'EPC')
-                SCCSAD = ASDN(SCCSADL, 'group', 'CCDL')
-                SRPSAD = ASDN(SRPSADL, 'group', 'RP')
+                        # ram, cpu 사용량 초과 mini donut
+                        MDRC = PDPI('statistics', '', 'ram')
+                        MDCC = PDPI('statistics', '', 'cpu')
+                        # print(MDRU1)
+                        Ramdonut = []
+                        Cpudonut = []
+                        for i in range(len(MDRC)):
+                            Ramdonut.append({'name': 'RAM Usage Exceeded', 'ip': MDRC[i][1], 'value': MDRC[i][2]})
+                        # print(aa)
+                        for i in range(len(MDCC)):
+                            Cpudonut.append(
+                                {'name': 'CPU Consumption is Excess', 'ip': MDCC[i][1], 'value': MDCC[i][2]})
+                        # print(bb)
+                        MDRCC = Ramdonut + Cpudonut
+                        # print(MDRCC)
 
-                ## Donut Chart
-                SDCCC = ASDN(SCCSADL, 'MD', 'CCDL')
-                SDDRU = ASDN(SRUSADL, 'MD', 'RUE')
+                        BDL = BChartDataList
+                        LDL = LChartDataList
+                        PDL = PChartDataList
+                        BNDL = BNChartDataList
+                        ALDL = [[]]
+                        NCDL = []
+                        TACC = RDCase
+                        TACT = RDLCase
+                        WMCDL = []
+                        MDRU = []
+                        DDLC = DChartDataList
 
-                TDUSND = TDAL(SDUSND, 'network', 'DUS')
-                TLHND = TDAL(SLHND, 'network', 'LH')
-                TRUSND = TDAL(SRUSND, 'network', 'RUE')
-                TLPCND = TDAL(SLPCND, 'network', 'LPC')
-                TEPCND = TDAL(SEPCND, 'network', 'EPC')
-                TSCCSA = TDAL(SCCSAD, 'network', 'CCDL')
-                TSRPSA = TDAL(SRPSAD, 'network', 'RP')
 
-                ## DONU chart
-                TMDCD = TDAL(SDCCC, 'network', 'CCDL')
-                TMRUE = TDAL(SDDRU, 'network', 'RUE')
-                MDC = [TMDCD[1][0:5], TMRUE[1][0:5]]
 
-                NDL = [TDUSND[0], TDUSND[1] + TLHND[1] + TRUSND[1] + TLPCND[1] + TEPCND[1] + TSCCSA[1] + TSRPSA[1]]
-
-                NCDL = ASDN(NDL, 'all', 'all')
-                # RADCDL = ASDN(NDL, 'max', 'all')
-
-                # BAR Chart
-                BDL = TDCD(SAIDL, "Bar")
-                # Line Chart
-                LDL = TDCD(ESAIDL, "Line")
-                # LDL = {}
-                # Pie Chart
-                PDL = TDCD(SOIDL, "Pie")
-                # Banner
-                BNDL = TDCD(SBNDL, "Banner")
-
-                # Alarm List
-                ALDL = TDCD(ALD, "alarmList")
-                # Mini Donut Chart(RAM)
-                MDRU = TDCD(MDC, "MDC")
-
-                # Donut Chart
-                DDL = TDFPI(sensorAPI, "today", "IANL")
-                DDLA = np.array(DDL["installApplicationsName"])  # np.ndarray()
-                DDLAR = DDLA.tolist()  # list
-                DDLF = list(itertools.chain(*DDLAR))
-                counter = dict(Counter(DDLF))
-                sorted_dict = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
-                a = (list(sorted_dict.keys()))
-                b = (list(sorted_dict.values()))
-                c = []
-                for i in range(5):
-                    c.append({"name": a[i], "value": b[i]})
-                DDLC = c
-
-                # Total alarm Case
-                TACC = ASDN(NDL, 'max', 'all')
-                # Total alarm TOP 5
-                TACT = ASDN(NDL, 'top', 'all')
-
-                # WorldMapChartData
-                WMDUS = TDAL(SDUSADL, 'world', 'DUS')
-                WMLH = TDAL(SLHADL, 'world', 'LH')
-                WMRUE = TDAL(SRUSADL, 'world', 'RUE')
-                WMLPC = TDAL(SLPCADL, 'world', 'LPC')
-                WMEPC = TDAL(SEPCADL, 'world', 'EPC')
-                WMCCDL = TDAL(SCCSADL, 'world', 'CCDL')
-                WNRP = TDAL(SRPSADL, 'world', 'RP')
-                WMCDL = [WMDUS + WMLH + WMRUE + WMLPC + WMEPC + WMCCDL + WNRP]
             elif core == 'Zabbix':
                 print()
         elif ProjectType == 'Service':
@@ -239,7 +415,7 @@ def DashboardData():
         "TotalDataList": TACC,
         "TotalTopDataList": TACT,
         "WorldMapDataList": WMCDL,
-        "MiniDonutChart": MDRU,
+        "MiniDonutChart": MDRCC,
         "donutChartDataList": DDLC
     }
     return RD
