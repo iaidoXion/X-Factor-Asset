@@ -142,6 +142,69 @@
 
 
   <script>
+  $(function(){
+         $(".cardBox").sortable({
+            connectWith: ".cardBox",
+            placeholder: "cardMoving",
+            cursor: "move",
+            start: function (event, ui) {
+              ui.placeholder.height(ui.helper.outerHeight());
+            }
+         });
+         $(".cardBox .cardMove").disableSelection();
+         });
+
+
+      $('.card-del').on('click',function(){
+          $(this).prevAll().remove()
+          $(this).unwrap()
+          $(this).remove()
+      })
+
+
+		$('.make-card').on('click',function(){
+		const $newCard = $('.newCard:first-child').clone(true);
+		const newCard = $newCard;
+		$($newCard).appendTo('.col1');
+		$('.newCard:last-child').css('display','inline');
+		$('.newCard:last-child').sortable({connectWith: '.cardBox'});
+
+
+		for(i=0 ;i < $('.row').children().length; i++){
+		$('.newCard:last-child').addClass("card" + i);
+		$('.newCard:last-child').removeClass("card" + (i-1));
+		}
+		});
+  </script>
+
+  <script>
+       $('.osVersion-moreInfo').on('click',function(){
+            window.open("../osVersion_moreInfo", "osVersion", "width=500, height=600");
+       })
+
+       $('.serverBandBy-moreInfo').on('click',function(){
+            window.open("../serverBandBy_moreInfo", "serverBandBy", "width=500, height=600");
+       })
+
+       $('.runningService-moreInfo').on('click',function(){
+            window.open("../runningService_moreInfo", "runningService", "width=500, height=600");
+       })
+
+       $('.memoryCpuDisk-moreInfo').on('click',function(){
+            window.open("../memoryCpuDisk_moreInfo", "memoryCpuDisk", "width=500, height=600");
+       })
+
+       $('.physicalServer-moreInfo').on('click',function(){
+            window.open("../physicalServer_moreInfo", "physicalServer", "width=500, height=600");
+       })
+
+       $('.gpuServer-moreInfo').on('click',function(){
+            window.open("../gpuServer_moreInfo", "gpuServer", "width=500, height=600");
+       })
+
+    </script>
+
+  <script>
     var a = {{ chartData| safe}};
     var mapUse = {{ MapUse| safe}};
 

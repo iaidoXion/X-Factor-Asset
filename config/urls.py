@@ -18,4 +18,12 @@ urlpatterns = [
     path('reportmonthly/', base_views.reportmonthly, name='reportmonthly'),
     path('reportannual/', base_views.reportannual, name='reportannual'),
     path('NC_banner/', base_views.ncBanner, name='NC_banner'),
+    path('customizing/', base_views.customizing, name='customizing'),
+    ############################ 팝업 ############################################
+    path('osVersion_moreInfo/', base_views.osVersion_moreInfo, name='osVersion_moreInfo'),
+    path('serverBandBy_moreInfo/', base_views.serverBandBy_moreInfo, name='serverBandBy_moreInfo'),
+    path('runningService_moreInfo/', base_views.runningService_moreInfo, name='runningService_moreInfo'),
+    path('memoryCpuDisk_moreInfo/', base_views.memoryCpuDisk_moreInfo, name='memoryCpuDisk_moreInfo'),
+    path('physicalServer_moreInfo/', base_views.physicalServer_moreInfo, name='physicalServer_moreInfo'),
+    path('gpuServer_moreInfo/', base_views.gpuServer_moreInfo, name='gpuServer_moreInfo'),
 ]

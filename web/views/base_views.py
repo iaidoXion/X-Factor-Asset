@@ -80,6 +80,7 @@ def assetDetailweb(request):
     swv=request.GET.get('swv')
     print(swv)
     Data = AssetData('SWV', swv)
+
     list = Data['item']
     count_menu = request.GET.get('menu')
     page = request.GET.get('page', '1')
@@ -97,24 +98,54 @@ def assetDetailweb(request):
     end = page_obj.end_index()
     total = len(list)
     returnData = { 'menuList': menuListDB, 'data' : page_obj, 'start': start, 'end': end, 'total': total, 'count': count, 'swv': swv}
+
     return render(request, 'web/asset_detail.html', returnData)
 
 def report(request):
-    returnData = { 'menuList': menuListDB }
+    returnData = { 'menuList': menuListDB}
     return render(request, 'web/report.html', returnData)
 
 def reportdaily(request):
-    returnData = { 'menuList': menuListDB }
+    returnData = { 'menuList': menuListDB}
     return render(request, 'web/report_daily.html', returnData)
 
 def reportmonthly(request):
-    returnData = { 'menuList': menuListDB }
+    returnData = { 'menuList': menuListDB}
     return render(request, 'web/report_monthly.html', returnData)
 
 def reportannual(request):
-    returnData = { 'menuList': menuListDB }
+    returnData = { 'menuList': menuListDB}
     return render(request, 'web/report_annual.html', returnData)
 
 def ncBanner(request):
     returnData = {'menuList': menuListDB}
     return render(request, 'web/dashboard_NC_banner.html', returnData)
+
+def customizing(request):
+    returnData = { 'menuList': menuListDB }
+    return render(request, 'web/customizing.html', returnData)
+
+############################ 팝업 ############################################
+def osVersion_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/osVersion_moreInfo.html', returnData)
+
+def serverBandBy_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/serverBandBy_moreInfo.html', returnData)
+
+def runningService_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/runningService_moreInfo.html', returnData)
+
+def memoryCpuDisk_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/memoryCpuDisk_moreInfo.html', returnData)
+
+def physicalServer_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/physicalServer_moreInfo.html', returnData)
+
+def gpuServer_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/gpuServer_moreInfo.html', returnData)
