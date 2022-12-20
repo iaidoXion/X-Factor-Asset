@@ -118,7 +118,7 @@
     --bs-border-radius-2xl: 2rem;
     --bs-border-radius-pill: 50rem;
     --bs-link-color: #3cd2a5;
-    --bs-link-hover-color: rgba(60, 210, 165, 0.5);
+    --bs-link-hover-color: rgb(0,0,0);
     --bs-code-color: #f34fa0;
     --bs-highlight-bg: #fefacf
 }
@@ -17894,6 +17894,11 @@ fieldset:disabled .btn {
     padding-right: 15px !important
 }
 
+.px-16px {
+    padding-left: 16px !important;
+    padding-right: 16px !important
+}
+
 .px-20px {
     padding-left: 20px !important;
     padding-right: 20px !important
@@ -18803,12 +18808,20 @@ fieldset:disabled .btn {
     height: 130px !important
 }
 
+.h-140px {
+    height: 140px !important
+}
+
 .h-150px {
     height: 150px !important
 }
 
 .h-170px {
     height: 170px !important
+}
+
+.h-192px {
+    height: 192px !important
 }
 
 .h-200px {
@@ -18841,6 +18854,10 @@ fieldset:disabled .btn {
 
 .h-350px {
     height: 350px !important
+}
+
+.h-392px {
+    height: 392px !important
 }
 
 .h-400px {
@@ -29913,6 +29930,10 @@ body .note-modal-backdrop {
     vertical-align: middle;
 }
 
+.weakTable thead tr th {
+   text-align: center
+}
+
 .weakTable tbody tr td:nth-child(1),
 .weakTable tbody tr td:nth-child(2),
 .weakTable tbody tr td:nth-child(5),
@@ -29937,34 +29958,18 @@ body .note-modal-backdrop {
 
 
 /* begin - datatable weak detail Table css */
+#weakTableDetail thead tr th,
+#weakTableDetail tbody tr td{
+    text-align: center;
+}
+
 #weakTableDetail thead tr td:nth-child()
 .detail-content {
     width: 100%;
     color: #fff;
     font-size: 0.75rem;
 }
-#weakTableDetail thead tr th:nth-child(1){
-   width:5%;
-}
-#weakTableDetail thead tr th:nth-child(2),
-#weakTableDetail thead tr th:nth-child(7){
-   width:15%;
-}
-#weakTableDetail thead tr th:nth-child(3){
-   width:16%;
-}
-#weakTableDetail thead tr th:nth-child(4){
-   width:20%;
-}
-#weakTableDetail thead tr th:nth-child(5){
-   width:14%;
-}
-#weakTableDetail thead tr th:nth-child(6){
-   width:10%;
-}
-#weakTableDetail thead tr th:nth-child(8){
-   width:5%;
-}
+
 
 
 #weakTableDetail tbody tr td:nth-child(8){

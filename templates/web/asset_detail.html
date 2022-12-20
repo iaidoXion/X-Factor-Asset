@@ -38,7 +38,7 @@
 	<div class="row">
 		<!-- BEGIN card-body -->
 		<div class="card mb-2">
-			<div class="card-body h-130px p-2">
+			<div class="card-body px-16px py-8px">
 				<div class="detail-content">
 					<ul>
 						{% if data.item %}
@@ -46,8 +46,8 @@
 							<li>진단 항목 : {{data.item.0.Title}}</li>
 							<li>진단 항목 설명: {{data.item.0.Text}}</li>
 							<li>판단기준:
-								<p>- 양호: {{data.item.0.Judge.0}}</p>
-								<p>- 취약: {{data.item.0.Judge.1}}</p>
+								<p>- {{data.item.0.Judge.0}}</p>
+								<p>- {{data.item.0.Judge.1}}</p>
 							</li>
 						{% else %}
 							<li> Data 연동에 실패했습니다 </li>

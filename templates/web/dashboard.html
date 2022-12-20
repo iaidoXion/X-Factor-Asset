@@ -293,9 +293,8 @@
 			<!-- BEGIN card -->
 			<div class="card mb-3">
 				<!-- BEGIN card-body -->
-				<div class="card-body h-600px">
+				<div class="card-body h-392px">
 					<!-- BEGIN title -->
-
 					<div class="d-flex fw-bold small mb-3">
 						<div class="flex-grow-1" style="position: relative;">
 <!--							Failure Symptom Case Detection-->
@@ -318,7 +317,7 @@
 					<!-- END title -->
 					<!-- BEGIN map -->
 
-					<div class="ratio ratio-21x9" >
+					<div class="ratio ratio-21x9" style="width: 100%; height:90%;">
 						{% if MapUse.WorldUse == 'block' %}
 						<div id="world-map" style="display:{{MapUse.WorldUse}}"></div>
 						{%endif%}
@@ -330,12 +329,28 @@
 						<div id="seongnam-map"  style="display:{{MapUse.AreaUse}}"></div>
 						{%endif%}
 					</div>
-
 					<!-- END map -->
-					<!-- BEGIN row -->
-					<div class="row gx-4" id="alarmCase" style="margin-top: 15px">
-						<!-- BEGIN col-6 -->
-						<div class="col-lg-6 mb-3 mb-lg-0">
+				</div>
+				<!--END card-body-->
+				<!--BEGIN card-arrow-->
+				<div class="card-arrow">
+					<div class="card-arrow-top-left"></div>
+					<div class="card-arrow-top-right"></div>
+					<div class="card-arrow-bottom-left"></div>
+					<div class="card-arrow-bottom-right"></div>
+				</div>
+				<!--END card-arrow-->
+			</div>
+			<!--END card-->
+
+			<!-- BEGIN row -->
+			<div class="row gx-4" id="alarmCase" style="margin-top: 15px">
+				<!-- BEGIN col-6 -->
+				<div class="col-lg-6" style="padding-right: 0.5rem">
+					<!--BEGIN card-->
+					<div class="card">
+						<!--BEGIN card-body-->
+						<div class="card-body">
 							<table class="w-100 fs-12px mb-0 text-truncate text-white text-opacity-60">
 								<thead>
 <!--								<tr class="text-white text-opacity-75">-->
@@ -360,72 +375,71 @@
 								</tbody>
 							</table>
 						</div>
-						<!-- END col-6 -->
-						<!-- BEGIN col-6 -->
-						<div class="col-lg-6">
-							<!-- BEGIN card -->
-							<div class="card">
-								<!-- BEGIN card-body -->
-								<div class="card-body py-2 h-150px">
-									<div class="text-white text-opacity-75">
-										<span class="w-50" style="font-size:12px;">총 알람 케이스 상위 5개 (%)</span>
-									</div>
-									<div>
-										<div id="apexDonutFailureCChart"></div>
-									</div>
-									<!--<div class="flex-1 ps-2">
-                                        <table class="w-100 fs-12px mb-0 text-white text-opacity-60">
-                                            <thead>
-                                            <th class="w-25">GROUP</th>
-                                            <th class="w-25 text-end">PCT%</th>
-                                            </thead>
-                                            <tbody>
-                                            {% for TotalTopData in chartData.TotalTopDataList.nodeDataList %}
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-95"></div>
-                                                        {{TotalTopData.group}}
-                                                    </div>
-                                                </td>
-                                                <td class="text-end">{{TotalTopData.totalPertage}}%</td>
-                                            </tr>
-                                            {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>-->
-								</div>
-
-								<!-- END card-body -->
-
-								<!-- BEGIN card-arrow -->
-								<div class="card-arrow">
-									<div class="card-arrow-top-left"></div>
-									<div class="card-arrow-top-right"></div>
-									<div class="card-arrow-bottom-left"></div>
-									<div class="card-arrow-bottom-right"></div>
-								</div>
-								<!-- END card-arrow -->
-							</div>
-							<!-- END card -->
+						<!--END card-body-->
+						<!--BEGIN card-arrow-->
+						<div class="card-arrow">
+							<div class="card-arrow-top-left"></div>
+							<div class="card-arrow-top-right"></div>
+							<div class="card-arrow-bottom-left"></div>
+							<div class="card-arrow-bottom-right"></div>
 						</div>
-						<!-- END col-6 -->
+						<!--END card-arrow-->
 					</div>
-					<!-- END row -->
+					<!--END card-->
 				</div>
+				<!-- END col-6 -->
 
-				<!-- END card-body -->
+				<!-- BEGIN col-6 -->
+				<div class="col-lg-6" style="padding-left: 0.5rem" >
+					<!-- BEGIN card -->
+					<div class="card">
+						<!-- BEGIN card-body -->
+						<div class="card-body h-192px my-md-auto">
+							<div class="text-white text-opacity-75 pt-sm-2">
+								<span class="w-50" style="font-size:12px;">총 알람 케이스 상위 5개 (%)</span>
+							</div>
+							<div style="">
+								<div id="apexDonutFailureCChart"></div>
+							</div>
+							<!--<div class="flex-1 ps-2">
+								<table class="w-100 fs-12px mb-0 text-white text-opacity-60">
+									<thead>
+									<th class="w-25">GROUP</th>
+									<th class="w-25 text-end">PCT%</th>
+									</thead>
+									<tbody>
+									{% for TotalTopData in chartData.TotalTopDataList.nodeDataList %}
+									<tr>
+										<td>
+											<div class="d-flex align-items-center">
+												<div class="w-6px h-6px rounded-pill me-2 bg-theme bg-opacity-95"></div>
+												{{TotalTopData.group}}
+											</div>
+										</td>
+										<td class="text-end">{{TotalTopData.totalPertage}}%</td>
+									</tr>
+									{% endfor %}
+									</tbody>
+								</table>
+							</div>-->
+						</div>
 
-				<!-- BEGIN card-arrow -->
-				<div class="card-arrow">
-					<div class="card-arrow-top-left"></div>
-					<div class="card-arrow-top-right"></div>
-					<div class="card-arrow-bottom-left"></div>
-					<div class="card-arrow-bottom-right"></div>
+						<!-- END card-body -->
+
+						<!-- BEGIN card-arrow -->
+						<div class="card-arrow">
+							<div class="card-arrow-top-left"></div>
+							<div class="card-arrow-top-right"></div>
+							<div class="card-arrow-bottom-left"></div>
+							<div class="card-arrow-bottom-right"></div>
+						</div>
+						<!-- END card-arrow -->
+					</div>
+					<!-- END card -->
 				</div>
-				<!-- END card-arrow -->
+				<!-- END col-6 -->
 			</div>
-			<!-- END card -->
+			<!-- END row -->
 		</div>
 		<!-- END col-6 -->
 
