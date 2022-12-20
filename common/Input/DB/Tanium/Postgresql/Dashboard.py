@@ -122,7 +122,7 @@ def plug_in(table, day, type):
                     query = """
                         select item, item_count from 
                         minutely_statistics where classification = 'os' 
-                        order by item_count desc limit 3
+                        order by item_count::INTEGER desc limit 3
                     """
                 elif type == 'donut':
                     query = """
