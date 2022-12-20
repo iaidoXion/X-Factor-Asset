@@ -44,7 +44,7 @@ def dashboard(request):
         chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
         returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         if Customer == 'NC':
-            dashboardType = 'web/dashboard_NC.html'
+            dashboardType = 'web/dashboard_NC_banner.html'
         return render(request, dashboardType, returnData)
 
 
