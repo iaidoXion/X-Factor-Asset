@@ -10560,6 +10560,10 @@ fieldset:disabled .btn {
     --bs-border-opacity: 1
 }
 
+.w-10{
+    width: 10% !important
+}
+
 .w-25 {
     width: 25% !important
 }
@@ -10570,6 +10574,10 @@ fieldset:disabled .btn {
 
 .w-75 {
     width: 75% !important
+}
+
+.w-85 {
+    width: 85% !important
 }
 
 .w-90 {
@@ -29821,7 +29829,29 @@ body .note-modal-backdrop {
     height: 100% !important;
 }
 
+.card-del {
+    width: 35px;
+    text-align: left;
+}
 
+
+
+.cardMoving {
+      border: 1px dotted rgb(255, 0, 0);
+      margin: 0 10px 10px 0;
+      height: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: rgb(231, 136, 107);
+   }
+
+.cardMove{
+    cursor: move;
+}
+
+.cardContainer{
+    display:flex;
+}
 /* main css re-customized */
 
 /* begin - apexchart css */

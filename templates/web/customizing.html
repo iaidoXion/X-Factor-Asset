@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load web_filter %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN #header -->
+
+<!-- END #header -->
+
+<!-- BEGIN #sidebar -->
+
+<!-- END #sidebar -->
+
+<!-- BEGIN #content -->
+<div id="content" class="app-content">
+	<!-- BEGIN row -->
+	<button class="btn btn-outline-theme make-card mb-10px"> 카드보드 생성</button>
+	<div class="cardContainer" >
+		<div class="col col1 cardBox ">
+			<div  class="cardMove col-xl-3 col-lg-6 newCard" style="display: none;">
+				<div class="card mb-3">
+					<div class="card-body h-150px">
+
+					</div>
+					<div class="card-arrow">
+						<div class="card-arrow-top-left"></div>
+						<div class="card-arrow-top-right"></div>
+						<div class="card-arrow-bottom-left"></div>
+						<div class="card-arrow-bottom-right"></div>
+					</div>
+					<button class="btn card-del mb-10px mx-10px">X</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="col col2 cardBox mx-10px">
+
+
+	</div>
+
+		<div class="col col3 cardBox ">
+
+
+	</div>
+
+		<div class="col col4 cardBox mx-10px">
+
+
+	</div>
+
+	</div>
+</div>
+
+{% endblock %}
+
