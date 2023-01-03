@@ -246,33 +246,3 @@ def hyd_plug_in (data, type) :
         DF = pd.merge(data_A, data_B, left_on='SWV', right_on='SWV', how='outer')
         
     return DF
-
-def Rplug_in(data, type):
-    if type == 'rdonut':
-        DFL = []
-        itemIndex = 'cpuconsumption'
-        for i in range(len(data)):
-            CI = data[i][0]
-            IP = data[i][2]
-            if data[i][1].startswith("[current" or "TSE-Error"):
-                item = 'Other'
-            else:
-                item = data[i][1]
-            DFL.append([CI, item, IP])
-        DFC = ['id', itemIndex, 'ip']
-        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
-        # print(DF)
-    if type == 'totalcase':
-        DFL = []
-        itemIndex = 'drivesize'
-        for i in range(len(data)):
-            CI = data[i][0]
-            IP = data[i][2]
-            if data[i][1].startswith("[current" or "TSE-Error"):
-                item = 'Other'
-            else:
-                item = data[i][1]
-            DFL.append([CI, item, IP])
-        DFC = ['id', itemIndex, 'ip']
-        DF = pd.DataFrame(DFL, columns=DFC).sort_values(by="id", ascending=False).reset_index(drop=True)
-        return DF

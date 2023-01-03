@@ -1,8 +1,13 @@
 import pandas as pd
 
 from web.model.Input.API import plug_in as IAPI
+from common.Transform.Dataframe import alarmCase as ACDF
+from common.Transform.Dataframe import usage as USDF
+from common.Transform.Dataframe import worldMap as WDDF
+from common.Transform.Dataframe import radar as RDDF
+from common.Transform.Dataframe import chart as CTDF
 from common.Input.DB.Tanium.Postgresql.Dashboard import plug_in as PDPI
-from web.model.Transform.DataFrame import Rplug_in as TDFRPI
+# from web.model.Transform.DataFrame import Rplug_in as TDFRPI
 from web.model.Input.API import hyd_plug_in as HYAPI
 from web.model.Input.DB import plug_in as IDPI
 from web.model.Input.DB import hyd_plug_in as HYDPI
@@ -228,37 +233,30 @@ def DashboardData():
                 # WMCCDL = TDAL(SCCSADL, 'world', 'CCDL')
                 # WNRP = TDAL(SRPSADL, 'world', 'RP')
                 # WMCDL = [WMDUS + WMLH + WMRUE + WMLPC + WMEPC + WMCCDL + WNRP]
-                # print(WMCDL)
+                # print(NCDL)
 
-                BChartDataList = []
-                PChartDataList = []
-                LChartDataList = []
-                DChartDataList = []
-                BNChartDataList = []
-                LINEGROUP = []
                 if ProjectType == 'System':
                     if core == 'Tanium':
+
                         BCQ = PDPI('statistics', 'today', 'bar')
-                        for i in range(len(BCQ)):
-                            BChartDataList.append({"name": BCQ[i][0], "value": int(BCQ[i][1])})
+                        BChartDataList = CTDF(BCQ, 'bar')
 
                         PCQ = PDPI('statistics', 'today', 'pie')
-                        for i in range(len(PCQ)):
-                            PChartDataList.append({"name": PCQ[i][0], "value": int(PCQ[i][1])})
+                        PChartDataList = CTDF(PCQ, 'pie')
 
                         LG = PDPI('statistics', "assetItem", "Group")
-                        # print(LG)
-                        LINEGROUP = {"name": [LG[0][0], LG[1][0], LG[2][0], LG[3][0]],
-                                     "value": [LG[0][1], LG[1][1], LG[2][1], LG[3][1]]}
+                        LINEGROUP = CTDF(LG, 'group')
+
                         LCQ = PDPI('statistics', 'fiveDay', 'asset')
                         LNFD = [LCQ, LINEGROUP]
+
                         ESAIDL = TDLC(LNFD)
                         # print(ESAIDL)
                         LChartDataList = TDCD(ESAIDL, "Line")
 
                         DCQ = PDPI('statistics', 'today', 'donut')
-                        for i in range(len(DCQ)):
-                            DChartDataList.append({"name": DCQ[i][0], "value": int(DCQ[i][1])})
+                        DChartDataList = CTDF(DCQ, 'donut')
+                        # print(DChartDataList)
                         # EAYL = IDPI('asset', 'yesterday', '')
                         # print(EAML)
 
@@ -276,109 +274,51 @@ def DashboardData():
                         BNChartDataList = TDCD(SBNDL, 'Banner')
                         # print(BNChartDataList)
 
-                        # ram 사용량 차트
-                        RDQ = PDPI('statistics', 'today', 'Rdonut')
-                        # print(RDQ)
-                        RDQF = TDFRPI(RDQ, 'rdonut')
-                        # print(RDQF)
-
-                        # AlarmCase Total
-                        DTACQ = PDPI('statistics_list', 'today', 'DUS')
-                        YTACQ = PDPI('statistics_list', 'yesterday', 'DUS')
-
-                        DF = ['id', 'driveSize', 'ip']
-                        DTACQDF = pd.DataFrame(DTACQ, columns=DF)
-                        YTACQDF = pd.DataFrame(YTACQ, columns=DF)
-
-                        DUSCTDL = [DTACQDF, YTACQDF]
-
-                        SDUSDLT = ASDCD(DUSCTDL, "DUS", "count")
-
                         ACDT = PDPI('statistics_list', 'today', 'statistics')
+                        # print(ACDT)
 
-                        AADF = ['alarmCount', 'alarmCase']
-                        nodeDataList = []
-                        ACList = []
-                        for i in range(len(ACDT)):
-                            if ACDT[i][0] == 'listen_port_count_change' and ACDT[i][1] == 'No':
-                                alarmCount = ACDT[i][2]
-                                alarmCase = 'Listen Port No Change'
-                            elif ACDT[i][0] == 'established_port_count_change' and ACDT[i][1] == 'no':
-                                alarmCount = ACDT[i][2]
-                                alarmCase = 'Established Port No Change'
-                            elif ACDT[i][0] == 'group_running_processes_count_exceeded':
-                                alarmCount = ACDT[i][2]
-                                alarmCase = 'Running Process is Exceeded'
-                            elif ACDT[i][0] == 'group_ram_usage_exceeded':
-                                alarmCount = ACDT[i][2]
-                                alarmCase = 'RAM Usage Exceeded'
-                            elif ACDT[i][0] == 'group_cpu_usage_exceeded':
-                                alarmCount = ACDT[i][2]
-                                alarmCase = 'CPU Consumption is Excess'
-                            else:
-                                continue
-                            ACList.append({'alarmCount': int(alarmCount), 'alarmCase': alarmCase})
-                        ACList.append({'alarmCount': int(SDUSDLT['value'][0]), 'alarmCase': SDUSDLT['name'][0]})
-                        ACDF = pd.DataFrame(ACList, columns=AADF)
-                        DFG = ACDF.groupby(['alarmCase']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
-                        TOT = DFG['alarmCount'].sum()
-                        ACPER = round((DFG['alarmCount'] / TOT) * 100, 2)
-                        for j in range(len(DFG.alarmCase)):
-                            nodeDataList.append(
-                                {'alarmCount': str(DFG.alarmCount[j]), 'alarmCase': DFG.alarmCase[j], 'alarmpertage': ACPER[j]})
-                        RDCase = {'nodeDataList': nodeDataList}
+                        #alarmcase chart
+                        RD = ACDF(ACDT, 'alarmTotal')
+                        RDCase = {'nodeDataList': RD}
 
-                        GADF = ['group', 'alarmCount']
-                        TAC = []
-                        for i in range(len(ACDT)):
-                            if ACDT[i][1].startswith('192.') or ACDT[i][1].startswith('172.'):
-                                group = ACDT[i][1]
-                                alarmCount = ACDT[i][2]
-                                TAC.append({'group': group, 'alarmCount': int(alarmCount)})
-                        TDF = pd.DataFrame(TAC, columns=GADF)
-                        DFGX = TDF.groupby(['group']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
-                        TOTX = DFGX['alarmCount'].sum()
-                        TOTPER = round((DFGX['alarmCount'] / TOTX) * 100, 2)
-
-                        nodeDataListx = []
-                        for j in range(len(DFGX.group)):
-                            groupNameCountSplit = DFGX.group[j].split('.')
-                            groupNameCount = groupNameCountSplit[0] + groupNameCountSplit[1] + groupNameCountSplit[2]
-                            nodeDataListx.append({'group': DFGX.group[j], 'alarmCount': str(DFGX.alarmCount[j]),
-                                                'id': 'groupCenter' + str(groupNameCount), 'name': DFGX.group[j],
-                                                'alarmCase': DFGX.group[j], 'totalPertage': TOTPER[j]})
-                        RDLCase = {'nodeDataList': nodeDataListx}
+                        RDL = ACDF(ACDT, 'alarmTop')
+                        # print(RDL)
+                        RDLCase = {'nodeDataList': RDL}
                         # print(RDLCase)
+                        # TATA = nodeDataListx + nodeDataList
+                        # print(RDCase)
 
                         # ram, cpu 사용량 초과 mini donut
                         MDRC = PDPI('statistics', '', 'ram')
                         MDCC = PDPI('statistics', '', 'cpu')
-                        # print(MDRU1)
-                        Ramdonut = []
-                        Cpudonut = []
-                        for i in range(len(MDRC)):
-                            Ramdonut.append({'name': 'RAM Usage Exceeded', 'ip': MDRC[i][1], 'value': MDRC[i][2]})
-                        # print(aa)
-                        for i in range(len(MDCC)):
-                            Cpudonut.append(
-                                {'name': 'CPU Consumption is Excess', 'ip': MDCC[i][1], 'value': MDCC[i][2]})
-                        # print(bb)
+
+                        Ramdonut = USDF(MDRC, 'ram')
+                        Cpudonut = USDF(MDCC, 'cpu')
+
                         MDRCC = Ramdonut + Cpudonut
-                        # print(MDRCC)
+
+                        #worldMap alarmCase
+                        WMQ = PDPI('statistics', '', 'world')
+                        # print(WMQ)
+                        WMAC = WDDF(WMQ)
+
+                        #radar chart
+                        RCList = RDDF(ACDT)
+                        # print(RCList)
+                        RACA = {'nodeDataList': RDL + RCList}
+                        print(RACA)
 
                         BDL = BChartDataList
                         LDL = LChartDataList
                         PDL = PChartDataList
                         BNDL = BNChartDataList
                         ALDL = [[]]
-                        NCDL = []
+                        NCDL = RACA
                         TACC = RDCase
                         TACT = RDLCase
-                        WMCDL = []
+                        WMCDL = [WMAC]
                         MDRU = []
                         DDLC = DChartDataList
-
-
 
             elif core == 'Zabbix':
                 print()
