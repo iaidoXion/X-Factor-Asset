@@ -98,7 +98,7 @@ $(document).ready(function () {
 
         if($(this).text() === '메모리'){
             $($Memory).css("display","block");
-            $($CPU).css("display","none");xi
+            $($CPU).css("display","none");
             $($Disk).css("display","none");
             return;
         }
