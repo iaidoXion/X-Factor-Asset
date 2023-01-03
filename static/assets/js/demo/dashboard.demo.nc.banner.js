@@ -11,6 +11,16 @@ var randomNo = function() {
 };
 
 //value = ""
+var apexMemory95usageChart
+var apexMemory75usageChart
+var apexMemory60usageChart
+var apexCPU95usageChart
+var apexCPU75usageChart
+var apexCPU60usageChart
+var apexDisk95usageChart
+var apexDisk75usageChart
+var apexDisk60usageChart
+
 var handleRenderChartNC = function () {
   // global apexchart settings
   Apex = {
@@ -87,7 +97,6 @@ var handleRenderChartNC = function () {
       },
     },
   };
-
 
 //--------------------------------------------------------------------------
 // Number of servers by version of OS - apexOSversionChart
@@ -341,7 +350,7 @@ var apexMemory95usageOptions = {
               },
               value: {
                 formatter: function(val) {
-                  return  parseInt(val) + '%';
+                  return  parseInt(val) +'%';
                 },
                 color: '#fff',
                 fontSize: '17px',
@@ -369,8 +378,7 @@ var apexMemory95usageOptions = {
         },
         labels: ['121'],
         };
-
-	var apexMemory95usageChart = new ApexCharts(
+	apexMemory95usageChart = new ApexCharts(
 		document.querySelector('#apexMemory95usageChart'),
 		apexMemory95usageOptions
 	);
@@ -456,8 +464,7 @@ var apexMemory75usageOptions = {
         },
         labels: ['232'],
         };
-
-	var apexMemory75usageChart = new ApexCharts(
+	apexMemory75usageChart = new ApexCharts(
 		document.querySelector('#apexMemory75usageChart'),
 		apexMemory75usageOptions
 	);
@@ -542,14 +549,532 @@ var apexMemory60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['121'],
+        labels: ['111'],
         };
-
-	var apexMemory60usageChart = new ApexCharts(
+	apexMemory60usageChart = new ApexCharts(
 		document.querySelector('#apexMemory60usageChart'),
 		apexMemory60usageOptions
 	);
 	apexMemory60usageChart.render();
+
+
+//--------------------------------------------------------------------------
+// CPU Usage - apexCPU95usageChart
+//--------------------------------------------------------------------------
+var apexCPU95usageOptions = {
+          series: [95],
+          chart: {
+          height: 250,
+          type: 'radialBar',
+          animations: {
+            dynamicAnimation: {
+                enabled: true,
+                speed: 350
+        }
+    }
+
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 225,
+             hollow: {
+              margin: 0,
+              size: '70%',
+              background: 'transparent',
+              image: undefined,
+              imageOffsetX: 0,
+              imageOffsetY: 0,
+              position: 'front',
+              dropShadow: {
+                enabled: true,
+                top: 3,
+                left: 0,
+                blur: 4,
+                opacity: 0.24
+              }
+            },
+            track: {
+              background: ['rgba(' + app.color.whiteRgb + ', .30)'],
+              strokeWidth: '67%',
+              margin: 0, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: -3,
+                left: 0,
+                blur: 4,
+                opacity: 0.35
+              }
+            },
+            dataLabels: {
+              show: true,
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#fff',
+                fontSize: '28px'
+              },
+              value: {
+                formatter: function(val) {
+                  return  parseInt(val) + '%';
+                },
+                color: '#fff',
+                fontSize: '17px',
+                show: true,
+              }
+            }
+          }
+        },
+        fill: {
+          type: 'gradient',
+          colors: '#b31217',
+          gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#870000'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          }
+        },
+        stroke: {
+          lineCap: 'round'
+        },
+        labels: ['133'],
+        };
+	apexCPU95usageChart = new ApexCharts(
+		document.querySelector('#apexCPU95usageChart'),
+		apexCPU95usageOptions
+	);
+
+
+//--------------------------------------------------------------------------
+// CPU Usage - apexCPU75usageChart
+//--------------------------------------------------------------------------
+var apexCPU75usageOptions = {
+          series: [230],
+          chart: {
+          height: 250,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 225,
+             hollow: {
+              margin: 0,
+              size: '70%',
+              background: 'transparent',
+              image: undefined,
+              imageOffsetX: 0,
+              imageOffsetY: 0,
+              position: 'front',
+              dropShadow: {
+                enabled: true,
+                top: 3,
+                left: 0,
+                blur: 4,
+                opacity: 0.24
+              }
+            },
+            track: {
+              background: ['rgba(' + app.color.whiteRgb + ', .30)'],
+              strokeWidth: '67%',
+              margin: 0, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: -3,
+                left: 0,
+                blur: 4,
+                opacity: 0.35
+              }
+            },
+            dataLabels: {
+              show: true,
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#fff',
+                fontSize: '28px'
+              },
+              value: {
+                formatter: function(val) {
+                  return  parseInt(val) +'%';
+                },
+                color: '#fff',
+                fontSize: '17px',
+                show: true,
+              }
+            }
+          }
+        },
+        fill: {
+          type: 'gradient',
+          colors: '#fe8c00',
+          gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#f83600'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          }
+        },
+        stroke: {
+          lineCap: 'round'
+        },
+        labels: ['230'],
+        };
+	apexCPU75usageChart = new ApexCharts(
+		document.querySelector('#apexCPU75usageChart'),
+		apexCPU75usageOptions
+	);
+
+
+
+//--------------------------------------------------------------------------
+// CPU Usage - apexCPU60usageChart
+//--------------------------------------------------------------------------
+var apexCPU60usageOptions = {
+          series: [60],
+          chart: {
+          height: 250,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 225,
+             hollow: {
+              margin: 0,
+              size: '70%',
+              background: 'transparent',
+              image: undefined,
+              imageOffsetX: 0,
+              imageOffsetY: 0,
+              position: 'front',
+              dropShadow: {
+                enabled: true,
+                top: 3,
+                left: 0,
+                blur: 4,
+                opacity: 0.24
+              }
+            },
+            track: {
+              background: ['rgba(' + app.color.whiteRgb + ', .30)'],
+              strokeWidth: '67%',
+              margin: 0, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: -3,
+                left: 0,
+                blur: 4,
+                opacity: 0.35
+              }
+            },
+            dataLabels: {
+              show: true,
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#fff',
+                fontSize: '28px'
+              },
+              value: {
+                formatter: function(val) {
+                  return  parseInt(val) +'%';
+                },
+                color: '#fff',
+                fontSize: '17px',
+                show: true,
+              }
+            }
+          }
+        },
+        fill: {
+          type: 'gradient',
+          colors: '#F2C94C',
+          gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#F2994A'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          }
+        },
+        stroke: {
+          lineCap: 'round'
+        },
+        labels: ['140'],
+        };
+	apexCPU60usageChart = new ApexCharts(
+		document.querySelector('#apexCPU60usageChart'),
+		apexCPU60usageOptions
+	);
+
+
+//--------------------------------------------------------------------------
+// Disk Usage - apexDisk95usageChart
+//--------------------------------------------------------------------------
+var apexDisk95usageOptions = {
+          series: [95],
+          chart: {
+          height: 250,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 225,
+             hollow: {
+              margin: 0,
+              size: '70%',
+              background: 'transparent',
+              image: undefined,
+              imageOffsetX: 0,
+              imageOffsetY: 0,
+              position: 'front',
+              dropShadow: {
+                enabled: true,
+                top: 3,
+                left: 0,
+                blur: 4,
+                opacity: 0.24
+              }
+            },
+            track: {
+              background: ['rgba(' + app.color.whiteRgb + ', .30)'],
+              strokeWidth: '67%',
+              margin: 0, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: -3,
+                left: 0,
+                blur: 4,
+                opacity: 0.35
+              }
+            },
+            dataLabels: {
+              show: true,
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#fff',
+                fontSize: '28px'
+              },
+              value: {
+                formatter: function(val) {
+                  return  parseInt(val)+'%';
+                },
+                color: '#fff',
+                fontSize: '17px',
+                show: true,
+              }
+            }
+          }
+        },
+        fill: {
+          type: 'gradient',
+          colors: '#b31217',
+          gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#870000'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          }
+        },
+        stroke: {
+          lineCap: 'round'
+        },
+        labels: ['21'],
+        };
+	apexDisk95usageChart = new ApexCharts(
+		document.querySelector('#apexDisk95usageChart'),
+		apexDisk95usageOptions
+	);
+
+
+//--------------------------------------------------------------------------
+// Disk Usage - apexDisk75usageChart
+//--------------------------------------------------------------------------
+var apexDisk75usageOptions = {
+          series: [75],
+          chart: {
+          height: 250,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 225,
+             hollow: {
+              margin: 0,
+              size: '70%',
+              background: 'transparent',
+              image: undefined,
+              imageOffsetX: 0,
+              imageOffsetY: 0,
+              position: 'front',
+              dropShadow: {
+                enabled: true,
+                top: 3,
+                left: 0,
+                blur: 4,
+                opacity: 0.24
+              }
+            },
+            track: {
+              background: ['rgba(' + app.color.whiteRgb + ', .30)'],
+              strokeWidth: '67%',
+              margin: 0, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: -3,
+                left: 0,
+                blur: 4,
+                opacity: 0.35
+              }
+            },
+            dataLabels: {
+              show: true,
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#fff',
+                fontSize: '28px'
+              },
+              value: {
+                formatter: function(val) {
+                  return  parseInt(val) + '%';
+                },
+                color: '#fff',
+                fontSize: '17px',
+                show: true,
+              }
+            }
+          }
+        },
+        fill: {
+          type: 'gradient',
+          colors: '#fe8c00',
+          gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#f83600'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          }
+        },
+        stroke: {
+          lineCap: 'round'
+        },
+        labels: ['162'],
+        };
+	apexDisk75usageChart = new ApexCharts(
+		document.querySelector('#apexDisk75usageChart'),
+		apexDisk75usageOptions
+	);
+
+
+//--------------------------------------------------------------------------
+// Disk Usage - apexDisk60usageChart
+//--------------------------------------------------------------------------
+var apexDisk60usageOptions = {
+          series: [60],
+          chart: {
+          height: 250,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 225,
+             hollow: {
+              margin: 0,
+              size: '70%',
+              background: 'transparent',
+              image: undefined,
+              imageOffsetX: 0,
+              imageOffsetY: 0,
+              position: 'front',
+              dropShadow: {
+                enabled: true,
+                top: 3,
+                left: 0,
+                blur: 4,
+                opacity: 0.24
+              }
+            },
+            track: {
+              background: ['rgba(' + app.color.whiteRgb + ', .30)'],
+              strokeWidth: '67%',
+              margin: 0, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: -3,
+                left: 0,
+                blur: 4,
+                opacity: 0.35
+              }
+            },
+            dataLabels: {
+              show: true,
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#fff',
+                fontSize: '28px'
+              },
+              value: {
+                formatter: function(val) {
+                  return  parseInt(val)+'%';
+                },
+                color: '#fff',
+                fontSize: '17px',
+                show: true,
+              }
+            }
+          }
+        },
+        fill: {
+          type: 'gradient',
+          colors: '#F2C94C',
+          gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#F2994A'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+          }
+        },
+        stroke: {
+          lineCap: 'round'
+        },
+        labels: ['181'],
+        };
+	apexDisk60usageChart = new ApexCharts(
+		document.querySelector('#apexDisk60usageChart'),
+		apexDisk60usageOptions
+	);
+
 
 
 //--------------------------------------------------------------------------
@@ -829,8 +1354,6 @@ var apexPhysicalServerOptions = {
 		apexPhysicalServerOptions
 	);
 	apexPhysicalServerChart.render();
-
-
 };
 
 
@@ -932,6 +1455,7 @@ svg.selectAll("circle")
 //			      .attr("r", 30)
 //			      .remove();
           })
+
       }, 1000);
 };
 
@@ -1264,7 +1788,6 @@ svg.selectAll("circle")
 //			.attr("opacity", 0.5);
 //	});
 
-
 }
 
 function seoulMap(worldMapData) {
@@ -1355,6 +1878,9 @@ function seoulMap(worldMapData) {
 			.attr('text-anchor', 'small')
 			.attr("opacity", .8);
 	});
+
+
+
 }
 
 
@@ -1369,13 +1895,28 @@ $(document).ready(function() {
 	seongnamMap(worldMapData);
     seoulMap(worldMapData);
 
+    $(".mcdBtn").on('click',function(){
+    if($(this).text() === '메모리'){
 
-	document.addEventListener('theme-reload', function() {
-	$('[data-render="apexchart"], #world-map #korea-map #seongnamMap').empty();
-		handleRenderChartNC();
-        worldMap(worldMapData);
-		koreaMap(worldMapData);
-        seongnamMap(worldMapData);
-		seoulMap(worldMapData);
-	});
+            return;
+        }
+
+        if($(this).text() === 'CPU'){
+            apexCPU95usageChart.render();
+            apexCPU75usageChart.render();
+            apexCPU60usageChart.render();
+            return;
+        }
+        if($(this).text() === '디스크'){
+            apexDisk95usageChart.render();
+            apexDisk75usageChart.render();
+            apexDisk60usageChart.render();
+            return;
+        }
+    });
 });
+
+
+
+
+
