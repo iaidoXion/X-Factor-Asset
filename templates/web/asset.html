@@ -41,19 +41,6 @@
 					<div class="tab-content">
 						<!-- BEGIN #weak windows datatable -->
 						<div class="tab-pane fade show active" id="weak-windows">
-							<div>
-							페이지당
-								<label>
-									<form action="{% url 'asset' %}" method="GET" id="count_menu" >
-										<select class="form-select for-select-sm" name="menu" id="menu">
-											<option value="10">10</option>
-											<option value="20">20</option>
-											<option value="30">30</option>
-										</select>
-									</form>
-								</label>
-							 개씩 보기
-							</div>
 							<table id="weakTable-windows" class="table weakTable text-nowrap w-100">
 								<thead>
 								<tr>
@@ -66,15 +53,15 @@
 								</tr>
 								</thead>
 								<tbody>
-									{% if data %}
-										{% for db in data%}
+									{% if data.item %}
+										{% for db in data.item%}
 											<tr data-toggle="tooltop" data-placement="top">
 												<td>{{db.index}}</td>
 												<td>{{db.SWV}}</td>
 												<td><span onclick="location.href='../asset_detail?swv=' + '{{db.SWV|safe}}' ">{{db.Title}}</span></td>
 												<td>{{db.Text}}</td>
 												<td>{{db.Count}}</td>
-												<td><a><i class="fas fa-exclamation-circle" title="{{db.Judge.0}}{{db.Judge.1}}"></i></a></td>
+												<td><a><i class="fas fa-exclamation-circle" title="양호 : {{db.Judge.0}}  취약 : {{db.Judge.1}}"></i></a></td>
 											</tr>
 										{%endfor%}
 									{% else %}
@@ -84,44 +71,6 @@
 									{% endif%}
 								</tbody>
 							</table>
-							<div class="row align-items-center">
-								{% if start and end and total %}
-								<div> 현재 {{ start }} 건 - {{ end }} / 전체 {{ total}} 건 </div>
-								{% endif %}
-								<ul class="pagination justify-content-center">
-									{% if data.has_previous and count%}
-									<li class="page-item">
-										<a class="page-link" href="?menu={{ count }}&page={{ data.previous_page_number }}">이전</a>
-									</li>
-									{% else %}
-									<li class="page-item disabled">
-										<a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-									</li>
-									{% endif %}
-
-									{% for page_number in data.paginator.page_range %}
-									{% if page_number == data.number %}
-									<li class="page-item active" aria-current="page">
-										<a class="page-link" href="?menu={{ count }}&page={{ page_number }}">{{ page_number }}</a>
-									</li>
-									{% else %}
-									<li class="page-item">
-										<a class="page-link" href="?menu={{ count }}&page={{ page_number }}">{{ page_number }}</a>
-									</li>
-									{% endif %}
-									{% endfor %}
-
-									{% if data.has_next %}
-									<li class="page-item">
-										<a class="page-link" href="?menu={{ count }}&page={{ data.next_page_number }}">다음</a>
-									</li>
-									{% else %}
-									<li class="page-item disabled">
-										<a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-									</li>
-									{% endif %}
-								</ul>
-							</div>
 						</div>
 						<!-- END #weak windows datatable -->
 						<!-- BEGIN #weak unix datatable -->
