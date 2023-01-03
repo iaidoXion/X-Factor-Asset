@@ -2,112 +2,120 @@
 {% load web_filter %}
 {% block content %}
 {% load static %}
+<script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/jquery/ajax.jquery.min.js' %}"></script>
+<script src="{% static 'js/assets/js/demo/table-plugins.demo.js}"></script>
 
-    <div id="content" class="app-content">
-
-        <p>OS 종류 별 서버 수</p>
-        <div class="justify-content-between" style="display: flex; flex:1;">
-            <span class="mx-3">총 93건</span>
-
-            <div class="mb-5">
-                <span>검색 : </span>
-                <input type="text">
+<!-- BEGIN #content -->
+<div id="content" class="app-content">
+    <!-- BEGIN page-header -->
+    <p>
+        OS 종류 별 서버 수
+    </p>
+    <!-- END page-header -->
+    <div class="row">
+        <div>
+            <div class="justify-content-between mb-5" style="display: flex; flex:1; ">
+                <span class="mx-3">총 93건</span>
+                <div>
+                    <span>검색 : </span>
+                    <input type="text">
+                </div>
+            </div>
+            <div>
+                <table id="popupTable-osVersion" class="table w-30 fs-12px mb-0 text-truncate text-white text-opacity-60 m-auto">
+                    <thead>
+                        <tr class="text-white text-opacity-75">
+                            <th class="w-10 text-center">No</th>
+                            <th class="w-70 text-center">OS 버전</th>
+                            <th class="w-auto text-center">수량</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-end">1</td>
+                            <td>CentOS7</td>
+                            <td class="text-end">43</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">2</td>
+                            <td>Windows10</td>
+                            <td class="text-end">38</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">3</td>
+                            <td>Windows11</td>
+                            <td class="text-end">27</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">4</td>
+                            <td>CentOS8</td>
+                            <td class="text-end">21</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">5</td>
+                            <td>Ubuntu21</td>
+                            <td class="text-end">10</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">6</td>
+                            <td>Ubuntu20</td>
+                            <td class="text-end">9</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">7</td>
+                            <td>Ubuntu22</td>
+                            <td class="text-end">8</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">8</td>
+                            <td>Windows7</td>
+                            <td class="text-end">7</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">9</td>
+                            <td>OS 버전 예시 1</td>
+                            <td class="text-end">6</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">10</td>
+                            <td>OS 버전 예시 2</td>
+                            <td class="text-end">6</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">11</td>
+                            <td>OS 버전 예시 3</td>
+                            <td class="text-end">6</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">12</td>
+                            <td>OS 버전 예시 4</td>
+                            <td class="text-end">5</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">13</td>
+                            <td>OS 버전 예시 5</td>
+                            <td class="text-end">5</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">14</td>
+                            <td>OS 버전 예시 6</td>
+                            <td class="text-end">5</td>
+                        </tr>
+                        <tr>
+                            <td class="text-end">15</td>
+                            <td>OS 버전 예시 7</td>
+                            <td class="text-end">5</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row align-items-center">
+                    {% if start and end and total %}
+                    <div>전체 {{ total}} 건 </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
-
-        <div class="w-90" >
-            <table class="table w-250px fs-12px mb-0 text-truncate text-white text-opacity-60" style="margin: 0 auto;">
-                                <thead>
-                                <tr class="text-white text-opacity-75">
-                                    <th class="w-10 text-center">No</th>
-                                    <th class="w-60 text-center">OS 버전</th>
-                                    <th class="w-auto text-center">수량</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="text-end">1</td>
-                                    <td>CentOS7</td>
-                                    <td class="text-end">43</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">2</td>
-                                    <td>Windows10</td>
-                                    <td class="text-end">38</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">3</td>
-                                    <td>Windows11</td>
-                                    <td class="text-end">27</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">4</td>
-                                    <td>CentOS8</td>
-                                    <td class="text-end">21</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">5</td>
-                                    <td>Ubuntu21</td>
-                                    <td class="text-end">10</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">6</td>
-                                    <td>Ubuntu20</td>
-                                    <td class="text-end">9</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">7</td>
-                                    <td>Ubuntu22</td>
-                                    <td class="text-end">8</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">8</td>
-                                    <td>Windows7</td>
-                                    <td class="text-end">7</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">9</td>
-                                    <td>OS 버전 예시 1</td>
-                                    <td class="text-end">6</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">10</td>
-                                    <td>OS 버전 예시 2</td>
-                                    <td class="text-end">6</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">11</td>
-                                    <td>OS 버전 예시 3</td>
-                                    <td class="text-end">6</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">12</td>
-                                    <td>OS 버전 예시 4</td>
-                                    <td class="text-end">5</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">13</td>
-                                    <td>OS 버전 예시 5</td>
-                                    <td class="text-end">5</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">14</td>
-                                    <td>OS 버전 예시 6</td>
-                                    <td class="text-end">5</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end">15</td>
-                                    <td>OS 버전 예시 7</td>
-                                    <td class="text-end">5</td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-        </div>
     </div>
-
-
-
-
-
+</div>
 {% endblock %}

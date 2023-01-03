@@ -23,7 +23,9 @@ urlpatterns = [
     path('osVersion_moreInfo/', base_views.osVersion_moreInfo, name='osVersion_moreInfo'),
     path('serverBandBy_moreInfo/', base_views.serverBandBy_moreInfo, name='serverBandBy_moreInfo'),
     path('runningService_moreInfo/', base_views.runningService_moreInfo, name='runningService_moreInfo'),
-    path('memoryCpuDisk_moreInfo/', base_views.memoryCpuDisk_moreInfo, name='memoryCpuDisk_moreInfo'),
+    path('memory_moreInfo/', base_views.memory_moreInfo, name='memory_moreInfo'),
+    path('cpu_moreInfo/', base_views.cpu_moreInfo, name='cpu_moreInfo'),
+    path('disk_moreInfo/', base_views.disk_moreInfo, name='disk_moreInfo'),
     path('physicalServer_moreInfo/', base_views.physicalServer_moreInfo, name='physicalServer_moreInfo'),
     path('gpuServer_moreInfo/', base_views.gpuServer_moreInfo, name='gpuServer_moreInfo'),
 ]
