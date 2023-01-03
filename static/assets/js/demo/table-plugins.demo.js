@@ -70,7 +70,7 @@ var handleRenderWeakTableData = function () {
 			"infoPostFix": "",
 		},
 	});
-	weakTable.draw();
+	weakTable.search().draw();
 };
 
 var handleRenderWeakDetailTableData = function () {
