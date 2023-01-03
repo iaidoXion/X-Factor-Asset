@@ -228,32 +228,6 @@
 
 
 
-    var seongnamNetwork = [
-      {
-        "nodes": [
-          { "id": "Ncrd", "group": "ncrd", "x": 555, "y": 251 },
-          { "id": "Ncalpha", "group": "ncalpha", "x": 455, "y": 351 }
-        ],
-        "links": [
-          { "source": "Ncrd", "target": "Ncalpha", "distance": 300 },
-          { "source": "Ncalpha", "target": "Ncrd", "distance": 300 }
-        ]
-      }
-    ];
-    var networkData = [{
-      "nodes": [
-        {% for nodeData in chartData.AssociationDataList.nodeDataList %}
-    { "id": '{{nodeData.id}}', "group": '{{nodeData.group}}', "name": '{{nodeData.name}}', "alarmCase": '{{nodeData.alarmCase}}', "alarmCount": '{{nodeData.alarmCount}}', "point": '{{nodeData.point}}' },
-    {% endfor %}
-  ],
-    "links": [
-      {% for linksData in chartData.AssociationDataList.linksDataList %}
-    { "source": '{{linksData.source}}', "target": '{{linksData.target}}', "distance": 200 },
-    {% endfor %}
-  ]
-}];
-    networkChart(networkData);
-
   </script>
 </body>
 

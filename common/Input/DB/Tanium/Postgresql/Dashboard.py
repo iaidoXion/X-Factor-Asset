@@ -20,7 +20,6 @@ day = datetime.today().strftime("%Y-%m-%d")
 
 def plug_in(table, day, type):
     try:
-        today = datetime.today()
         yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
         fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
         month_str = (datetime.today() - relativedelta(months=1)).strftime("%Y-%m-%d")
@@ -108,8 +107,7 @@ def plug_in(table, day, type):
                             item NOT like '%TSE-Error%'
                     """
 
-            if day == 'today':
-                if type == 'bar':
+                elif type == 'bar':
                     query = """
                         select 
                             item, item_count 
@@ -131,20 +129,12 @@ def plug_in(table, day, type):
                         from 
                             minutely_statistics
                         where
-                            classification
-                        like
-                            '%installed%'
+                            classification = 'installed_applications'
                         order by
-                            item_count
+                            item_count::INTEGER 
                         desc limit 5
                     """
-                elif type == 'Rdonut':
-                    query = """
-                        select
-                            computer_id, cup_consumption, ipv_address
-                        from
-                            minutely_asset
-                    """
+
                 elif type == 'case':
                     query = """
                         select
@@ -152,25 +142,6 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics_list
                     """
-                    # query = """
-                    #     select
-                    #         computer_id, classification, item, item_count
-                    #     from
-                    #         minutely_statistics
-                    #     where
-                    #         NOT classification IN ('asset')
-                    #     and
-                    #         NOT classification IN ('installed_applications')
-                    #     and
-                    #         NOT classification IN ('running_processes')
-                    #     and
-                    #         NOT classification IN ('virtual')
-                    #     and
-                    #         NOT classification IN ('os')
-                    #     order by
-                    #         item_count
-                    #     desc
-                    # """
             if day == 'fiveDay':
                 if type == 'asset':
                     query = """ 
@@ -221,7 +192,16 @@ def plug_in(table, day, type):
                     order by
                         item_count::INTEGER desc limit 5
                 """
-
+            if type == 'world':
+                query = """
+                    select
+                        classification, item
+                    from
+                        minutely_statistics
+                    where 
+                        classification in ('group_cpu_usage_exceeded', 'group_ram_usage_exceeded', 'group_running_processes_count_exceeded', 
+                        'group_last_reboot', 'group_drive_usage_size_exceeded')
+                """
         if table == 'statistics_list':
             if day == 'today':
                 if type == 'DUS':
@@ -242,9 +222,11 @@ def plug_in(table, day, type):
                                 'group_running_processes_count_exceeded',
                                 'group_cpu_usage_exceeded',
                                 'group_ram_usage_exceeded',
-                                'listen_port_count_change')
-                            order by
-                                item_count::INTEGER desc
+                                'listen_port_count_change',
+                                'group_last_reboot',
+                                'group_drive_usage_size_exceeded')
+                            and 
+                                NOT item IN ('unconfirmed')
 
                     """
                 elif type == 'LH':
