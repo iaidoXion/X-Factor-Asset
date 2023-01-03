@@ -10560,20 +10560,48 @@ fieldset:disabled .btn {
     --bs-border-opacity: 1
 }
 
-.w-10{
+.w-5 {
+    width: 5% !important
+}
+
+.w-10 {
     width: 10% !important
+}
+
+.w-15 {
+    width: 15% !important
+}
+
+.w-20 {
+    width: 20% !important
 }
 
 .w-25 {
     width: 25% !important
 }
 
+.w-30 {
+    width: 30% !important
+}
+
+.w-40 {
+    width: 40% !important
+}
+
 .w-50 {
     width: 50% !important
 }
 
+.w-70 {
+    width: 70% !important
+}
+
 .w-75 {
     width: 75% !important
+}
+
+.w-80 {
+    width: 80% !important
 }
 
 .w-85 {
@@ -29925,6 +29953,10 @@ body .note-modal-backdrop {
 
 
 /* begin - datatable weak Table css */
+.weakTable thead tr th:nth-child(3) {
+    width: 20%;
+}
+
 .weakTable tbody tr td {
     height: 40px;
     vertical-align: middle;
@@ -29958,8 +29990,7 @@ body .note-modal-backdrop {
 
 
 /* begin - datatable weak detail Table css */
-#weakTableDetail thead tr th,
-#weakTableDetail tbody tr td{
+#weakTableDetail thead tr th{
     text-align: center;
 }
 
@@ -29969,8 +30000,6 @@ body .note-modal-backdrop {
     color: #fff;
     font-size: 0.75rem;
 }
-
-
 
 #weakTableDetail tbody tr td:nth-child(8){
     text-align:center;

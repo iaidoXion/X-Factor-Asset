@@ -138,9 +138,17 @@ def runningService_moreInfo(request):
     returnData = {'menuList': menuListDB}
     return render(request, 'popup/runningService_moreInfo.html', returnData)
 
-def memoryCpuDisk_moreInfo(request):
+def memory_moreInfo(request):
     returnData = {'menuList': menuListDB}
-    return render(request, 'popup/memoryCpuDisk_moreInfo.html', returnData)
+    return render(request, 'popup/memory_moreInfo.html', returnData)
+
+def cpu_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/cpu_moreInfo.html', returnData)
+
+def disk_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/disk_moreInfo.html', returnData)
 
 def physicalServer_moreInfo(request):
     returnData = {'menuList': menuListDB}

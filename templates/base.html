@@ -176,37 +176,48 @@
 		}
 		});
   </script>
-
+<!--BEGIN Windows Popup-->
   <script>
-       $('.osVersion-moreInfo').on('click',function(){
-            window.open("../osVersion_moreInfo", "osVersion", "width=500, height=600");
-       })
+    $('.osVersion-moreInfo').on('click',function(){
+         window.open("../osVersion_moreInfo", "osVersion", "width=500, height=600");
+    });
 
-       $('.serverBandBy-moreInfo').on('click',function(){
-            window.open("../serverBandBy_moreInfo", "serverBandBy", "width=500, height=600");
-       })
+    $('.serverBandBy-moreInfo').on('click',function(){
+         window.open("../serverBandBy_moreInfo", "serverBandBy", "width=500, height=600");
+    });
 
-       $('.runningService-moreInfo').on('click',function(){
-            window.open("../runningService_moreInfo", "runningService", "width=500, height=600");
-       })
+    $('.runningService-moreInfo').on('click',function(){
+        window.open("../runningService_moreInfo", "runningService", "width=500, height=600");
+    });
 
-       $('.memoryCpuDisk-moreInfo').on('click',function(){
-            window.open("../memoryCpuDisk_moreInfo", "memoryCpuDisk", "width=500, height=600");
-       })
+    $('.memoryCpuDisk-moreInfo').on('click',function(){
+      if($('#btn-memory').hasClass("active") === true) {
+        window.open("../memory_moreInfo", "memory", "width=500, height=600");
+        return;
+      }
+      if($('#btn-cpu').hasClass("active") === true){
+        window.open("../cpu_moreInfo", "cpu", "width=500, height=600");
+        return;
+      }
+      if($('#btn-disk').hasClass("active") === true){
+        window.open("../disk_moreInfo", "disk", "width=500, height=600");
+        return;
+      }
+    });
 
-       $('.physicalServer-moreInfo').on('click',function(){
-            window.open("../physicalServer_moreInfo", "physicalServer", "width=500, height=600");
-       })
+    $('.physicalServer-moreInfo').on('click',function(){
+        window.open("../physicalServer_moreInfo", "physicalServer", "width=500, height=600");
+    });
 
-       $('.gpuServer-moreInfo').on('click',function(){
-            window.open("../gpuServer_moreInfo", "gpuServer", "width=500, height=600");
-       })
+    $('.gpuServer-moreInfo').on('click',function(){
+        window.open("../gpuServer_moreInfo", "gpuServer", "width=500, height=600");
+    });
+   </script>
 
-    </script>
-
-  <script>
-    var a = {{ chartData| safe}};
-    var mapUse = {{ MapUse| safe}};
+<!--END Windows Popup-->
+    <script>
+      var a = {{ chartData| safe}};
+      var mapUse = {{ MapUse| safe}};
 
     var worldMapData = [];
     for (let i = 0; i < a.WorldMapDataList[0].length; i++) {

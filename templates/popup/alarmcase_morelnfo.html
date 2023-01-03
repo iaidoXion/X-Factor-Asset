@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load web_filter %}
+{% block content %}
+{% load static %}
+
+<div id="content" class="app-content">
+    <p>GPU 서버 파트모델 수량</p>
+    <div class="justify-content-between" style="display: flex; flex:1;">
+        <span class="mx-3">총 93건</span>
+        <div class="mb-5">
+            <span>검색 : </span>
+            <input type="text">
+        </div>
+    </div>
+    <table class="table w-70 fs-12px mb-0 text-truncate text-white text-opacity-60 m-auto">
+        <thead>
+        <tr class="text-white text-opacity-75">
+            <th class="w-5 text-center">No</th>
+            <th class="w-15 text-center">IP</th>
+            <th class="w-25 text-center">메모리 95% 초과</th>
+            <th class="w-15 text-center">CPU 95% 초과</th>
+            <th class="w-15 text-center">디스크 95% 초과</th>
+            <th class="w-15 text-center">30분 이내 오프라인</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="text-end">1</td>
+            <td>IP 예시 1</td>
+            <td>Computer Name 예시 1</td>
+            <td>Ture (96%)</td>
+            <td>Ture (96%)</td>
+            <td>Ture (99%)</td>
+            <td>Ture</td>
+        </tr>
+        <tr>
+            <td class="text-end">2</td>
+            <td>IP 예시 2</td>
+            <td>Computer Name 예시 2</td>
+            <td>False</td>
+            <td>Ture (96%)</td>
+            <td>Ture (99%)</td>
+            <td>Ture</td>
+        </tr>
+        <tr>
+            <td class="text-end">3</td>
+            <td>IP 예시 3</td>
+            <td>Computer Name 예시 3</td>
+            <td>Ture (96%)</td>
+            <td>False</td>
+            <td>Ture (99%)</td>
+            <td>False</td>
+        </tr>
+        <tr>
+            <td class="text-end">4</td>
+            <td>IP 예시 4</td>
+            <td>Computer Name 예시 4</td>
+            <td>False</td>
+            <td>Ture (96%)</td>
+            <td>False</td>
+            <td>False</td>
+        </tr>
+        <tr>
+            <td class="text-end">5</td>
+            <td>IP 예시 5</td>
+            <td>Computer Name 예시 5</td>
+            <td>Ture (97%)</td>
+            <td>False</td>
+            <td>False</td>
+            <td>False</td>
+        </tr>
+        <tr>
+            <td class="text-end">6</td>
+            <td>IP 예시 6</td>
+            <td>Computer Name 예시 6</td>
+            <td>False</td>
+            <td>False</td>
+            <td>False</td>
+            <td>Ture</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+{% endblock %}
