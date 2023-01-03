@@ -195,16 +195,40 @@
                             </button>
                         </div>
                         <!-- END title -->
-                        <div class="d-flex justify-content-center align-items-center">
+                        <div class="d-flex justify-content-center align-items-center" id="mcdDiv">
                             <!-- BEGIN chart -->
-                            <div class="col-4">
+                            <div class="col-4 MemoryCharts">
                                 <div id="apexMemory95usageChart"></div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 MemoryCharts">
                                 <div id="apexMemory75usageChart"></div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 MemoryCharts">
                                 <div id="apexMemory60usageChart"></div>
+                            </div>
+                            <!-- END chart -->
+
+                            <!-- BEGIN chart -->
+                            <div class="col-4 CPUCharts" style="display:none;">
+                                <div id="apexCPU95usageChart"></div>
+                            </div>
+                            <div class="col-4 CPUCharts" style="display:none;">
+                                <div id="apexCPU75usageChart"></div>
+                            </div>
+                            <div class="col-4 CPUCharts" style="display:none;">
+                                <div id="apexCPU60usageChart"></div>
+                            </div>
+                            <!-- END chart -->
+
+                            <!-- BEGIN chart -->
+                            <div class="col-4 DiskCharts" style="display:none;">
+                                <div id="apexDisk95usageChart"></div>
+                            </div>
+                            <div class="col-4 DiskCharts" style="display:none;">
+                                <div id="apexDisk75usageChart"></div>
+                            </div>
+                            <div class="col-4 DiskCharts" style="display:none;">
+                                <div id="apexDisk60usageChart"></div>
                             </div>
                             <!-- END chart -->
                         </div>
