@@ -299,7 +299,7 @@ def DashboardData():
 
                         #worldMap alarmCase
                         WMQ = PDPI('statistics', '', 'world')
-                        # print(WMQ)
+                        print(WMQ)
                         WMAC = WDDF(WMQ)
 
                         #radar chart

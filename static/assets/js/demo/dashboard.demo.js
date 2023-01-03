@@ -812,7 +812,6 @@ var apexDonutChartOptions = {
 					} else {
 						list[6] = parseInt(0);
 						alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
-
 					}
 				}
 
