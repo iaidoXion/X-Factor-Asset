@@ -699,130 +699,130 @@ var apexDonutChartOptions = {
 	var radar_list = [];
 	var category_list = [];
 
-	// for (var i = 0; i < 5; i++) {
-	// 	group.push(a.AssociationDataList.nodeDataList[i].group);
-	// }
-	//
-	// for (var i = 0; i < group.length; i++){
-	// 	list = [];
-	// 	alarm_list = [];
-	// 	var name;
-	// 	for (var j = 0; j < a.AssociationDataList.nodeDataList.length; j++){
-	// 		if (a.AssociationDataList.nodeDataList[j].group == group[i]) {
-	// 			if (a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History') {
-	// 				list[0] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
-	// 				alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 			} else {
-	// 				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-	// 				} else {
-	// 					list[0] = parseInt(0);
-	// 					alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 				}
-	// 			}
-	// 			if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change') {
-	// 				list[1] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
-	// 				alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 			} else {
-	// 				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-	// 				} else {
-	// 					list[1] = parseInt(0);
-	// 					alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 				}
-	// 			}
-	// 			if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change') {
-	// 				list[2] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
-	// 				alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 			} else {
-	// 				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-	// 				} else {
-	// 					list[2] = parseInt(0);
-	// 					alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 				}
-	// 			}
-	// 			if (a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change") {
-	// 				list[3] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
-	// 				alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 			} else {
-	// 				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-	// 				} else {
-	// 					list[3] = parseInt(0);
-	// 					alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 				}
-	// 			}
-	// 			if (a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ) {
-	// 				list[4] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
-	// 				alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 			} else {
-	// 				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-	// 				} else {
-	// 					list[4] = parseInt(0);
-	// 					alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 				}
-	// 			}
-	// 			if (a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess') {
-	// 				list[5] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
-	// 				alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 			} else {
-	// 				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-	// 				} else {
-	// 					list[5] = parseInt(0);
-	// 					alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 				}
-	// 			}
-	// 			if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
-	// 				list[6] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
-	// 				alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 			} else {
-	// 				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-	// 					a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History') {
-	// 				} else {
-	// 					list[6] = parseInt(0);
-	// 					alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
-	// 				}
-	// 			}
-	//
-    //       		name = group[i];
-	// 		}
-	// 	}
-	//
-	// 	var radar_dict = { "name" : name, "data" : list};
-	// 	radar_list.push(radar_dict);
-	// };
-	// category_list.push(radar_list);
+	for (var i = 0; i < 5; i++) {
+		group.push(a.AssociationDataList.nodeDataList[i].group);
+	}
+
+	for (var i = 0; i < group.length; i++){
+		list = [];
+		alarm_list = [];
+		var name;
+		for (var j = 0; j < a.AssociationDataList.nodeDataList.length; j++){
+			if (a.AssociationDataList.nodeDataList[j].group == group[i]) {
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History') {
+					list[0] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
+					alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
+				} else {
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					} else {
+						list[0] = parseInt(0);
+						alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
+					}
+				}
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change') {
+					list[1] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
+					alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
+				} else {
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					} else {
+						list[1] = parseInt(0);
+						alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
+					}
+				}
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change') {
+					list[2] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
+					alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
+				} else {
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					} else {
+						list[2] = parseInt(0);
+						alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
+					}
+				}
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change") {
+					list[3] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
+					alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
+				} else {
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					} else {
+						list[3] = parseInt(0);
+						alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
+					}
+				}
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ) {
+					list[4] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
+					alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
+				} else {
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					} else {
+						list[4] = parseInt(0);
+						alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
+					}
+				}
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess') {
+					list[5] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
+					alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
+				} else {
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					} else {
+						list[5] = parseInt(0);
+						alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
+					}
+				}
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+					list[6] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
+					alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
+				} else {
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History') {
+					} else {
+						list[6] = parseInt(0);
+						alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
+					}
+				}
+
+          		name = group[i];
+			}
+		}
+
+		var radar_dict = { "name" : name, "data" : list};
+		radar_list.push(radar_dict);
+	};
+	category_list.push(radar_list);
 
 var apexRadarChartOptions = {
   chart: {
