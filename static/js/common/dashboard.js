@@ -86,4 +86,38 @@ $(document).ready(function () {
     });
 });
 
+// 메모리 CPU 디스크 버튼
+$(document).ready(function () {
+    const $Memory = $('.MemoryCharts')
+    const $CPU = $('.CPUCharts')
+    const $Disk = $('.DiskCharts')
+
+    $(".mcdBtn").on('click',function(){
+        $(".mcdBtn").removeClass("active");
+        $(this).addClass("active");
+
+        if($(this).text() === '메모리'){
+            $($Memory).css("display","block");
+            $($CPU).css("display","none");xi
+            $($Disk).css("display","none");
+            return;
+        }
+
+        if($(this).text() === 'CPU'){
+            $($Memory).css("display","none");
+            $($CPU).css("display","block");
+            $($Disk).css("display","none");
+            return;
+        }
+        if($(this).text() === '디스크'){
+            $($Memory).css("display","none");
+            $($CPU).css("display","none");
+            $($Disk).css("display","block");
+            return;
+        }
+    });
+
+
+});
+
 
