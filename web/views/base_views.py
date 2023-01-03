@@ -56,24 +56,7 @@ def assetweb(request):
         return render(request, 'common/login.html', res_data)
     else :
         Data = AssetData('Count', '')
-        list = Data['item']
-        page = request.GET.get('page', '1')
-        count_menu = request.GET.get('menu')
-        count = 10
-        if count_menu :
-            if count_menu == '10' :
-                count = 10
-            elif count_menu == '20' :
-                count = 20
-            else :
-                count = 30
-        paginator = Paginator(list, count)
-        page_obj = paginator.get_page(page)
-        start = page_obj.start_index()
-        end = page_obj.end_index()
-        total = len(Data['item'])
-
-        returnData = {'menuList': menuListDB, 'data': page_obj, 'start': start, 'end': end, 'total': total, 'count': count}
+        returnData = { 'menuList': menuListDB, 'data' : Data}
         return render(request, 'web/asset.html', returnData)
 
 def assetDetailweb(request):
