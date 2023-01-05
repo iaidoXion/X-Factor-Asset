@@ -22,9 +22,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo osVersion-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">OS 버전별 서버 수 (상위 8개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm osVersion-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -92,9 +92,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo serverBandBy-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">각 대역별 서버 수량 (상위 5개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm serverBandBy-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -130,9 +130,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo runningService-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">실행 중인 서비스 통계 (상위 5개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm runningService-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -182,15 +182,12 @@
                     <!-- BEGIN card-body -->
                     <div class="card-body h-284px">
                         <!-- BEGIN title -->
-                        <div style="position: relative;">
-                            <div class="btn-group mb-3">
-                                <button type="button" id="btn-memory" class="btn btn-outline-warning btn-sm ">메모리</button>
-                                <button type="button" id="btn-cpu" class="btn btn-outline-warning btn-sm ">CPU</button>
-                                <button type="button" id="btn-disk" class="btn btn btn-outline-warning btn-sm active">디스크</button>
-                            </div>
-                            <button type="button" class="btn btn-outline-warning btn-sm memoryCpuDisk-moreInfo"
-                                    style="position: absolute; right: 0;">더보기
-                            </button>
+                        <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo memoryCpuDisk-moreInfo"><i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="btn-group mb-3">
+                            <button type="button" id="btn-memory" class="btn btn-outline-warning btn-sm mcdBtn active">메모리</button>
+                            <button type="button" id="btn-cpu" class="btn btn-outline-warning btn-sm mcdBtn">CPU</button>
+                            <button type="button" id="btn-disk" class="btn btn btn-outline-warning btn-sm mcdBtn">디스크</button>
                         </div>
                         <!-- END title -->
                         <div class="d-flex justify-content-center align-items-center" id="mcdDiv">
@@ -339,7 +336,8 @@
                     <div class="card mb-3 ">
                         <!-- BEGIN card-body -->
                         <div class="card-body h-205px" style="display: inline-flex;">
-                            <table class="table w-90 fs-12px mb-0 text-truncate text-white text-opacity-60"
+                            <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                            <table class="table table-sm w-90 fs-12px mb-0 text-truncate text-white text-opacity-60"
                                    style="margin: 0 auto; vertical-align: middle;">
                                 <thead>
                                 <tr class="text-white text-opacity-75">
@@ -412,9 +410,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo physicalServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">물리서버 벤더별 수량 (상위 3개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm physicalServer-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -446,9 +444,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo gpuServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">GPU 서버 수량</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm gpuServer-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
