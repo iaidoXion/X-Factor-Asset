@@ -654,7 +654,7 @@ var apexCPU95usageOptions = {
 // CPU Usage - apexCPU75usageChart
 //--------------------------------------------------------------------------
 var apexCPU75usageOptions = {
-          series: [230],
+          series: [75],
           chart: {
           height: 250,
           type: 'radialBar',

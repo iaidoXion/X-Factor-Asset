@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 
+
 <script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'js/jquery/ajax.jquery.min.js' %}"></script>
 <script src="{% static 'js/jquery/httpRequest.js' %}"></script>
@@ -93,7 +94,6 @@
 							<div>
 							페이지당
 								<label>
-
 									<form action="{% url 'asset_detail' %}" method="GET" id="count_menu" >
 										<select class="form-select for-select-sm" name="menu" id="menu">
 												<option value="10">10</option>

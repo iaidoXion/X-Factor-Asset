@@ -11042,6 +11042,19 @@ fieldset:disabled .btn {
     margin-left: 3rem !important
 }
 
+.ms-6 {
+    margin-left: 3.5rem !important
+}
+
+.ms-7 {
+    margin-left: 4rem !important
+}
+
+.ms-8 {
+    margin-left: 4.5rem !important
+}
+
+
 .ms-auto {
     margin-left: auto !important
 }
@@ -11374,6 +11387,14 @@ fieldset:disabled .btn {
 
 .ps-5 {
     padding-left: 3rem !important
+}
+
+.ps-6 {
+    padding-left: 3.5rem !important
+}
+
+.ps-7 {
+    padding-left: 4rem !important
 }
 
 .gap-0 {
@@ -16893,10 +16914,6 @@ fieldset:disabled .btn {
     margin: 9px !important
 }
 
-.m-10px {
-    margin: 10px !important
-}
-
 .m-5px {
     margin: 5px !important
 }
@@ -17257,6 +17274,25 @@ fieldset:disabled .btn {
     margin-left: 50px !important
 }
 
+.ms-60px {
+    margin-left: 60px !important
+}
+
+.ms-70px {
+    margin-left: 70px !important
+}
+
+.ms-80px {
+    margin-left: 80px !important
+}
+.ms-90px {
+    margin-left: 90px !important
+}
+
+.ms-200px {
+    margin-left: 200px !important
+}
+
 .mx-1px {
     margin-left: 1px !important;
     margin-right: 1px !important
@@ -17455,6 +17491,10 @@ fieldset:disabled .btn {
 .my-50px {
     margin-top: 50px !important;
     margin-bottom: 50px !important
+}
+
+.ma-10px {
+    margin: 10px auto !important;
 }
 
 .p-1px {
@@ -17855,6 +17895,34 @@ fieldset:disabled .btn {
 
 .ps-50px {
     padding-left: 50px !important
+}
+
+.ps-55px {
+    padding-left: 55px !important
+}
+
+.ps-60px {
+    padding-left: 60px !important
+}
+
+.ps-65px {
+    padding-left: 65px !important
+}
+
+.ps-70px {
+    padding-left: 70px !important
+}
+
+.ps-80px {
+    padding-left: 80px !important
+}
+
+.ps-90px {
+    padding-left: 90px !important
+}
+
+.ps-100px {
+    padding-left: 100px !important
 }
 
 .px-1px {
@@ -30155,9 +30223,23 @@ body .note-modal-backdrop {
 
 /* end - table-report css */
 
+/* BEGIN - gpuServertable css */
+.gpuServerTable tbody tr td {
+    vertical-align: middle;
+}
+
+.gpuServerTable thead tr th {
+   text-align: center
+}
+
+.gpuServerTable tbody tr td:nth-child(3),
+.gpuServerTable tbody tr td:nth-child(4) {
+    white-space: normal;
+}
+/* BEGIN - gpuServertable css */
+
 /* begin - tab css */
 .nav-border {
     border: none;
 }
-
 /* end - tab css */
