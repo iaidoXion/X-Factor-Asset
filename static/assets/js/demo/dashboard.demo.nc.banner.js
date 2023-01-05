@@ -654,7 +654,7 @@ var apexCPU95usageOptions = {
 // CPU Usage - apexCPU75usageChart
 //--------------------------------------------------------------------------
 var apexCPU75usageOptions = {
-          series: [230],
+          series: [75],
           chart: {
           height: 250,
           type: 'radialBar',
@@ -727,7 +727,7 @@ var apexCPU75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['230'],
+        labels: ['214'],
         };
 	apexCPU75usageChart = new ApexCharts(
 		document.querySelector('#apexCPU75usageChart'),
@@ -1894,26 +1894,13 @@ $(document).ready(function() {
 	koreaMap(worldMapData);
 	seongnamMap(worldMapData);
     seoulMap(worldMapData);
+    apexCPU95usageChart.render();
+    apexCPU75usageChart.render();
+    apexCPU60usageChart.render();
+    apexDisk95usageChart.render();
+    apexDisk75usageChart.render();
+    apexDisk60usageChart.render();
 
-    $(".mcdBtn").on('click',function(){
-    if($(this).text() === '메모리'){
-
-            return;
-        }
-
-        if($(this).text() === 'CPU'){
-            apexCPU95usageChart.render();
-            apexCPU75usageChart.render();
-            apexCPU60usageChart.render();
-            return;
-        }
-        if($(this).text() === '디스크'){
-            apexDisk95usageChart.render();
-            apexDisk75usageChart.render();
-            apexDisk60usageChart.render();
-            return;
-        }
-    });
 });
 
 

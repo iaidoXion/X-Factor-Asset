@@ -30153,6 +30153,12 @@ body .note-modal-backdrop {
     text-align: center;
 }
 
+
+.maps{
+    overflow:hidden;
+}
+
+
 /* end - table-report css */
 
 /* begin - tab css */

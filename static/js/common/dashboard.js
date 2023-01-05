@@ -24,11 +24,21 @@ $(document).ready(function(){
     $('#worldBtn').click(function() {
         $('#world-map').show();
         $('#korea-map, #seoul-map, #seongnam-map').hide();
+
+        $('#world-map, #korea-map, #seongnam-map').removeClass("selectMap");
+        $('#world-map').addClass("selectMap");
+        zoomCount = 1;
+        $('.selectMap').css('transform','scale(1)');
     });
 
     $('#koreaBtn').click(function() {
         $('#korea-map').show();
         $('#world-map, #seoul-map, #seongnam-map').hide();
+
+        $('#world-map, #korea-map, #seongnam-map').removeClass("selectMap");
+        $('#korea-map').addClass("selectMap");
+        zoomCount = 1;
+        $('.selectMap').css('transform','scale(1)');
     });
 
     $('#areaBtn').click(function() {
@@ -38,10 +48,51 @@ $(document).ready(function(){
         }
         else if (mapUse.AreaType == 'seongnam-map'){
         $('#world-map, #korea-map, #seoul-map').hide();
+        $('#world-map, #korea-map, #seongnam-map').removeClass("selectMap");
+
         $('#seongnam-map').show();
+        $('#seongnam-map').addClass("selectMap");
+        zoomCount = 1;
+        $('.selectMap').css('transform','scale(1)');
+
         }
     });
 
+    let startDrag
+    let endDrag
+    let xLocation = 0;
+    let yLocation = 0;
+
+//map 줌인 줌아웃 버튼
+    let zoomCount = 1;
+    $('.map-zoomIn').on('click',function(){
+        if(zoomCount < 10){
+            zoomCount = zoomCount + 0.1;
+        }
+        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + xLocation + "px," + yLocation +"px)")
+ });
+
+        $('.map-zoomOut').on('click',function(){
+        if(zoomCount > 1){
+            zoomCount = zoomCount - 0.1;
+             }
+        $('.selectMap').css('transform',"scale("+ zoomCount + ")","translate(" + xLocation + "px," + yLocation +"px)")
+ });
+
+// 이미지 드래그 기능
+    $('.selectMap').on({
+    'dragstart':function(e){
+        startDrag = [event.clientX,event.clientY];
+        console.log(startDrag);
+    },
+    'dragend':function(e){
+        endDrag = [event.clientX,event.clientY];
+        xLocation = endDrag[0] - startDrag[0];
+        yLocation = endDrag[1] - startDrag[1];
+        $('.selectMap').css('transform',"scale("+ zoomCount + ")","translate(" + xLocation + "px," + yLocation +"px)")
+
+    }
+    });
 });
 
 
@@ -119,5 +170,3 @@ $(document).ready(function () {
 
 
 });
-
-

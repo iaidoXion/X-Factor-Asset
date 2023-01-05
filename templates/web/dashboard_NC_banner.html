@@ -184,9 +184,9 @@
                         <!-- BEGIN title -->
                         <div style="position: relative;">
                             <div class="btn-group mb-3">
-                                <button type="button" id="btn-memory" class="btn btn-outline-warning btn-sm ">메모리</button>
-                                <button type="button" id="btn-cpu" class="btn btn-outline-warning btn-sm ">CPU</button>
-                                <button type="button" id="btn-disk" class="btn btn btn-outline-warning btn-sm active">디스크</button>
+                                <button type="button" id="btn-memory" class="mcdBtn btn btn-outline-warning btn-sm active">메모리</button>
+                                <button type="button" id="btn-cpu" class="mcdBtn btn btn-outline-warning btn-sm ">CPU</button>
+                                <button type="button" id="btn-disk" class="mcdBtn btn btn btn-outline-warning btn-sm">디스크</button>
                             </div>
                             <button type="button" class="btn btn-outline-warning btn-sm memoryCpuDisk-moreInfo"
                                     style="position: absolute; right: 0;">더보기
@@ -285,9 +285,9 @@
                     <div class="card-body h-284px">
                         <!-- BEGIN title -->
                         <div class="d-flex fw-bold small">
-                            <div class="flex-grow-1" style="position: relative;">
+                            <div class="flex-grow-1 mb-3 " style="position: relative;">
                                 그룹별 장애 징후 감지 모니터링
-                                <div class="btn-group ps-3" style="position: absolute; right:20px;">
+                                <div class="btn-group ps-3" style="position: absolute; right:20px; z-index:1">
                                     {% if MapUse.WorldUse == 'block' %}
                                     <button type="button" id="worldBtn" class="btn btn-outline-warning btn-sm">세계
                                     </button>
@@ -305,20 +305,26 @@
                             <a href="#" data-toggle="card-expand"
                                class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
                         </div>
+
+                         <div class="btn-group map-zoomInOut mt-4" style="position: absolute; right:20px; z-index:1">
+                            <button type="button" class="btn btn-outline-warning btn-sm map-zoomIn">+</button>
+                            <button type="button" class="btn btn-outline-warning btn-sm map-zoomOut">-</button>
+                        </div>
+
                         <!-- END title -->
                         <!-- BEGIN map -->
-                        <div class="ratio ratio-21x9" style="width: 100%; height: 95%; margin: 0 auto;">
-                            {% if MapUse.WorldUse == 'block' %}
-                            <div id="world-map" style="display:{{MapUse.WorldUse}}"></div>
-                            {%endif%}
-                            {% if MapUse.KoreaUse == 'block' %}
-                            <div id="korea-map" style="display:{{MapUse.KoreaUse}}"></div>
-                            {%endif%}
-                            {% if MapUse.AreaUse == 'block' %}
-                            <div id="seoul-map" style="display:{{MapUse.AreaUse}}"></div>
-                            <div id="seongnam-map" style="display:{{MapUse.AreaUse}}"></div>
-                            {%endif%}
-                        </div>
+                        <div class="ratio ratio-21x9 maps" style="width: 100%; height: 90%; margin: 0 auto;">
+                                {% if MapUse.WorldUse == 'block' %}
+                                <div id="world-map" style="display:{{MapUse.WorldUse}}" class="selectMap"></div>
+                                {%endif%}
+                                {% if MapUse.KoreaUse == 'block' %}
+                                <div id="korea-map" style="display:{{MapUse.KoreaUse}}"></div>
+                                {%endif%}
+                                {% if MapUse.AreaUse == 'block' %}
+                                <div id="seoul-map" style="display:{{MapUse.AreaUse}}"></div>
+                                <div id="seongnam-map" style="display:{{MapUse.AreaUse}}"></div>
+                                {%endif%}
+                                </div>
                         <!-- END map -->
                     </div>
                     <!-- END card-body -->
