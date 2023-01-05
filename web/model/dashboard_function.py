@@ -20,7 +20,7 @@ from collections import Counter
 import numpy as np
 import urllib3
 import json
-import itertools
+import math
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
@@ -235,90 +235,88 @@ def DashboardData():
                 # WMCDL = [WMDUS + WMLH + WMRUE + WMLPC + WMEPC + WMCCDL + WNRP]
                 # print(NCDL)
 
-                if ProjectType == 'System':
-                    if core == 'Tanium':
+                BCQ = PDPI('statistics', 'today', 'bar')
+                BChartDataList = CTDF(BCQ, 'bar')
 
-                        BCQ = PDPI('statistics', 'today', 'bar')
-                        BChartDataList = CTDF(BCQ, 'bar')
+                PCQ = PDPI('statistics', 'today', 'pie')
+                PChartDataList = CTDF(PCQ, 'pie')
 
-                        PCQ = PDPI('statistics', 'today', 'pie')
-                        PChartDataList = CTDF(PCQ, 'pie')
+                LG = PDPI('statistics', "assetItem", "Group")
+                # print(LG)
+                LINEGROUP = CTDF(LG, 'group')
+                # print(LINEGROUP)
 
-                        LG = PDPI('statistics', "assetItem", "Group")
-                        LINEGROUP = CTDF(LG, 'group')
+                LCQ = PDPI('statistics', 'fiveDay', 'asset')
+                LNFD = [LCQ, LINEGROUP]
+                # print(LCQ)
 
-                        LCQ = PDPI('statistics', 'fiveDay', 'asset')
-                        LNFD = [LCQ, LINEGROUP]
+                ESAIDL = TDLC(LNFD)
+                # print(ESAIDL)
+                LChartDataList = TDCD(ESAIDL, "Line")
+                # print(LChartDataList)
 
-                        ESAIDL = TDLC(LNFD)
-                        # print(ESAIDL)
-                        LChartDataList = TDCD(ESAIDL, "Line")
+                DCQ = PDPI('statistics', 'today', 'donut')
+                DChartDataList = CTDF(DCQ, 'donut')
+                # EAYL = IDPI('asset', 'yesterday', '')
+                # print(EAML)
 
-                        DCQ = PDPI('statistics', 'today', 'donut')
-                        DChartDataList = CTDF(DCQ, 'donut')
-                        # print(DChartDataList)
-                        # EAYL = IDPI('asset', 'yesterday', '')
-                        # print(EAML)
+                # banner chart
+                BNY = PDPI('statistics', 'yesterday', '')
+                # print(BNY)
+                TSDLY = TDBA(BNY, 'yetoday')
+                # print(TSDLY)
+                BNT = PDPI('statistics', 'today', '')
+                # print(BNT)
+                TSDLT = TDBA(BNT, 'yetoday')
+                # print(TSDLT)
+                SBNDL = ASDC(TSDLY, TSDLT)
+                # print(SBNDL)
+                BNChartDataList = TDCD(SBNDL, 'Banner')
+                # print(BNChartDataList)
 
-                        # banner chart
-                        BNY = PDPI('statistics', 'yesterday', '')
-                        # print(BNY)
-                        TSDLY = TDBA(BNY, 'yetoday')
-                        # print(TSDLY)
-                        BNT = PDPI('statistics', 'today', '')
-                        # print(BNT)
-                        TSDLT = TDBA(BNT, 'yetoday')
-                        # print(TSDLT)
-                        SBNDL = ASDC(TSDLY, TSDLT)
-                        # print(SBNDL)
-                        BNChartDataList = TDCD(SBNDL, 'Banner')
-                        # print(BNChartDataList)
+                ACDT = PDPI('statistics_list', 'today', 'statistics')
+                # print(ACDT)
 
-                        ACDT = PDPI('statistics_list', 'today', 'statistics')
-                        # print(ACDT)
+                #alarmcase chart
+                RD = ACDF(ACDT, 'alarmTotal')
+                RDCase = {'nodeDataList': RD}
 
-                        #alarmcase chart
-                        RD = ACDF(ACDT, 'alarmTotal')
-                        RDCase = {'nodeDataList': RD}
+                RDL = ACDF(ACDT, 'alarmTop')
+                # print(RDL)
+                RDLCase = {'nodeDataList': RDL}
+                # print(RDLCase)
+                # TATA = nodeDataListx + nodeDataList
+                # print(RDCase)
 
-                        RDL = ACDF(ACDT, 'alarmTop')
-                        # print(RDL)
-                        RDLCase = {'nodeDataList': RDL}
-                        # print(RDLCase)
-                        # TATA = nodeDataListx + nodeDataList
-                        # print(RDCase)
+                # ram, cpu 사용량 초과 mini donut
+                MDRC = PDPI('statistics', '', 'ram')
+                MDCC = PDPI('statistics', '', 'cpu')
 
-                        # ram, cpu 사용량 초과 mini donut
-                        MDRC = PDPI('statistics', '', 'ram')
-                        MDCC = PDPI('statistics', '', 'cpu')
+                Ramdonut = USDF(MDRC, 'ram')
+                Cpudonut = USDF(MDCC, 'cpu')
 
-                        Ramdonut = USDF(MDRC, 'ram')
-                        Cpudonut = USDF(MDCC, 'cpu')
+                MDRCC = Ramdonut + Cpudonut
 
-                        MDRCC = Ramdonut + Cpudonut
+                #worldMap alarmCase
+                WMQ = PDPI('statistics', '', 'world')
+                WMAC = WDDF(WMQ)
 
-                        #worldMap alarmCase
-                        WMQ = PDPI('statistics', '', 'world')
-                        print(WMQ)
-                        WMAC = WDDF(WMQ)
+                #radar chart
+                RCList = RDDF(ACDT)
+                # print(RCList)
+                RACA = {'nodeDataList': RDL + RCList}
 
-                        #radar chart
-                        RCList = RDDF(ACDT)
-                        # print(RCList)
-                        RACA = {'nodeDataList': RDL + RCList}
-                        print(RACA)
-
-                        BDL = BChartDataList
-                        LDL = LChartDataList
-                        PDL = PChartDataList
-                        BNDL = BNChartDataList
-                        ALDL = [[]]
-                        NCDL = RACA
-                        TACC = RDCase
-                        TACT = RDLCase
-                        WMCDL = [WMAC]
-                        MDRU = []
-                        DDLC = DChartDataList
+                BDL = BChartDataList
+                LDL = LChartDataList
+                PDL = PChartDataList
+                BNDL = BNChartDataList
+                ALDL = [[]]
+                NCDL = RACA
+                TACC = RDCase
+                TACT = RDLCase
+                WMCDL = [WMAC]
+                MDRU = []
+                DDLC = DChartDataList
 
             elif core == 'Zabbix':
                 print()
@@ -328,7 +326,40 @@ def DashboardData():
     if Customer == 'NC':
         if ProjectType == 'System':
             if core == 'Tanium':
+                service_donutChartData = []
+                DiskChartDataList = []
+                CpuChartDataList = []
+                MemoryChartDataList = []
 
+                # 실행 중인 서비스 통계 차트
+                Rchart = PDPI('statistics', 'today', 'running')
+                for i in range(len(Rchart)):
+                    service_donutChartData.append({"name": Rchart[i][0], "value": int(Rchart[i][1])})
+
+                #디스크, cpu, ram 95%, 75%, 60% 사용량 차트
+                Usagechart = PDPI('statistics', 'today', 'usage')
+                for i in range(len(Usagechart)):
+                    if Usagechart[i][0].startswith('drive_'):
+                        DiskChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
+                    elif Usagechart[i][0].startswith('ram_'):
+                        MemoryChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
+                    elif Usagechart[i][0].startswith('cpu_'):
+                        CpuChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
+                if Usagechart.count('drive_usage_size_exceeded') == 0:
+                    DiskChartDataList.append({"name": '-', "value": 0})
+                    DiskChartDataList.append({"name": '-', "value": 0})
+                    DiskChartDataList.append({"name": '-', "value": 0})
+                if Usagechart.count('ram_usage_size_exceeded') == 0:
+                    MemoryChartDataList.append({"name": '-', "value": 0})
+                    MemoryChartDataList.append({"name": '-', "value": 0})
+                    MemoryChartDataList.append({"name": '-', "value": 0})
+                if Usagechart.count('cpu_usage_size_exceeded') == 0:
+                    CpuChartDataList.append({"name": '-', "value": 0})
+                    CpuChartDataList.append({"name": '-', "value": 0})
+                    CpuChartDataList.append({"name": '-', "value": 0})
+
+                USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
+                print(USCDL)
                 BDL= []
                 LDL = []
                 PDL = []
@@ -339,25 +370,38 @@ def DashboardData():
                 TACT = []
                 WMCDL = []
                 MDRCC = []
-                DDLC = []
+                DDLC = service_donutChartData
+                UCDL = USCDL
+                # DCDL = DiskChartDataList
+                # CCDL = CpuChartDataList
+                # MCDL = MemoryChartDataList
             elif core == 'Zabbix':
                 print()
         elif ProjectType == 'Service':
             print()
+    if Customer == 'NC':
+        RD = {
+            "service_donutChartData": DDLC,
+            "usageChartDataList": UCDL
+            # "DiskChartDataList": DCDL,
+            # "CpuChartDataList": CCDL,
+            # "MemoryChartDataList": MCDL
+        }
+    else:
+        RD = {
+            "barChartData": BDL,
+            "lineChartData": LDL,
+            "pieChartData": PDL,
+            "bannerData": BNDL,
+            "alarmListData": ALDL[0],
+            "AssociationDataList": NCDL,
+            "TotalDataList": TACC,
+            "TotalTopDataList": TACT,
+            "WorldMapDataList": WMCDL,
+            "MiniDonutChart": MDRCC,
+            "donutChartDataList": DDLC,
 
-    RD = {
-        "barChartData": BDL,
-        "lineChartData": LDL,
-        "pieChartData": PDL,
-        "bannerData": BNDL,
-        "alarmListData": ALDL[0],
-        "AssociationDataList": NCDL,
-        "TotalDataList": TACC,
-        "TotalTopDataList": TACT,
-        "WorldMapDataList": WMCDL,
-        "MiniDonutChart": MDRCC,
-        "donutChartDataList": DDLC
-    }
+        }
     return RD
 
 
@@ -369,10 +413,17 @@ def AssetData(Param, data) :
             'session' : SK,
             'item' : DB
         }
-    if Param == 'SWV' :
-        SDL = HYDPI('swv_detail', data)
+    if Param == 'SWL' :
+        SDL = HYDPI('SWL', data)
         RD = {
             'item' : SDL
+        }
+    if Param == 'SWV' :
+        SDL = HYDPI('swv_detail', data)
+        CNT = HYDPI('count', data)
+        RD = {
+            'item' : SDL,
+            'count' : CNT
         }
     return RD
     # sensorData_hyd = IAPI(SK['dataList'], 'Sensor_hyd')

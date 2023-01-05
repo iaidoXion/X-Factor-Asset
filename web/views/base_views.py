@@ -6,8 +6,10 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from web.model.dashboard_function import DashboardData
 from web.model.dashboard_function import AssetData
+from django.views.decorators.csrf import csrf_exempt
 from common.menu import MenuSetting
 import json
+import math
 menuListDB = MenuSetting()
 
 with open("setting.json", encoding="UTF-8") as f:
@@ -28,23 +30,34 @@ def dashboard(request):
         return render(request, 'common/login.html', res_data)
     else :
         DCDL = DashboardData()
-        dashboardType = 'web/dashboard.html'
-        barChartData = DCDL["barChartData"]
-        lineChartData = DCDL["lineChartData"]
-        pieChartData = DCDL["pieChartData"]
-        bannerData = DCDL["bannerData"]
-        minidonutData = DCDL['MiniDonutChart']
-        alarmData = DCDL["alarmListData"]
-        AssociationData = DCDL["AssociationDataList"]
-        WorldMapData = DCDL["WorldMapDataList"]
-        TotalTopData = DCDL['TotalTopDataList']
-        TotalData = DCDL["TotalDataList"]
-        donutChartData = DCDL["donutChartDataList"]
-        MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
-        chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
-        returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         if Customer == 'NC':
             dashboardType = 'web/dashboard_NC_banner.html'
+            MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
+            # service_donutChartData
+            DiskChartDataList = DCDL["usageChartDataList"]["DiskChartDataList"]
+            service_donutChartData = DCDL["service_donutChartData"]
+            CpuChartDataList =  DCDL["usageChartDataList"]["CpuChartDataList"]
+            MemoryChartDataList =  DCDL["usageChartDataList"]["MemoryChartDataList"]
+            chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList' : service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList':CpuChartDataList
+                            }
+            returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
+        else:
+            dashboardType = 'web/dashboard.html'
+            barChartData = DCDL["barChartData"]
+            lineChartData = DCDL["lineChartData"]
+            pieChartData = DCDL["pieChartData"]
+            bannerData = DCDL["bannerData"]
+            minidonutData = DCDL['MiniDonutChart']
+            alarmData = DCDL["alarmListData"]
+            AssociationData = DCDL["AssociationDataList"]
+            WorldMapData = DCDL["WorldMapDataList"]
+            TotalTopData = DCDL['TotalTopDataList']
+            TotalData = DCDL["TotalDataList"]
+            donutChartData = DCDL["donutChartDataList"]
+            MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
+            chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData,
+                        'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
+            returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         return render(request, dashboardType, returnData)
 
 
@@ -61,28 +74,29 @@ def assetweb(request):
 
 def assetDetailweb(request):
     swv=request.GET.get('swv')
-    print(swv)
-    Data = AssetData('SWV', swv)
-
-    list = Data['item']
-    count_menu = request.GET.get('menu')
-    page = request.GET.get('page', '1')
-    count = 10
-    if count_menu:
-        if count_menu == '10':
-            count = 10
-        elif count_menu == '20':
-            count = 20
-        else:
-            count = 30
-    paginator = Paginator(list, count)
-    page_obj = paginator.get_page(page)
-    start = page_obj.start_index()
-    end = page_obj.end_index()
-    total = len(list)
-    returnData = { 'menuList': menuListDB, 'data' : page_obj, 'start': start, 'end': end, 'total': total, 'count': count, 'swv': swv}
-
+    Data = AssetData('SWL', swv)
+    returnData = { 'menuList': menuListDB , 'data' : Data}
     return render(request, 'web/asset_detail.html', returnData)
+
+@csrf_exempt
+def assetDetailweb_paging(request):
+    swv=request.GET.get('swv')
+    count = request.GET.get('count')
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start/length) + 1
+    data = [swv, str(length), str(page), str(search)]
+    
+    Data = AssetData('SWV', data)
+        
+    returnData = { 'data': Data,
+        'draw': draw,
+        'recordsTotal': count,
+        'recordsFiltered': Data['count'],
+        }
+    return JsonResponse(returnData)
 
 def report(request):
     returnData = { 'menuList': menuListDB}

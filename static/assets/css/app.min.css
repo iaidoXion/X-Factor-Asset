@@ -4642,6 +4642,15 @@ fieldset:disabled .btn {
     --bs-btn-border-radius: 1px
 }
 
+/* begin btn-sm restyle */
+.btn-moreInfo {
+    padding:0 0.25rem !important;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}
+/* end btn-sm restyle */
+
 .fade {
     transition: opacity 0.15s linear
 }
@@ -30220,7 +30229,6 @@ body .note-modal-backdrop {
 .table-report tbody tr td:last-child {
     text-align: center;
 }
-
 /* end - table-report css */
 
 /* BEGIN - gpuServertable css */
@@ -30243,3 +30251,4 @@ body .note-modal-backdrop {
     border: none;
 }
 /* end - tab css */
+

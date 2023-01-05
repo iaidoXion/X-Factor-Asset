@@ -13,7 +13,8 @@ def chart(data, case):
         return BChartDataList
     elif case == 'pie':
         for i in range(len(data)):
-            PChartDataList.append({"name": data[i][0], "value": int(data[i][1])})
+            if data[i][0] != 'unconfirmed':
+                PChartDataList.append({"name": data[i][0], "value": int(data[i][1])})
         return PChartDataList
     elif case == 'group':
         LINEGROUP = {"name": [data[0][0], data[1][0], data[2][0], data[3][0]],
@@ -31,6 +32,7 @@ def alarmCase(data, case):
         AADF = ['alarmCount', 'alarmCase']
         nodeDataList = []
         ACList = []
+        print(data)
         for i in range(len(data)):
             if data[i][0] == 'listen_port_count_change' and data[i][1] == 'No':
                 alarmCount = data[i][2]
@@ -38,12 +40,12 @@ def alarmCase(data, case):
             elif data[i][0] == 'established_port_count_change' and data[i][1] == 'No':
                 alarmCount = data[i][2]
                 alarmCase = 'Established Port No Change'
-            elif data[i][0] == 'group_drive_usage_size_exceeded':
+            elif data[i][0] == 'drive_usage_size_exceeded' and data[i][1] != 'Safety' and data[i][1] != 'unconfirmed':
                 alarmCount = data[i][2]
-                alarmCase = 'Drive Size No Change'
-            elif data[i][0] == 'group_running_processes_count_exceeded':
+                alarmCase = 'Drive Usage Exceeded'
+            elif data[i][0] == 'group_running_service_count_exceeded':
                 alarmCount = data[i][2]
-                alarmCase = 'Running Process is Exceeded'
+                alarmCase = 'Running Service is Exceeded'
             elif data[i][0] == 'group_ram_usage_exceeded':
                 alarmCount = data[i][2]
                 alarmCase = 'RAM Usage Exceeded'
@@ -53,15 +55,18 @@ def alarmCase(data, case):
             elif data[i][0] == 'group_last_reboot':
                 alarmCount = data[i][2]
                 alarmCase = 'No Login History'
-            elif 'group_cpu_usage_exceeded' not in data[i][0]:
-                alarmCount = 0
-                alarmCase = 'CPU Consumption is Excess'
-            elif 'group_last_reboot' not in data[i][0]:
-                alarmCount = 0
-                alarmCase = 'No Login History'
-            else:
-                continue
+            # else:
+            #     continue
             ACList.append({'alarmCount': int(alarmCount), 'alarmCase': alarmCase})
+
+        if 'group_ram_usage_exceeded' not in data:
+            alarmCount = 0
+            alarmCase = 'RAM Usage Exceeded'
+        ACList.append({'alarmCount': int(alarmCount), 'alarmCase': alarmCase})
+        if data.count('group_cpu_usage_exceeded') == 0:
+            alarmCount = 0
+            alarmCase = 'CPU Consumption is Excess'
+        ACList.append({'alarmCount': int(alarmCount), 'alarmCase': alarmCase})
         # ACList.append({'alarmCount': int(SDUSDLT['value'][0]), 'alarmCase': SDUSDLT['name'][0]})
         ACDF = pd.DataFrame(ACList, columns=AADF)
         DFG = ACDF.groupby(['alarmCase']).sum(['alarmCount']).sort_values(by='alarmCount', ascending=False).reset_index()
@@ -102,16 +107,15 @@ def usage(data, case):
     Ramdonut = []
     Cpudonut = []
     if case == 'ram':
-        for i in range(len(data)):
-            Ramdonut.append({'name': 'RAM Usage Exceeded', 'ip': data[i][1], 'value': data[i][2]})
+        if len(data) == 0:
+            Ramdonut.append({'name': 'RAM Usage Exceeded', 'ip': '-', 'value': 0})
+        else:
+            for i in range(len(data)):
+                Ramdonut.append({'name': 'RAM Usage Exceeded', 'ip': data[i][1], 'value': data[i][2]})
         # print(aa)
         return Ramdonut
     elif case == 'cpu':
         if len(data) == 0:
-            Cpudonut.append({'name': 'CPU Consumption is Excess', 'ip': '-', 'value': 0})
-            Cpudonut.append({'name': 'CPU Consumption is Excess', 'ip': '-', 'value': 0})
-            Cpudonut.append({'name': 'CPU Consumption is Excess', 'ip': '-', 'value': 0})
-            Cpudonut.append({'name': 'CPU Consumption is Excess', 'ip': '-', 'value': 0})
             Cpudonut.append({'name': 'CPU Consumption is Excess', 'ip': '-', 'value': 0})
         else:
             for i in range(len(data)):
@@ -130,8 +134,8 @@ def worldMap(data):
             alarmText = 'RAM Usage Exceeded'
         elif data[i][0].startswith('group_last_'):
             alarmText = 'No Login History'
-        elif data[i][0].startswith('group_drive_'):
-            alarmText = 'Drive Size No Change'
+        elif data[i][0].startswith('drive_'):
+            alarmText = 'Drive Usage Exceeded'
         elif data[i][0].startswith('group_running_'):
             alarmText = 'Running Process is Exceeded'
         WMAC.append({"ip": data[i][1], "alarmText": alarmText, "group": data[i][1], "gps": gps})
@@ -146,7 +150,7 @@ def radar(data):
             group = data[i][1]
             alarmCount = data[i][2]
             name = 'DUS'
-            alarmCase = 'Drive Size No Change'
+            alarmCase = 'Drive Usage Exceeded'
         elif data[i][0] == 'listen_port_count_change':
             group = '192.192.5'
             alarmCount = data[i][2]
@@ -157,11 +161,11 @@ def radar(data):
             alarmCount = data[i][2]
             name = 'EPC'
             alarmCase = 'Established Port No Change'
-        elif data[i][0] == 'group_running_processes_count_exceeded':
+        elif data[i][0] == 'group_running_service_count_exceeded':
             group = data[i][1]
             alarmCount = data[i][2]
             name = 'RP'
-            alarmCase = 'Running Process is Exceeded'
+            alarmCase = 'Running Service is Exceeded'
         elif data[i][0] == 'group_ram_usage_exceeded':
             group = data[i][1]
             alarmCount = data[i][2]

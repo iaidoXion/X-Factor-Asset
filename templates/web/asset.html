@@ -2,18 +2,9 @@
 {% load web_filter %}
 {% block content %}
 {% load static %}
-<script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
-<script src="{% static 'js/jquery/ajax.jquery.min.js' %}"></script>
-<script>
-    $(document).ready(function(){
-        $("select[name=menu]").change(function () {
-        this.form.submit();
-        });
-	history.replaceState({},null,location.pathname);
-	$("#menu").val("{{ count }}").prop("selected",true);
-    });
-<!--	console.log({{data|safe}});-->
 
+<script>
+	console.log({{data|safe}});
 </script>
 
 <!-- BEGIN #content -->
@@ -58,7 +49,7 @@
 											<tr data-toggle="tooltop" data-placement="top">
 												<td>{{db.index}}</td>
 												<td>{{db.SWV}}</td>
-												<td><span onclick="location.href='../asset_detail?swv=' + '{{db.SWV|safe}}' ">{{db.Title}}</span></td>
+												<td><span onclick="location.href='../asset_detail?swv={{db.SWV|safe}}&count={{db.Count}}' ">{{db.Title}}</span></td>
 												<td>{{db.Text}}</td>
 												<td>{{db.Count}}</td>
 												<td><a><i class="fas fa-exclamation-circle" title="양호 : {{db.Judge.0}}  취약 : {{db.Judge.1}}"></i></a></td>

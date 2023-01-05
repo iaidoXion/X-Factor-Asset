@@ -122,7 +122,21 @@ def hyd_plug_in(table, data):
                 GROUP BY vl.vulnerability_num
                 ORDER BY vl.vulnerability_num
                 """
-                
+        if table == 'SWL' :
+            query = """ 
+                SELECT
+                    VL.vulnerability_num, 
+                    VL.vulnerability_classification, 
+                    VL.vulnerability_code, 
+                    VL.vulnerability_item, 
+                    VL.vulnerability_explanation,
+                    VL.vulnerability_standard_good,
+                    VL.vulnerability_standard_weak
+                FROM 
+                    vulnerability_list vl 
+                WHERE 
+                    vl.vulnerability_code = '""" + data + """';
+            """
         if table == 'swv_detail' :
             query = """
                 SELECT
@@ -151,11 +165,39 @@ def hyd_plug_in(table, data):
                 WHERE 
                     vj.vulnerability_judge_result = 'Weak' 
                     AND 
-                    vj.vulnerability_code = '""" + data + """'
+                    vj.vulnerability_code = '""" + data[0] + """'
+                    AND
+                    (VJ.computer_id ||
+                    VJ.computer_name ||
+                    VJ.chassis_type ||
+                    VJ.tanium_client_nat_ip_address ||
+                    VJ.operating_system) like '%""" + data[3] + """%'
+                LIMIT """ + data[1] + """
+	            OFFSET (""" + data[2] + """-1) * """ + data[1] + """;
                 """
+        if table == 'count' :
+            query = """
+            SELECT
+                count(*)
+            FROM
+                vulnerability_list VL
+            JOIN 
+                vulnerability_judge VJ
+            ON 
+                vl.vulnerability_code = vj.vulnerability_code
+            WHERE 
+                vj.vulnerability_judge_result = 'Weak' 
+                AND 
+                vj.vulnerability_code = '""" + data[0] + """'
+                AND
+                (VJ.computer_id ||
+                VJ.computer_name ||
+                VJ.chassis_type ||
+                VJ.tanium_client_nat_ip_address ||
+                VJ.operating_system) like '%""" + data[3] + """%';"""
         Cur.execute(query)
         RS = Cur.fetchall()
-        for R in RS:
+        for i, R in enumerate(RS, start=1):
             if table == 'list' :
                 SDL.append(dict(
                                     (
@@ -168,10 +210,22 @@ def hyd_plug_in(table, data):
                                     )
                                 )
                         )
-            if table == 'swv_detail' :
+            if table == 'SWL' :
                 SDL.append(dict(
                                     (
                                         ('index', R[0]), 
+                                        ('SWV', R[2]), 
+                                        ('Title', R[3]), 
+                                        ('Text', R[4]),
+                                        ('Judge', [R[5], R[6]])
+                                    )
+                                )
+                        )
+            if table == 'swv_detail' :
+                index = (int(data[2]) - 1 )*10 + i
+                SDL.append(dict(
+                                    (
+                                        ('index', index), 
                                         ('SWV', R[2]), 
                                         ('Title', R[3]), 
                                         ('Text', R[4]),
@@ -188,6 +242,8 @@ def hyd_plug_in(table, data):
                                     )
                                 )
                         )
+            if table == 'count' :
+                SDL = RS[0][0]
             if table == 'swv_data':
                 SDL.append(dict(
                                     (
