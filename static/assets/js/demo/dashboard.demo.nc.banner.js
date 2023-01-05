@@ -752,7 +752,7 @@ var apexCPU75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [CpuValue[1]],
+        labels: ['214'],
         };
 	apexCPU75usageChart = new ApexCharts(
 		document.querySelector('#apexCPU75usageChart'),
@@ -1927,14 +1927,13 @@ $(document).ready(function() {
 	koreaMap(worldMapData);
 	seongnamMap(worldMapData);
     seoulMap(worldMapData);
-
     apexCPU95usageChart.render();
     apexCPU75usageChart.render();
     apexCPU60usageChart.render();
-
     apexDisk95usageChart.render();
     apexDisk75usageChart.render();
     apexDisk60usageChart.render();
+
 });
 
 

@@ -30229,6 +30229,11 @@ body .note-modal-backdrop {
 .table-report tbody tr td:last-child {
     text-align: center;
 }
+
+.maps{
+    overflow:hidden;
+}
+
 /* end - table-report css */
 
 /* BEGIN - gpuServertable css */
