@@ -713,18 +713,18 @@ var apexDonutChartOptions = {
 					list[0] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
 					alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
 				} else {
-					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Service is Exceeded') {
 					} else {
 						list[0] = parseInt(0);
 						alarm_list[0] = a.AssociationDataList.nodeDataList[j].alarmCase;
 					}
 				}
-				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change') {
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Usage Exceeded') {
 					list[1] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
 					alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
 				} else {
@@ -733,7 +733,7 @@ var apexDonutChartOptions = {
 						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Service is Exceeded') {
 					} else {
 						list[1] = parseInt(0);
 						alarm_list[1] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -743,12 +743,12 @@ var apexDonutChartOptions = {
 					list[2] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
 					alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
 				} else {
-					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Service is Exceeded') {
 					} else {
 						list[2] = parseInt(0);
 						alarm_list[2] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -758,12 +758,12 @@ var apexDonutChartOptions = {
 					list[3] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
 					alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
 				} else {
-					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Service is Exceeded') {
 					} else {
 						list[3] = parseInt(0);
 						alarm_list[3] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -773,12 +773,12 @@ var apexDonutChartOptions = {
 					list[4] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
 					alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
 				} else {
-					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'CPU Consumption is Excess' ||
-						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Service is Exceeded') {
 					} else {
 						list[4] = parseInt(0);
 						alarm_list[4] = a.AssociationDataList.nodeDataList[j].alarmCase;
@@ -788,22 +788,22 @@ var apexDonutChartOptions = {
 					list[5] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
 					alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
 				} else {
-					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'No Login History' ||
-						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+						a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Service is Exceeded') {
 					} else {
 						list[5] = parseInt(0);
 						alarm_list[5] = a.AssociationDataList.nodeDataList[j].alarmCase;
 					}
 				}
-				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Process is Exceeded') {
+				if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Running Service is Exceeded') {
 					list[6] = parseInt(a.AssociationDataList.nodeDataList[j].alarmCount);
 					alarm_list[6] = a.AssociationDataList.nodeDataList[j].alarmCase;
 				} else {
-					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Size No Change' ||
+					if (a.AssociationDataList.nodeDataList[j].alarmCase == 'Drive Usage Exceeded' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'Listen Port No Change' ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == "Established Port No Change" ||
 						a.AssociationDataList.nodeDataList[j].alarmCase == 'RAM Usage Exceeded' ||
@@ -883,7 +883,7 @@ var apexRadarChartOptions = {
   xaxis: {
     categories: [
       ["No Login History"],
-      ["Drive", "Size", "No Change"],
+      ["Drive", "Usage", "Exceeded"],
       ["Listen", "Port", "No Change"],
       ["Established", "Port", "No Change"],
       ["RAM", "Usage", "Exceeded"],

@@ -3,49 +3,15 @@
 {% block content %}
 {% load static %}
 
-<script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
-<script src="{% static 'js/jquery/ajax.jquery.min.js' %}"></script>
-<script src="{% static 'js/jquery/httpRequest.js' %}"></script>
+
 
 <script>
-	function send_api(data){
-        $.ajax({
-            type:"GET",
-            url:"api",
-            async : false,
-			data : {
-				"cid" : data
-			},
-            success : function(data){
-				alert('success');
-				console.log(data);
-			},
-            error : function(data1){
-                alert('호출실패');
-                alert(JSON.stringify(data1));
-            }
-        });
-
-
-	}
-</script>
-<script>
-    $(document).ready(function(){
-        $("select[name=menu]").change(function () {
-        this.form.submit();
-        location.href='../asset_detail/?swv={{ swv }}&menu=' + $("#menu").val();
-        });
-	history.replaceState({},null,'../asset_detail/?swv={{ swv }}');
-	$("#menu").val("{{ count }}").prop("selected",true);
-    });
-
-</script>
-<script>
-	$(document).ready( function() {
-		$(".caret").click( function() {
-			$(this).parents().next(".hide").slideToggle();
-		});
-	});
+	console.log({{data|safe}});
+	function caret_event(){
+		console.log('hi');
+		$('#acordian').slideToggle();
+		console.log('hi');
+	};
 </script>
 <!-- BEGIN #content -->
 <div id="content" class="app-content">
@@ -58,16 +24,16 @@
 	<div class="row">
 		<!-- BEGIN card-body -->
 		<div class="card mb-2">
-			<div class="card-body px-16px py-8px">
+			<div class="card-body h-130px p-2">
 				<div class="detail-content">
 					<ul>
-						{% if data %}
-							<li>분류 : {{data.0.SWV}}</li>
-							<li>진단 항목 : {{data.0.Title}}</li>
-							<li>진단 항목 설명: {{data.0.Text}}</li>
+						{% if data.item %}
+							<li>분류 : {{data.item.0.SWV}}</li>
+							<li>진단 항목 : {{data.item.0.Title}}</li>
+							<li>진단 항목 설명: {{data.item.0.Text}}</li>
 							<li>판단기준:
-								<p>- {{data.0.Judge.0}}</p>
-								<p>- {{data.0.Judge.1}}</p>
+								<p>- 양호: {{data.item.0.Judge.0}}</p>
+								<p>- 취약: {{data.item.0.Judge.1}}</p>
 							</li>
 						{% else %}
 							<li> Data 연동에 실패했습니다 </li>
@@ -93,7 +59,6 @@
 							<div>
 							페이지당
 								<label>
-
 									<form action="{% url 'asset_detail' %}" method="GET" id="count_menu" >
 										<select class="form-select for-select-sm" name="menu" id="menu">
 												<option value="10">10</option>
@@ -104,6 +69,7 @@
 								</label>
 							 개씩 보기
 							</div>
+
 							<table id="weakTableDetail" class="table weakDetail text-nowrap" width="100%">
 								<thead>
 								<tr>
@@ -118,21 +84,19 @@
 								</tr>
 								</thead>
 								<tbody>
-									{% if data %}
-									{% for item in data %}
-										<tr class="item">
-											<td>{{forloop.counter0|add:data.start_index }}</td>
+									{% if data.item %}
+									{%for item in data.item%}
+										<tr>
+											<td>{{forloop.counter}}</td>
 											<td>{{item.cid}}</td>
 											<td>{{item.cpnm}}</td>
 											<td>{{item.os}}</td>
 											<td>{{item.ip}}</td>
 											<td>{{item.type}}</td>
 											<td>{{item.last_login}}</td>
-											<td><i class="caret"></i></td><!--<button style="display:none;" type="button" class="btn btn-warning me-2" value=" " data-bs-toggle="modal" data-bs-target="#modalXl" onclick="send_api({{item}});">확인</button>-->
+											<td><i class="caret"></i><!-- <button style="display:none;" type="button" class="btn btn-warning me-2" value=" " data-bs-toggle="modal" data-bs-target="#modalXl" onclick="send_api({{item}});">확인</button> --></td>
 										</tr>
-										<tr class="hide" style="display: none;">
-											<td colspan="8">자산 상세 정보</td>
-										</tr>
+										
 									{% endfor %}
 									{% else %}
 									<tr>
@@ -145,44 +109,6 @@
 									{% endif%}
 								</tbody>
 							</table>
-							<div class="row align-items-center">
-								{% if start and end and total %}
-								<div> 현재 {{ start }} 건 - {{ end }} / 전체 {{ total}} 건 </div>
-								{% endif %}
-								<ul class="pagination justify-content-center">
-									{% if data.has_previous and count%}
-									<li class="page-item">
-										<a class="page-link" href="?swv={{ swv }}&menu={{ count }}&page={{ data.previous_page_number }}">이전</a>
-									</li>
-									{% else %}
-									<li class="page-item disabled">
-										<a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-									</li>
-									{% endif %}
-
-									{% for page_number in data.paginator.page_range %}
-									{% if page_number == data.number %}
-									<li class="page-item active" aria-current="page">
-										<a class="page-link" href="?swv={{ swv }}&menu={{ count }}&page={{ page_number }}">{{ page_number }}</a>
-									</li>
-									{% else %}
-									<li class="page-item">
-										<a class="page-link" href="?swv={{ swv }}&menu={{ count }}&page={{ page_number }}">{{ page_number }}</a>
-									</li>
-									{% endif %}
-									{% endfor %}
-
-									{% if data.has_next %}
-									<li class="page-item">
-										<a class="page-link" href="?swv={{ swv }}&menu={{ count }}&page={{ data.next_page_number }}">다음</a>
-									</li>
-									{% else %}
-									<li class="page-item disabled">
-										<a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-									</li>
-									{% endif %}
-								</ul>
-							</div>
 						</div>
 						<div class="card-arrow">
 							<div class="card-arrow-top-left"></div>

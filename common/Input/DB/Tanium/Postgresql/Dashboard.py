@@ -76,7 +76,7 @@ def plug_in(table, day, type):
                         and 
                             NOT classification IN ('installed_applications')
                         and
-                            NOT classification IN ('running_processes')
+                            NOT classification IN ('running_service')
                         and 
                             classification NOT like '%group_%'
                         and
@@ -142,6 +142,29 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics_list
                     """
+
+                elif type == 'running':
+                    query = """
+                        select
+                            item, item_count
+                        from
+                            minutely_statistics
+                        where 
+                            classification = 'running_service'
+                        order by
+                            item_count::INTEGER desc limit 5
+                    """
+                elif type == 'usage':
+                    query = """
+                        select
+                            classification, item, item_count
+                        from
+                            minutely_statistics
+                        where 
+                            item in ('60Risk', '75Risk', '95Risk')
+                        
+                    """
+
             if day == 'fiveDay':
                 if type == 'asset':
                     query = """ 
@@ -199,8 +222,8 @@ def plug_in(table, day, type):
                     from
                         minutely_statistics
                     where 
-                        classification in ('group_cpu_usage_exceeded', 'group_ram_usage_exceeded', 'group_running_processes_count_exceeded', 
-                        'group_last_reboot', 'group_drive_usage_size_exceeded')
+                        classification in ('group_cpu_usage_exceeded', 'group_ram_usage_exceeded', 'group_running_service_count_exceeded', 
+                        'group_last_reboot', 'drive_usage_size_exceeded')
                 """
         if table == 'statistics_list':
             if day == 'today':
@@ -219,12 +242,12 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where 
                             classification IN ('established_port_count_change', 
-                                'group_running_processes_count_exceeded',
+                                'group_running_service_count_exceeded',
                                 'group_cpu_usage_exceeded',
                                 'group_ram_usage_exceeded',
                                 'listen_port_count_change',
                                 'group_last_reboot',
-                                'group_drive_usage_size_exceeded')
+                                'drive_usage_size_exceeded')
                             and 
                                 NOT item IN ('unconfirmed')
 

@@ -22,9 +22,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo osVersion-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">OS 버전별 서버 수 (상위 8개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm osVersion-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -92,9 +92,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo serverBandBy-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">각 대역별 서버 수량 (상위 5개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm serverBandBy-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -130,27 +130,40 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo runningService-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">실행 중인 서비스 통계 (상위 5개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm runningService-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
                     <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
                         <div class="small text-white text-opacity-50 text-truncate col-5">
-                            <i class="fas fa-cogs fa-fw me-1"></i>ABC<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>DEF<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>GHI<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>JKL<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>MNO
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>ABC<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>DEF<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>GHI<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>JKL<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>MNO#}
+                            {% if chartData.donutChartDataList %}
+							{% for data in chartData.donutChartDataList %}
+							<i class="fas fa-cogs fa-fw me-1" ></i>
+							<span title="{{data.name}}">{{data.name}}</span>
+							<br>
+							{% endfor %}
+							{% endif %}
                         </div>
                         <div class="small text-white text-opacity-50 text-truncate col-1"
                              style="padding-left: 10px;">
-                            <span>1</span><br/>
-                            <span>2</span><br/>
-                            <span>3</span><br/>
-                            <span>4</span><br/>
-                            <span>5</span>
+{#                            <span>1</span><br/>#}
+{#                            <span>2</span><br/>#}
+{#                            <span>3</span><br/>#}
+{#                            <span>4</span><br/>#}
+{#                            <span>5</span>#}
+                            {% if chartData.donutChartDataList %}
+							{% for data in chartData.donutChartDataList %}
+							{{data.value}}
+							<br>
+							{% endfor %}
+							{% endif %}
                         </div>
                         <div>
                             <div class="col-12">
@@ -184,9 +197,11 @@
                         <!-- BEGIN title -->
                         <div style="position: relative;">
                             <div class="btn-group mb-3">
+
                                 <button type="button" id="btn-memory" class="mcdBtn btn btn-outline-warning btn-sm active">메모리</button>
                                 <button type="button" id="btn-cpu" class="mcdBtn btn btn-outline-warning btn-sm ">CPU</button>
                                 <button type="button" id="btn-disk" class="mcdBtn btn btn btn-outline-warning btn-sm">디스크</button>
+
                             </div>
                             <button type="button" class="btn btn-outline-warning btn-sm memoryCpuDisk-moreInfo"
                                     style="position: absolute; right: 0;">더보기
@@ -345,7 +360,8 @@
                     <div class="card mb-3 ">
                         <!-- BEGIN card-body -->
                         <div class="card-body h-205px" style="display: inline-flex;">
-                            <table class="table w-90 fs-12px mb-0 text-truncate text-white text-opacity-60"
+                            <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                            <table class="table table-sm w-90 fs-12px mb-0 text-truncate text-white text-opacity-60"
                                    style="margin: 0 auto; vertical-align: middle;">
                                 <thead>
                                 <tr class="text-white text-opacity-75">
@@ -418,9 +434,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo physicalServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">물리서버 벤더별 수량 (상위 3개)</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm physicalServer-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -452,9 +468,9 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
+                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo gpuServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">GPU 서버 수량</div>
-                        <button type="button" class="btn btn-outline-warning btn-sm gpuServer-moreInfo">더보기</button>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -678,19 +694,6 @@
     <!-- END row -->
 </div>
 <!-- END #content -->
-
-
-<script>
 	window.setTimeout('window.location.reload()',600000);
-
-
-
-
-
-
-
-
-
-</script>
 {% endblock %}
 

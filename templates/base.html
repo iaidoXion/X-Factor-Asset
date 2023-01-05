@@ -71,12 +71,16 @@
 </head>
 
 <body class="theme-orange">
+    {% if request.path == '/osVersion_moreInfo/' or request.path == '/serverBandBy_moreInfo/' or request.path == '/runningService_moreInfo/' or request.path == '/memory_moreInfo/' or request.path == '/cpu_moreInfo/' or request.path == '/disk_moreInfo/' or request.path == '/physicalServer_moreInfo/' or request.path == '/gpuServer_moreInfo/' or request.path == '/alarmCase_moreInfo/' %}
+    {% else %}
   <!-- BEGIN #app -->
-  <div id="app" class="app">
-    <!-- 네비게이션바 -->
-    {% include "navbar.html" %}
-    <!-- 사이드바 -->
-    {% include "sidebar.html" %}
+    <div id="app" class="app">
+        <!-- 네비게이션바 -->
+        {% include "navbar.html" %}
+        <!-- 사이드바 -->
+        {% include "sidebar.html" %}
+    {% endif %}
+
     <!-- 기본 템플릿 안에 삽입될 내용 Start -->
     {% block content %}
     {% endblock %}
@@ -155,13 +159,11 @@
          $(".cardBox .cardMove").disableSelection();
          });
 
-
       $('.card-del').on('click',function(){
           $(this).prevAll().remove()
           $(this).unwrap()
           $(this).remove()
       })
-
 
 		$('.make-card').on('click',function(){
 		const $newCard = $('.newCard:first-child').clone(true);
@@ -176,47 +178,42 @@
 		$('.newCard:last-child').removeClass("card" + (i-1));
 		}
 		});
-  </script>
-<!--BEGIN Windows Popup-->
-  <script>
+
     $('.osVersion-moreInfo').on('click',function(){
-         window.open("../osVersion_moreInfo", "osVersion", "width=500, height=600");
+         window.open("../osVersion_moreInfo", "osVersion", "width=800, height=650");
     });
 
     $('.serverBandBy-moreInfo').on('click',function(){
-         window.open("../serverBandBy_moreInfo", "serverBandBy", "width=500, height=600");
+         window.open("../serverBandBy_moreInfo", "serverBandBy", "width=800, height=650");
     });
 
     $('.runningService-moreInfo').on('click',function(){
-        window.open("../runningService_moreInfo", "runningService", "width=500, height=600");
+        window.open("../runningService_moreInfo", "runningService", "width=800, height=650");
     });
 
     $('.memoryCpuDisk-moreInfo').on('click',function(){
       if($('#btn-memory').hasClass("active") === true) {
-        window.open("../memory_moreInfo", "memory", "width=500, height=600");
+        window.open("../memory_moreInfo", "memory", "width=800, height=650");
         return;
       }
       if($('#btn-cpu').hasClass("active") === true){
-        window.open("../cpu_moreInfo", "cpu", "width=500, height=600");
+        window.open("../cpu_moreInfo", "cpu", "width=800, height=650");
         return;
       }
       if($('#btn-disk').hasClass("active") === true){
-        window.open("../disk_moreInfo", "disk", "width=500, height=600");
+        window.open("../disk_moreInfo", "disk", "width=800, height=650");
         return;
       }
     });
 
     $('.physicalServer-moreInfo').on('click',function(){
-        window.open("../physicalServer_moreInfo", "physicalServer", "width=500, height=600");
+        window.open("../physicalServer_moreInfo", "physicalServer", "width=800, height=650");
     });
 
     $('.gpuServer-moreInfo').on('click',function(){
-        window.open("../gpuServer_moreInfo", "gpuServer", "width=500, height=600");
+        window.open("../gpuServer_moreInfo", "gpuServer", "width=800, height=650");
     });
-   </script>
 
-<!--END Windows Popup-->
-    <script>
       var a = {{ chartData| safe}};
       var mapUse = {{ MapUse| safe}};
 
@@ -254,7 +251,6 @@
   ]
 }];
     networkChart(networkData);
-
   </script>
 </body>
 
