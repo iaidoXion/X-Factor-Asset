@@ -20,7 +20,7 @@ from collections import Counter
 import numpy as np
 import urllib3
 import json
-import itertools
+import math
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
@@ -413,10 +413,17 @@ def AssetData(Param, data) :
             'session' : SK,
             'item' : DB
         }
-    if Param == 'SWV' :
-        SDL = HYDPI('swv_detail', data)
+    if Param == 'SWL' :
+        SDL = HYDPI('SWL', data)
         RD = {
             'item' : SDL
+        }
+    if Param == 'SWV' :
+        SDL = HYDPI('swv_detail', data)
+        CNT = HYDPI('count', data)
+        RD = {
+            'item' : SDL,
+            'count' : CNT
         }
     return RD
     # sensorData_hyd = IAPI(SK['dataList'], 'Sensor_hyd')
