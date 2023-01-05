@@ -40,14 +40,13 @@ var handleRenderWeakTableData = function () {
 		dom: "<'row mb-3'<'col-md-4 mb-3 mb-md-0'l><'col-md-8 text-right'<'d-flex justify-content-end'fB>>>t<'row align-items-center'<'mr-auto col-md-6 mb-3 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
 		lengthMenu: [10, 20, 30, 40, 50],
 		responsive: true,
+		destroy : true,
 		searching: true,
 		autoWidth: false,
 		ordering: false,
 		columnDefs: [
-
 			{ width: "22%", target: [2] },
 			{ width: "65%", target: [3] },
-
 		],
 		language: {
 			"decimal": "",
@@ -70,10 +69,13 @@ var handleRenderWeakTableData = function () {
 			"infoPostFix": "",
 		},
 	});
-	weakTable.search().draw();
 };
 
 var handleRenderWeakDetailTableData = function () {
+	
+	var url = (window.location.search).split('&');
+    var swv = url[0].substr(url[0].indexOf("=") + 1);
+    var count = url[1].substr(url[1].indexOf("=") + 1);
 	var weakDetailtable = $('#weakTableDetail').DataTable({
 		dom: "<'row mb-3'<'col-md-4 mb-3 mb-md-0'l><'col-md-8 text-right'<'d-flex justify-content-end'fB>>>t<'row align-items-center'<'mr-auto col-md-6 mb-3 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
 		lengthMenu: [10, 20, 30, 40, 50],
@@ -81,6 +83,37 @@ var handleRenderWeakDetailTableData = function () {
 		searching: true,
 		autoWidth: false,
 		ordering: false,
+		serverSide: true,
+		processing: true,
+		ajax: {
+			url: './paging?swv=' + swv + '&count=' + count,
+			type: "POST",
+			dataSrc: function (res) {
+				var data = res.data.item;
+				console.log(data);
+                return data;
+			},
+			// dataFilter: function (data) {
+			// 	var json = jQuery.parseJSON(data);
+			// 	console.log(json);
+			// 	console.log(data);
+			// 	json.recordsTotal = 10;
+			// 	json.recordsFiltered = 42;
+			// 	json.data = json.list;
+ 
+			// 	return JSON.stringify(json);
+			// }
+		},
+		columns: [
+			{data : 'index'},
+			{data : 'cid'},
+			{data : 'cpnm'},
+			{data : 'os'},
+			{data : 'ip'},
+			{data : 'type'},
+			{data : 'last_login'},
+			{data : 'index'},
+		],
 		columnDefs: [
 			{ width: "5%", target: [0] },
 			{ width: "15%", target: [1] },
@@ -89,7 +122,12 @@ var handleRenderWeakDetailTableData = function () {
 			{ width: "14%", target: [4] },
 			{ width: "10%", target: [5] },
 			{ width: "15%", target: [6] },
-			{ width: "5%", target: [7] }
+			{
+				width: "5%", target: [7],
+				render: function (data, type, full, meta) {
+					return '<i class="caret" onclick="caret_event();"></i>';
+				}
+			}
 		],
 		language: {
 			"decimal": "",
@@ -112,7 +150,6 @@ var handleRenderWeakDetailTableData = function () {
 			"infoPostFix": "",
 		},
 	});
-	weakDetailtable.draw();
 };
 
 var handleRenderWeakDetailModalTableData = function () {
@@ -183,10 +220,17 @@ var handleRenderWeakDetailModalTableData = function () {
 /* Controller weakBox
 ------------------------------------------------ */
 $(document).ready(function () {
-	handleRenderReportTableData();
-	handleRenderWeakTableData();
-	handleRenderWeakDetailTableData();
-	handleRenderWeakDetailModalTableData();
-
-
+	if ($("#reportDailyTable, #reportWeeklyTable, #reportMonthlyTable").length > 0) {
+		handleRenderReportTableData();
+	} else if ($("#weakTable-windows, #weakTable-unix").length > 0) {
+		handleRenderWeakTableData();
+	} else if ($("#weakTableDetail").length > 0) {
+		handleRenderWeakDetailTableData();
+		$(".caret").click(function () {
+			console.log('hi');
+			$(this).parents().next(".hide").slideToggle();
+		});
+	}else if ($("#weakTableDetail_modal").length > 0) {
+    	handleRenderWeakDetailModalTableData();
+	}
 });

@@ -10,6 +10,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout/'),
     path('asset/', base_views.assetweb, name='asset'),
     path('asset_detail/', base_views.assetDetailweb, name='asset_detail'),
+    path('asset_detail/paging', base_views.assetDetailweb_paging, name='asset_detail_paging'),
     path('report/', base_views.report, name='report'),
     path('updateform/', views.updateform, name='updateform'),
     path('update/', views.update, name='update'),
