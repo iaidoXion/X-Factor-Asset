@@ -138,19 +138,32 @@
                     <!-- BEGIN stat-lg -->
                     <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
                         <div class="small text-white text-opacity-50 text-truncate col-5">
-                            <i class="fas fa-cogs fa-fw me-1"></i>ABC<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>DEF<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>GHI<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>JKL<br/>
-                            <i class="fas fa-cogs fa-fw me-1"></i>MNO
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>ABC<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>DEF<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>GHI<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>JKL<br/>#}
+{#                            <i class="fas fa-cogs fa-fw me-1"></i>MNO#}
+                            {% if chartData.donutChartDataList %}
+							{% for data in chartData.donutChartDataList %}
+							<i class="fas fa-cogs fa-fw me-1" ></i>
+							<span title="{{data.name}}">{{data.name}}</span>
+							<br>
+							{% endfor %}
+							{% endif %}
                         </div>
                         <div class="small text-white text-opacity-50 text-truncate col-1"
                              style="padding-left: 10px;">
-                            <span>1</span><br/>
-                            <span>2</span><br/>
-                            <span>3</span><br/>
-                            <span>4</span><br/>
-                            <span>5</span>
+{#                            <span>1</span><br/>#}
+{#                            <span>2</span><br/>#}
+{#                            <span>3</span><br/>#}
+{#                            <span>4</span><br/>#}
+{#                            <span>5</span>#}
+                            {% if chartData.donutChartDataList %}
+							{% for data in chartData.donutChartDataList %}
+							{{data.value}}
+							<br>
+							{% endfor %}
+							{% endif %}
                         </div>
                         <div>
                             <div class="col-12">
@@ -184,9 +197,9 @@
                         <!-- BEGIN title -->
                         <div style="position: relative;">
                             <div class="btn-group mb-3">
-                                <button type="button" id="btn-memory" class="btn btn-outline-warning btn-sm ">메모리</button>
-                                <button type="button" id="btn-cpu" class="btn btn-outline-warning btn-sm ">CPU</button>
-                                <button type="button" id="btn-disk" class="btn btn btn-outline-warning btn-sm active">디스크</button>
+                                <button type="button" id="btn-memory" class="btn btn-outline-warning btn-sm active mcdBtn">메모리</button>
+                                <button type="button" id="btn-cpu" class="btn btn-outline-warning btn-sm mcdBtn">CPU</button>
+                                <button type="button" id="btn-disk" class="btn btn btn-outline-warning btn-sm mcdBtn">디스크</button>
                             </div>
                             <button type="button" class="btn btn-outline-warning btn-sm memoryCpuDisk-moreInfo"
                                     style="position: absolute; right: 0;">더보기
