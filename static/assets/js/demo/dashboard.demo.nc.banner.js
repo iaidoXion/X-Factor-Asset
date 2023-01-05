@@ -242,6 +242,12 @@ var apexIPlistchartOptions = {
 //--------------------------------------------------------------------------
 // Service Running Statistics - apexRunServiceChart
 //--------------------------------------------------------------------------
+    var donutValue = []
+   var donutName = []
+    for (var i = 0; i < a.donutChartDataList.length; i++){
+        donutValue.push(a.donutChartDataList[i]['value']);
+        donutName.push(a.donutChartDataList[i]['name']);
+    };
 var apexRunServiceOptions = {
 		chart: {
 		    width: '100%',
@@ -275,8 +281,10 @@ var apexRunServiceOptions = {
 			position: 'left',
 		},
 		colors: ['rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
-		labels: ["A","A","A","A","A"],
-		series: [44, 55, 41, 17, 15],
+		// labels: ["A","A","A","A","A"],
+		// series: [44, 55, 41, 17, 15],
+        labels: donutName,
+		series: donutValue,
 		tooltip: {
 			theme: 'dark',
 			x: {
@@ -302,6 +310,15 @@ var apexRunServiceOptions = {
 //--------------------------------------------------------------------------
 // Memory Usage - apexMemory95usageChart
 //--------------------------------------------------------------------------
+
+var MemoryValue = []
+var MemoryName = []
+for (var i = 0; i < a.MemoryChartDataList.length; i++){
+    MemoryValue.push(a.MemoryChartDataList[i]['value']);
+    MemoryName.push(a.MemoryChartDataList[i]['name']);
+};
+
+
 var apexMemory95usageOptions = {
           series: [95],
           chart: {
@@ -376,7 +393,7 @@ var apexMemory95usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['121'],
+        labels: [MemoryValue[2]],
         };
 	apexMemory95usageChart = new ApexCharts(
 		document.querySelector('#apexMemory95usageChart'),
@@ -462,7 +479,7 @@ var apexMemory75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['232'],
+        labels: [MemoryValue[1]],
         };
 	apexMemory75usageChart = new ApexCharts(
 		document.querySelector('#apexMemory75usageChart'),
@@ -549,7 +566,7 @@ var apexMemory60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['111'],
+        labels: [MemoryValue[0]],
         };
 	apexMemory60usageChart = new ApexCharts(
 		document.querySelector('#apexMemory60usageChart'),
@@ -561,6 +578,14 @@ var apexMemory60usageOptions = {
 //--------------------------------------------------------------------------
 // CPU Usage - apexCPU95usageChart
 //--------------------------------------------------------------------------
+
+var CpuValue = []
+var CpuName = []
+for (var i = 0; i < a.CpuChartDataList.length; i++){
+    CpuValue.push(a.CpuChartDataList[i]['value']);
+    CpuName.push(a.CpuChartDataList[i]['name']);
+};
+
 var apexCPU95usageOptions = {
           series: [95],
           chart: {
@@ -642,7 +667,7 @@ var apexCPU95usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['133'],
+        labels: [CpuValue[2]],
         };
 	apexCPU95usageChart = new ApexCharts(
 		document.querySelector('#apexCPU95usageChart'),
@@ -654,7 +679,7 @@ var apexCPU95usageOptions = {
 // CPU Usage - apexCPU75usageChart
 //--------------------------------------------------------------------------
 var apexCPU75usageOptions = {
-          series: [230],
+          series: [75],
           chart: {
           height: 250,
           type: 'radialBar',
@@ -727,7 +752,7 @@ var apexCPU75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['230'],
+        labels: [CpuValue[1]],
         };
 	apexCPU75usageChart = new ApexCharts(
 		document.querySelector('#apexCPU75usageChart'),
@@ -813,7 +838,7 @@ var apexCPU60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['140'],
+        labels: [CpuValue[0]],
         };
 	apexCPU60usageChart = new ApexCharts(
 		document.querySelector('#apexCPU60usageChart'),
@@ -824,6 +849,14 @@ var apexCPU60usageOptions = {
 //--------------------------------------------------------------------------
 // Disk Usage - apexDisk95usageChart
 //--------------------------------------------------------------------------
+
+var DiskValue = []
+var DiskName = []
+for (var i = 0; i < a.DiskChartDataList.length; i++){
+    DiskValue.push(a.DiskChartDataList[i]['value']);
+    DiskName.push(a.DiskChartDataList[i]['name']);
+};
+
 var apexDisk95usageOptions = {
           series: [95],
           chart: {
@@ -898,7 +931,7 @@ var apexDisk95usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['21'],
+        labels: [DiskValue[2]],
         };
 	apexDisk95usageChart = new ApexCharts(
 		document.querySelector('#apexDisk95usageChart'),
@@ -983,7 +1016,7 @@ var apexDisk75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['162'],
+        labels: [DiskValue[1]],
         };
 	apexDisk75usageChart = new ApexCharts(
 		document.querySelector('#apexDisk75usageChart'),
@@ -1068,7 +1101,7 @@ var apexDisk60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['181'],
+        labels: [DiskValue[0]],
         };
 	apexDisk60usageChart = new ApexCharts(
 		document.querySelector('#apexDisk60usageChart'),
@@ -1895,25 +1928,13 @@ $(document).ready(function() {
 	seongnamMap(worldMapData);
     seoulMap(worldMapData);
 
-    $(".mcdBtn").on('click',function(){
-    if($(this).text() === '메모리'){
+    apexCPU95usageChart.render();
+    apexCPU75usageChart.render();
+    apexCPU60usageChart.render();
 
-            return;
-        }
-
-        if($(this).text() === 'CPU'){
-            apexCPU95usageChart.render();
-            apexCPU75usageChart.render();
-            apexCPU60usageChart.render();
-            return;
-        }
-        if($(this).text() === '디스크'){
-            apexDisk95usageChart.render();
-            apexDisk75usageChart.render();
-            apexDisk60usageChart.render();
-            return;
-        }
-    });
+    apexDisk95usageChart.render();
+    apexDisk75usageChart.render();
+    apexDisk60usageChart.render();
 });
 
 

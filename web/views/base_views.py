@@ -30,23 +30,34 @@ def dashboard(request):
         return render(request, 'common/login.html', res_data)
     else :
         DCDL = DashboardData()
-        dashboardType = 'web/dashboard.html'
-        barChartData = DCDL["barChartData"]
-        lineChartData = DCDL["lineChartData"]
-        pieChartData = DCDL["pieChartData"]
-        bannerData = DCDL["bannerData"]
-        minidonutData = DCDL['MiniDonutChart']
-        alarmData = DCDL["alarmListData"]
-        AssociationData = DCDL["AssociationDataList"]
-        WorldMapData = DCDL["WorldMapDataList"]
-        TotalTopData = DCDL['TotalTopDataList']
-        TotalData = DCDL["TotalDataList"]
-        donutChartData = DCDL["donutChartDataList"]
-        MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
-        chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData, 'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
-        returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         if Customer == 'NC':
             dashboardType = 'web/dashboard_NC_banner.html'
+            MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
+            # service_donutChartData
+            DiskChartDataList = DCDL["usageChartDataList"]["DiskChartDataList"]
+            service_donutChartData = DCDL["service_donutChartData"]
+            CpuChartDataList =  DCDL["usageChartDataList"]["CpuChartDataList"]
+            MemoryChartDataList =  DCDL["usageChartDataList"]["MemoryChartDataList"]
+            chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList' : service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList':CpuChartDataList
+                            }
+            returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
+        else:
+            dashboardType = 'web/dashboard.html'
+            barChartData = DCDL["barChartData"]
+            lineChartData = DCDL["lineChartData"]
+            pieChartData = DCDL["pieChartData"]
+            bannerData = DCDL["bannerData"]
+            minidonutData = DCDL['MiniDonutChart']
+            alarmData = DCDL["alarmListData"]
+            AssociationData = DCDL["AssociationDataList"]
+            WorldMapData = DCDL["WorldMapDataList"]
+            TotalTopData = DCDL['TotalTopDataList']
+            TotalData = DCDL["TotalDataList"]
+            donutChartData = DCDL["donutChartDataList"]
+            MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
+            chartData = {'barChartDataList': barChartData, 'minidonutData' : minidonutData ,'lineChartDataList' : lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList' : AssociationData,
+                        'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList' : donutChartData}
+            returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         return render(request, dashboardType, returnData)
 
 
