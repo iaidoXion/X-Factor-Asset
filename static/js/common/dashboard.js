@@ -76,7 +76,7 @@ $(document).ready(function(){
         if(zoomCount > 1){
             zoomCount = zoomCount - 0.1;
              }
-        $('.selectMap').css('transform',"scale("+ zoomCount + ")","translate(" + xLocation + "px," + yLocation +"px)")
+        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + xLocation + "px," + yLocation +"px)")
  });
 
 // 이미지 드래그 기능
@@ -89,7 +89,7 @@ $(document).ready(function(){
         endDrag = [event.clientX,event.clientY];
         xLocation = endDrag[0] - startDrag[0];
         yLocation = endDrag[1] - startDrag[1];
-        $('.selectMap').css('transform',"scale("+ zoomCount + ")","translate(" + xLocation + "px," + yLocation +"px)")
+        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + xLocation + "px," + yLocation +"px)")
 
     }
     });
