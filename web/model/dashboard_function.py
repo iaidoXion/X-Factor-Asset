@@ -331,6 +331,11 @@ def DashboardData():
                 CpuChartDataList = []
                 MemoryChartDataList = []
 
+                # NC 대역벌 서버수량 chart
+                SBCQ = PDPI('statistics', 'today', 'group_server_count')
+                server_BChartDataList = CTDF(SBCQ, 'bar')
+
+
                 # 실행 중인 서비스 통계 차트
                 Rchart = PDPI('statistics', 'today', 'running')
                 for i in range(len(Rchart)):
@@ -358,9 +363,21 @@ def DashboardData():
                     CpuChartDataList.append({"name": '-', "value": 0})
                     CpuChartDataList.append({"name": '-', "value": 0})
 
+
+
+                # NC 서버 총 수량 추이 그래프
+                SCLCQ = PDPI('statistics', 'monthly', 'asset')
+                # print(SCLCQ)
+                # print("---------")
+                server_LChartDataList = TDCD(SCLCQ, 'Monthly_Line')
+                print(server_LChartDataList)
+
+
+
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
-                print(USCDL)
+                #print(USCDL)
                 BDL= []
+                SBDL = server_BChartDataList
                 LDL = []
                 PDL = []
                 BNDL = []
@@ -382,7 +399,8 @@ def DashboardData():
     if Customer == 'NC':
         RD = {
             "service_donutChartData": DDLC,
-            "usageChartDataList": UCDL
+            "usageChartDataList": UCDL,
+            "server_BChartDataList": SBDL
             # "DiskChartDataList": DCDL,
             # "CpuChartDataList": CCDL,
             # "MemoryChartDataList": MCDL

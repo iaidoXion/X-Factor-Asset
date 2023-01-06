@@ -267,11 +267,29 @@ def chart_data(data, type) :
                         chart_dict['data'] = data_list
                     result.append(chart_dict)
             ChartDataList.append({"data" : result, "date": date_list})
-        for i in range(len(data['name'])):
-            if type == 'Bar' or type == 'Pie':
-                ChartDataList.append({"name": data['name'][i], "value": data['value'][i]})
-            elif type == 'Banner' :
-                ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc" : data['ROC'][i]})
+            for i in range(len(data['name'])):
+                if type == 'Bar' or type == 'Pie':
+                    ChartDataList.append({"name": data['name'][i], "value": data['value'][i]})
+                elif type == 'Banner' :
+                    ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc" : data['ROC'][i]})
+
+    # NC 서버 총수량 추이그래프 (30일)
+    if type == 'Monthly_Line':
+        V_date_list = []
+        V_count = []
+        date_list = []
+        count = []
+        #print(len(data))
+        for i in range(len(data)):
+            if data[i][0] == 'Yes':
+                V_count.append(data[i][1])
+                V_date_list.append(str(data[i][2]))
+            else:
+                count.append(data[i][1])
+                date_list.append(str(data[i][2]))
+        ChartDataList.append({"name": "virtual", "data": V_count, "date": V_date_list})
+        ChartDataList.append({"name":"physical", "data": count, "date": date_list})
+
     if type == 'Bar' :
         x = sorted(ChartDataList , key= lambda x: x['value'], reverse=True)[0:3]
         ChartDataList = x

@@ -163,6 +163,14 @@ var apexOSversionChartOptions = {
 //--------------------------------------------------------------------------
 // Number of servers IP list - IPlistchart
 //--------------------------------------------------------------------------
+group=[];
+value=[];
+
+for (var i=0; i < a.server_barChartDataList.length; i++){
+    group.push(a.server_barChartDataList[i].name);
+    value.push(parseInt(a.server_barChartDataList[i].value));
+}
+
 var apexIPlistchartOptions = {
 		chart: {
 			height: 120,
@@ -192,13 +200,13 @@ var apexIPlistchartOptions = {
 		},
         colors: ["#f39c12", "#fdb43f", "#ffc365", "#c58a2e", "#e6b567"],
 		series: [{
-			data: [10, 21, 10, 21, 10]
+			data: value
 		}],
 		grid: {
 			show: true
 		},
 		xaxis: {
-			categories: ['A', 'B', 'C', 'D', 'E'],
+			categories: group,
 			labels: {
 				show: true,
                 style: {
