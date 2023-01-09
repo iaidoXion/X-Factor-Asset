@@ -32,7 +32,6 @@ def alarmCase(data, case):
         AADF = ['alarmCount', 'alarmCase']
         nodeDataList = []
         ACList = []
-        print(data)
         for i in range(len(data)):
             if data[i][0] == 'listen_port_count_change' and data[i][1] == 'No':
                 alarmCount = data[i][2]

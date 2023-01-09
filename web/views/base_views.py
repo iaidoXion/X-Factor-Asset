@@ -38,8 +38,9 @@ def dashboard(request):
             service_donutChartData = DCDL["service_donutChartData"]
             CpuChartDataList =  DCDL["usageChartDataList"]["CpuChartDataList"]
             MemoryChartDataList =  DCDL["usageChartDataList"]["MemoryChartDataList"]
-            chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList' : service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList':CpuChartDataList
-                            }
+            os_donutChartData = DCDL["os_donutChartData"]
+            chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList' : service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList':CpuChartDataList,
+                        'os_donutChartData': os_donutChartData}
             returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         else:
             dashboardType = 'web/dashboard.html'
