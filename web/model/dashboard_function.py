@@ -407,7 +407,7 @@ def DashboardData():
         RD = {
             "service_donutChartData": DDLC,
             "usageChartDataList": UCDL,
-            "server_BChartDataList": SBDL
+            "server_BChartDataList": SBDL,
             # "DiskChartDataList": DCDL,
             # "CpuChartDataList": CCDL,
             # "MemoryChartDataList": MCDL
