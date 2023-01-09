@@ -197,9 +197,21 @@ def plug_in(table, day, type):
                                 and
                                     classification = 'virtual'
                                 and
+                                    item != 'unconfirmed'                
+                                union                               
+                                select 
+                                    item,
+                                    item_count,
+                                    statistics_collection_date
+                                from
+                                    minutely_statistics
+                                where 
+                                    classification = 'virtual'
+                                and
                                     item != 'unconfirmed'
+                                    
                                 order by
-                                    statistics_collection_date;
+                                    statistics_collection_date ASC;
                             """
 
 
