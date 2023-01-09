@@ -122,6 +122,12 @@ def plug_in(table, day, type):
                         minutely_statistics where classification = 'os' 
                         order by item_count::INTEGER desc limit 3
                     """
+                elif type == 'os_version':
+                    query = """
+                        select item, item_count from 
+                        minutely_statistics where classification = 'operating_system' 
+                        order by item_count::INTEGER desc limit 8
+                    """
                 elif type == 'donut':
                     query = """
                         select 
