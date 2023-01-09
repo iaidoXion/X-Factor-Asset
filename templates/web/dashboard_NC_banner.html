@@ -22,7 +22,7 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
-                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo osVersion-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                    <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo osVersion-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">OS 버전별 서버 수 (상위 8개)</div>
                     </div>
@@ -93,7 +93,7 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
-                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo serverBandBy-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                    <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo serverBandBy-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">각 대역별 서버 수량 (상위 5개)</div>
                     </div>
@@ -131,7 +131,7 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
-                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo runningService-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                    <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo runningService-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">실행 중인 서비스 통계 (상위 5개)</div>
                     </div>
@@ -139,32 +139,32 @@
                     <!-- BEGIN stat-lg -->
                     <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
                         <div class="small text-white text-opacity-50 text-truncate col-5">
-{#                            <i class="fas fa-cogs fa-fw me-1"></i>ABC<br/>#}
-{#                            <i class="fas fa-cogs fa-fw me-1"></i>DEF<br/>#}
-{#                            <i class="fas fa-cogs fa-fw me-1"></i>GHI<br/>#}
-{#                            <i class="fas fa-cogs fa-fw me-1"></i>JKL<br/>#}
-{#                            <i class="fas fa-cogs fa-fw me-1"></i>MNO#}
+                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>ABC<br/>#}
+                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>DEF<br/>#}
+                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>GHI<br/>#}
+                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>JKL<br/>#}
+                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>MNO#}
                             {% if chartData.donutChartDataList %}
-							{% for data in chartData.donutChartDataList %}
-							<i class="fas fa-cogs fa-fw me-1" ></i>
-							<span title="{{data.name}}">{{data.name}}</span>
-							<br>
-							{% endfor %}
-							{% endif %}
+                            {% for data in chartData.donutChartDataList %}
+                            <i class="fas fa-cogs fa-fw me-1" ></i>
+                            <span title="{{data.name}}">{{data.name}}</span>
+                            <br>
+                            {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="small text-white text-opacity-50 text-truncate col-1"
                              style="padding-left: 10px;">
-{#                            <span>1</span><br/>#}
-{#                            <span>2</span><br/>#}
-{#                            <span>3</span><br/>#}
-{#                            <span>4</span><br/>#}
-{#                            <span>5</span>#}
+                            {#                            <span>1</span><br/>#}
+                            {#                            <span>2</span><br/>#}
+                            {#                            <span>3</span><br/>#}
+                            {#                            <span>4</span><br/>#}
+                            {#                            <span>5</span>#}
                             {% if chartData.donutChartDataList %}
-							{% for data in chartData.donutChartDataList %}
-							{{data.value}}
-							<br>
-							{% endfor %}
-							{% endif %}
+                            {% for data in chartData.donutChartDataList %}
+                            {{data.value}}
+                            <br>
+                            {% endfor %}
+                            {% endif %}
                         </div>
                         <div>
                             <div class="col-12">
@@ -196,17 +196,12 @@
                     <!-- BEGIN card-body -->
                     <div class="card-body h-284px">
                         <!-- BEGIN title -->
-                        <div style="position: relative;">
-                            <div class="btn-group mb-3">
-
-                                <button type="button" id="btn-memory" class="mcdBtn btn btn-outline-warning btn-sm active">메모리</button>
-                                <button type="button" id="btn-cpu" class="mcdBtn btn btn-outline-warning btn-sm ">CPU</button>
-                                <button type="button" id="btn-disk" class="mcdBtn btn btn btn-outline-warning btn-sm">디스크</button>
-
-                            </div>
-                            <button type="button" class="btn btn-outline-warning btn-sm memoryCpuDisk-moreInfo"
-                                    style="position: absolute; right: 0;">더보기
-                            </button>
+                        <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo memoryCpuDisk-moreInfo"><i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="btn-group mb-3">
+                            <button type="button" id="btn-memory" class="mcdBtn btn btn-outline-warning btn-sm active">메모리</button>
+                            <button type="button" id="btn-cpu" class="mcdBtn btn btn-outline-warning btn-sm ">CPU</button>
+                            <button type="button" id="btn-disk" class="mcdBtn btn btn btn-outline-warning btn-sm">디스크</button>
                         </div>
                         <!-- END title -->
                         <div class="d-flex justify-content-center align-items-center" id="mcdDiv">
@@ -322,25 +317,25 @@
                                class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
                         </div>
 
-                         <div class="btn-group map-zoomInOut mt-4" style="position: absolute; right:20px; z-index:1">
-                            <button type="button" class="btn btn-outline-warning btn-sm map-zoomIn">+</button>
-                            <button type="button" class="btn btn-outline-warning btn-sm map-zoomOut">-</button>
+                        <div class="btn-group map-zoomInOut mt-4" style="position: absolute; right:20px; z-index:1">
+                            <button type="button" class="btn btn-outline-link btn-sm btn-zoom map-zoomIn">+</button>
+                            <button type="button" class="btn btn-outline-link btn-sm btn-zoom map-zoomOut">-</button>
                         </div>
 
                         <!-- END title -->
                         <!-- BEGIN map -->
                         <div class="ratio ratio-21x9 maps" style="width: 100%; height: 90%; margin: 0 auto;">
-                                {% if MapUse.WorldUse == 'block' %}
-                                <div id="world-map" style="display:{{MapUse.WorldUse}}" class="selectMap"></div>
-                                {%endif%}
-                                {% if MapUse.KoreaUse == 'block' %}
-                                <div id="korea-map" style="display:{{MapUse.KoreaUse}}"></div>
-                                {%endif%}
-                                {% if MapUse.AreaUse == 'block' %}
-                                <div id="seoul-map" style="display:{{MapUse.AreaUse}}"></div>
-                                <div id="seongnam-map" style="display:{{MapUse.AreaUse}}"></div>
-                                {%endif%}
-                                </div>
+                            {% if MapUse.WorldUse == 'block' %}
+                            <div id="world-map" style="display:{{MapUse.WorldUse}}" class="selectMap"></div>
+                            {%endif%}
+                            {% if MapUse.KoreaUse == 'block' %}
+                            <div id="korea-map" style="display:{{MapUse.KoreaUse}}"></div>
+                            {%endif%}
+                            {% if MapUse.AreaUse == 'block' %}
+                            <div id="seoul-map" style="display:{{MapUse.AreaUse}}"></div>
+                            <div id="seongnam-map" style="display:{{MapUse.AreaUse}}"></div>
+                            {%endif%}
+                        </div>
                         <!-- END map -->
                     </div>
                     <!-- END card-body -->
@@ -361,7 +356,7 @@
                     <div class="card mb-3 ">
                         <!-- BEGIN card-body -->
                         <div class="card-body h-205px" style="display: inline-flex;">
-                            <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                            <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                             <table class="table table-sm w-90 fs-12px mb-0 text-truncate text-white text-opacity-60"
                                    style="margin: 0 auto; vertical-align: middle;">
                                 <thead>
@@ -435,7 +430,7 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
-                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo physicalServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                    <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo physicalServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">물리서버 벤더별 수량 (상위 3개)</div>
                     </div>
@@ -469,7 +464,7 @@
                 <!-- BEGIN card-body -->
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
-                    <button type="button" class="btn btn-outline-warning btn-sm btn-moreInfo gpuServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
+                    <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo gpuServer-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
                         <div class="flex-grow-1">GPU 서버 수량</div>
                     </div>
@@ -522,31 +517,23 @@
                         <!-- END stat-sm -->
                         <div class="fs-12px text-truncate text-white text-opacity-60">
                             <table class="table">
-                                <!--                                <thead>-->
-                                <!--                                <tr>-->
-                                <!--                                    <th>IP</th>-->
-                                <!--                                    <th>Host 이름</th>-->
-                                <!--                                    <th>Port</th>-->
-                                <!--                                    <th>개수</th>-->
-                                <!--                                </tr>-->
-                                <!--                                </thead>-->
                                 <tbody>
                                 <tr>
                                     <td>192.168.xx.xx</td>
                                     <td>Host name 예시1</td>
-                                    <td>post 예시1</td>
+                                    <td>port 예시1</td>
                                     <td>NN개</td>
                                 </tr>
                                 <tr>
                                     <td>192.168.xx.xx</td>
                                     <td>Host name 예시2</td>
-                                    <td>post 예시2</td>
+                                    <td>port 예시2</td>
                                     <td>NN개</td>
                                 </tr>
                                 <tr>
                                     <td>192.168.xx.xx</td>
                                     <td>Host name 예시3</td>
-                                    <td>post 예시3</td>
+                                    <td>port 예시3</td>
                                     <td>NN개</td>
                                 </tr>
                                 </tbody>
@@ -586,31 +573,20 @@
                         <!-- END stat-sm -->
                         <div class="fs-12px text-truncate text-white text-opacity-60">
                             <table class="table">
-                                <!--                                <thead>-->
-                                <!--                                <tr>-->
-                                <!--                                    <th>IP</th>-->
-                                <!--                                    <th>Host 이름</th>-->
-                                <!--                                    <th>Port</th>-->
-                                <!--                                    <th>개수</th>-->
-                                <!--                                </tr>-->
-                                <!--                                </thead>-->
                                 <tbody>
                                 <tr>
                                     <td>192.168.xx.xx</td>
                                     <td>Host name 예시1</td>
-                                    <td>post 예시1</td>
                                     <td>NN개</td>
                                 </tr>
                                 <tr>
                                     <td>192.168.xx.xx</td>
                                     <td>Host name 예시2</td>
-                                    <td>post 예시2</td>
                                     <td>NN개</td>
                                 </tr>
                                 <tr>
                                     <td>192.168.xx.xx</td>
                                     <td>Host name 예시3</td>
-                                    <td>post 예시3</td>
                                     <td>NN개</td>
                                 </tr>
                                 </tbody>
@@ -695,6 +671,8 @@
     <!-- END row -->
 </div>
 <!-- END #content -->
+<script>
 	window.setTimeout('window.location.reload()',600000);
+</script>
 {% endblock %}
 

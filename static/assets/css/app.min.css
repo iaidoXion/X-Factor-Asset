@@ -4648,7 +4648,20 @@ fieldset:disabled .btn {
     position: absolute;
     top: 7px;
     right: 7px;
+    border: none;
 }
+.btn-moreInfo:hover {
+    color: var(--bs-orange);
+}
+
+.btn-zoom {
+    border: none;
+}
+
+.btn-zoom:hover {
+    color: var(--bs-orange);
+}
+
 /* end btn-sm restyle */
 
 .fade {
