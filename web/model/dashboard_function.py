@@ -332,6 +332,11 @@ def DashboardData():
                 MemoryChartDataList = []
                 os_donutChartData = []
 
+                # NC 대역벌 서버수량 chart
+                SBCQ = PDPI('statistics', 'today', 'group_server_count')
+                server_BChartDataList = CTDF(SBCQ, 'bar')
+
+
                 # 실행 중인 서비스 통계 차트
                 Rchart = PDPI('statistics', 'today', 'running')
                 for i in range(len(Rchart)):
@@ -359,6 +364,15 @@ def DashboardData():
                     CpuChartDataList.append({"name": '-', "value": 0})
                     CpuChartDataList.append({"name": '-', "value": 0})
 
+
+
+
+                # NC 서버 총 수량 추이 그래프
+                SCLCQ = PDPI('statistics', 'monthly', 'asset')
+                server_LChartDataList = TDCD(SCLCQ, 'Monthly_Line')
+
+  
+
                 # OS 버전별 서버 수 차트
                 Ochart = PDPI('statistics', 'today', 'os_version')
                 for i in range(len(Ochart)):
@@ -366,7 +380,9 @@ def DashboardData():
 
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
+
                 BDL= []
+                SBDL = server_BChartDataList
                 LDL = []
                 PDL = []
                 BNDL = []
@@ -391,6 +407,7 @@ def DashboardData():
         RD = {
             "service_donutChartData": DDLC,
             "usageChartDataList": UCDL,
+            "server_BChartDataList": SBDL
             # "DiskChartDataList": DCDL,
             # "CpuChartDataList": CCDL,
             # "MemoryChartDataList": MCDL

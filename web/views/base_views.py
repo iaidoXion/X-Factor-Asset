@@ -33,14 +33,22 @@ def dashboard(request):
         if Customer == 'NC':
             dashboardType = 'web/dashboard_NC_banner.html'
             MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
+
+
+            # NC버전
+            server_barChartData = DCDL["server_BChartDataList"]
+
             # service_donutChartData
             DiskChartDataList = DCDL["usageChartDataList"]["DiskChartDataList"]
             service_donutChartData = DCDL["service_donutChartData"]
             CpuChartDataList =  DCDL["usageChartDataList"]["CpuChartDataList"]
             MemoryChartDataList =  DCDL["usageChartDataList"]["MemoryChartDataList"]
+
+
             os_donutChartData = DCDL["os_donutChartData"]
             chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList' : service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList':CpuChartDataList,
-                        'os_donutChartData': os_donutChartData}
+                        'os_donutChartData': os_donutChartData ,'server_barChartDataList' : server_barChartData}
+
             returnData = {'menuList': menuListDB, 'chartData' : chartData, 'Customer' : Customer, 'MapUse' : MapUse}
         else:
             dashboardType = 'web/dashboard.html'

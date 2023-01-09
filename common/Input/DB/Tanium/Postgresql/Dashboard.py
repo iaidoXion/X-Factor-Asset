@@ -22,6 +22,7 @@ def plug_in(table, day, type):
     try:
         yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
         fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
+        monthDay = (datetime.today() - timedelta(30)).strftime("%Y-%m-%d")
         month_str = (datetime.today() - relativedelta(months=1)).strftime("%Y-%m-%d")
         SDL = []
         Conn = psycopg2.connect(
@@ -38,24 +39,24 @@ def plug_in(table, day, type):
                         to_char(asset_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'
                     order by computer_id desc
                 """
-            if day == 'monthly':
-                query = """ 
-                    select 
-                        to_char(asset_collection_date , 'YYYY-MM-DD'),
-                        sum(case when is_virtual='Yes' then 1 else 0 end) as is_virtual,
-                        sum(case when is_virtual='No' then 1 else 0 end) as not_virtual
-                    from
-                         """ + AssetTNM + """
-                    where 
-                        (chassis_type = 'Rack Mount Chassis' or chassis_type = 'Virtual' )
-                    and 
-                        to_char(asset_collection_date , 'YYYY-MM-DD') > '""" + month_str + """'
-                    group by 
-                        to_char(asset_collection_date , 'YYYY-MM-DD')
-                    order by 
-                        to_char(asset_collection_date , 'YYYY-MM-DD')
-                    asc;
-                """
+            # if day == 'monthly':
+            #     query = """
+            #         select
+            #             to_char(asset_collection_date , 'YYYY-MM-DD'),
+            #             sum(case when is_virtual='Yes' then 1 else 0 end) as is_virtual,
+            #             sum(case when is_virtual='No' then 1 else 0 end) as not_virtual
+            #         from
+            #              """ + AssetTNM + """
+            #         where
+            #             (chassis_type = 'Rack Mount Chassis' or chassis_type = 'Virtual' )
+            #         and
+            #             to_char(asset_collection_date , 'YYYY-MM-DD') > '""" + month_str + """'
+            #         group by
+            #             to_char(asset_collection_date , 'YYYY-MM-DD')
+            #         order by
+            #             to_char(asset_collection_date , 'YYYY-MM-DD')
+            #         asc;
+            #     """
             # if day == 'all':
             #     query ="""
             #         select
@@ -149,6 +150,21 @@ def plug_in(table, day, type):
                             minutely_statistics_list
                     """
 
+                # NC 대역별 barchart
+                elif type == 'group_server_count':
+                    query = """
+                            select 
+                                item, item_count 
+                            from 
+                                minutely_statistics  
+                            where 
+                                classification ='group_server_count' AND item != 'unconfirmed'
+
+                            order by
+                                item_count::INTEGER 
+                            desc limit 5
+                        """
+                #NC running service chart
                 elif type == 'running':
                     query = """
                         select
@@ -170,6 +186,40 @@ def plug_in(table, day, type):
                             item in ('60Risk', '75Risk', '95Risk')
                         
                     """
+
+
+            # NC 서버 총 수량 추이 그래프(30일)
+            if day == 'monthly':
+                if type == 'asset':
+                    query = """ 
+                                select 
+                                    item, 
+                                    item_count, 
+                                    statistics_collection_date
+                                from 
+                                    daily_statistics 
+                                where 
+                                    to_char(statistics_collection_date, 'YYYY-MM-DD') > '""" + monthDay + """' 
+                                and
+                                    classification = 'virtual'
+                                and
+                                    item != 'unconfirmed'                
+                                union                               
+                                select 
+                                    item,
+                                    item_count,
+                                    statistics_collection_date
+                                from
+                                    minutely_statistics
+                                where 
+                                    classification = 'virtual'
+                                and
+                                    item != 'unconfirmed'
+                                    
+                                order by
+                                    statistics_collection_date ASC;
+                            """
+
 
             if day == 'fiveDay':
                 if type == 'asset':
