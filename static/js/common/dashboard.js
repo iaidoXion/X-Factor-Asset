@@ -62,6 +62,8 @@ $(document).ready(function(){
     let endDrag
     let xLocation = 0;
     let yLocation = 0;
+    let lastX = 0;
+    let lastY = 0;
 
 //map 줌인 줌아웃 버튼
     let zoomCount = 1;
@@ -69,30 +71,38 @@ $(document).ready(function(){
         if(zoomCount < 10){
             zoomCount = zoomCount + 0.1;
         }
-        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + xLocation + "px," + yLocation +"px)")
+        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + lastX  + "px," + lastY +"px)")
  });
 
-        $('.map-zoomOut').on('click',function(){
+    $('.map-zoomOut').on('click',function(){
         if(zoomCount > 1){
             zoomCount = zoomCount - 0.1;
              }
-        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + xLocation + "px," + yLocation +"px)")
+        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + lastX  + "px," + lastY +"px)")
  });
 
+    const dragMap = function(){
 // 이미지 드래그 기능
     $('.selectMap').on({
     'dragstart':function(e){
-        startDrag = [event.clientX,event.clientY];
-        console.log(startDrag);
+        startDrag = [event.offsetX,event.offsetY];
+        $('.maps').css('cursor','grabbing !important')
     },
     'dragend':function(e){
-        endDrag = [event.clientX,event.clientY];
+        endDrag = [event.offsetX,event.offsetY];
         xLocation = endDrag[0] - startDrag[0];
         yLocation = endDrag[1] - startDrag[1];
-        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + xLocation + "px," + yLocation +"px)")
+        lastX = lastX + xLocation
+        lastY = lastY + yLocation
+
+        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" +  lastX  + "px," + lastY  +"px)")
+
 
     }
     });
+};
+
+    dragMap()
 });
 
 
