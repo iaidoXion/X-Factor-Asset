@@ -3,21 +3,21 @@
 {% block content %}
 {% load static %}
 <!-- BEGIN #content -->
-<div>
+<div class="col-11" style="margin: 10px auto;">
     <!-- BEGIN page-header -->
-    <p class="fs-24px pt-15px ps-6">
+    <p class="fs-24px pt-10px">
         실행중인 서비스 통계
     </p>
     <!-- END page-header -->
     <div class="row">
         <!--BEGIN card-->
-        <div class="card col-10 h-auto " style="margin: 10px auto;">
+        <div class="card h-auto">
             <!--BEGIN card-body-->
             <div class="card-body">
-                <table id="dashboard-popupTable" class="table w-100 fs-14px mb-0 text-truncate text-white text-opacity-60 m-auto">
+                <table id="dashboard-popupTable" class="table w-100 fs-14px mb-0 text-truncate text-white text-opacity-60 m-auto runningServiceTable">
                     <thead>
                         <tr class="table-active text-white text-opacity-75">
-                            <th class="w-10 text-center">No</th>
+                            <th class="w-10 text-center">번호</th>
                             <th class="w-70 text-center">서비스명</th>
                             <th class="w-20 text-center">수량</th>
                         </tr>

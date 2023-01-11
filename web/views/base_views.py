@@ -182,3 +182,7 @@ def physicalServer_moreInfo(request):
 def gpuServer_moreInfo(request):
     returnData = {'menuList': menuListDB}
     return render(request, 'popup/gpuServer_moreInfo.html', returnData)
+
+def alarmCase_moreInfo(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'popup/alarmCase_moreInfo.html', returnData)

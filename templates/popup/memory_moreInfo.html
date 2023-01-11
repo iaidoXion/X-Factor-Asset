@@ -3,23 +3,23 @@
 {% block content %}
 {% load static %}
 <!-- BEGIN #content -->
-<div>
+<div class="col-11" style="margin: 10px auto;">
     <!-- BEGIN page-header -->
-    <p class="fs-24px pt-15px ps-6">
+    <p class="fs-24px pt-10px">
         메모리 사용률 높은 서버
     </p>
     <!-- END page-header -->
     <div class="row">
         <!--BEGIN card-->
-        <div class="card col-10 h-auto " style="margin: 10px auto;">
+        <div class="card h-auto ">
             <!--BEGIN card-body-->
             <div class="card-body">
-                <table id="dashboard-popupTable" class="table w-100 fs-14px mb-0 text-truncate text-white text-opacity-60 m-auto">
+                <table id="dashboard-popupTable" class="table w-100 fs-14px mb-0 text-truncate text-white text-opacity-60 m-auto memoryTable">
                     <thead>
                         <tr class="table-active text-white text-opacity-75">
-                            <th class="w-5 text-center">No</th>
+                            <th class="w-5 text-center">번호</th>
                             <th class="w-30 text-center">IP</th>
-                            <th class="w-40 text-center">Computer Name</th>
+                            <th class="w-40 text-center">자산 이름</th>
                             <th class="w-25 text-center">사용량/총량</th>
                             <th class="w-10 text-center">사용률</th>
                         </tr>

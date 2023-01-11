@@ -29,4 +29,5 @@ urlpatterns = [
     path('disk_moreInfo/', base_views.disk_moreInfo, name='disk_moreInfo'),
     path('physicalServer_moreInfo/', base_views.physicalServer_moreInfo, name='physicalServer_moreInfo'),
     path('gpuServer_moreInfo/', base_views.gpuServer_moreInfo, name='gpuServer_moreInfo'),
+    path('alarmCase_moreInfo/', base_views.alarmCase_moreInfo, name='alarmCase_moreInfo'),
 ]

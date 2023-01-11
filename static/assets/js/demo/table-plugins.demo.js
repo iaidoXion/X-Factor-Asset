@@ -215,7 +215,7 @@ var handleRenderWeakDetailModalTableData = function () {
 
 var handleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#dashboard-popupTable').DataTable({
-		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'row align-items-center'<'mr-auto col-md-6 mb-3 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
 		lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
 		responsive: true,
 		searching: true,
