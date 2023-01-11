@@ -164,7 +164,7 @@ def plug_in(table, day, type):
                                 item_count::INTEGER 
                             desc limit 5
                         """
-                #NC running service chart
+                # NC running service chart
                 elif type == 'running':
                     query = """
                         select
@@ -183,10 +183,9 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics
                         where 
-                            item in ('60Risk', '75Risk', '95Risk')
-                        
-                    """
+                            item in ('60Risk', '75Risk', '95Risk', '99Risk')
 
+                    """
 
             # NC 서버 총 수량 추이 그래프(30일)
             if day == 'monthly':
@@ -215,11 +214,10 @@ def plug_in(table, day, type):
                                     classification = 'virtual'
                                 and
                                     item != 'unconfirmed'
-                                    
+
                                 order by
                                     statistics_collection_date ASC;
                             """
-
 
             if day == 'fiveDay':
                 if type == 'asset':

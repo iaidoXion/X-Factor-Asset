@@ -28,41 +28,36 @@
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
-                    <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between ">
-                        <div class="d-flex col-9 justify-content-evenly">
-                            <div class="small text-white text-opacity-50 text-truncate">
-                                {% if chartData.os_donutChartData %}
-    							{% for data in chartData.os_donutChartData %}
-                                <i class="fas fa-cogs fa-fw me-1" ></i>
+                    <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
+                        <div class="d-flex col-9">
+                            {% if chartData.os_chartPartOne %}
+                            <div class="col-5 small text-white text-opacity-50 text-truncate">
+                                {% for data in chartData.os_chartPartOne %}
+                                <i class="fas fa-server fa-fw me-1" ></i>
                                 <span title="{{data.name}}">{{data.name}}</span>
                                 <br>
                                 {% endfor %}
-                                {% endif %}
                             </div>
-                            <div class="small text-white text-opacity-50 text-truncate ps-2">
-                                {% if chartData.os_donutChartData %}
-                                {% for data in chartData.os_donutChartData %}
-                                {{data.value}}
+                            <div class="col-1 small text-white text-opacity-50 text-truncate text-center">
+                                {% for data in chartData.os_chartPartOne %}
+                                    {{ data.value }}
                                 <br>
                                 {% endfor %}
-                                {% endif %}
                             </div>
-<!--                            <div class="small text-white text-opacity-50 text-truncate ps-3">-->
-<!--                                <i class="fas fa-cogs fa-fw me-1" data></i><span-->
-<!--                                    title="Windows Server 2012 R2 Standard Evaluation">Windows Server 2012 R2 Standard Evaluation</span><br/>-->
-<!--                                <i class="fas fa-cogs fa-fw me-1" data></i><span-->
-<!--                                    title="Windows Server 2012 R2 Standard Evaluation">Windows Server 2012 R2 Standard Evaluation</span><br/>-->
-<!--                                <i class="fas fa-cogs fa-fw me-1" data></i><span-->
-<!--                                    title="Windows Server 2012 R2 Standard Evaluation">Windows Server 2012 R2 Standard Evaluation</span><br/>-->
-<!--                                <i class="fas fa-cogs fa-fw me-1" data></i><span-->
-<!--                                    title="Windows Server 2012 R2 Standard Evaluation">Windows Server 2012 R2 Standard Evaluation</span>-->
-<!--                            </div>-->
-<!--                            <div class="small text-white text-opacity-50 text-truncate ps-2">-->
-<!--                                <span>10</span><br/>-->
-<!--                                <span>20</span><br/>-->
-<!--                                <span>30</span><br/>-->
-<!--                                <span>40</span>-->
-<!--                            </div>-->
+                            {% endif %}
+                        <div class="small text-white text-opacity-50 text-truncate ps-3">
+                            {% for data in chartData.os_chartPartTwo %}
+                                <i class="fas fa-server fa-fw me-1" ></i>
+                                <span title="{{data.name}}">{{data.name}}</span>
+                                <br>
+                                {% endfor %}
+                            </div>
+                            <div class="small text-white text-opacity-50 text-truncate ps-2">
+                                {% for data in chartData.os_chartPartTwo %}
+                                    {{ data.value }}
+                                <br>
+                                {% endfor %}
+                            </div>
                         </div>
                         <div class="col-3">
                             <div class="mt-n3 mb-n2" id="apexOSversionChart"></div>
@@ -139,27 +134,15 @@
                     <!-- BEGIN stat-lg -->
                     <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
                         <div class="small text-white text-opacity-50 text-truncate col-5">
-                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>ABC<br/>#}
-                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>DEF<br/>#}
-                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>GHI<br/>#}
-                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>JKL<br/>#}
-                            {#                            <i class="fas fa-cogs fa-fw me-1"></i>MNO#}
                             {% if chartData.donutChartDataList %}
                             {% for data in chartData.donutChartDataList %}
                             <i class="fas fa-cogs fa-fw me-1" ></i>
                             <span title="{{data.name}}">{{data.name}}</span>
                             <br>
                             {% endfor %}
-                            {% endif %}
                         </div>
                         <div class="small text-white text-opacity-50 text-truncate col-1"
                              style="padding-left: 10px;">
-                            {#                            <span>1</span><br/>#}
-                            {#                            <span>2</span><br/>#}
-                            {#                            <span>3</span><br/>#}
-                            {#                            <span>4</span><br/>#}
-                            {#                            <span>5</span>#}
-                            {% if chartData.donutChartDataList %}
                             {% for data in chartData.donutChartDataList %}
                             {{data.value}}
                             <br>
@@ -366,22 +349,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {% for alarmDataList in chartData.alamCaseDataList.nodeDataList %}
                                 <tr>
-                                    <td>메모리 사용량 95% 초과</td>
-                                    <td class="text-center">1</td>
+                                    <td>{{alarmDataList.alarmCase}}</td>
+                                    <td class="text-center">{{ alarmDataList.alarmCount }}</td>
                                 </tr>
-                                <tr>
-                                    <td>CPU 사용량 95% 초과</td>
-                                    <td class="text-center">2</td>
-                                </tr>
-                                <tr>
-                                    <td>Disk 사용량 99% 초과</td>
-                                    <td class="text-center">3</td>
-                                </tr>
-                                <tr>
-                                    <td>최근 30분 이내 오프라인 여부</td>
-                                    <td class="text-center">4</td>
-                                </tr>
+                                {% endfor %}
+{#                                <tr>#}
+{#                                    <td>CPU 사용량 95% 초과</td>#}
+{#                                    <td class="text-center">2</td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>Disk 사용량 99% 초과</td>#}
+{#                                    <td class="text-center">3</td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <td>최근 30분 이내 오프라인 여부</td>#}
+{#                                    <td class="text-center">4</td>#}
+{#                                </tr>#}
                                 </tbody>
                             </table>
                         </div>
