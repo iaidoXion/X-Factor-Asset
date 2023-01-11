@@ -3,26 +3,27 @@
 {% block content %}
 {% load static %}
 <!-- BEGIN #content -->
-<div>
+<div class="col-11" style="margin: 10px auto;">
     <!-- BEGIN page-header -->
-    <p class="fs-24px pt-15px ps-6">
+    <p class="fs-24px pt-15px">
         알람 케이스 별 감지 자산 수
     </p>
     <!-- END page-header -->
     <div class="row">
         <!--BEGIN card-->
-        <div class="card col-10 h-auto " style="margin: 10px auto;">
+        <div class="card h-auto" >
             <!--BEGIN card-body-->
             <div class="card-body">
-                <table id="dashboard-popupTable" class="table w-100 fs-14px mb-0 text-truncate text-white text-opacity-60 m-auto">
+                <table id="dashboard-popupTable" class="table w-100 fs-1ss4px mb-0 text-truncate text-white text-opacity-60 m-auto alarmCaseTable">
                     <thead>
                         <tr class="table-active text-white text-opacity-75">
-                            <th class="w-5 text-center">No</th>
-                            <th class="w-15 text-center">IP</th>
-                            <th class="w-25 text-center">메모리 95% 초과</th>
-                            <th class="w-15 text-center">CPU 95% 초과</th>
-                            <th class="w-15 text-center">디스크 95% 초과</th>
-                            <th class="w-15 text-center">30분 이내 오프라인</th>
+                            <th class="w-10 text-center">번호</th>
+                            <th class="w-25 text-center">IP</th>
+                            <th class="w-25 text-center">자산 이름</th>
+                            <th class="w-10 text-center">메모리 95% 초과</th>
+                            <th class="w-10 text-center">CPU 95% 초과</th>
+                            <th class="w-10 text-center">디스크 95% 초과</th>
+                            <th class="w-10 text-center"><span title="30분 이내">오프라인상태</span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,55 +31,91 @@
                             <td class="text-center">1</td>
                             <td>IP 예시 1</td>
                             <td>Computer Name 예시 1</td>
-                            <td>Ture (96%)</td>
-                            <td>Ture (96%)</td>
-                            <td>Ture (99%)</td>
-                            <td>Ture</td>
+                            <td class="text-center">True (96%)</td>
+                            <td class="text-center">True (96%)</td>
+                            <td class="text-center">True (99%)</td>
+                            <td class="text-center">True</td>
                         </tr>
                         <tr>
                             <td class="text-center">2</td>
                             <td>IP 예시 2</td>
                             <td>Computer Name 예시 2</td>
-                            <td>False</td>
-                            <td>Ture (96%)</td>
-                            <td>Ture (99%)</td>
-                            <td>Ture</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">True (96%)</td>
+                            <td class="text-center">True (99%)</td>
+                            <td class="text-center">True</td>
                         </tr>
                         <tr>
                             <td class="text-center">3</td>
                             <td>IP 예시 3</td>
                             <td>Computer Name 예시 3</td>
-                            <td>Ture (96%)</td>
-                            <td>False</td>
-                            <td>Ture (99%)</td>
-                            <td>False</td>
+                            <td class="text-center">True (96%)</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">True (99%)</td>
+                            <td class="text-center">False</td>
                         </tr>
                         <tr>
                             <td class="text-center">4</td>
                             <td>IP 예시 4</td>
                             <td>Computer Name 예시 4</td>
-                            <td>False</td>
-                            <td>Ture (96%)</td>
-                            <td>False</td>
-                            <td>False</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">True (96%)</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">False</td>
                         </tr>
                         <tr>
                             <td class="text-center">5</td>
                             <td>IP 예시 5</td>
                             <td>Computer Name 예시 5</td>
-                            <td>Ture (97%)</td>
-                            <td>False</td>
-                            <td>False</td>
-                            <td>False</td>
+                            <td class="text-center">True (97%)</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">False</td>
                         </tr>
                         <tr>
                             <td class="text-center">6</td>
                             <td>IP 예시 6</td>
                             <td>Computer Name 예시 6</td>
-                            <td>False</td>
-                            <td>False</td>
-                            <td>False</td>
-                            <td>Ture</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">False</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">7</td>
+                            <td>IP 예시 7</td>
+                            <td>Computer Name 예시 7</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">True (97%)</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">True</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">8</td>
+                            <td>IP 예시 8</td>
+                            <td>Computer Name 예시 8</td>
+                            <td class="text-center">True (96%)</td>
+                            <td class="text-center">True (98%)</td>
+                            <td class="text-center">True (99%)</td>
+                            <td class="text-center">False</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">9</td>
+                            <td>IP 예시 9</td>
+                            <td>Computer Name 예시 9</td>
+                            <td class="text-center">True (99%)</td>
+                            <td class="text-center">True (96%)</td>
+                            <td class="text-center">False</td>
+                            <td class="text-center">False</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">10</td>
+                            <td>IP 예시 10</td>
+                            <td>Computer Name 예시 10</td>
+                            <td class="text-center">Flase</td>
+                            <td class="text-center">True (99%)</td>
+                            <td class="text-center">True (97%)</td>
+                            <td class="text-center">True</td>
                         </tr>
                     </tbody>
                 </table>

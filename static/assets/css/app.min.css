@@ -30249,20 +30249,61 @@ body .note-modal-backdrop {
 
 /* end - table-report css */
 
+/* BEGIN - osVersion css */
+.osVersionTable thead tr th{
+    text-align: center;
+}
+/* END - osVersion css */
+
+/* BEGIN - serverBandBy css */
+.serverBandByTable{
+}
+/* END - serverBandBy css */
+
+/* BEGIN - runningService css */
+.runningServiceTable{
+}
+/* END - runningService css */
+
+/* BEGIN - memory css */
+.memoryTable{
+}
+/* END - memory css */
+
+/* BEGIN - cpu css */
+.cpuTable{
+}
+/* END - cpu css */
+
+/* BEGIN - disk css */
+.diskTable{
+}
+/* END - disk css */
+
+/* BEGIN - physicalServer css */
+.physicalServerTable{
+}
+/* END - physicalServer css */
+
 /* BEGIN - gpuServertable css */
 .gpuServerTable tbody tr td {
     vertical-align: middle;
 }
 
 .gpuServerTable thead tr th {
-   text-align: center
+   text-align: center;
 }
 
-.gpuServerTable tbody tr td:nth-child(3),
 .gpuServerTable tbody tr td:nth-child(4) {
     white-space: normal;
 }
 /* BEGIN - gpuServertable css */
+
+/* BEGIN - alarmCase css */
+.alarmCase thead tr th :nth-child(4){
+    text-align: center;
+}
+/* END - alarmCase css */
 
 /* begin - tab css */
 .nav-border {
