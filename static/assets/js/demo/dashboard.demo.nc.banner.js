@@ -766,7 +766,7 @@ var apexCPU75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: ['214'],
+        labels: [CpuValue[1]],
         };
 	apexCPU75usageChart = new ApexCharts(
 		document.querySelector('#apexCPU75usageChart'),
@@ -1153,24 +1153,9 @@ var apexTotalServerOptions = {
 		markers: {
 			size: 1,
 		},
-		series: [{
-		    name: "A",
-		    data: [112,344,153,667,312,
-		           334,596,432,853,334,
-		           869,123,443,235,678,
-		           785,345,233,156,912,
-		           812,344,153,667,312,
-		           334,596,432,853,334]
-		},{
-		    name: "B",
-		    data: [334,853,432,596,334,
-		           312,667,153,344,812,
-		           912,156,233,345,785,
-		           678,235,443,123,869,
-		           334,853,432,596,334,
-		           312,667,153,344,112]
-		}],
+		series: a.server_LChartDataList[0].data,
 		xaxis: {
+            categories: a.server_LChartDataList[0].date,
 			labels: {
 				show: true,
 			},
