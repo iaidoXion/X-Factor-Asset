@@ -24,20 +24,22 @@ $(document).ready(function(){
     $('#worldBtn').click(function() {
         $('#world-map').show();
         $('#korea-map, #seoul-map, #seongnam-map').hide();
-
         $('#world-map, #korea-map, #seongnam-map').removeClass("selectMap");
         $('#world-map').addClass("selectMap");
         zoomCount = 1;
+        reset_xy()
+        dragMap()
         $('.selectMap').css('transform','scale(1)');
     });
 
     $('#koreaBtn').click(function() {
         $('#korea-map').show();
         $('#world-map, #seoul-map, #seongnam-map').hide();
-
         $('#world-map, #korea-map, #seongnam-map').removeClass("selectMap");
         $('#korea-map').addClass("selectMap");
         zoomCount = 1;
+        reset_xy()
+        dragMap()
         $('.selectMap').css('transform','scale(1)');
     });
 
@@ -49,10 +51,11 @@ $(document).ready(function(){
         else if (mapUse.AreaType == 'seongnam-map'){
         $('#world-map, #korea-map, #seoul-map').hide();
         $('#world-map, #korea-map, #seongnam-map').removeClass("selectMap");
-
         $('#seongnam-map').show();
         $('#seongnam-map').addClass("selectMap");
         zoomCount = 1;
+        reset_xy()
+        dragMap()
         $('.selectMap').css('transform','scale(1)');
 
         }
@@ -80,6 +83,12 @@ $(document).ready(function(){
              }
         $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" + lastX  + "px," + lastY +"px)")
  });
+    const reset_xy = function(){
+        xLocation = 0;
+        yLocation = 0;
+        lastX = 0;
+        lastY = 0;
+    }
 
     const dragMap = function(){
 // 이미지 드래그 기능
@@ -101,6 +110,7 @@ $(document).ready(function(){
     }
     });
 };
+
 
     dragMap()
 });
