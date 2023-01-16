@@ -1202,8 +1202,23 @@ var apexTotalServerOptions = {
 
 
 //--------------------------------------------------------------------------
-// Total alarm case(Top 5) - apexTotalAlarmChart
+// IP 대역별 총 알람 수 (상위 5개) - apexTotalAlarmChart
 //--------------------------------------------------------------------------
+var alarmValue = [];
+var alarmName = [];
+console.log(a.alarm_donutChartData.length)
+if (a.alarm_donutChartData.length >= 5){
+    for (var i = 0; i < 5; i++){
+    alarmValue.push(Object.values(a.alarm_donutChartData[i]));
+    alarmName.push(Object.keys(a.alarm_donutChartData[i]));
+    };
+    }
+else {
+    for (var i = 0; i < a.alarm_donutChartData.length; i++){
+    alarmValue.push(Object.values(a.alarm_donutChartData[i]));
+    alarmName.push(Object.keys(a.alarm_donutChartData[i]));
+    };
+}
 	var apexTotalAlarmOptions = {
 		chart: {
 		    width: '100%',
@@ -1274,8 +1289,8 @@ var apexTotalServerOptions = {
 //		},
 
 		colors: ['rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
-		labels: ['192.168.xx', '192.168.xx', '192.168.xx', '192.168.xx', '192.168.xx'],
-		series: [10, 20, 30, 40, 50],
+		labels: alarmName.flat(),
+		series: alarmValue.flat(),
 		tooltip: {
 			theme: 'dark',
 			x: {

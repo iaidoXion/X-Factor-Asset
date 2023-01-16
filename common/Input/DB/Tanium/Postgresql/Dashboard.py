@@ -20,6 +20,7 @@ day = datetime.today().strftime("%Y-%m-%d")
 
 def plug_in(table, day, type):
     try:
+        fiveMinutesAgo = (datetime.today() - timedelta(minutes=5)).strftime("%Y-%m-%d %H:%M:%S")
         yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
         fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
         monthDay = (datetime.today() - timedelta(30)).strftime("%Y-%m-%d")
@@ -199,6 +200,22 @@ def plug_in(table, day, type):
                             item_count::INTEGER desc 
                         limit 3
                     """
+                # IP 대역별 총 알람 수(Top5)
+                elif type == 'group_alarm':
+                    query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification IN
+                                ('group_ram_usage_exceeded',
+                                'group_last_online_time_exceeded',
+                                'group_cpu_usage_exceeded',
+                                'group_drive_usage_size_exceeded')
+                                AND item != 'unconfirmed'
+                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'                               
+                        """
 
             # NC 서버 총 수량 추이 그래프(30일)
             if day == 'monthly':
