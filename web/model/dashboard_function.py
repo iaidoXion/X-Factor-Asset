@@ -347,46 +347,50 @@ def DashboardData():
                 Usagechart = PDPI('statistics', 'today', 'usage')
                 alarmData = []
                 for i in range(len(Usagechart)):
-                    if Usagechart[i][0].startswith('ram_'):
+                    if Usagechart[i][0].startswith('ram_') and Usagechart[i][1] != 'safety' and Usagechart[i][1] != 'unconfirmed':
                         MemoryChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
-
-                        if Usagechart[i][1] == '95Risk' and Usagechart[i][0].startswith('drive_'):
+                        if Usagechart[i][1] == '95Risk':
                             alarmData.append({"alarmCase": "메모리 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('cpu_'):
+                    elif Usagechart[i][0].startswith('cpu_') and Usagechart[i][1] != 'safety' and Usagechart[i][1] != 'unconfirmed':
                         CpuChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
-
-                        if Usagechart[i][1] == '95Risk' and Usagechart[i][0].startswith('drive_'):
+                        if Usagechart[i][1] == '95Risk':
                             alarmData.append({"alarmCase": "CPU 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('drive_'):
+                    elif Usagechart[i][0].startswith('drive_') and Usagechart[i][1] != 'Safety' and Usagechart[i][1] != 'unconfirmed':
                         DiskChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
+                        if Usagechart[i][1] == '99Risk':
+                            alarmData.append({"alarmCase": "디스크 사용량 99% 초과", "alarmCount": Usagechart[i][2]})
 
-                        if Usagechart[i][1] == '99Risk' and Usagechart[i][0].startswith('drive_'):
-                            alarmData.append({"alarmCase": "Disk 사용량 99% 초과", "alarmCount": Usagechart[i][2]})
+                    elif Usagechart[i][0].startswith('last_'):
+                        if Usagechart[i][1] == 'No':
+                            alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": Usagechart[i][2]})
+                        else:
+                            alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
 
-                if Usagechart.count('ram_usage_size_exceeded') == 0:
-                    MemoryChartDataList.append({"name": '-', "value": 0})
-                    alarmData.append({"alarmCase": "메모리 사용량 95% 초과", "alarmCount": 0})
 
-                if Usagechart.count('cpu_usage_size_exceeded') == 0:
-                    CpuChartDataList.append({"name": '-', "value": 0})
-                    alarmData.append({"alarmCase": "CPU 사용량 95% 초과", "alarmCount": 0})
+                #데이터 검증 - 값이 0일 때 0 출력
+                def alarmCaseData(chart, case):
+                    if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '99Risk'), None) == None:
+                        alarmData.append({"alarmCase": case + " 사용량 99% 초과", "alarmCount": 0})
+                    if next((index for (index, data) in enumerate(chart) if data['name'] == '75Risk'), None) == None:
+                        chart.append({"name": "75Risk", "value": "0"})
+                    if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
+                        chart.append({"name": "95Risk", "value": "0"})
+                    if case != '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
+                        alarmData.append({"alarmCase": case + " 사용량 95% 초과", "alarmCount": 0})
+                        chart.append({"name": "95Risk", "value": "0"})
 
-                if Usagechart.count('drive_usage_size_exceeded') == 0:
-                    DiskChartDataList.append({"name": '-', "value": 0})
-                    alarmData.append({"alarmCase": "Disk 사용량 99% 초과", "alarmCount": 0})
+                alarmCaseData(MemoryChartDataList, "메모리")
+                alarmCaseData(CpuChartDataList, 'CPU')
+                alarmCaseData(DiskChartDataList, '디스크')
 
-                alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
-
-                print(alarmData)
+                alarmData.reverse()
                 alarmDataList = {"nodeDataList": alarmData}
 
                 # NC 서버 총 수량 추이 그래프
                 SCLCQ = PDPI('statistics', 'monthly', 'asset')
-                # print(SCLCQ)
                 server_LChartDataList = TDCD(SCLCQ, 'Monthly_Line')
-                # print(server_LChartDataList)
 
                 # OS 버전별 서버 수 차트
                 Ochart = PDPI('statistics', 'today', 'os_version')
@@ -398,6 +402,12 @@ def DashboardData():
                 os_chartPartOne = result[0]
                 os_chartPartTwo = result[1]
 
+                #물리서버 벤더별 수량 차트
+                venChart = PDPI('statistics', 'today', 'vendor')
+                vendorChartList = {"name": [venChart[0][0], venChart[1][0], venChart[2][0]],
+                                "value": [venChart[0][1], venChart[1][1], venChart[2][1]]}
+
+
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
                 OCPO = os_chartPartOne
@@ -407,6 +417,7 @@ def DashboardData():
                 DDLC = service_donutChartData
                 UCDL = USCDL
                 ACDL = alarmDataList
+                VCDL = vendorChartList
             elif core == 'Zabbix':
                 print()
         elif ProjectType == 'Service':
@@ -420,7 +431,8 @@ def DashboardData():
             "alamCaseDataList": ACDL,
             "os_donutChartData": ODDLC,
             "os_chartPartOne": OCPO,
-            "os_chartPartTwo": OCPT
+            "os_chartPartTwo": OCPT,
+            "vendorChartList": VCDL
         }
     else:
         RD = {

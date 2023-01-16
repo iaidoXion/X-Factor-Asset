@@ -183,8 +183,21 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics
                         where 
-                            item in ('60Risk', '75Risk', '95Risk', '99Risk')
-
+                            classification in ('ram_usage_size_exceeded', 'cpu_usage_size_exceeded', 'drive_usage_size_exceeded', 'last_online_time_exceeded')
+                        order by
+                            item asc 
+                    """
+                elif type == 'vendor':
+                    query = """
+                        select
+                            item, item_count
+                        from
+                            minutely_statistics
+                        where
+                            classification = 'manufacturer'
+                        order by
+                            item_count::INTEGER desc 
+                        limit 3
                     """
 
             # NC 서버 총 수량 추이 그래프(30일)
