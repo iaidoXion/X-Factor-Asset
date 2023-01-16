@@ -1351,14 +1351,14 @@ var apexPhysicalServerOptions = {
 		},
 		colors: ["#f39c12", "#fdb43f", "#ffc365"],
 		series: [{
-			data: [10, 21, 10]
+			data: a.vendorChartList.value
 		}],
 		grid: {
 			show: true
 		},
 
 		xaxis: {
-			categories: ['벤더명ABCDE', '벤더명ABCDE', '벤더명ABCDE'],
+			categories: a.vendorChartList.name,
 			labels: {
 				show: true,
                 style: {

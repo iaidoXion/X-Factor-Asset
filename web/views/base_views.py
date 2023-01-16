@@ -49,10 +49,11 @@ def dashboard(request):
             os_donutChartData = DCDL["os_donutChartData"]
             os_chartPartOne = DCDL["os_chartPartOne"]
             os_chartPartTwo = DCDL["os_chartPartTwo"]
+            vendorChartList = DCDL["vendorChartList"]
             alarm_donutChartData = DCDL["alarm_donutChartData"]
             chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList': service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList': CpuChartDataList,
                          'os_donutChartData': os_donutChartData, 'server_barChartDataList': server_barChartData, "server_LChartDataList": server_LChartDataList, "alamCaseDataList": alamCaseDataList,
-                         "os_chartPartOne": os_chartPartOne, "os_chartPartTwo": os_chartPartTwo, "alarm_donutChartData": alarm_donutChartData}
+                         "os_chartPartOne": os_chartPartOne, "os_chartPartTwo": os_chartPartTwo, "vendorChartList": vendorChartList, "alarm_donutChartData": alarm_donutChartData}
 
             returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse}
         else:
