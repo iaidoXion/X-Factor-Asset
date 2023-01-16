@@ -244,7 +244,6 @@ def DashboardData():
                 LG = PDPI('statistics', "assetItem", "Group")
                 # print(LG)
                 LINEGROUP = CTDF(LG, 'group')
-                print(LINEGROUP)
 
                 LCQ = PDPI('statistics', 'fiveDay', 'asset')
                 LNFD = [LCQ, LINEGROUP]
@@ -308,7 +307,6 @@ def DashboardData():
 
                 BDL = BChartDataList
                 LDL = LChartDataList
-                print(LDL)
                 PDL = PChartDataList
                 BNDL = BNChartDataList
                 ALDL = [[]]
@@ -332,6 +330,7 @@ def DashboardData():
                 CpuChartDataList = []
                 MemoryChartDataList = []
                 os_donutChartData = []
+                alarm_donutChartData = []
 
                 # NC 대역벌 서버수량 chart
                 SBCQ = PDPI('statistics', 'today', 'group_server_count')
@@ -379,7 +378,6 @@ def DashboardData():
 
                 alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
 
-                print(alarmData)
                 alarmDataList = {"nodeDataList": alarmData}
 
                 # NC 서버 총 수량 추이 그래프
@@ -398,6 +396,15 @@ def DashboardData():
                 os_chartPartOne = result[0]
                 os_chartPartTwo = result[1]
 
+                # IP 대역별 총 알람 수 차트
+                Achart = PDPI('statistics', 'today', 'group_alarm')
+                for i in range(len(Achart)):
+                    alarm_donutChartData.append({Achart[i][0]: int(Achart[i][1])})
+                c = Counter()
+                for i in alarm_donutChartData:
+                    c.update(i)
+                alarm_donutChartDataList = [{key: value} for key, value in c.most_common()]
+
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
                 OCPO = os_chartPartOne
@@ -407,6 +414,7 @@ def DashboardData():
                 DDLC = service_donutChartData
                 UCDL = USCDL
                 ACDL = alarmDataList
+                ADDLC = alarm_donutChartDataList
             elif core == 'Zabbix':
                 print()
         elif ProjectType == 'Service':
@@ -420,7 +428,8 @@ def DashboardData():
             "alamCaseDataList": ACDL,
             "os_donutChartData": ODDLC,
             "os_chartPartOne": OCPO,
-            "os_chartPartTwo": OCPT
+            "os_chartPartTwo": OCPT,
+            "alarm_donutChartData": ADDLC
         }
     else:
         RD = {
