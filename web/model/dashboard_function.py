@@ -448,9 +448,7 @@ def DashboardData():
             "os_donutChartData": ODDLC,
             "os_chartPartOne": OCPO,
             "os_chartPartTwo": OCPT,
-
-            "vendorChartList": VCDL
-
+            "vendorChartList": VCDL,
             "alarm_donutChartData": ADDLC
 
         }
