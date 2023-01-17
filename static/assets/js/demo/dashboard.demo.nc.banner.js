@@ -331,7 +331,7 @@ for (var i = 0; i < a.MemoryChartDataList.length; i++){
     MemoryValue.push(a.MemoryChartDataList[i]['value']);
     MemoryName.push(a.MemoryChartDataList[i]['name']);
 };
-
+console.log(MemoryValue)
 
 var apexMemory95usageOptions = {
           series: [95],
@@ -493,7 +493,7 @@ var apexMemory75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [MemoryValue[1]],
+        labels: [MemoryValue[1]+MemoryValue[2]],
         };
 	apexMemory75usageChart = new ApexCharts(
 		document.querySelector('#apexMemory75usageChart'),
@@ -580,7 +580,7 @@ var apexMemory60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [MemoryValue[0]],
+        labels: [MemoryValue[0]+MemoryValue[1]+MemoryValue[2]],
         };
 	apexMemory60usageChart = new ApexCharts(
 		document.querySelector('#apexMemory60usageChart'),
@@ -766,7 +766,7 @@ var apexCPU75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [CpuValue[1]],
+        labels: [CpuValue[1]+CpuValue[2]],
         };
 	apexCPU75usageChart = new ApexCharts(
 		document.querySelector('#apexCPU75usageChart'),
@@ -852,7 +852,7 @@ var apexCPU60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [CpuValue[0]],
+        labels: [CpuValue[0]+CpuValue[1]+CpuValue[2]],
         };
 	apexCPU60usageChart = new ApexCharts(
 		document.querySelector('#apexCPU60usageChart'),
@@ -1030,7 +1030,7 @@ var apexDisk75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [DiskValue[1]],
+        labels: [DiskValue[1]+DiskValue[2]],
         };
 	apexDisk75usageChart = new ApexCharts(
 		document.querySelector('#apexDisk75usageChart'),
@@ -1115,7 +1115,7 @@ var apexDisk60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [DiskValue[0]],
+        labels: [DiskValue[0]+DiskValue[1]+DiskValue[2]],
         };
 	apexDisk60usageChart = new ApexCharts(
 		document.querySelector('#apexDisk60usageChart'),
@@ -1206,7 +1206,6 @@ var apexTotalServerOptions = {
 //--------------------------------------------------------------------------
 var alarmValue = [];
 var alarmName = [];
-console.log(a.alarm_donutChartData.length)
 if (a.alarm_donutChartData.length >= 5){
     for (var i = 0; i < 5; i++){
     alarmValue.push(Object.values(a.alarm_donutChartData[i]));

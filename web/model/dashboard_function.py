@@ -302,8 +302,8 @@ def DashboardData():
 
                 #radar chart
                 RCList = RDDF(ACDT)
-                # print(RCList)
                 RACA = {'nodeDataList': RDL + RCList}
+                print(RACA)
 
                 BDL = BChartDataList
                 LDL = LChartDataList
@@ -362,30 +362,33 @@ def DashboardData():
                         if Usagechart[i][1] == '99Risk':
                             alarmData.append({"alarmCase": "디스크 사용량 99% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('last_'):
-                        if Usagechart[i][1] == 'No':
+                    elif Usagechart[i][0].startswith('last_online'):
+                        if Usagechart[i][1] == 'Yes':
                             alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": Usagechart[i][2]})
                         else:
                             alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
-
 
                 #데이터 검증 - 값이 0일 때 0 출력
                 def alarmCaseData(chart, case):
                     if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '99Risk'), None) == None:
                         alarmData.append({"alarmCase": case + " 사용량 99% 초과", "alarmCount": 0})
+                    if next((index for (index, data) in enumerate(chart) if data['name'] == '60Risk'), None) == None:
+                        chart.append({"name": "60Risk", "value": 0})
                     if next((index for (index, data) in enumerate(chart) if data['name'] == '75Risk'), None) == None:
-                        chart.append({"name": "75Risk", "value": "0"})
+                        chart.append({"name": "75Risk", "value": 0})
                     if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
-                        chart.append({"name": "95Risk", "value": "0"})
+                        chart.append({"name": "95Risk", "value": 0})
                     if case != '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
                         alarmData.append({"alarmCase": case + " 사용량 95% 초과", "alarmCount": 0})
-                        chart.append({"name": "95Risk", "value": "0"})
+                        chart.append({"name": "95Risk", "value": 0})
 
                 alarmCaseData(MemoryChartDataList, "메모리")
                 alarmCaseData(CpuChartDataList, 'CPU')
                 alarmCaseData(DiskChartDataList, '디스크')
 
-                alarmData.reverse()
+                if next((index for (index, data) in enumerate(alarmData) if data['alarmCase'] == '최근 30분 이내 오프라인 여부'), None) == None:
+                    alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
+                # alarmData.reverse()
 
                 alarmDataList = {"nodeDataList": alarmData}
 
