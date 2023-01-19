@@ -79,6 +79,8 @@ def plug_in(table, day, type):
                             NOT classification IN ('installed_applications')
                         and
                             NOT classification IN ('running_service')
+                        and
+                            NOT classification IN ('session_ip')
                         and 
                             classification NOT like '%group_%'
                         and
@@ -87,6 +89,17 @@ def plug_in(table, day, type):
                             item NOT like '%[current%'
                         and 
                             item NOT like '%TSE-Error%'
+                    """
+                if type == 'bannerNC':
+                    query = """
+                        select 
+                            classification, item, item_count, statistics_collection_date
+                        from
+                            daily_statistics
+                        where 
+                            classification in ('online_asset', 'virtual', 'os', 'group_server_count')
+                            and NOT item IN ('unconfirmed')
+                            and to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'                  
                     """
             if day == 'today':
                 if type == '':
@@ -99,6 +112,8 @@ def plug_in(table, day, type):
                             NOT classification IN ('installed_applications')
                         and
                             NOT classification IN ('running_processes')
+                        and
+                            NOT classification IN ('session_ip')
                         and 
                             classification NOT like '%group_%'
                         and
@@ -127,8 +142,8 @@ def plug_in(table, day, type):
                 elif type == 'os_version':
                     query = """
                         select item, item_count from 
-                        minutely_statistics where classification = 'operating_system' 
-                        order by item_count::INTEGER desc limit 8
+                        minutely_statistics where classification = 'operating_system' AND item != 'unconfirmed'
+                        order by item_count::INTEGER desc
                     """
                 elif type == 'donut':
                     query = """
@@ -185,6 +200,7 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where 
                             classification in ('ram_usage_size_exceeded', 'cpu_usage_size_exceeded', 'drive_usage_size_exceeded', 'last_online_time_exceeded')
+                            and statistics_collection_date >= '"""+ fiveMinutesAgo +"""' 
                         order by
                             item asc 
                     """
@@ -214,9 +230,20 @@ def plug_in(table, day, type):
                                 'group_cpu_usage_exceeded',
                                 'group_drive_usage_size_exceeded')
                                 AND item != 'unconfirmed'
-                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'                               
-                        """
-
+                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            """
+                elif type == 'bannerNC':
+                    query = """
+                            select 
+                                classification, item, item_count, statistics_collection_date
+                            from
+                                minutely_statistics
+                            where 
+                                classification in ('online_asset', 'virtual', 'os', 'group_server_count')
+                                AND item != 'unconfirmed'
+                                and NOT item IN ('unconfirmed')
+                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            """
             # NC 서버 총 수량 추이 그래프(30일)
             if day == 'monthly':
                 if type == 'asset':

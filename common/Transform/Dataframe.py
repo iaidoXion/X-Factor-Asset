@@ -140,6 +140,14 @@ def worldMap(data):
         WMAC.append({"ip": data[i][1], "alarmText": alarmText, "group": data[i][1], "gps": gps})
     return WMAC
 
+def worldMapNC(data):
+    WMAC = []
+    gps = [37.3953444, 127.10922679999999]
+    for i in range(len(data)):
+        WMAC.append({"count": int(data[i][1]), "gps": gps})
+    return WMAC
+
+
 def radar(data):
     # print(data)
     RCList = []

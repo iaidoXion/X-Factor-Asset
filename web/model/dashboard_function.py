@@ -4,6 +4,7 @@ from web.model.Input.API import plug_in as IAPI
 from common.Transform.Dataframe import alarmCase as ACDF
 from common.Transform.Dataframe import usage as USDF
 from common.Transform.Dataframe import worldMap as WDDF
+from common.Transform.Dataframe import worldMapNC as WDDFNC
 from common.Transform.Dataframe import radar as RDDF
 from common.Transform.Dataframe import chart as CTDF
 from common.Input.DB.Tanium.Postgresql.Dashboard import plug_in as PDPI
@@ -303,7 +304,6 @@ def DashboardData():
                 #radar chart
                 RCList = RDDF(ACDT)
                 RACA = {'nodeDataList': RDL + RCList}
-                print(RACA)
 
                 BDL = BChartDataList
                 LDL = LChartDataList
@@ -365,8 +365,6 @@ def DashboardData():
                     elif Usagechart[i][0].startswith('last_online'):
                         if Usagechart[i][1] == 'Yes':
                             alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": Usagechart[i][2]})
-                        else:
-                            alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
 
                 #데이터 검증 - 값이 0일 때 0 출력
                 def alarmCaseData(chart, case):
@@ -417,11 +415,22 @@ def DashboardData():
                 Achart = PDPI('statistics', 'today', 'group_alarm')
                 for i in range(len(Achart)):
                     alarm_donutChartData.append({Achart[i][0]: int(Achart[i][1])})
-                c = Counter()
+                alarmCounter = Counter()
                 for i in alarm_donutChartData:
-                    c.update(i)
-                alarm_donutChartDataList = [{key: value} for key, value in c.most_common()]
+                    alarmCounter.update(i)
+                alarm_donutChartDataList = [{key: value} for key, value in alarmCounter.most_common()]
 
+                # 배너 슬라이드
+                BNY = PDPI('statistics', 'yesterday', 'bannerNC')   #daily statistics에서 날짜가 어제인 data호출(running service, session ip, group 제외)
+                TSDLY = TDBA(BNY, 'yetodayNC')
+                BNT = PDPI('statistics', 'today', 'bannerNC')
+                TSDLT = TDBA(BNT, 'yetodayNC')
+                SBNDL = ASDC(TSDLY, TSDLT)          #value_x=어제자 데이터, value_y=오늘자 데이터
+                BNChartDataList = TDCD(SBNDL, 'bannerNC')
+
+                # worldmap data
+                WMAC = WDDFNC(Achart)
+                WMCDL = [WMAC]
 
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
@@ -432,10 +441,9 @@ def DashboardData():
                 DDLC = service_donutChartData
                 UCDL = USCDL
                 ACDL = alarmDataList
-
                 VCDL = vendorChartList
-
                 ADDLC = alarm_donutChartDataList
+                BNDL = BNChartDataList
 
             elif core == 'Zabbix':
                 print()
@@ -452,8 +460,9 @@ def DashboardData():
             "os_chartPartOne": OCPO,
             "os_chartPartTwo": OCPT,
             "vendorChartList": VCDL,
-            "alarm_donutChartData": ADDLC
-
+            "alarm_donutChartData": ADDLC,
+            "bannerDataList":BNDL,
+            "WorldMapDataList": WMCDL
         }
     else:
         RD = {

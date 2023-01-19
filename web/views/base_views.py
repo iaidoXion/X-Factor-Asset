@@ -51,9 +51,11 @@ def dashboard(request):
             os_chartPartTwo = DCDL["os_chartPartTwo"]
             vendorChartList = DCDL["vendorChartList"]
             alarm_donutChartData = DCDL["alarm_donutChartData"]
+            bannerData = DCDL["bannerDataList"]
+            WorldMapData = DCDL["WorldMapDataList"]
             chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList': service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList': CpuChartDataList,
                          'os_donutChartData': os_donutChartData, 'server_barChartDataList': server_barChartData, "server_LChartDataList": server_LChartDataList, "alamCaseDataList": alamCaseDataList,
-                         "os_chartPartOne": os_chartPartOne, "os_chartPartTwo": os_chartPartTwo, "vendorChartList": vendorChartList, "alarm_donutChartData": alarm_donutChartData}
+                         "os_chartPartOne": os_chartPartOne, "os_chartPartTwo": os_chartPartTwo, "vendorChartList": vendorChartList, "alarm_donutChartData": alarm_donutChartData, "bannerDataList": bannerData, "WorldMapDataList": WorldMapData}
 
             returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse}
         else:
@@ -149,7 +151,6 @@ def customizing(request):
 def osVersion_moreInfo(request):
     returnData = {'menuList': menuListDB}
     return render(request, 'popup/osVersion_moreInfo.html', returnData)
-
 
 def serverBandBy_moreInfo(request):
     returnData = {'menuList': menuListDB}
