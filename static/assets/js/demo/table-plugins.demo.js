@@ -214,13 +214,43 @@ var handleRenderWeakDetailModalTableData = function () {
 
 
 var handleRenderDashboardPopupTableData = function () {
+	// var url = (window.location.search).split('&');
+    // var count = url[1].substr(url[1].indexOf("=") + 1);
 	var dashboardpopupTable = $('#dashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
 		lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
 		responsive: true,
 		searching: true,
 		ordering: false,
+		serverSide: true,
 		displayLength: false,
+		ajax: {
+			url: 'paging',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data : 'index'},
+			{data : 'ip'},
+			{data : 'name'},
+			{data : 'use'},
+			{data : 'total'},
+			{data : 'usage'},
+		],
+		columnDefs: [
+			{ width: "5%", target: [0] },
+			{ width: "15%", target: [1] },
+			{ width: "16%", target: [2] },
+			{ width: "20%", target: [3] },
+			{ width: "14%", target: [4] },
+			{
+				width: "5%", target: [5]}
+
+		],
 		language: {
 			"decimal": "",
 			"info": "전체 _TOTAL_건",
@@ -267,7 +297,7 @@ $(document).ready(function () {
 
         handleRenderWeakDetailModalTableData();
 
-    }else if ($('#dashboard-popupTable').length > 0) {
+    }else if ($("#dashboard-popupTable").length > 0) {
 
         handleRenderDashboardPopupTableData();
 

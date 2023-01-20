@@ -4,6 +4,7 @@ import requests
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
+from common.Input.DB.Tanium.Postgresql.Dashboard import plug_in as PDPI
 from web.model.dashboard_function import DashboardData
 from web.model.dashboard_function import AssetData
 from django.views.decorators.csrf import csrf_exempt
@@ -21,6 +22,7 @@ KoreaUse = SETTING['PROJECT']['MAP']['Korea']
 AreaUse = SETTING['PROJECT']['MAP']['Area']['use']
 AreaType = SETTING['PROJECT']['MAP']['Area']['type']
 
+DCDL = DashboardData()
 
 def index(request):
     returnData = {'menuList': menuListDB}
@@ -33,7 +35,6 @@ def dashboard(request):
         res_data['error'] = '먼저 로그인을 해주세요.'
         return render(request, 'common/login.html', res_data)
     else:
-        DCDL = DashboardData()
         if Customer == 'NC':
             dashboardType = 'web/dashboard_NC_banner.html'
             MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
@@ -51,9 +52,13 @@ def dashboard(request):
             os_chartPartTwo = DCDL["os_chartPartTwo"]
             vendorChartList = DCDL["vendorChartList"]
             alarm_donutChartData = DCDL["alarm_donutChartData"]
+            GpuServerDataList = DCDL["GpuServerDataList"]
+            connectIpDataList = DCDL["connectIpDataList"]
+            connectServerDataList = DCDL["connectServerDataList"]
             chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList': service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList': CpuChartDataList,
-                         'os_donutChartData': os_donutChartData, 'server_barChartDataList': server_barChartData, "server_LChartDataList": server_LChartDataList, "alamCaseDataList": alamCaseDataList,
-                         "os_chartPartOne": os_chartPartOne, "os_chartPartTwo": os_chartPartTwo, "vendorChartList": vendorChartList, "alarm_donutChartData": alarm_donutChartData}
+                        'os_donutChartData': os_donutChartData, 'server_barChartDataList': server_barChartData, "server_LChartDataList": server_LChartDataList, "alamCaseDataList": alamCaseDataList,
+                        "os_chartPartOne": os_chartPartOne, "os_chartPartTwo": os_chartPartTwo, "vendorChartList": vendorChartList, "alarm_donutChartData": alarm_donutChartData,
+                        "GpuServerDataList": GpuServerDataList, "connectIpDataList": connectIpDataList, "connectServerDataList": connectServerDataList}
 
             returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse}
         else:
@@ -106,10 +111,9 @@ def assetDetailweb_paging(request):
     data = [swv, str(length), str(page), str(search)]
 
     Data = AssetData('SWV', data)
-
     returnData = {'data': Data,
                   'draw': draw,
-                  'recordsTotal': count,
+                  'recordsTotal': Data['count'],
                   'recordsFiltered': Data['count'],
                   }
     return JsonResponse(returnData)
@@ -162,9 +166,35 @@ def runningService_moreInfo(request):
 
 
 def memory_moreInfo(request):
-    returnData = {'menuList': menuListDB}
-    return render(request, 'popup/memory_moreInfo.html', returnData)
+    # memoryMoreDataList = DCDL["memoryMoreDataList"]
+    # chartData = {"memoryMoreDataList": memoryMoreDataList}
+    # returnData = {'menuList': menuListDB, "chartData": chartData}
+    return render(request, 'popup/memory_moreInfo.html')
 
+@csrf_exempt
+def memory_moreInfo_paging(request):
+
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMDL = []
+    SMD = PDPI('statistics', 'memoryMore', data)
+    print(SMD)
+    SMC = PDPI('statistics', 'count', data)
+    # for i in range(len(SMD)):
+    #     if SMD[i][0] != 'unconfirmed' and not SMD[i][2].startswith('[current') and not SMD[i][3].startswith('[current') and SMD[i][4] != 'unconfirmed':
+    #         usage = math.trunc(float(SMD[i][4]))
+    #         SMDL.append({"index": i, "ip": SMD[i][0], "name": SMD[i][1], "use": SMD[i][2], "total": SMD[i][3], "usage": usage})
+    RD = {"item": SMD, "count": len(SMDL)}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def cpu_moreInfo(request):
     returnData = {'menuList': menuListDB}
