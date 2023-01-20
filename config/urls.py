@@ -25,6 +25,7 @@ urlpatterns = [
     path('serverBandBy_moreInfo/', base_views.serverBandBy_moreInfo, name='serverBandBy_moreInfo'),
     path('runningService_moreInfo/', base_views.runningService_moreInfo, name='runningService_moreInfo'),
     path('memory_moreInfo/', base_views.memory_moreInfo, name='memory_moreInfo'),
+    path('memory_moreInfo/paging', base_views.memory_moreInfo_paging, name='memory_moreInfo_paging'),
     path('cpu_moreInfo/', base_views.cpu_moreInfo, name='cpu_moreInfo'),
     path('disk_moreInfo/', base_views.disk_moreInfo, name='disk_moreInfo'),
     path('physicalServer_moreInfo/', base_views.physicalServer_moreInfo, name='physicalServer_moreInfo'),
