@@ -218,3 +218,60 @@ def gpuServer_moreInfo(request):
 def alarmCase_moreInfo(request):
     returnData = {'menuList': menuListDB}
     return render(request, 'popup/alarmCase_moreInfo.html', returnData)
+
+############################ 유저가이드 ############################################
+def userGuide_docs_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/documentation_ug.html', returnData)
+
+def specification_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/specification_ug.html', returnData)
+
+def start_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/start_ug.html', returnData)
+
+def dashboard_public_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/dashboard_public_ug.html', returnData)
+
+def dashboard_chart_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/dashboard_chart_ug.html', returnData)
+
+def dashboard_etc_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/dashboard_etc_ug.html', returnData)
+
+def weakness_public_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/weakness_public_ug.html', returnData)
+
+def weakness_windows_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/weakness_windows_ug.html', returnData)
+
+def dashboard_linux_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/dashboard_linux_ug.html', returnData)
+
+def setting_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/setting_ug.html', returnData)
+
+def report_public_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/report_public_ug.html', returnData)
+
+def report_all_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/report_all_ug.html', returnData)
+
+def technical_support_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/technical_support_ug.html', returnData)
+
+def faq_ug(request):
+    returnData = {'menuList': menuListDB}
+    return render(request, 'documentation/faq_ug.html', returnData)

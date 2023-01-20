@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN content -->
+<div id="content" class="app-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 fs-18px">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- BEGIN X-Factor-Introduce -->
+                        <div id="X-Factor-introduce">
+                            <p class="documentation-header">X-Factor 소개</p>
+                            <!-- BEGIN card -->
+                            <div class="card">
+                                <!-- BEGIN card-body -->
+                                <div class="card-body">
+<!--                                    <div class="row">-->
+<!--                                        <div class="d-sm-flex">-->
+<!--                                            <div class="documentation-wrapper">-->
+<!--                                                <div class="documentation-circle">-->
+<!--                                                    <p>ETL</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="documentation-wrapper">-->
+<!--                                                <div class="documentation-circle">-->
+<!--                                                    <p>ETL</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="documentation-wrapper">-->
+<!--                                                <div class="documentation-circle">-->
+<!--                                                    <p>ETL</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="documentation-wrapper">-->
+<!--                                                <div class="documentation-circle">-->
+<!--                                                    <p>ETL</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                        <img class="w-100" src="/static/img/X-Factor_documentation/Introduce-background-none.png">
+                                    <p>X-Factor는 이기종의 데이터를 수집, 정제, 적재, 분석하여 다양한 목적에 맞게 데이터 활용이
+                                    가능한 모니터링, 시각화를 제공하고 있는 솔루션입니다. <br>사용자 환경 및 분석 목적에 따라
+                                    Plug-In의 배치를 용이하게 결합할 수 있는 솔루션으로 유연한 확장성을 지원합니다.
+                                    <br>향후 ML(Machine Learning)을 이용한 데이터 분석을 통해 사전 예측 시스템까지 제공하고자 합니다. </p>
+                                </div>
+                                <!-- END card-body -->
+                                <!-- BEGIN card-arrow -->
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                                <!-- END card-arrow -->
+                            </div>
+                            <!-- END card -->
+                        </div>
+                        <!-- END X-Factor-Introduce -->
+                    </div>
+                    <div class="w-auto">
+                        <nav class="navbar navbar-sticky d-none d-xl-block">
+                            <nav class="nav">
+                                <a class="nav-link fs-16px" href="#X-Factor-introduce" data-toggle="scroll-to">X-Factor 소개</a>
+                            </nav>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END content -->
+
+{% endblock %}
