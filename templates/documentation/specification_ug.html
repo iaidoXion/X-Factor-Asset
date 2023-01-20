@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN content -->
+<div id="content" class="app-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 fs-18px">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- BEGIN X-Factor-specification -->
+                        <div id="X-Factor-specification">
+                            <p class="documentation-header">X-Factor 사양</p>
+                            <table class="specification-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            사양 목록
+                                        </th>
+                                        <th>
+                                            제품사양
+                                        </th>
+                                        <th>
+                                            사용자 PC 사양
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CPU</td>
+                                        <td>Intel Xeon 8코어 이상</td>
+                                        <td>2Core</td>
+                                    </tr>
+                                    <tr>
+                                        <td>메모리</td>
+                                        <td>16GB 이상</td>
+                                        <td>4GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>디스크</td>
+                                        <td>200GB 이상</td>
+                                        <td>4GB 이상</td>
+                                    </tr>
+                                    <tr>
+                                        <td>운영체제</td>
+                                        <td>CentOS 7.8 (64bit)</td>
+                                        <td>Microsoft Windows 10 Pro (64bit)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DBMS</td>
+                                        <td>PostgreSQL 14.4 VersionVersion 이상</td>
+                                        <td>해당 사양 (X)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>프레임워크</td>
+                                        <td>Django 4.0.3 Version 이상</td>
+                                        <td>해당 사양 (X)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>소프트웨어</td>
+                                        <td>python 4.0.3 Version 이상</td>
+                                        <td>해당 사양 (X)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- END X-Factor-specification -->
+                    </div>
+                    <div class="w-auto">
+                        <nav class="navbar navbar-sticky d-none d-xl-block">
+                            <nav class="nav">
+                                <a class="nav-link fs-16px" href="#X-Factor-specification" data-toggle="scroll-to">X-Factor 사양</a>
+                            </nav>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END content -->
+
+{% endblock %}

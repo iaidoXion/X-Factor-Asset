@@ -5361,6 +5361,18 @@ fieldset:disabled .btn {
     padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)
 }
 
+.navbar.navbar-sticky {
+    top: 5.25rem;
+    position: sticky;
+    padding: 0;
+    border-left: 1px solid rgba(255,255,255,.3);
+    margin-left: 1rem;
+}
+
+.w-95 {
+    width: 95% !important
+}
+
 .navbar>.container,
 .navbar>.container-fluid,
 .navbar>.container-lg,
@@ -30310,4 +30322,57 @@ body .note-modal-backdrop {
     border: none;
 }
 /* end - tab css */
+
+/* BEGIN  documentation header */
+.documentation-header{
+    font-size: 35px;
+    font-weight: 600;
+    color: #fff;
+}
+/* END  documentation header */
+
+/* BEGIN specification-table*/
+.specification-table{
+    text-align: center;
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.specification-table tr th :nth-child(1){
+    width: 20%;
+}
+
+.specification-table tr th :nth-child(1),
+.specification-table tr th :nth-child(2){
+    width: 40%;
+}
+
+.specification-table tr td,
+.specification-table tr th{
+    text-align: center;
+    border: 1px solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+/* END specification-table*/
+
+/* BiGIN 원 직접 만들기 */
+.documentation-wrapper{
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 1170px;
+}
+
+.documentation-circle{
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border: 10px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+}
+/* END 원 직접 만들기 */
+
+
 
