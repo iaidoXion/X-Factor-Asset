@@ -147,17 +147,20 @@ def customizing(request):
 
 ############################ 팝업 ############################################
 def osVersion_moreInfo(request):
-    returnData = {'menuList': menuListDB}
+    os_donutChartData = DCDL["os_donutChartData"]
+    returnData = {'menuList': menuListDB, 'data': os_donutChartData}
     return render(request, 'popup/osVersion_moreInfo.html', returnData)
 
 
 def serverBandBy_moreInfo(request):
-    returnData = {'menuList': menuListDB}
+    server_barChartData = DCDL["server_BChartDataList"]
+    returnData = {'menuList': menuListDB, 'data': server_barChartData}
     return render(request, 'popup/serverBandBy_moreInfo.html', returnData)
 
 
 def runningService_moreInfo(request):
-    returnData = {'menuList': menuListDB}
+    service_donutChartData = DCDL["service_donutChartData"]
+    returnData = {'menuList': menuListDB, 'data': service_donutChartData}
     return render(request, 'popup/runningService_moreInfo.html', returnData)
 
 
@@ -177,7 +180,8 @@ def disk_moreInfo(request):
 
 
 def physicalServer_moreInfo(request):
-    returnData = {'menuList': menuListDB}
+    vendorChartList = DCDL["vendorChartList"]
+    returnData = {'menuList': menuListDB, 'data': vendorChartList}
     return render(request, 'popup/physicalServer_moreInfo.html', returnData)
 
 
@@ -186,5 +190,6 @@ def gpuServer_moreInfo(request):
     return render(request, 'popup/gpuServer_moreInfo.html', returnData)
 
 def alarmCase_moreInfo(request):
-    returnData = {'menuList': menuListDB}
+    alamCaseMoreDataList = DCDL['alamCaseMoreDataList']
+    returnData = {'menuList': menuListDB, 'data' : alamCaseMoreDataList}
     return render(request, 'popup/alarmCase_moreInfo.html', returnData)

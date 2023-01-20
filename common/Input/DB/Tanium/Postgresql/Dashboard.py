@@ -107,6 +107,8 @@ def plug_in(table, day, type):
                             item NOT like '%[current%'
                         and 
                             item NOT like '%TSE-Error%'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     """
 
                 elif type == 'bar':
@@ -116,18 +118,30 @@ def plug_in(table, day, type):
                         from 
                             minutely_statistics  
                         where 
-                            classification ='asset' order by item_count desc limit 3    
+                            classification ='asset'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                        order by 
+                            item_count desc limit 3    
                     """
                 elif type == 'pie':
                     query = """
                         select item, item_count from 
-                        minutely_statistics where classification = 'os' 
+                        minutely_statistics 
+                        where 
+                            classification = 'os'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""' 
                         order by item_count::INTEGER desc limit 3
                     """
                 elif type == 'os_version':
                     query = """
                         select item, item_count from 
-                        minutely_statistics where classification = 'operating_system' 
+                        minutely_statistics
+                        where 
+                            classification = 'operating_system' 
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by item_count::INTEGER desc limit 8
                     """
                 elif type == 'donut':
@@ -138,6 +152,8 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             classification = 'installed_applications'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item_count::INTEGER 
                         desc limit 5
@@ -160,7 +176,8 @@ def plug_in(table, day, type):
                                 minutely_statistics  
                             where 
                                 classification ='group_server_count' AND item != 'unconfirmed'
-
+                            and 
+                                statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                             order by
                                 item_count::INTEGER 
                             desc limit 5
@@ -174,6 +191,8 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where 
                             classification = 'running_service'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item_count::INTEGER desc limit 5
                     """
@@ -185,6 +204,8 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where 
                             classification in ('ram_usage_size_exceeded', 'cpu_usage_size_exceeded', 'drive_usage_size_exceeded', 'last_online_time_exceeded')
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item asc 
                     """
@@ -196,6 +217,8 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             classification = 'manufacturer'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item_count::INTEGER desc 
                         limit 3
@@ -244,7 +267,8 @@ def plug_in(table, day, type):
                                     classification = 'virtual'
                                 and
                                     item != 'unconfirmed'
-
+                                and 
+                                    statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                                 order by
                                     statistics_collection_date ASC;
                             """
@@ -276,6 +300,8 @@ def plug_in(table, day, type):
                             minutely_statistics 
                         where 
                             classification ='asset' 
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     """
             if type == 'ram':
                 query = """
@@ -285,6 +311,8 @@ def plug_in(table, day, type):
                         minutely_statistics
                     where 
                         classification in ('group_ram_usage_exceeded')
+                    and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     order by
                         item_count::INTEGER desc limit 5
                 """
@@ -296,6 +324,8 @@ def plug_in(table, day, type):
                         minutely_statistics
                     where 
                         classification in ('group_cpu_usage_exceeded')
+                    and 
+                        statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     order by
                         item_count::INTEGER desc limit 5
                 """
@@ -308,6 +338,8 @@ def plug_in(table, day, type):
                     where 
                         classification in ('group_cpu_usage_exceeded', 'group_ram_usage_exceeded', 'group_running_service_count_exceeded', 
                         'group_last_reboot', 'drive_usage_size_exceeded')
+                    and 
+                        statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                 """
         if table == 'statistics_list':
             if day == 'today':
