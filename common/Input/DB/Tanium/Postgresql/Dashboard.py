@@ -1,3 +1,5 @@
+import math
+
 import psycopg2
 import json
 from datetime import datetime, timedelta
@@ -90,6 +92,7 @@ def plug_in(table, day, type):
                         and 
                             item NOT like '%TSE-Error%'
                     """
+
                 if type == 'bannerNC':
                     query = """
                         select 
@@ -101,6 +104,53 @@ def plug_in(table, day, type):
                             and NOT item IN ('unconfirmed')
                             and to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'                  
                     """
+
+            if day == 'memoryMore':
+                query = """
+                            select
+                                ipv_address, computer_name, ram_use_size, ram_total_size, ramusage
+                            from
+                                minutely_statistics_list
+                            where
+                                NOT ipv_address IN ('unconfirmed')
+                            and 
+                                NOT ramusage IN ('unconfirmed')
+                            and 
+                                ram_use_size NOT like '%[current%'
+                            and 
+                                ram_total_size NOT like '%[current%'
+                            and
+                                (ipv_address ||
+                                computer_name || 
+                                ram_use_size || 
+                                ram_total_size || 
+                                ramusage) like '%""" + type[2] + """%'
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+                        """
+            if day == 'count':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics_list
+                        where
+                                (ipv_address ||
+                                 computer_name || 
+                                 ram_use_size || 
+                                 ram_total_size || 
+                                 ramusage) like '%""" + type[2] + """%'
+                        and 
+                            NOT ipv_address IN ('unconfirmed')
+                        and 
+                            NOT ramusage IN ('unconfirmed')
+                        and 
+                            ram_use_size NOT like '%[current%'
+                        and 
+                            ram_total_size NOT like '%[current%'
+                """
+
+
             if day == 'today':
                 if type == '':
                     query = """ 
@@ -122,6 +172,8 @@ def plug_in(table, day, type):
                             item NOT like '%[current%'
                         and 
                             item NOT like '%TSE-Error%'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     """
 
                 elif type == 'bar':
@@ -131,19 +183,31 @@ def plug_in(table, day, type):
                         from 
                             minutely_statistics  
                         where 
-                            classification ='asset' order by item_count desc limit 3    
+                            classification ='asset'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                        order by 
+                            item_count desc limit 3    
                     """
                 elif type == 'pie':
                     query = """
                         select item, item_count from 
-                        minutely_statistics where classification = 'os' 
+                        minutely_statistics 
+                        where 
+                            classification = 'os'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""' 
                         order by item_count::INTEGER desc limit 3
                     """
                 elif type == 'os_version':
                     query = """
                         select item, item_count from 
-                        minutely_statistics where classification = 'operating_system' AND item != 'unconfirmed'
-                        order by item_count::INTEGER desc
+                        minutely_statistics
+                        where 
+                            classification = 'operating_system' AND item != 'unconfirmed'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                        order by item_count::INTEGER desc limit 8
                     """
                 elif type == 'donut':
                     query = """
@@ -153,6 +217,8 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             classification = 'installed_applications'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item_count::INTEGER 
                         desc limit 5
@@ -175,7 +241,8 @@ def plug_in(table, day, type):
                                 minutely_statistics  
                             where 
                                 classification ='group_server_count' AND item != 'unconfirmed'
-
+                            and 
+                                statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                             order by
                                 item_count::INTEGER 
                             desc limit 5
@@ -189,6 +256,8 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where 
                             classification = 'running_service'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item_count::INTEGER desc limit 5
                     """
@@ -200,10 +269,12 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where 
                             classification in ('ram_usage_size_exceeded', 'cpu_usage_size_exceeded', 'drive_usage_size_exceeded', 'last_online_time_exceeded')
-                            and statistics_collection_date >= '"""+ fiveMinutesAgo +"""' 
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item asc 
                     """
+                #물리서버 벤더별 수량
                 elif type == 'vendor':
                     query = """
                         select
@@ -212,6 +283,8 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             classification = 'manufacturer'
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             item_count::INTEGER desc 
                         limit 3
@@ -244,6 +317,33 @@ def plug_in(table, day, type):
                                 and NOT item IN ('unconfirmed')
                                 and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                             """
+                elif type == 'gpu':
+                    query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification = 'nvidia_smi'
+                            union all
+                            select
+                                item, item_count
+                            from
+                                daily_statistics
+                            where
+                                classification = 'nvidia_smi' and to_char(statistics_collection_date, 'YYYY-MM-DD') = '"""+ yesterday +"""'
+                    """
+                elif type == 'ip':
+                    query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification = 'session_ip' and item != 'NO'
+                            order by
+                                item_count::INTEGER desc limit 3
+                    """
             # NC 서버 총 수량 추이 그래프(30일)
             if day == 'monthly':
                 if type == 'asset':
@@ -271,7 +371,8 @@ def plug_in(table, day, type):
                                     classification = 'virtual'
                                 and
                                     item != 'unconfirmed'
-
+                                and 
+                                    statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                                 order by
                                     statistics_collection_date ASC;
                             """
@@ -303,6 +404,8 @@ def plug_in(table, day, type):
                             minutely_statistics 
                         where 
                             classification ='asset' 
+                        and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     """
             if type == 'ram':
                 query = """
@@ -312,6 +415,8 @@ def plug_in(table, day, type):
                         minutely_statistics
                     where 
                         classification in ('group_ram_usage_exceeded')
+                    and 
+                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     order by
                         item_count::INTEGER desc limit 5
                 """
@@ -323,6 +428,8 @@ def plug_in(table, day, type):
                         minutely_statistics
                     where 
                         classification in ('group_cpu_usage_exceeded')
+                    and 
+                        statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                     order by
                         item_count::INTEGER desc limit 5
                 """
@@ -335,6 +442,8 @@ def plug_in(table, day, type):
                     where 
                         classification in ('group_cpu_usage_exceeded', 'group_ram_usage_exceeded', 'group_running_service_count_exceeded', 
                         'group_last_reboot', 'drive_usage_size_exceeded')
+                    and 
+                        statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                 """
         if table == 'statistics_list':
             if day == 'today':
@@ -377,6 +486,24 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics_list
                     """
+                elif type == 'server':
+                    query = """
+                        select
+                            ipv_address, computer_name, session_ip_count
+                        from
+                            minutely_statistics_list
+                        order by
+                            session_ip_count::INTEGER desc limit 3
+                    """
+                elif type == 'memoryMore':
+                    query = """
+                        select
+                            ipv_address, computer_name, ram_use_size, ram_total_size, ramusage
+                        from
+                            minutely_statistics_list
+                        order by
+                            ramusage desc
+                    """
             if day == 'yesterday':
                 if type == 'DUS':
                     query = """
@@ -398,8 +525,21 @@ def plug_in(table, day, type):
                     """
         Cur.execute(query)
         RS = Cur.fetchall()
-        for R in RS:
-            SDL.append(R)
+        for i, R in enumerate(RS, start=1):
+            if day == 'memoryMore':
+                index = (int(type[1]) - 1) * 10 + i
+                SDL.append(dict(
+                                (
+                                    ('index', index),
+                                    ('ip', R[0]),
+                                    ('name', R[1]),
+                                    ('use', R[2]),
+                                    ('total', R[3]),
+                                    ('usage', math.trunc(float(R[4])))
+                                )
+                ))
+            else:
+                SDL.append(R)
         return SDL
     except:
         print(table + type + day + ' Daily Table connection(Select) Failure')

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN content -->
+<div id="content" class="app-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 fs-18px">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- BEGIN X-Factor-barchart -->
+                        <div id="dashboard-barchart">
+                            <p class="documentation-header">Bar 차트</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END X-Factor-barchart -->
+                        <!-- BEGIN X-Factor-linechart -->
+                        <div id="dashboard-linechart">
+                            <p class="documentation-header">Line 차트</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END X-Factor-linechart -->
+                        <!-- BEGIN X-Factor-circlechart -->
+                        <div id="dashboard-circlechart">
+                            <p class="documentation-header">원형 차트</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END X-Factor-circlechart -->
+                        <!-- BEGIN X-Factor-gaugechart -->
+                        <div id="dashboard-gaugechart">
+                            <p class="documentation-header">게이지 차트</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END X-Factor-gaugechart -->
+                        <!-- BEGIN X-Factor-raderchart -->
+                        <div id="dashboard-raderchart">
+                            <p class="documentation-header">레이더 차트</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END X-Factor-raderchart -->
+                        <!-- BEGIN X-Factor-mapchart -->
+                        <div id="dashboard-mapchart">
+                            <p class="documentation-header">지도 차트</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END X-Factor-mapchart -->
+                    </div>
+                    <div class="w-auto">
+                        <nav class="navbar navbar-sticky d-none d-xl-block">
+                            <nav class="nav">
+                                <a class="nav-link fs-16px" href="#dashboard-barchart" data-toggle="scroll-to">bar 차트</a>
+                                <a class="nav-link fs-16px" href="#dashboard-linechart" data-toggle="scroll-to">Line 차트</a>
+                                <a class="nav-link fs-16px" href="#dashboard-circlechart" data-toggle="scroll-to">원형 차트</a>
+                                <a class="nav-link fs-16px" href="#dashboard-gaugechart" data-toggle="scroll-to">게이지 차트</a>
+                                <a class="nav-link fs-16px" href="#dashboard-raderchart" data-toggle="scroll-to">레이더 차트</a>
+                                <a class="nav-link fs-16px" href="#dashboard-mapchart" data-toggle="scroll-to">지도 차트</a>
+                            </nav>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END content -->
+
+{% endblock %}

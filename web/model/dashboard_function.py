@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import pandas as pd
 
 from web.model.Input.API import plug_in as IAPI
@@ -331,6 +333,7 @@ def DashboardData():
                 MemoryChartDataList = []
                 os_donutChartData = []
                 alarm_donutChartData = []
+                vendorChartList = []
 
                 # NC 대역벌 서버수량 chart
                 SBCQ = PDPI('statistics', 'today', 'group_server_count')
@@ -407,8 +410,9 @@ def DashboardData():
 
                 #물리서버 벤더별 수량 차트
                 venChart = PDPI('statistics', 'today', 'vendor')
-                vendorChartList = {"name": [venChart[0][0], venChart[1][0], venChart[2][0]],
-                                "value": [venChart[0][1], venChart[1][1], venChart[2][1]]}
+                for i in range(len(venChart)):
+                    vendorChartList.append({"name": venChart[i][0], "value": venChart[i][1]})
+
 
 
                 # IP 대역별 총 알람 수 차트
@@ -432,6 +436,43 @@ def DashboardData():
                 WMAC = WDDFNC(Achart)
                 WMCDL = [WMAC]
 
+
+                #GPU 서버 수량
+                GpuServerData = PDPI('statistics', 'today', 'gpu')
+                if GpuServerData[1][0] == 'YES' and GpuServerData[3][0] == 'YES':
+                    tValue = int(GpuServerData[1][1])
+                    yValue = int(GpuServerData[3][1])
+                roc = tValue - yValue
+                GpuServerDataList = {"value" : tValue, 'roc': roc}
+
+                #서버 최다 연결 IP
+                connectIpDataList = []
+                connectIpData = PDPI('statistics', 'today', 'ip')
+                for i in range(len(connectIpData)):
+                    if connectIpData[i][0].startswith('::'):
+                        break
+                    else:
+                        split = connectIpData[i][0].split(':')
+                        ip = split[0]
+                        host = split[1]
+                        connectIpDataList.append({'ip': ip, 'host': host, 'count': connectIpData[i][1]})
+
+                #세션 최다 연결 서버
+                connectServerDataList = []
+                connectServerData = PDPI('statistics_list', 'today', 'server')
+                for i in range(len(connectServerData)):
+                    connectServerDataList.append({'ip': connectServerData[i][0], 'name': connectServerData[i][1], 'count': connectServerData[i][2]})
+
+                #게이지 차트 사용량 더보기
+                #메모리 부분
+                memoryMoreDataList = []
+                memoryMore = PDPI('statistics_list', 'today', 'memoryMore')
+                for i in range(len(memoryMore)):
+                    if memoryMore[i][0] != 'unconfirmed' and not memoryMore[i][2].startswith('[current') and not memoryMore[i][3].startswith('[current') and memoryMore[i][4] != 'unconfirmed':
+                        count = math.trunc(float(memoryMore[i][4]))
+                        memoryMoreDataList.append({"ip": memoryMore[i][0], "name": memoryMore[i][1], "use": memoryMore[i][2], "total": memoryMore[i][3], "usage": count})
+
+
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
                 OCPO = os_chartPartOne
@@ -444,6 +485,10 @@ def DashboardData():
                 VCDL = vendorChartList
                 ADDLC = alarm_donutChartDataList
                 BNDL = BNChartDataList
+                GSDL = GpuServerDataList
+                CIDL = connectIpDataList
+                CSDL = connectServerDataList
+                MMDL = []
 
             elif core == 'Zabbix':
                 print()
@@ -463,6 +508,10 @@ def DashboardData():
             "alarm_donutChartData": ADDLC,
             "bannerDataList":BNDL,
             "WorldMapDataList": WMCDL
+            "GpuServerDataList": GSDL,
+            "connectIpDataList": CIDL,
+            "connectServerDataList": CSDL,
+            "memoryMoreDataList": MMDL
         }
     else:
         RD = {
@@ -476,7 +525,7 @@ def DashboardData():
             "TotalTopDataList": TACT,
             "WorldMapDataList": WMCDL,
             "MiniDonutChart": MDRCC,
-            "donutChartDataList": DDLC,
+            "donutChartDataList": DDLC
         }
     return RD
 
