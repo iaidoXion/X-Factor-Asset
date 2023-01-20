@@ -74,7 +74,7 @@
     {% if request.path == '/osVersion_moreInfo/' or request.path == '/serverBandBy_moreInfo/' or request.path == '/runningService_moreInfo/' or request.path == '/memory_moreInfo/' or request.path == '/cpu_moreInfo/' or request.path == '/disk_moreInfo/' or request.path == '/physicalServer_moreInfo/' or request.path == '/gpuServer_moreInfo/' or request.path == '/alarmCase_moreInfo/' %}
     {% else %}
   <!-- BEGIN #app -->
-    <div id="app" class="app">
+    <div id="app" class="app app-sidebar-collapsed">
         <!-- 네비게이션바 -->
         {% include "navbar.html" %}
         <!-- 사이드바 -->

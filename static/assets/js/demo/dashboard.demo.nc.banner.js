@@ -331,7 +331,6 @@ for (var i = 0; i < a.MemoryChartDataList.length; i++){
     MemoryValue.push(a.MemoryChartDataList[i]['value']);
     MemoryName.push(a.MemoryChartDataList[i]['name']);
 };
-console.log(MemoryValue)
 
 var apexMemory95usageOptions = {
           series: [95],

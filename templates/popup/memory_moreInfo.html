@@ -6,7 +6,7 @@
 <div class="col-11" style="margin: 10px auto;">
     <!-- BEGIN page-header -->
     <p class="fs-24px pt-10px">
-        메모리 사용률 높은 서버
+        메모리 사용률 (전체)
     </p>
     <!-- END page-header -->
     <div class="row">
@@ -18,119 +18,26 @@
                     <thead>
                         <tr class="table-active text-white text-opacity-75">
                             <th class="w-5 text-center">번호</th>
-                            <th class="w-30 text-center">IP</th>
+                            <th class="w-30 text-center">IP 대역</th>
                             <th class="w-40 text-center">자산 이름</th>
-                            <th class="w-25 text-center">사용량/총량</th>
+                            <th class="w-10 text-center">사용량</th>
+                            <th class="w-10 text-center">총량</th>
                             <th class="w-10 text-center">사용률</th>
                         </tr>
                         </thead>
+{#                        {% if chartData.memoryMoreDataList %}#}
                         <tbody>
+{#                        {% for data in chartData.memoryMoreDataList %}#}
                         <tr>
-                            <td class="text-center">1</td>
-                            <td>IP 예시 1</td>
-                            <td>Computer Name 예시 1</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">96%</td>
+{#                            <td class="text-center">{{ forloop.counter }}</td>#}
+{#                            <td>{{ data.ip}}</td>#}
+{#                            <td>{{ data.name}}</td>#}
+{#                            <td class="text-center">{{ data.use }} / {{ data.total }} MB</td>#}
+{#                            <td class="text-center">{{ data.usage }}%</td>#}
                         </tr>
-                        <tr>
-                            <td class="text-center">2</td>
-                            <td>IP 예시 2</td>
-                            <td>Computer Name 예시 2</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">95%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">3</td>
-                            <td>IP 예시 3</td>
-                            <td>Computer Name 예시 3</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">95%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">4</td>
-                            <td>IP 예시 4</td>
-                            <td>Computer Name 예시 4</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">91%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">5</td>
-                            <td>IP 예시 5</td>
-                            <td>Computer Name 예시 5</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">91%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">6</td>
-                            <td>IP 예시 6</td>
-                            <td>Computer Name 예시 6</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">89%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">7</td>
-                            <td>IP 예시 7</td>
-                            <td>Computer Name 예시 7</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">88%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">8</td>
-                            <td>IP 예시 8</td>
-                            <td>Computer Name 예시 8</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">87%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">9</td>
-                            <td>IP 예시 9</td>
-                            <td>Computer Name 예시 9</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">86%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">10</td>
-                            <td>IP 예시 10</td>
-                            <td>Computer Name 예시 10</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">85%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">11</td>
-                            <td>IP 예시 11</td>
-                            <td>Computer Name 예시 11</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">83%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">12</td>
-                            <td>IP 예시 12</td>
-                            <td>Computer Name 예시 12</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">77%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">13</td>
-                            <td>IP 예시 13</td>
-                            <td>Computer Name 예시 13</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">66%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">14</td>
-                            <td>IP 예시 14</td>
-                            <td>Computer Name 예시 14</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">66%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">15</td>
-                            <td>IP 예시 15</td>
-                            <td>Computer Name 예시 15</td>
-                            <td class="text-center">nnnnn/nnnnn MB</td>
-                            <td class="text-center">66%</td>
-                        </tr>
+{#                        {% endfor %}#}
                     </tbody>
+{#                    {% endif %}#}
                 </table>
             </div>
             <!--END card-body-->
