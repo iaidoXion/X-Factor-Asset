@@ -333,6 +333,7 @@ def DashboardData():
                 MemoryChartDataList = []
                 os_donutChartData = []
                 alarm_donutChartData = []
+                vendorChartList = []
 
                 # NC 대역벌 서버수량 chart
                 SBCQ = PDPI('statistics', 'today', 'group_server_count')
@@ -409,8 +410,9 @@ def DashboardData():
 
                 #물리서버 벤더별 수량 차트
                 venChart = PDPI('statistics', 'today', 'vendor')
-                vendorChartList = {"name": [venChart[0][0], venChart[1][0], venChart[2][0]],
-                                "value": [venChart[0][1], venChart[1][1], venChart[2][1]]}
+                for i in range(len(venChart)):
+                    vendorChartList.append({"name": venChart[i][0], "value": venChart[i][1]})
+
 
 
                 # IP 대역별 총 알람 수 차트

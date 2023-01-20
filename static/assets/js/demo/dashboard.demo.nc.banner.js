@@ -1318,6 +1318,12 @@ else {
 //--------------------------------------------------------------------------
 // physical server quantity - apexPhysicalServerChart
 //--------------------------------------------------------------------------
+var vendorValue = [];
+var vendorName = [];
+for (var i = 0; i < 3; i++){
+vendorValue.push(a.vendorChartList[i]['value']);
+vendorName.push(a.vendorChartList[i]['name']);
+};
 
 var apexPhysicalServerOptions = {
 		chart: {
@@ -1349,14 +1355,15 @@ var apexPhysicalServerOptions = {
 		},
 		colors: ["#f39c12", "#fdb43f", "#ffc365"],
 		series: [{
-			data: a.vendorChartList.value
+
+			data: vendorValue
 		}],
 		grid: {
 			show: true
 		},
 
 		xaxis: {
-			categories: a.vendorChartList.name,
+			categories: vendorName,
 			labels: {
 				show: true,
                 style: {
