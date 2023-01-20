@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import pandas as pd
 
 from web.model.Input.API import plug_in as IAPI
@@ -365,8 +367,6 @@ def DashboardData():
                     elif Usagechart[i][0].startswith('last_online'):
                         if Usagechart[i][1] == 'Yes':
                             alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": Usagechart[i][2]})
-                        else:
-                            alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
 
                 #데이터 검증 - 값이 0일 때 0 출력
                 def alarmCaseData(chart, case):
@@ -422,6 +422,41 @@ def DashboardData():
                     c.update(i)
                 alarm_donutChartDataList = [{key: value} for key, value in c.most_common()]
 
+                #GPU 서버 수량
+                GpuServerData = PDPI('statistics', 'today', 'gpu')
+                if GpuServerData[1][0] == 'YES' and GpuServerData[3][0] == 'YES':
+                    tValue = int(GpuServerData[1][1])
+                    yValue = int(GpuServerData[3][1])
+                roc = tValue - yValue
+                GpuServerDataList = {"value" : tValue, 'roc': roc}
+
+                #서버 최다 연결 IP
+                connectIpDataList = []
+                connectIpData = PDPI('statistics', 'today', 'ip')
+                for i in range(len(connectIpData)):
+                    if connectIpData[i][0].startswith('::'):
+                        break
+                    else:
+                        split = connectIpData[i][0].split(':')
+                        ip = split[0]
+                        host = split[1]
+                        connectIpDataList.append({'ip': ip, 'host': host, 'count': connectIpData[i][1]})
+
+                #세션 최다 연결 서버
+                connectServerDataList = []
+                connectServerData = PDPI('statistics_list', 'today', 'server')
+                for i in range(len(connectServerData)):
+                    connectServerDataList.append({'ip': connectServerData[i][0], 'name': connectServerData[i][1], 'count': connectServerData[i][2]})
+
+                #게이지 차트 사용량 더보기
+                #메모리 부분
+                memoryMoreDataList = []
+                memoryMore = PDPI('statistics_list', 'today', 'memoryMore')
+                for i in range(len(memoryMore)):
+                    if memoryMore[i][0] != 'unconfirmed' and not memoryMore[i][2].startswith('[current') and not memoryMore[i][3].startswith('[current') and memoryMore[i][4] != 'unconfirmed':
+                        count = math.trunc(float(memoryMore[i][4]))
+                        memoryMoreDataList.append({"ip": memoryMore[i][0], "name": memoryMore[i][1], "use": memoryMore[i][2], "total": memoryMore[i][3], "usage": count})
+
 
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
@@ -434,8 +469,11 @@ def DashboardData():
                 ACDL = alarmDataList
 
                 VCDL = vendorChartList
-
                 ADDLC = alarm_donutChartDataList
+                GSDL = GpuServerDataList
+                CIDL = connectIpDataList
+                CSDL = connectServerDataList
+                MMDL = []
 
             elif core == 'Zabbix':
                 print()
@@ -452,7 +490,11 @@ def DashboardData():
             "os_chartPartOne": OCPO,
             "os_chartPartTwo": OCPT,
             "vendorChartList": VCDL,
-            "alarm_donutChartData": ADDLC
+            "alarm_donutChartData": ADDLC,
+            "GpuServerDataList": GSDL,
+            "connectIpDataList": CIDL,
+            "connectServerDataList": CSDL,
+            "memoryMoreDataList": MMDL
 
         }
     else:
@@ -467,7 +509,7 @@ def DashboardData():
             "TotalTopDataList": TACT,
             "WorldMapDataList": WMCDL,
             "MiniDonutChart": MDRCC,
-            "donutChartDataList": DDLC,
+            "donutChartDataList": DDLC
         }
     return RD
 

@@ -443,22 +443,32 @@
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
+                    {% if chartData.GpuServerDataList %}
                     <div class="col-12 h-100px d-flex text-center align-content-center justify-content-center flex-md-column">
                         <div class="count-num">
-                            <span class="fw-bold text-opacity-60 fs-20px pe-3 pb-10px ">NNNN개</span>
+                            <span class="fw-bold text-opacity-60 fs-20px pe-3 pb-10px ">{{ chartData.GpuServerDataList.value }}개</span>
                             <div class="conNumImg" style="position: relative;">
+                                {% if chartData.GpuServerDataList.roc == 0 %}
                                 <a class="conNumIcon text-decoration-none"> - </a>
+                                {% elif chartData.GpuServerDataList.roc > 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowTop.png' %}"
-                                     style="position: absolute; left:0; top:0; visibility: hidden;">
-                                <img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}"
-                                     style="position: absolute; left:0; top:0; visibility: hidden;">
+                                    style="position: absolute; left:0; top:0; visibility: hidden;">
+                                {% else %}
+                                <img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
+                                {% endif %}
                             </div>
-                            <span class="conNum text-theme fw-bold">NN개
+                            <span class="conNum text-theme fw-bold">
+                            {% if chartData.GpuServerDataList.roc < 0 %}
+                            {% widthratio chartData.GpuServerDataList.roc 1 -1 %}개
+                            {% else %}
+                            {{ chartData.GpuServerDataList.roc }}개
+                            {% endif %}
                             </span>
                         </div>
                     </div>
                     <!-- END stat-lg -->
                 </div>
+                {% endif %}
                 <!-- END card-body -->
 
                 <!-- BEGIN card-arrow -->
@@ -488,30 +498,21 @@
                     <!-- BEGIN stat-lg -->
                     <div class="col-12 h-100px">
                         <!-- END stat-sm -->
+                        {% if chartData.connectIpDataList %}
                         <div class="fs-12px text-truncate text-white text-opacity-60">
                             <table class="table">
                                 <tbody>
+                                {% for data in chartData.connectIpDataList %}
                                 <tr>
-                                    <td>192.168.xx.xx</td>
-                                    <td>Host name 예시1</td>
-                                    <td>port 예시1</td>
-                                    <td>NN개</td>
+                                    <td>{{ data.ip }}</td>
+                                    <td>{{ data.host }}</td>
+                                    <td>{{ data.count }}</td>
                                 </tr>
-                                <tr>
-                                    <td>192.168.xx.xx</td>
-                                    <td>Host name 예시2</td>
-                                    <td>port 예시2</td>
-                                    <td>NN개</td>
-                                </tr>
-                                <tr>
-                                    <td>192.168.xx.xx</td>
-                                    <td>Host name 예시3</td>
-                                    <td>port 예시3</td>
-                                    <td>NN개</td>
-                                </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
+                        {% endif %}
                     </div>
                     <!-- END stat-lg -->
                 </div>
@@ -544,27 +545,21 @@
                     <!-- BEGIN stat-lg -->
                     <div class="col-12 h-100px">
                         <!-- END stat-sm -->
+                        {% if chartData.connectServerDataList %}
                         <div class="fs-12px text-truncate text-white text-opacity-60">
                             <table class="table">
                                 <tbody>
+                                {% for data in chartData.connectServerDataList %}
                                 <tr>
-                                    <td>192.168.xx.xx</td>
-                                    <td>Host name 예시1</td>
-                                    <td>NN개</td>
+                                    <td>{{ data.ip }}</td>
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.count }}</td>
                                 </tr>
-                                <tr>
-                                    <td>192.168.xx.xx</td>
-                                    <td>Host name 예시2</td>
-                                    <td>NN개</td>
-                                </tr>
-                                <tr>
-                                    <td>192.168.xx.xx</td>
-                                    <td>Host name 예시3</td>
-                                    <td>NN개</td>
-                                </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
+                        {% endif %}
                     </div>
                     <!-- END stat-lg -->
                 </div>

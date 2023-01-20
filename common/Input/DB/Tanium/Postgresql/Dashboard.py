@@ -1,3 +1,5 @@
+import math
+
 import psycopg2
 import json
 from datetime import datetime, timedelta
@@ -88,6 +90,51 @@ def plug_in(table, day, type):
                         and 
                             item NOT like '%TSE-Error%'
                     """
+            if day == 'memoryMore':
+                query = """
+                            select
+                                ipv_address, computer_name, ram_use_size, ram_total_size, ramusage
+                            from
+                                minutely_statistics_list
+                            where
+                                NOT ipv_address IN ('unconfirmed')
+                            and 
+                                NOT ramusage IN ('unconfirmed')
+                            and 
+                                ram_use_size NOT like '%[current%'
+                            and 
+                                ram_total_size NOT like '%[current%'
+                            and
+                                (ipv_address ||
+                                computer_name || 
+                                ram_use_size || 
+                                ram_total_size || 
+                                ramusage) like '%""" + type[2] + """%'
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+                        """
+            if day == 'count':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics_list
+                        where
+                                (ipv_address ||
+                                 computer_name || 
+                                 ram_use_size || 
+                                 ram_total_size || 
+                                 ramusage) like '%""" + type[2] + """%'
+                        and 
+                            NOT ipv_address IN ('unconfirmed')
+                        and 
+                            NOT ramusage IN ('unconfirmed')
+                        and 
+                            ram_use_size NOT like '%[current%'
+                        and 
+                            ram_total_size NOT like '%[current%'
+                """
+
             if day == 'today':
                 if type == '':
                     query = """ 
@@ -188,6 +235,7 @@ def plug_in(table, day, type):
                         order by
                             item asc 
                     """
+                #물리서버 벤더별 수량
                 elif type == 'vendor':
                     query = """
                         select
@@ -216,7 +264,33 @@ def plug_in(table, day, type):
                                 AND item != 'unconfirmed'
                                 and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'                               
                         """
-
+                elif type == 'gpu':
+                    query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification = 'nvidia_smi'
+                            union all
+                            select
+                                item, item_count
+                            from
+                                daily_statistics
+                            where
+                                classification = 'nvidia_smi' and to_char(statistics_collection_date, 'YYYY-MM-DD') = '"""+ yesterday +"""'
+                    """
+                elif type == 'ip':
+                    query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification = 'session_ip' and item != 'NO'
+                            order by
+                                item_count::INTEGER desc limit 3
+                    """
             # NC 서버 총 수량 추이 그래프(30일)
             if day == 'monthly':
                 if type == 'asset':
@@ -350,6 +424,24 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics_list
                     """
+                elif type == 'server':
+                    query = """
+                        select
+                            ipv_address, computer_name, session_ip_count
+                        from
+                            minutely_statistics_list
+                        order by
+                            session_ip_count::INTEGER desc limit 3
+                    """
+                elif type == 'memoryMore':
+                    query = """
+                        select
+                            ipv_address, computer_name, ram_use_size, ram_total_size, ramusage
+                        from
+                            minutely_statistics_list
+                        order by
+                            ramusage desc
+                    """
             if day == 'yesterday':
                 if type == 'DUS':
                     query = """
@@ -371,8 +463,21 @@ def plug_in(table, day, type):
                     """
         Cur.execute(query)
         RS = Cur.fetchall()
-        for R in RS:
-            SDL.append(R)
+        for i, R in enumerate(RS, start=1):
+            if day == 'memoryMore':
+                index = (int(type[1]) - 1) * 10 + i
+                SDL.append(dict(
+                                (
+                                    ('index', index),
+                                    ('ip', R[0]),
+                                    ('name', R[1]),
+                                    ('use', R[2]),
+                                    ('total', R[3]),
+                                    ('usage', math.trunc(float(R[4])))
+                                )
+                ))
+            else:
+                SDL.append(R)
         return SDL
     except:
         print(table + type + day + ' Daily Table connection(Select) Failure')
