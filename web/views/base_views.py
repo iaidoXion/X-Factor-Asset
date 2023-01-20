@@ -52,12 +52,15 @@ def dashboard(request):
             os_chartPartTwo = DCDL["os_chartPartTwo"]
             vendorChartList = DCDL["vendorChartList"]
             alarm_donutChartData = DCDL["alarm_donutChartData"]
+            bannerData = DCDL["bannerDataList"]
+            WorldMapData = DCDL["WorldMapDataList"]
             GpuServerDataList = DCDL["GpuServerDataList"]
             connectIpDataList = DCDL["connectIpDataList"]
             connectServerDataList = DCDL["connectServerDataList"]
             chartData = {'DiskChartDataList': DiskChartDataList, 'donutChartDataList': service_donutChartData, 'MemoryChartDataList': MemoryChartDataList, 'CpuChartDataList': CpuChartDataList,
                         'os_donutChartData': os_donutChartData, 'server_barChartDataList': server_barChartData, "server_LChartDataList": server_LChartDataList, "alamCaseDataList": alamCaseDataList,
                         "os_chartPartOne": os_chartPartOne, "os_chartPartTwo": os_chartPartTwo, "vendorChartList": vendorChartList, "alarm_donutChartData": alarm_donutChartData,
+                        "bannerDataList": bannerData, "WorldMapDataList": WorldMapData,
                         "GpuServerDataList": GpuServerDataList, "connectIpDataList": connectIpDataList, "connectServerDataList": connectServerDataList}
 
             returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse}
@@ -154,7 +157,6 @@ def osVersion_moreInfo(request):
     os_donutChartData = DCDL["os_donutChartData"]
     returnData = {'menuList': menuListDB, 'data': os_donutChartData}
     return render(request, 'popup/osVersion_moreInfo.html', returnData)
-
 
 def serverBandBy_moreInfo(request):
     server_barChartData = DCDL["server_BChartDataList"]

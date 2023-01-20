@@ -6,6 +6,7 @@ from web.model.Input.API import plug_in as IAPI
 from common.Transform.Dataframe import alarmCase as ACDF
 from common.Transform.Dataframe import usage as USDF
 from common.Transform.Dataframe import worldMap as WDDF
+from common.Transform.Dataframe import worldMapNC as WDDFNC
 from common.Transform.Dataframe import radar as RDDF
 from common.Transform.Dataframe import chart as CTDF
 from common.Input.DB.Tanium.Postgresql.Dashboard import plug_in as PDPI
@@ -305,7 +306,6 @@ def DashboardData():
                 #radar chart
                 RCList = RDDF(ACDT)
                 RACA = {'nodeDataList': RDL + RCList}
-                print(RACA)
 
                 BDL = BChartDataList
                 LDL = LChartDataList
@@ -419,10 +419,23 @@ def DashboardData():
                 Achart = PDPI('statistics', 'today', 'group_alarm')
                 for i in range(len(Achart)):
                     alarm_donutChartData.append({Achart[i][0]: int(Achart[i][1])})
-                c = Counter()
+                alarmCounter = Counter()
                 for i in alarm_donutChartData:
-                    c.update(i)
-                alarm_donutChartDataList = [{key: value} for key, value in c.most_common()]
+                    alarmCounter.update(i)
+                alarm_donutChartDataList = [{key: value} for key, value in alarmCounter.most_common()]
+
+                # 배너 슬라이드
+                BNY = PDPI('statistics', 'yesterday', 'bannerNC')   #daily statistics에서 날짜가 어제인 data호출(running service, session ip, group 제외)
+                TSDLY = TDBA(BNY, 'yetodayNC')
+                BNT = PDPI('statistics', 'today', 'bannerNC')
+                TSDLT = TDBA(BNT, 'yetodayNC')
+                SBNDL = ASDC(TSDLY, TSDLT)          #value_x=어제자 데이터, value_y=오늘자 데이터
+                BNChartDataList = TDCD(SBNDL, 'bannerNC')
+
+                # worldmap data
+                WMAC = WDDFNC(Achart)
+                WMCDL = [WMAC]
+
 
                 #GPU 서버 수량
                 GpuServerData = PDPI('statistics', 'today', 'gpu')
@@ -469,9 +482,9 @@ def DashboardData():
                 DDLC = service_donutChartData
                 UCDL = USCDL
                 ACDL = alarmDataList
-
                 VCDL = vendorChartList
                 ADDLC = alarm_donutChartDataList
+                BNDL = BNChartDataList
                 GSDL = GpuServerDataList
                 CIDL = connectIpDataList
                 CSDL = connectServerDataList
@@ -493,11 +506,12 @@ def DashboardData():
             "os_chartPartTwo": OCPT,
             "vendorChartList": VCDL,
             "alarm_donutChartData": ADDLC,
+            "bannerDataList":BNDL,
+            "WorldMapDataList": WMCDL
             "GpuServerDataList": GSDL,
             "connectIpDataList": CIDL,
             "connectServerDataList": CSDL,
             "memoryMoreDataList": MMDL
-
         }
     else:
         RD = {

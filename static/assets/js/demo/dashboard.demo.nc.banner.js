@@ -1211,6 +1211,10 @@ if (a.alarm_donutChartData.length >= 5){
     alarmName.push(Object.keys(a.alarm_donutChartData[i]));
     };
     }
+else if (a.alarm_donutChartData.length == 0){
+    alarmValue.push(0);
+    alarmName.push('-');
+}
 else {
     for (var i = 0; i < a.alarm_donutChartData.length; i++){
     alarmValue.push(Object.values(a.alarm_donutChartData[i]));
@@ -1479,8 +1483,8 @@ svg.selectAll("circle")
                     "stroke-opacity": .5,
                     "stroke-width": 0,
                     "r":1,
-                    "opacity": 0.14,
-                    "fill-opacity":0.14
+                    "opacity": 0.74,
+                    "fill-opacity":0.74
                 })
                 .transition()
                 .duration(6000)

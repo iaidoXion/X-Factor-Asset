@@ -81,6 +81,8 @@ def plug_in(table, day, type):
                             NOT classification IN ('installed_applications')
                         and
                             NOT classification IN ('running_service')
+                        and
+                            NOT classification IN ('session_ip')
                         and 
                             classification NOT like '%group_%'
                         and
@@ -90,6 +92,19 @@ def plug_in(table, day, type):
                         and 
                             item NOT like '%TSE-Error%'
                     """
+
+                if type == 'bannerNC':
+                    query = """
+                        select 
+                            classification, item, item_count, statistics_collection_date
+                        from
+                            daily_statistics
+                        where 
+                            classification in ('online_asset', 'virtual', 'os', 'group_server_count')
+                            and NOT item IN ('unconfirmed')
+                            and to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'                  
+                    """
+
             if day == 'memoryMore':
                 query = """
                             select
@@ -135,6 +150,7 @@ def plug_in(table, day, type):
                             ram_total_size NOT like '%[current%'
                 """
 
+
             if day == 'today':
                 if type == '':
                     query = """ 
@@ -146,6 +162,8 @@ def plug_in(table, day, type):
                             NOT classification IN ('installed_applications')
                         and
                             NOT classification IN ('running_processes')
+                        and
+                            NOT classification IN ('session_ip')
                         and 
                             classification NOT like '%group_%'
                         and
@@ -186,7 +204,7 @@ def plug_in(table, day, type):
                         select item, item_count from 
                         minutely_statistics
                         where 
-                            classification = 'operating_system' 
+                            classification = 'operating_system' AND item != 'unconfirmed'
                         and 
                             statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by item_count::INTEGER desc limit 8
@@ -285,8 +303,20 @@ def plug_in(table, day, type):
                                 'group_cpu_usage_exceeded',
                                 'group_drive_usage_size_exceeded')
                                 AND item != 'unconfirmed'
-                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'                               
-                        """
+                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            """
+                elif type == 'bannerNC':
+                    query = """
+                            select 
+                                classification, item, item_count, statistics_collection_date
+                            from
+                                minutely_statistics
+                            where 
+                                classification in ('online_asset', 'virtual', 'os', 'group_server_count')
+                                AND item != 'unconfirmed'
+                                and NOT item IN ('unconfirmed')
+                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            """
                 elif type == 'gpu':
                     query = """
                             select

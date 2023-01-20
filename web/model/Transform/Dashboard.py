@@ -75,6 +75,23 @@ def banner(data, type):
             # elif data[i][0] == 'ram_use_size':
             #     name = 'RAM Usage Exceeded'
             DFDL.append([name, data[i][2]])
+        elif type =='yetodayNC':
+            if data[i][0] == "online_asset":
+                name = "Online Asset"
+            elif data[i][0] == "virtual" and data[i][1] == 'Yes':
+                name = "Virtual"
+            elif data[i][0] == "virtual" and data[i][1] == 'No':
+                name = "Physical"
+            elif data[i][0] == "os" and data[i][1] == 'Windows':
+                name = "Windows"
+            elif data[i][0] == "os" and data[i][1] == 'Linux':
+                name = "Linux"
+            elif data[i][0] == "group_server_count":
+                name = data[i][1]
+            else:
+                continue
+            DFDL.append([name, data[i][2]])
+
 
     RD = pd.DataFrame(DFDL, columns=DFCNM)
     return RD
@@ -298,5 +315,9 @@ def chart_data(data, type):
     elif type == 'Pie':
         x = sorted(ChartDataList, key=lambda x: x['value'], reverse=True)[0:3]
         ChartDataList = x
+    # NC 배너 슬라이드
+    elif type == 'bannerNC':
+        for i in range(len(data['name'])):
+            ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc": data['ROC'][i]})
     RD = ChartDataList
     return RD
