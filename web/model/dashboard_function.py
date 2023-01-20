@@ -507,7 +507,7 @@ def DashboardData():
             "vendorChartList": VCDL,
             "alarm_donutChartData": ADDLC,
             "bannerDataList":BNDL,
-            "WorldMapDataList": WMCDL
+            "WorldMapDataList": WMCDL,
             "GpuServerDataList": GSDL,
             "connectIpDataList": CIDL,
             "connectServerDataList": CSDL,
