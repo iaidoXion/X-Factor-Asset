@@ -10622,6 +10622,11 @@ fieldset:disabled .btn {
     width: 40% !important
 }
 
+.w-45 {
+    width: 45% !important
+}
+
+
 .w-50 {
     width: 50% !important
 }
@@ -11046,6 +11051,10 @@ fieldset:disabled .btn {
 
 .mb-5 {
     margin-bottom: 3rem !important
+}
+
+.mb-6 {
+    margin-bottom: 3.5rem !important
 }
 
 .mb-auto {
@@ -12657,6 +12666,11 @@ fieldset:disabled .btn {
     .px-sm-1 {
         padding-right: 0.25rem !important;
         padding-left: 0.25rem !important
+    }
+
+    .px-sm-2 {
+        padding-right: 0.5rem !important;
+        padding-left: 0.5rem !important
     }
 
     .px-sm-2 {
@@ -18566,6 +18580,9 @@ fieldset:disabled .btn {
     line-height: 1 !important
 }
 
+.lh-10px {
+    line-height: 10px !important
+}
 .w-5px {
     width: 5px !important
 }
@@ -18640,6 +18657,10 @@ fieldset:disabled .btn {
 
 .w-50px {
     width: 50px !important
+}
+
+.w-57px {
+    width: 57px !important
 }
 
 .w-10px {
@@ -30325,7 +30346,7 @@ body .note-modal-backdrop {
 
 /* BEGIN  documentation header */
 .documentation-header{
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 600;
     color: #fff;
 }
@@ -30374,5 +30395,9 @@ body .note-modal-backdrop {
 }
 /* END 원 직접 만들기 */
 
-
+/* 유저 가이드 이미지 */
+.userguide-img{
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, .5);
+}
 
