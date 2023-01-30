@@ -1212,7 +1212,7 @@ if (a.alarm_donutChartData.length >= 5){
     };
     }
 else if (a.alarm_donutChartData.length == 0){
-    alarmValue.push(0);
+    alarmValue.push('-');
     alarmName.push('-');
 }
 else {
@@ -1324,10 +1324,16 @@ else {
 //--------------------------------------------------------------------------
 var vendorValue = [];
 var vendorName = [];
-for (var i = 0; i < 3; i++){
-vendorValue.push(a.vendorChartList[i]['value']);
-vendorName.push(a.vendorChartList[i]['name']);
+if (a.vendorChartList.length >= 3) {
+    for (var i = 0; i < 3; i++){
+    vendorValue.push(a.vendorChartList[i]['value']);
+    vendorName.push(a.vendorChartList[i]['name']);
 };
+}
+else if (a.vendorChartList.length == 0) {
+    vendorValue.push(0);
+    vendorName.push('-');
+}
 
 var apexPhysicalServerOptions = {
 		chart: {
@@ -1611,8 +1617,8 @@ function translateCircle(datum, index)
                     "stroke-opacity": .5,
                     "stroke-width": 0,
                     "r":1,
-                    "opacity": 0.14,
-                    "fill-opacity":0.14
+                    "opacity": 0.74,
+                    "fill-opacity":0.74
                 })
                 .transition()
                 .duration(6000)
@@ -1741,8 +1747,8 @@ svg.selectAll("circle")
                     "stroke-opacity": .5,
                     "stroke-width": 0,
                     "r":1,
-                    "opacity": 0.14,
-                    "fill-opacity":0.14
+                    "opacity": 0.74,
+                    "fill-opacity":0.74
                 })
                 .transition()
                 .duration(6000)
@@ -1886,8 +1892,8 @@ function seoulMap(worldMapData) {
                     "stroke-opacity": .5,
                     "stroke-width": 0,
                     "r":1,
-                    "opacity": 0.14,
-                    "fill-opacity":0.14
+                    "opacity": 0.74,
+                    "fill-opacity":0.74
                 })
                 .transition()
                 .duration(6000)

@@ -453,7 +453,7 @@
                                 {% elif chartData.GpuServerDataList.roc > 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowTop.png' %}"
                                     style="position: absolute; left:0; top:0; visibility: hidden;">
-                                {% else %}
+                                {% elif chartData.GpuServerDataList.roc < 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
                                 {% endif %}
                             </div>
@@ -600,9 +600,11 @@
                                             {% elif bannerData.roc > 0 %}
                                             <img class="conArrow"
                                                  src="{% static 'img/common/dashboard/arrowTop.png' %}">
-                                            {% else %}
+                                            {% elif bannerData.roc < 0 %}
                                             <img class="conArrow"
                                                  src="{% static 'img/common/dashboard/arrowBot.png' %}">
+                                            {% else %}
+                                            <a class="conNumIcon text-decoration-none"> - </a>
                                             {% endif %}
                                         </div>
                                         <span class="conNum text-theme fw-bold">
