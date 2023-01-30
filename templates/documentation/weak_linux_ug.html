@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN content -->
+<div id="content" class="app-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 fs-18px">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- BEGIN weak_windows -->
+                        <div id="weak_linux">
+                            <p class="documentation-header">Linux 취약점 진단</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>
+                                            Linux 취약점의 번호, 분류, 항목, 설명, 취약한 linux 자산 수를 표출합니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/weak-linux.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END weak_windows -->
+                        <!-- BEGIN weak-detail-windows -->
+                        <div id="weak-detail-linux">
+                            <p class="documentation-header">Linux 취약점 상세</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>각 진단항목을 클릭할 경우, 취약한 linux 자산들을 리스트 형식으로 표출합니다.</li>
+                                        <li>
+                                            상세페이지는 분류, 진단 항목, 해당 항목 설명, 판단기준을 표출합니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/weak-linux-detail.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END weak-detail-windows -->
+                    </div>
+                    <div class="w-auto">
+                        <nav class="navbar navbar-sticky d-none d-xl-block">
+                            <nav class="nav">
+                                <a class="nav-link fs-16px" href="#weak_linux" data-toggle="scroll-to">취약점 진단</a>
+                                <a class="nav-link fs-16px" href="#weak-detail-linux" data-toggle="scroll-to">취약점 상세</a>
+                            </nav>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END content -->
+
+{% endblock %}

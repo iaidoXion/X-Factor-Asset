@@ -183,7 +183,7 @@
                         </button>
                         <div class="btn-group mb-3">
                             <button type="button" id="btn-memory" class="mcdBtn btn btn-outline-warning btn-sm active">메모리</button>
-                            <button type="button" id="btn-cpu" class="mcdBtn btn btn-outline-warning btn-sm ">CPU</button>
+                            <button type="button" id="btn-cpu" class="mcdBtn btn btn-outline-warning btn-sm w-57px">CPU</button>
                             <button type="button" id="btn-disk" class="mcdBtn btn btn btn-outline-warning btn-sm">디스크</button>
                         </div>
                         <!-- END title -->
@@ -446,18 +446,18 @@
                     {% if chartData.GpuServerDataList %}
                     <div class="col-12 h-100px d-flex text-center align-content-center justify-content-center flex-md-column">
                         <div class="count-num">
-                            <span class="fw-bold text-opacity-60 fs-20px pe-3 pb-10px ">{{ chartData.GpuServerDataList.value }}개</span>
+                            <span class="fw-bold text-opacity-60 fs-35px pe-3 pb-10px ">{{ chartData.GpuServerDataList.value }}개</span>
                             <div class="conNumImg" style="position: relative;">
                                 {% if chartData.GpuServerDataList.roc == 0 %}
-                                <a class="conNumIcon text-decoration-none"> - </a>
+                                <a class="conNumIcon text-decoration-none fs-25px"> - </a>
                                 {% elif chartData.GpuServerDataList.roc > 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowTop.png' %}"
                                     style="position: absolute; left:0; top:0; visibility: hidden;">
-                                {% else %}
+                                {% elif chartData.GpuServerDataList.roc < 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
                                 {% endif %}
                             </div>
-                            <span class="conNum text-theme fw-bold">
+                            <span class="conNum text-theme fw-bold fs-25px">
                             {% if chartData.GpuServerDataList.roc < 0 %}
                             {% widthratio chartData.GpuServerDataList.roc 1 -1 %}개
                             {% else %}
@@ -492,18 +492,18 @@
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
                     <div class="d-flex fw-bold small">
-                        <div class="flex-grow-1">서버 최다 연결 IP (상위 3개)</div>
+                        <div class="flex-grow-1 text-opacity-75">서버 최다 연결 IP (상위 3개)</div>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
                     <div class="col-12 h-100px">
                         <!-- END stat-sm -->
                         {% if chartData.connectIpDataList %}
-                        <div class="fs-12px text-truncate text-white text-opacity-60">
-                            <table class="table">
+                        <div class="fs-12px">
+                            <table class="table w-90 text-truncate text-white text-opacity-60" style="margin: 0 auto; vertical-align: middle;">
                                 <tbody>
                                 {% for data in chartData.connectIpDataList %}
-                                <tr>
+                                <tr class="text-opacity-60">
                                     <td>{{ data.ip }}</td>
                                     <td>{{ data.host }}</td>
                                     <td>{{ data.count }}</td>
@@ -539,15 +539,15 @@
                 <div class="card-body h-150px">
                     <!-- BEGIN title -->
                     <div class="d-flex fw-bold small">
-                        <div class="flex-grow-1">세션 최다 연결 서버 (상위 3개)</div>
+                        <div class="flex-grow-1 text-opacity-75">세션 최다 연결 서버 (상위 3개)</div>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
                     <div class="col-12 h-100px">
                         <!-- END stat-sm -->
                         {% if chartData.connectServerDataList %}
-                        <div class="fs-12px text-truncate text-white text-opacity-60">
-                            <table class="table">
+                        <div class="fs-12px  ">
+                            <table class="table w-90 text-truncate text-white text-opacity-60" style="margin: 0 auto; vertical-align: middle;">
                                 <tbody>
                                 {% for data in chartData.connectServerDataList %}
                                 <tr>
@@ -600,9 +600,11 @@
                                             {% elif bannerData.roc > 0 %}
                                             <img class="conArrow"
                                                  src="{% static 'img/common/dashboard/arrowTop.png' %}">
-                                            {% else %}
+                                            {% elif bannerData.roc < 0 %}
                                             <img class="conArrow"
                                                  src="{% static 'img/common/dashboard/arrowBot.png' %}">
+                                            {% else %}
+                                            <a class="conNumIcon text-decoration-none"> - </a>
                                             {% endif %}
                                         </div>
                                         <span class="conNum text-theme fw-bold">

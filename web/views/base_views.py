@@ -449,17 +449,17 @@ def dashboard_etc_ug(request):
     returnData = {'menuList': menuListDB}
     return render(request, 'documentation/dashboard_etc_ug.html', returnData)
 
-def weakness_public_ug(request):
+def weak_public_ug(request):
     returnData = {'menuList': menuListDB}
-    return render(request, 'documentation/weakness_public_ug.html', returnData)
+    return render(request, 'documentation/weak_public_ug.html', returnData)
 
-def weakness_windows_ug(request):
+def weak_windows_ug(request):
     returnData = {'menuList': menuListDB}
-    return render(request, 'documentation/weakness_windows_ug.html', returnData)
+    return render(request, 'documentation/weak_windows_ug.html', returnData)
 
-def dashboard_linux_ug(request):
+def weak_linux_ug(request):
     returnData = {'menuList': menuListDB}
-    return render(request, 'documentation/dashboard_linux_ug.html', returnData)
+    return render(request, 'documentation/weak_linux_ug.html', returnData)
 
 def setting_ug(request):
     returnData = {'menuList': menuListDB}

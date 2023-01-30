@@ -14,6 +14,18 @@
                             <p class="documentation-header">Bar 차트</p>
                             <div class="card mb-5">
                                 <div class="card-body">
+                                    <span>•현재 보유한 자산의 항목별 수를 bar 차트로 표출합니다. (상위 5개)</span><br>
+                                    <span>•해당 차트는 다음과 같이 수행합니다.</span>
+                                    <ol class="mb-auto">
+                                        <li>
+                                            Bar 위로 커서를 이동할 경우, 각 항목별로 항목명과 수를 툴팁으로 표출합니다.
+                                            <div class="h-10px"></div>
+                                            <div class="d-flex">
+                                                <img class="userguide-img" src="/static/img/X-Factor_documentation/bar-length-chart.png">
+                                                <img class="userguide-img" src="/static/img/X-Factor_documentation/bar-width-chart.png">
+                                            </div>
+                                        </li>
+                                    </ol>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>
@@ -29,6 +41,26 @@
                             <p class="documentation-header">Line 차트</p>
                             <div class="card mb-5">
                                 <div class="card-body">
+                                    <span>•최근 일 단위로 자산의 항목별 수에 변화 추이를 Line 차트로 표출합니다.</span><br>
+                                    <span>•해당 차트는 다음과 같이 수행합니다.</span>
+                                    <ol class="mb-auto">
+                                        <li>line 위로 커서를 이동할 경우, 각 항목별 자산 수를 툴팁으로 표출합니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-mouse-over.png">
+                                        </li>
+                                        <li>line 차트 영역중 일부 기간을 지정(drag)할 경우 지정된 일자의 그래프를 볼 수 있습니다
+                                        <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-drag.png">
+                                            <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-enlargement.png">
+                                        </li>
+                                        <li>전체 영역을 다시 지정(drag)하면 원래 상태로 돌아갑니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-drag-all.png">
+                                            <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
+                                            <img class="userguide-img " src="/static/img/X-Factor_documentation/line-chart-reduction.png">
+                                        </li>
+                                    </ol>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>
@@ -44,6 +76,17 @@
                             <p class="documentation-header">원형 차트</p>
                             <div class="card mb-5">
                                 <div class="card-body">
+                                    <span>•전체 자산에서 각 항목별 수의 비율을 Pie 또는 Donut 차트로 표출합니다. (상위 3개)</span><br>
+                                    <span>•해당 차트는 다음과 같이 수행합니다.</span>
+                                    <ol class="mb-auto">
+                                        <li>차트 영역에 커서를 이동할 경우, 각 항목별로 항목명과 수를 툴팁으로 표출합니다. </li>
+                                        <li>차트 영역을 클릭할 경우, 클릭한 영역을 확대하여 강조합니다.
+                                            <div class="d-flex ">
+                                                <img class="userguide-img" src="/static/img/X-Factor_documentation/circle-chart1.png">
+                                                <img class="userguide-img" src="/static/img/X-Factor_documentation/circle-chart2.png">
+                                            </div>
+                                        </li>
+                                    </ol>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>
@@ -59,6 +102,16 @@
                             <p class="documentation-header">게이지 차트</p>
                             <div class="card mb-5">
                                 <div class="card-body">
+                                    <span>•현재 보유한 자산의 현재 상태를 Gauge 차트로 표출합니다.</span><br>
+                                    <span>•차트 내부에는 비율 및 수량을 표시합니다.</span><br>
+                                    <span>•해당 차트는 다음과 같이 수행합니다.</span>
+                                    <ol class="mb-auto">
+                                        <li>좌측 상단 탭을 클릭할 경우, 각 차트의 상태 비율 및 수량이 표출합니다. </li>
+                                        <li>현재 차트의 상태 비율은 95%, 75%, 60% 이상 사용중인 자산의 수를 나타냅니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/gauge-chart.png">
+                                        </li>
+                                    </ol>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>
@@ -74,6 +127,26 @@
                             <p class="documentation-header">레이더 차트</p>
                             <div class="card mb-5">
                                 <div class="card-body">
+                                    <span>•감지된 유휴 자산 판별 케이스를 7가지로 나누어 연관관계를 Radar 차트로 표출합니다. </span><br>
+                                    <span>•감지된 알람 케이스는 아래와 같습니다.</span>
+                                    <ul class="mb-10px fs-14px">
+                                        <li>No Login History : 마지막 로그인 일자 6개월 초과</li>
+                                        <li>Drive Size No Change : 드라이브 사용량 변화가 없는 자산</li>
+                                        <li>Listen Port No Change : Listen 상태 포트 수 변화가 없는 자산</li>
+                                        <li>Established Port No Change : Established된 포트 수 변화가 없는 자산</li>
+                                        <li>Ram Usage Exceeded : RAM 사용량이 60% 초과</li>
+                                        <li>Cpu Usage Exceeded : Cpu 사용량이 60% 초과 </li>
+                                        <li>Running Process Exceeded : 실행 중인 프로세스가 100개 이상</li>
+                                    </ul>
+                                    <span>•해당 차트는 다음과 같이 수행합니다.</span>
+                                    <ol class="mb-auto">
+                                        <li>레이더 차트 하단의 레전드 위에 커서를 이동하거나 클릭할 경우 그룹을 활성화 또는 비활성화 함으로 원하는 그룹의 연관관계만 볼 수 있습니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/rader-chart-default.png">
+                                            <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/rader-chart-change.png">
+                                        </li>
+                                    </ol>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>
@@ -89,6 +162,25 @@
                             <p class="documentation-header">지도 차트</p>
                             <div class="card mb-5">
                                 <div class="card-body">
+                                    <span>•감지된 장애 징후들이 지도에서 알람으로 표출합니다.</span><br>
+                                    <span>•해당 차트는 다음과 같이 수행합니다.</span>
+                                    <ol class="mb-auto">
+                                        <li>지도 차트 우측 상단에 [세계], [국내], [지역] 탭을 통해 지도를 바꿀 수 있습니다.</li>
+                                        <li>지도 차트 우측 상단에 [+], [-] 버튼을 클릭하여 지도를 확대, 축소가 가능합니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/map-chart-1-2.png">
+                                        </li>
+                                        <li>확대 시 커서로 잡고 이동함으로 지도의 좌표를 이동시킬 수 있습니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/map-chart-drag.png">
+                                        </li>
+                                        <li>지도 차트 우측 상단에 확장(expand) 아이콘을 통해 화면 전체에 맵 차트를 띄울 수 있습니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/map-chart-4-1.png">
+                                            <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/map-chart-4-2.png">
+                                        </li>
+                                    </ol>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>
@@ -103,7 +195,7 @@
                     <div class="w-auto">
                         <nav class="navbar navbar-sticky d-none d-xl-block">
                             <nav class="nav">
-                                <a class="nav-link fs-16px" href="#dashboard-barchart" data-toggle="scroll-to">bar 차트</a>
+                                <a class="nav-link fs-16px" href="#dashboard-barchart" data-toggle="scroll-to">Bar 차트</a>
                                 <a class="nav-link fs-16px" href="#dashboard-linechart" data-toggle="scroll-to">Line 차트</a>
                                 <a class="nav-link fs-16px" href="#dashboard-circlechart" data-toggle="scroll-to">원형 차트</a>
                                 <a class="nav-link fs-16px" href="#dashboard-gaugechart" data-toggle="scroll-to">게이지 차트</a>

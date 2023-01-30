@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN content -->
+<div id="content" class="app-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 fs-18px">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <!-- BEGIN weak-public-tab -->
+                        <div id="weak-public-tab">
+                            <p class="documentation-header">탭 기능</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>취약점 우측 상단에 [Windows], [Linux] 탭을 통해 Windows와 Linux 취약점을 볼 수 있습니다.
+                                        <div class="h-10px"></div>
+                                        <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/weak-public-tab-1-1.png">
+                                        <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
+                                        <img class="userguide-img" src="/static/img/X-Factor_documentation/weak-public-tab-1-2.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END weak-public-tab -->
+                        <!-- BEGIN weak-public-select -->
+                        <div id="weak-public-select">
+                            <p class="documentation-header">검색 기능</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>검색 기능을 통해 원하는 취약점 항목만을 표출합니다.</li>
+                                        <li>취약점 항목 이름 또는 일자의 키워드를 입력하여 검색이 가능합니다.
+                                        <div class="h-10px"></div>
+                                        <img class="userguide-img" src="/static/img/X-Factor_documentation/weak-public-select.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END weak-public-select -->
+                        <!-- BEGIN weak-public-detail-page -->
+                        <div id="weak-public-detail-page">
+                            <p class="documentation-header">상세 페이지 이동</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>진단 항목을 클릭할 경우, 해당 항목의 상세 페이지로 이동합니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/weak-public-detail-1-1.png">
+                                            <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/weak-public-detail-1-2.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END weak-public-detail-page -->
+                        <!-- BEGIN weak-public-good-weak -->
+                        <div id="weak-public-good-weak">
+                            <p class="documentation-header">양호 / 취약 툴팁</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>
+                                            취약점의 판단기준 아이콘에 마우스 커서를 이동할 경우, 진단 항목의 양호 및 취약 판단기준이 툴팁으로 표출됩니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/weak-public-tooltip.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END weak-public-good-weak -->
+                    </div>
+                    <div class="w-auto">
+                        <nav class="navbar navbar-sticky d-none d-xl-block">
+                            <nav class="nav">
+                                <a class="nav-link fs-16px" href="#weak-public-tab" data-toggle="scroll-to">탭 기능</a>
+                                <a class="nav-link fs-16px" href="#weak-public-select" data-toggle="scroll-to">검색 기능</a>
+                                <a class="nav-link fs-16px" href="#weak-public-detail-page" data-toggle="scroll-to">상세 페이지 이동</a>
+                                <a class="nav-link fs-16px" href="#weak-public-good-weak" data-toggle="scroll-to">양호 / 취약 툴팁</a>
+                            </nav>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END content -->
+
+{% endblock %}
