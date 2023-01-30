@@ -72,7 +72,14 @@
 
 <body class="theme-orange">
     {% if request.path == '/osVersion_moreInfo/' or request.path == '/serverBandBy_moreInfo/' or request.path == '/runningService_moreInfo/' or request.path == '/memory_moreInfo/' or request.path == '/cpu_moreInfo/' or request.path == '/disk_moreInfo/' or request.path == '/physicalServer_moreInfo/' or request.path == '/gpuServer_moreInfo/' or request.path == '/alarmCase_moreInfo/' %}
+    {% elif request.path == '/documentation_ug/' or request.path == '/specification_ug/' or request.path == '/start_ug/' or request.path == '/dashboard_public_ug/' or request.path == '/dashboard_chart_ug/' or request.path == '/dashboard_etc_ug/' or request.path == '/weak_public_ug/' or request.path == '/weak_windows_ug/' or request.path == '/weak_linux_ug/' or request.path == '/report_public_ug/' or request.path == '/report_all_ug/' or request.path == '/technical_support_ug/' or request.path == '/faq_ug/' or request.path == '/setting_ug/' %}
+    <div class="app">
+      <!-- 네비게이션바 -->
+      {% include "navbar.html" %}
+      <!-- 사이드바 -->
+      {% include "documentation-sidebar.html" %}
     {% else %}
+    </div>
   <!-- BEGIN #app -->
     <div id="app" class="app app-sidebar-collapsed">
         <!-- 네비게이션바 -->
@@ -80,12 +87,11 @@
         <!-- 사이드바 -->
         {% include "sidebar.html" %}
     {% endif %}
-
     <!-- 기본 템플릿 안에 삽입될 내용 Start -->
     {% block content %}
     {% endblock %}
     <!-- 기본 템플릿 안에 삽입될 내용 End -->
-  </div>
+    </div>
   <!-- END #app -->
   <!-- Bootstrap JS -->
   <script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>

@@ -9,11 +9,18 @@
             <div class="col-xl-12 fs-18px">
                 <div class="row">
                     <div class="col-xl-10">
-                        <!-- BEGIN X-Factor-specification -->
-                        <div id="X-Factor-defult">
-                            <p class="documentation-header">베이스 제목</p>
+                        <!-- BEGIN report-public-tab -->
+                        <div id="report-public-tab">
+                            <p class="documentation-header">일/별 보고서</p>
                             <div class="card mb-5">
                                 <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>생성된 일/별 보고서의 리스트가 표출합니다.</li>
+                                        <li>일/별 보고서의 형태는 아래 이미지와 같습니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/report-daily.png">
+                                        </li>
+                                    </ol>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>
@@ -23,12 +30,60 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- END X-Factor-specification -->
+                        <!-- END report-public-tab -->
+                        <!-- BEGIN report-public-select -->
+                        <div id="report-public-select">
+                            <p class="documentation-header">주/별 보고서</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>생성된 주/별 보고서의 리스트가 표로 표출합니다.</li>
+                                        <li>
+                                            주/별 보고서의 형태는 아래 이미지와 같습니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/report-monthly.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END report-public-select -->
+                        <!-- BEGIN report-public-download -->
+                        <div id="report-public-download">
+                            <p class="documentation-header">월/별 보고서</p>
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <ol class="mb-auto">
+                                        <li>생성된 월/별 보고서의 리스트가 표출합니다.</li>
+                                        <li>
+                                            월/별 보고서의 형태는 아래 이미지와 같습니다.
+                                            <div class="h-10px"></div>
+                                            <img class="userguide-img" src="/static/img/X-Factor_documentation/report-annual.png">
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="card-arrow">
+                                    <div class="card-arrow-top-left"></div>
+                                    <div class="card-arrow-top-right"></div>
+                                    <div class="card-arrow-bottom-left"></div>
+                                    <div class="card-arrow-bottom-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END report-public-download -->
                     </div>
                     <div class="w-auto">
                         <nav class="navbar navbar-sticky d-none d-xl-block">
                             <nav class="nav">
-                                <a class="nav-link fs-16px" href="#X-Factor-defult" data-toggle="scroll-to">기본베이스</a>
+                                <a class="nav-link fs-16px" href="#report-public-tab" data-toggle="scroll-to">일/별 보고서</a>
+                                <a class="nav-link fs-16px" href="#report-public-select" data-toggle="scroll-to">주/별 보고서</a>
+                                <a class="nav-link fs-16px" href="#report-public-download" data-toggle="scroll-to">월/별 보고서</a>
                             </nav>
                         </nav>
                     </div>
