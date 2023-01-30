@@ -23,6 +23,7 @@ day = datetime.today().strftime("%Y-%m-%d")
 def plug_in(table, day, type):
     try:
         fiveMinutesAgo = (datetime.today() - timedelta(minutes=5)).strftime("%Y-%m-%d %H:%M:%S")
+        halfHourAgo = (datetime.today() - timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
         yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
         fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
         monthDay = (datetime.today() - timedelta(30)).strftime("%Y-%m-%d")
@@ -104,8 +105,170 @@ def plug_in(table, day, type):
                             and NOT item IN ('unconfirmed')
                             and to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'                  
                     """
+######################################################### 페이징 시작 ###############################################################
+            if day == 'osMore':
+                query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification = 'operating_system' AND item != 'unconfirmed'
+                            and 
+                                statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                            and
+                                (item ||
+                                item_count) like '%""" + type[2] + """%'
+                            order by item_count::INTEGER desc
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
 
-            if day == 'memoryMore':
+                        """
+            elif day == 'osCount':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics
+                        where
+                            (item ||
+                            item_count) like '%""" + type[2] + """%'
+                        and 
+                            classification = 'operating_system' AND item != 'unconfirmed'
+                        and 
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                """
+            elif day == 'serverBandByMore':
+                query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification ='group_server_count' AND item != 'unconfirmed'
+                            and 
+                                statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                            and
+                                (item ||
+                                item_count) like '%""" + type[2] + """%'
+                            order by item_count::INTEGER desc
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+
+                        """
+            elif day == 'serverBandByCount':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics
+                        where
+                            (item ||
+                            item_count) like '%""" + type[2] + """%'
+                        and 
+                            classification ='group_server_count' AND item != 'unconfirmed'
+                        and 
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                """
+            elif day == 'runningServiceMore':
+                query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification = 'running_service'
+                            and 
+                                statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                            and
+                                (item ||
+                                item_count) like '%""" + type[2] + """%'
+                            order by item_count::INTEGER desc
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+
+                        """
+            elif day == 'runningServiceCount':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics
+                        where
+                            (item ||
+                            item_count) like '%""" + type[2] + """%'
+                        and 
+                            classification = 'running_service'
+                        and 
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                """
+            elif day == 'physicalServerMore':
+                query = """
+                            select
+                                item, item_count
+                            from
+                                minutely_statistics
+                            where
+                                classification = 'manufacturer'
+                            and 
+                                statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                            and
+                                (item ||
+                                item_count) like '%""" + type[2] + """%'
+                            order by item_count::INTEGER desc
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+
+                        """
+            elif day == 'physicalServerCount':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics
+                        where
+                            (item ||
+                            item_count) like '%""" + type[2] + """%'
+                        and 
+                            classification = 'manufacturer'
+                        and 
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                """
+            elif day == 'gpuServerMore':
+                query = """
+                            select
+                                ipv_address, computer_name, nvidia_smi
+                            from
+                                minutely_statistics_list
+                            where
+                                NOT nvidia_smi IN ('unconfirmed', 'no results')
+                            and 
+                                asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                            and
+                                (ipv_address ||
+                                computer_name ||
+                                nvidia_smi) like '%""" + type[2] + """%'
+                                order by nvidia_smi desc
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+
+                        """
+            elif day == 'gpuServerCount':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics_list
+                        where
+                            (ipv_address ||
+                            computer_name ||
+                            nvidia_smi) like '%""" + type[2] + """%'
+                        and 
+                            NOT nvidia_smi IN ('unconfirmed', 'no results')
+                        and 
+                            asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                """
+            elif day == 'memoryMore':
                 query = """
                             select
                                 ipv_address, computer_name, ram_use_size, ram_total_size, ramusage
@@ -119,16 +282,20 @@ def plug_in(table, day, type):
                                 ram_use_size NOT like '%[current%'
                             and 
                                 ram_total_size NOT like '%[current%'
+                            and 
+                                asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
                                 (ipv_address ||
                                 computer_name || 
                                 ram_use_size || 
                                 ram_total_size || 
                                 ramusage) like '%""" + type[2] + """%'
+                            order by float8(ramusage) desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+                            
                         """
-            if day == 'count':
+            elif day == 'memoryCount':
                 query = """
                         select
                             COUNT(*)
@@ -148,9 +315,156 @@ def plug_in(table, day, type):
                             ram_use_size NOT like '%[current%'
                         and 
                             ram_total_size NOT like '%[current%'
+                        and 
+                            asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
+            elif day == 'cpuMore':
+                query = """
+                                select
+                                    ipv_address, computer_name, cup_details_cup_speed, cpuusage
+                                from
+                                    minutely_statistics_list
+                                where
+                                    NOT ipv_address IN ('unconfirmed')
+                                and 
+                                    NOT cpuusage IN ('unconfirmed')
+                                and 
+                                    cup_details_cup_speed NOT like '%[current%'
+                                and 
+                                    asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                                and
+                                    (ipv_address ||
+                                    computer_name || 
+                                    cup_details_cup_speed || 
+                                    cpuusage) like '%""" + type[2] + """%'
+                                order by float8(cpuusage) desc
+                                LIMIT """ + type[0] + """
+                                OFFSET (""" + type[1] + """-1) * """ + type[0] + """
 
+                            """
+            elif day == 'cpuCount':
+                query = """
+                            select
+                                COUNT(*)
+                            from
+                                minutely_statistics_list
+                            where
+                                    (ipv_address ||
+                                     computer_name || 
+                                     cup_details_cup_speed || 
+                                     cpuusage) like '%""" + type[2] + """%'
+                            and 
+                                NOT ipv_address IN ('unconfirmed')
+                            and 
+                                NOT cpuusage IN ('unconfirmed')
+                            and 
+                                cup_details_cup_speed NOT like '%[current%'
+                            and 
+                                asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                    """
+            elif day == 'diskMore':
+                query = """
+                            select
+                                ipv_address, computer_name, disk_used_space, disk_total_space, driveusage
+                            from
+                                minutely_statistics_list
+                            where
+                                NOT ipv_address IN ('unconfirmed')
+                            and 
+                                NOT driveusage IN ('unconfirmed')
+                            and 
+                                disk_used_space NOT like '%[current%'
+                            and 
+                                disk_total_space NOT like '%[current%'
+                            and 
+                                asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                            and
+                                (ipv_address ||
+                                computer_name || 
+                                disk_used_space || 
+                                disk_total_space || 
+                                driveusage) like '%""" + type[2] + """%'
+                            order by float8(driveusage) desc
+                            LIMIT """ + type[0] + """
+                            OFFSET (""" + type[1] + """-1) * """ + type[0] + """
 
+                        """
+            elif day == 'diskCount':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics_list
+                        where
+                                (ipv_address ||
+                                 computer_name || 
+                                 disk_used_space || 
+                                 disk_total_space || 
+                                 driveusage) like '%""" + type[2] + """%'
+                        and 
+                            NOT ipv_address IN ('unconfirmed')
+                        and 
+                            NOT driveusage IN ('unconfirmed')
+                        and 
+                            disk_used_space NOT like '%[current%'
+                        and 
+                            disk_total_space NOT like '%[current%'
+                        and 
+                            asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                """
+            elif day == 'alarmCaseMore':
+                query = """
+                        select
+                            ipv_address, computer_name, ramusage, cpuusage, driveusage, asset_list_statistics_collection_date
+                        from
+                            minutely_statistics_list
+                        where
+                            ramusage != 'unconfirmed'
+                        and
+                            cpuusage != 'unconfirmed'
+                        and
+                            driveusage != 'unconfirmed'
+                        and 
+                            (float8(ramusage) > 95 or
+                            float8(cpuusage) > 95 or
+                            float8(driveusage) > 99 or
+                            asset_list_statistics_collection_date  < '""" + halfHourAgo + """')
+                        and
+                            (ipv_address ||
+                            computer_name || 
+                            ramusage || 
+                            cpuusage || 
+                            driveusage ||
+                            asset_list_statistics_collection_date) like '%""" + type[2] + """%'
+                        LIMIT """ + type[0] + """
+                        OFFSET (""" + type[1] + """-1) * """ + type[0] + """
+                """
+            elif day == 'alarmCaseCount':
+                query = """
+                        select
+                            COUNT(*)
+                        from
+                            minutely_statistics_list
+                        where
+                            ramusage != 'unconfirmed'
+                        and
+                            cpuusage != 'unconfirmed'
+                        and
+                            driveusage != 'unconfirmed'
+                        and 
+                            (float8(ramusage) > 95 or
+                            float8(cpuusage) > 95 or
+                            float8(driveusage) > 99 or
+                            asset_list_statistics_collection_date  < '""" + halfHourAgo + """')
+                        and
+                            (ipv_address ||
+                            computer_name || 
+                            ramusage || 
+                            cpuusage || 
+                            driveusage ||
+                            asset_list_statistics_collection_date) like '%""" + type[2] + """%'
+                """
+#################################################################### 페이징 끝 ########################################################################
             if day == 'today':
                 if type == '':
                     query = """ 
@@ -201,8 +515,10 @@ def plug_in(table, day, type):
                     """
                 elif type == 'os_version':
                     query = """
-                        select item, item_count from 
-                        minutely_statistics
+                        select 
+                            item, item_count
+                        from 
+                            minutely_statistics
                         where 
                             classification = 'operating_system' AND item != 'unconfirmed'
                         and 
@@ -269,10 +585,11 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where 
                             classification in ('ram_usage_size_exceeded', 'cpu_usage_size_exceeded', 'drive_usage_size_exceeded', 'last_online_time_exceeded')
+                        and
+                            NOT item IN ('unconfirmed', 'No', 'Safety')
                         and 
                             statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
-                        order by
-                            item asc 
+                       
                     """
                 #물리서버 벤더별 수량
                 elif type == 'vendor':
@@ -327,14 +644,21 @@ def plug_in(table, day, type):
                                 minutely_statistics
                             where
                                 classification = 'nvidia_smi'
-                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            and
+                                item = 'YES'
+                            and 
+                                statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                             union all
                             select
                                 item, item_count
                             from
                                 daily_statistics
                             where
-                                classification = 'nvidia_smi' and to_char(statistics_collection_date, 'YYYY-MM-DD') = '"""+ yesterday +"""'
+                                classification = 'nvidia_smi'
+                            and
+                                item = 'YES'
+                            and 
+                                to_char(statistics_collection_date, 'YYYY-MM-DD') = '"""+ yesterday +"""'
                     """
                 elif type == 'ip':
                     query = """
@@ -533,7 +857,7 @@ def plug_in(table, day, type):
         Cur.execute(query)
         RS = Cur.fetchall()
         for i, R in enumerate(RS, start=1):
-            if day == 'memoryMore':
+            if day == 'memoryMore' or day == 'diskMore':
                 index = (int(type[1]) - 1) * 10 + i
                 SDL.append(dict(
                                 (
@@ -545,9 +869,52 @@ def plug_in(table, day, type):
                                     ('usage', math.trunc(float(R[4])))
                                 )
                 ))
+            elif day == 'cpuMore':
+                index = (int(type[1]) - 1) * 10 + i
+                SDL.append(dict(
+                    (
+                        ('index', index),
+                        ('ip', R[0]),
+                        ('name', R[1]),
+                        ('use', R[2]),
+                        ('usage', math.trunc(float(R[3])))
+                    )
+                ))
+            elif day == 'osMore' or day == 'serverBandByMore' or day == 'runningServiceMore' or day == 'physicalServerMore':
+                index = (int(type[1]) - 1) * 10 + i
+                SDL.append(dict(
+                    (
+                        ('index', index),
+                        ('name', R[0]),
+                        ('count', R[1]),
+                    )
+                ))
+            elif day == 'gpuServerMore':
+                index = (int(type[1]) - 1) * 10 + i
+                SDL.append(dict(
+                    (
+                        ('index', index),
+                        ('ip', R[0]),
+                        ('name', R[1]),
+                        ('model', R[2]),
+                    )
+                ))
+            elif day == 'alarmCaseMore':
+                index = (int(type[1]) - 1) * 10 + i
+                SDL.append(dict(
+                    (
+                        ('index', index),
+                        ('ip', R[0]),
+                        ('name', R[1]),
+                        ('ramusage', math.trunc(float(R[2]))),
+                        ('cpuusage', math.trunc(float(R[3]))),
+                        ('driveusage', math.trunc(float(R[4]))),
+                        ('date', R[5]),
+                    )
+                ))
             else:
                 SDL.append(R)
         return SDL
     except:
-        print(table + type + day + ' Daily Table connection(Select) Failure')
+        print(table + str(type) + day + ' Daily Table connection(Select) Failure')
     return

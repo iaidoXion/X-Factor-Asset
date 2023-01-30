@@ -212,11 +212,270 @@ var handleRenderWeakDetailModalTableData = function () {
 	weakDetailModaltable.draw();
 };
 
+var OshandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#OsDashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data: 'index'},
+			{data: 'name'},
+			{data: 'count'},
+		],
+		columnDefs: [
+			{width: "5%", target: [0]},
+			{width: "15%", target: [1]},
+			{width: "14%", target: [2]}
 
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
+var serverhandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#serverBandBydashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data: 'index'},
+			{data: 'name'},
+			{data: 'count'},
+		],
+		columnDefs: [
+			{width: "5%", target: [0]},
+			{width: "15%", target: [1]},
+			{width: "1%", target: [2]}
+
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
+var runningServicehandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#runningServiceDashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data: 'index'},
+			{data: 'name'},
+			{data: 'count'},
+		],
+		columnDefs: [
+			{width: "5%", target: [0]},
+			{width: "15%", target: [1]},
+			{width: "14%", target: [2]}
+
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
+var physicalServerhandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#physicalServerDashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data: 'index'},
+			{data: 'name'},
+			{data: 'count'},
+		],
+		columnDefs: [
+			{width: "5%", target: [0]},
+			{width: "15%", target: [1]},
+			{width: "14%", target: [2]}
+
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
+var gpuServerhandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#gpuServerDashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data: 'index'},
+			{data: 'ip'},
+			{data: 'name'},
+			{data: 'model'},
+			{data: 'count'},
+		],
+		columnDefs: [
+			{width: "5%", target: [0]},
+			{width: "15%", target: [1]},
+			{width: "14%", target: [2]}
+
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
 var handleRenderDashboardPopupTableData = function () {
-	// var url = (window.location.search).split('&');
-    // var count = url[1].substr(url[1].indexOf("=") + 1);
-	var dashboardpopupTable = $('#dashboard-popupTable').DataTable({
+	var dashboardpopupTable = $('#MemoryDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
 		lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
 		responsive: true,
@@ -225,7 +484,7 @@ var handleRenderDashboardPopupTableData = function () {
 		serverSide: true,
 		displayLength: false,
 		ajax: {
-			url: 'paging',
+			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
 				console.log(res);
@@ -273,7 +532,181 @@ var handleRenderDashboardPopupTableData = function () {
 		},
 	});
 };
+var CpuhandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#CpuDashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data: 'index'},
+			{data: 'ip'},
+			{data: 'name'},
+			{data: 'use'},
+			{data: 'usage'},
+		],
+		columnDefs: [
+			{width: "5%", target: [0]},
+			{width: "15%", target: [1]},
+			{width: "16%", target: [2]},
+			{width: "20%", target: [3]},
+			{width: "14%", target: [4]}
 
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
+var DiskhandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#DiskDashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data : 'index'},
+			{data : 'ip'},
+			{data : 'name'},
+			{data : 'use'},
+			{data : 'total'},
+			{data : 'usage'},
+		],
+		columnDefs: [
+			{ width: "5%", target: [0] },
+			{ width: "15%", target: [1] },
+			{ width: "16%", target: [2] },
+			{ width: "20%", target: [3] },
+			{ width: "14%", target: [4] },
+			{
+				width: "5%", target: [5]}
+
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
+var alarmCasehandleRenderDashboardPopupTableData = function () {
+	var dashboardpopupTable = $('#alarmCaseDashboard-popupTable').DataTable({
+		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
+		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		responsive: true,
+		searching: true,
+		ordering: false,
+		serverSide: true,
+		displayLength: false,
+		ajax: {
+			url: 'paging/',
+			type: "POST",
+			dataSrc: function (res) {
+				console.log(res);
+				var data = res.data.item;
+				return data;
+			}
+		},
+		columns: [
+			{data: 'index'},
+			{data: 'ip'},
+			{data: 'name'},
+			{data: 'ramusage'},
+			{data: 'cpuusage'},
+			{data: 'driveusage'},
+			{data: 'date'},
+		],
+		columnDefs: [
+			{width: "5%", target: [0]},
+			{width: "15%", target: [1]},
+			{width: "16%", target: [2]},
+			{width: "20%", target: [3]},
+			{width: "14%", target: [4]},
+			{width: "14%", target: [5]},
+			{width: "14%", target: [6]}
+
+		],
+		language: {
+			"decimal": "",
+			"info": "전체 _TOTAL_건",
+			"infoEmpty": "데이터가 없습니다.",
+			"emptyTable": "데이터가 없습니다.",
+			"thousands": ",",
+			"lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			"loadingRecords": "로딩 중입니다.",
+			"processing": "",
+			"zeroRecords": "검색 결과 없음",
+			"paginate": {
+				"first": "처음",
+				"last": "끝",
+				"next": "다음",
+				"previous": "이전"
+			},
+			"search": "검색:",
+			"infoFiltered": "(전체 _MAX_ 건 중 검색결과)",
+			"infoPostFix": "",
+		},
+
+	});
+};
 
 
 
@@ -297,9 +730,32 @@ $(document).ready(function () {
 
         handleRenderWeakDetailModalTableData();
 
-    }else if ($("#dashboard-popupTable").length > 0) {
+    }else if($("#OsDashboard-popupTable").length > 0){
+
+		OshandleRenderDashboardPopupTableData();
+	}else if($("#serverBandBydashboard-popupTable").length > 0){
+
+		serverhandleRenderDashboardPopupTableData();
+	}else if($("#runningServiceDashboard-popupTable").length > 0){
+
+		runningServicehandleRenderDashboardPopupTableData();
+	}else if($("#physicalServerDashboard-popupTable").length > 0){
+
+		physicalServerhandleRenderDashboardPopupTableData();
+	}else if($("#gpuServerDashboard-popupTable").length > 0){
+
+		gpuServerhandleRenderDashboardPopupTableData();
+	}else if($("#alarmCaseDashboard-popupTable").length > 0){
+
+		alarmCasehandleRenderDashboardPopupTableData();
+	}else if ($("#MemoryDashboard-popupTable").length > 0) {
 
         handleRenderDashboardPopupTableData();
+	}else if ($("#CpuDashboard-popupTable").length > 0) {
 
-    };
+		CpuhandleRenderDashboardPopupTableData();
+    }else if($("#DiskDashboard-popupTable").length > 0){
+
+		DiskhandleRenderDashboardPopupTableData();
+	};
 });
