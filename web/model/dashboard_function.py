@@ -349,17 +349,17 @@ def DashboardData():
                 Usagechart = PDPI('statistics', 'today', 'usage')
                 alarmData = []
                 for i in range(len(Usagechart)):
-                    if Usagechart[i][0].startswith('ram_') and Usagechart[i][1] != 'safety' and Usagechart[i][1] != 'unconfirmed':
+                    if Usagechart[i][0].startswith('ram_') :
                         MemoryChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
                         if Usagechart[i][1] == '95Risk':
                             alarmData.append({"alarmCase": "메모리 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('cpu_') and Usagechart[i][1] != 'safety' and Usagechart[i][1] != 'unconfirmed':
+                    elif Usagechart[i][0].startswith('cpu_'):
                         CpuChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
                         if Usagechart[i][1] == '95Risk':
                             alarmData.append({"alarmCase": "CPU 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('drive_') and Usagechart[i][1] != 'Safety' and Usagechart[i][1] != 'unconfirmed':
+                    elif Usagechart[i][0].startswith('drive_'):
                         DiskChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
 
                         if Usagechart[i][1] == '99Risk':
@@ -386,7 +386,6 @@ def DashboardData():
                 alarmCaseData(MemoryChartDataList, "메모리")
                 alarmCaseData(CpuChartDataList, 'CPU')
                 alarmCaseData(DiskChartDataList, '디스크')
-
                 if next((index for (index, data) in enumerate(alarmData) if data['alarmCase'] == '최근 30분 이내 오프라인 여부'), None) == None:
                     alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
                 # alarmData.reverse()
@@ -439,9 +438,8 @@ def DashboardData():
 
                 #GPU 서버 수량
                 GpuServerData = PDPI('statistics', 'today', 'gpu')
-                if GpuServerData[1][0] == 'YES' and GpuServerData[3][0] == 'YES':
-                    tValue = int(GpuServerData[1][1])
-                    yValue = int(GpuServerData[3][1])
+                tValue = int(GpuServerData[0][1])
+                yValue = int(GpuServerData[1][1])
                 roc = tValue - yValue
                 GpuServerDataList = {"value" : tValue, 'roc': roc}
 

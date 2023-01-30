@@ -14,7 +14,7 @@
         <div class="card h-auto ">
             <!--BEGIN card-body-->
             <div class="card-body">
-                <table id="dashboard-popupTable" class="table w-100 fs-14px mb-0 text-truncate text-white text-opacity-60 m-auto memoryTable">
+                <table id="MemoryDashboard-popupTable" class="table w-100 fs-14px mb-0 text-truncate text-white text-opacity-60 m-auto memoryTable">
                     <thead>
                         <tr class="table-active text-white text-opacity-75">
                             <th class="w-5 text-center">번호</th>
@@ -25,19 +25,6 @@
                             <th class="w-10 text-center">사용률</th>
                         </tr>
                         </thead>
-{#                        {% if chartData.memoryMoreDataList %}#}
-                        <tbody>
-{#                        {% for data in chartData.memoryMoreDataList %}#}
-                        <tr>
-{#                            <td class="text-center">{{ forloop.counter }}</td>#}
-{#                            <td>{{ data.ip}}</td>#}
-{#                            <td>{{ data.name}}</td>#}
-{#                            <td class="text-center">{{ data.use }} / {{ data.total }} MB</td>#}
-{#                            <td class="text-center">{{ data.usage }}%</td>#}
-                        </tr>
-{#                        {% endfor %}#}
-                    </tbody>
-{#                    {% endif %}#}
                 </table>
             </div>
             <!--END card-body-->

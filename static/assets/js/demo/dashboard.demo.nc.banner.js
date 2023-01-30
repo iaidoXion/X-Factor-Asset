@@ -325,11 +325,14 @@ var apexRunServiceOptions = {
 // Memory Usage - apexMemory95usageChart
 //--------------------------------------------------------------------------
 
-var MemoryValue = []
-var MemoryName = []
 for (var i = 0; i < a.MemoryChartDataList.length; i++){
-    MemoryValue.push(a.MemoryChartDataList[i]['value']);
-    MemoryName.push(a.MemoryChartDataList[i]['name']);
+    if (a.MemoryChartDataList[i]['name'] == '60Risk'){
+        memory60 = a.MemoryChartDataList[i]['value']
+    }else if (a.MemoryChartDataList[i]['name'] == '75Risk'){
+        memory75 = a.MemoryChartDataList[i]['value']
+    }else{
+        memory95 = a.MemoryChartDataList[i]['value']
+    }
 };
 
 var apexMemory95usageOptions = {
@@ -406,7 +409,7 @@ var apexMemory95usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [MemoryValue[2]],
+        labels: [memory95],
         };
 	apexMemory95usageChart = new ApexCharts(
 		document.querySelector('#apexMemory95usageChart'),
@@ -492,7 +495,7 @@ var apexMemory75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [MemoryValue[1]+MemoryValue[2]],
+        labels: [memory95+memory75],
         };
 	apexMemory75usageChart = new ApexCharts(
 		document.querySelector('#apexMemory75usageChart'),
@@ -579,7 +582,7 @@ var apexMemory60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [MemoryValue[0]+MemoryValue[1]+MemoryValue[2]],
+        labels: [memory95+memory75+memory60],
         };
 	apexMemory60usageChart = new ApexCharts(
 		document.querySelector('#apexMemory60usageChart'),
@@ -592,11 +595,14 @@ var apexMemory60usageOptions = {
 // CPU Usage - apexCPU95usageChart
 //--------------------------------------------------------------------------
 
-var CpuValue = []
-var CpuName = []
 for (var i = 0; i < a.CpuChartDataList.length; i++){
-    CpuValue.push(a.CpuChartDataList[i]['value']);
-    CpuName.push(a.CpuChartDataList[i]['name']);
+    if (a.CpuChartDataList[i]['name'] == '60Risk'){
+        cpu60 = a.CpuChartDataList[i]['value']
+    }else if (a.CpuChartDataList[i]['name'] == '75Risk'){
+        cpu75 = a.CpuChartDataList[i]['value']
+    }else{
+        cpu95 = a.CpuChartDataList[i]['value']
+    }
 };
 
 var apexCPU95usageOptions = {
@@ -680,7 +686,7 @@ var apexCPU95usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [CpuValue[2]],
+        labels: [cpu95],
         };
 	apexCPU95usageChart = new ApexCharts(
 		document.querySelector('#apexCPU95usageChart'),
@@ -765,7 +771,7 @@ var apexCPU75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [CpuValue[1]+CpuValue[2]],
+        labels: [cpu95+cpu75],
         };
 	apexCPU75usageChart = new ApexCharts(
 		document.querySelector('#apexCPU75usageChart'),
@@ -851,7 +857,7 @@ var apexCPU60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [CpuValue[0]+CpuValue[1]+CpuValue[2]],
+        labels: [cpu95+cpu75+cpu60],
         };
 	apexCPU60usageChart = new ApexCharts(
 		document.querySelector('#apexCPU60usageChart'),
@@ -863,11 +869,14 @@ var apexCPU60usageOptions = {
 // Disk Usage - apexDisk95usageChart
 //--------------------------------------------------------------------------
 
-var DiskValue = []
-var DiskName = []
 for (var i = 0; i < a.DiskChartDataList.length; i++){
-    DiskValue.push(a.DiskChartDataList[i]['value']);
-    DiskName.push(a.DiskChartDataList[i]['name']);
+    if (a.DiskChartDataList[i]['name'] == '60Risk'){
+        disk60 = a.DiskChartDataList[i]['value']
+    }else if (a.DiskChartDataList[i]['name'] == '75Risk'){
+        disk75 = a.DiskChartDataList[i]['value']
+    }else if (a.DiskChartDataList[i]['name'] == '95Risk'){
+        disk95 = a.DiskChartDataList[i]['value']
+    }
 };
 
 var apexDisk95usageOptions = {
@@ -944,7 +953,7 @@ var apexDisk95usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [DiskValue[2]],
+        labels: [disk95],
         };
 	apexDisk95usageChart = new ApexCharts(
 		document.querySelector('#apexDisk95usageChart'),
@@ -1029,7 +1038,7 @@ var apexDisk75usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [DiskValue[1]+DiskValue[2]],
+        labels: [disk95+disk75],
         };
 	apexDisk75usageChart = new ApexCharts(
 		document.querySelector('#apexDisk75usageChart'),
@@ -1114,7 +1123,7 @@ var apexDisk60usageOptions = {
         stroke: {
           lineCap: 'round'
         },
-        labels: [DiskValue[0]+DiskValue[1]+DiskValue[2]],
+        labels: [disk95+disk75+disk60],
         };
 	apexDisk60usageChart = new ApexCharts(
 		document.querySelector('#apexDisk60usageChart'),

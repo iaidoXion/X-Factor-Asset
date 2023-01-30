@@ -1,3 +1,4 @@
+from datetime import timedelta, datetime
 from pprint import pprint
 
 import requests
@@ -13,6 +14,7 @@ import json
 import math
 
 menuListDB = MenuSetting()
+DCDL = DashboardData()
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
@@ -22,7 +24,6 @@ KoreaUse = SETTING['PROJECT']['MAP']['Korea']
 AreaUse = SETTING['PROJECT']['MAP']['Area']['use']
 AreaType = SETTING['PROJECT']['MAP']['Area']['type']
 
-DCDL = DashboardData()
 
 def index(request):
     returnData = {'menuList': menuListDB}
@@ -157,18 +158,67 @@ def osVersion_moreInfo(request):
     os_donutChartData = DCDL["os_donutChartData"]
     returnData = {'menuList': menuListDB, 'data': os_donutChartData}
     return render(request, 'popup/osVersion_moreInfo.html', returnData)
+@csrf_exempt
+def osVersion_moreInfo_paging(request):
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'osMore', data)
+    SMC = PDPI('statistics', 'osCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def serverBandBy_moreInfo(request):
     server_barChartData = DCDL["server_BChartDataList"]
     returnData = {'menuList': menuListDB, 'data': server_barChartData}
     return render(request, 'popup/serverBandBy_moreInfo.html', returnData)
-
+@csrf_exempt
+def serverBandBy_moreInfo_paging(request):
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'serverBandByMore', data)
+    SMC = PDPI('statistics', 'serverBandByCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def runningService_moreInfo(request):
     service_donutChartData = DCDL["service_donutChartData"]
     returnData = {'menuList': menuListDB, 'data': service_donutChartData}
     return render(request, 'popup/runningService_moreInfo.html', returnData)
-
+@csrf_exempt
+def runningService_moreInfo_paging(request):
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'runningServiceMore', data)
+    SMC = PDPI('statistics', 'runningServiceCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def memory_moreInfo(request):
     # memoryMoreDataList = DCDL["memoryMoreDataList"]
@@ -185,15 +235,9 @@ def memory_moreInfo_paging(request):
     search = request.POST.get('search[value]')
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
-    SMDL = []
     SMD = PDPI('statistics', 'memoryMore', data)
-    print(SMD)
-    SMC = PDPI('statistics', 'count', data)
-    # for i in range(len(SMD)):
-    #     if SMD[i][0] != 'unconfirmed' and not SMD[i][2].startswith('[current') and not SMD[i][3].startswith('[current') and SMD[i][4] != 'unconfirmed':
-    #         usage = math.trunc(float(SMD[i][4]))
-    #         SMDL.append({"index": i, "ip": SMD[i][0], "name": SMD[i][1], "use": SMD[i][2], "total": SMD[i][3], "usage": usage})
-    RD = {"item": SMD, "count": len(SMDL)}
+    SMC = PDPI('statistics', 'memoryCount', data)
+    RD = {"item": SMD}
     returnData = {'data': RD,
                   'draw': draw,
                   'recordsTotal': SMC,
@@ -202,30 +246,183 @@ def memory_moreInfo_paging(request):
     return JsonResponse(returnData)
 
 def cpu_moreInfo(request):
-    returnData = {'menuList': menuListDB}
-    return render(request, 'popup/cpu_moreInfo.html', returnData)
+    return render(request, 'popup/cpu_moreInfo.html')
 
+@csrf_exempt
+def cpu_moreInfo_paging(request):
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'cpuMore', data)
+    SMC = PDPI('statistics', 'cpuCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def disk_moreInfo(request):
-    returnData = {'menuList': menuListDB}
-    return render(request, 'popup/disk_moreInfo.html', returnData)
-
+    return render(request, 'popup/disk_moreInfo.html')
+@csrf_exempt
+def disk_moreInfo_paging(request):
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'diskMore', data)
+    SMC = PDPI('statistics', 'diskCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def physicalServer_moreInfo(request):
     vendorChartList = DCDL["vendorChartList"]
     returnData = {'menuList': menuListDB, 'data': vendorChartList}
     return render(request, 'popup/physicalServer_moreInfo.html', returnData)
-
+@csrf_exempt
+def physicalServer_moreInfo_paging(request):
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'physicalServerMore', data)
+    SMC = PDPI('statistics', 'physicalServerCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def gpuServer_moreInfo(request):
-    returnData = {'menuList': menuListDB}
-    return render(request, 'popup/gpuServer_moreInfo.html', returnData)
+    return render(request, 'popup/gpuServer_moreInfo.html')
+@csrf_exempt
+def gpuServer_moreInfo_paging(request):
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'gpuServerMore', data)
+    for i in range(len(SMD)):
+        model = eval(SMD[i]['model'])
+        if type(list(model)[0]) == str:
+            SMD[i]['model'] = list(model)[0]
+            SMD[i]['count'] = list(model)[1]
+        else:
+            SMD[i]['model'] = list(model)[1]
+            SMD[i]['count'] = list(model)[0]
+
+        # model = SMD[i]['model'].replace(',', '').replace('"', '').replace('{', '').replace('}','')[1:]
+        # count = SMD[i]['model'].replace(',', '').replace('"', '').replace('{', '').replace('}','')[0]
+        # SMD[i] = {"count": count}
+    SMC = PDPI('statistics', 'gpuServerCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 def alarmCase_moreInfo(request):
-    alamCaseMoreDataList = DCDL['alamCaseMoreDataList']
-    returnData = {'menuList': menuListDB, 'data' : alamCaseMoreDataList}
-    return render(request, 'popup/alarmCase_moreInfo.html', returnData)
+    return render(request, 'popup/alarmCase_moreInfo.html')
+@csrf_exempt
+def alarmCase_moreInfo_paging(request):
+    halfHour = (datetime.now() - timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
+    halfHour = datetime.strptime(halfHour, "%Y-%m-%d %H:%M:%S")
+    draw = int(request.POST.get('draw'))
+    start = int(request.POST.get('start'))
+    length = int(request.POST.get('length'))
+    search = request.POST.get('search[value]')
+    page = math.ceil(start / length) + 1
+    data = [ str(length), str(page), str(search)]
+    SMD = PDPI('statistics', 'alarmCaseMore', data)
+    # print(SMD)
 
+    for i in range(len(SMD)):
+        if SMD[i]['date'] < halfHour:
+            SMD[i]['date'] = 'True'
+            if SMD[i]['ramusage'] > 95:
+                SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
+            else:
+                SMD[i]['ramusage'] = 'False'
+
+            if SMD[i]['cpuusage'] > 95:
+                SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + '%)'
+            else:
+                SMD[i]['cpuusage'] = 'False'
+
+            if SMD[i]['driveusage'] > 95:
+                SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+            else:
+                SMD[i]['driveusage'] = 'False'
+
+        elif SMD[i]['ramusage'] > 95:
+            SMD[i]['ramusage'] = 'True ' + str(SMD[i]['ramusage']) + '%'
+            if SMD[i]['cpuusage'] > 95:
+                SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + '%)'
+            else:
+                SMD[i]['cpuusage'] = 'False'
+
+            if SMD[i]['driveusage'] > 95:
+                SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+            else:
+                SMD[i]['driveusage'] = 'False'
+
+            SMD[i]['date'] = 'False'
+
+        elif SMD[i]['cpuusage'] > 95:
+            SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + '%)'
+            if SMD[i]['ramusage'] > 95:
+                SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
+            else:
+                SMD[i]['ramusage'] = 'False'
+
+            if SMD[i]['driveusage'] > 95:
+                SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+            else:
+                SMD[i]['driveusage'] = 'False'
+
+            SMD[i]['date'] = 'False'
+
+        elif SMD[i]['driveusage'] > 95:
+            SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+            if SMD[i]['ramusage'] > 95:
+                SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
+            else:
+                SMD[i]['ramusage'] = 'False'
+
+            if SMD[i]['cpuusage'] > 95:
+                SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+            else:
+                SMD[i]['cpuusage'] = 'False'
+
+            SMD[i]['date'] = 'False'
+
+    SMC = PDPI('statistics', 'alarmCaseCount', data)
+    RD = {"item": SMD}
+    returnData = {'data': RD,
+                  'draw': draw,
+                  'recordsTotal': SMC,
+                  'recordsFiltered': SMC,
+                  }
+    return JsonResponse(returnData)
 
 ############################ 유저가이드 ############################################
 def userGuide_docs_ug(request):
