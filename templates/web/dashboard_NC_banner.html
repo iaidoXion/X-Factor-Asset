@@ -453,7 +453,7 @@
                                 {% elif chartData.GpuServerDataList.roc > 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowTop.png' %}"
                                     style="position: absolute; left:0; top:0; visibility: hidden;">
-                                {% else %}
+                                {% elif chartData.GpuServerDataList.roc < 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
                                 {% endif %}
                             </div>
@@ -587,6 +587,7 @@
                         <div class="swiper-wrapper">
                             {% if chartData.bannerDataList %}
                             {% for bannerData in chartData.bannerDataList %}
+                            {% if bannerData.name != 'Linux' %}
                             <div class="swiper-slide">
                                 <div class="conBanner">
                                     <div class="count-title text-truncate fw-normal text-white text-opacity-75 px-sm-3 fs-12px"
@@ -600,9 +601,11 @@
                                             {% elif bannerData.roc > 0 %}
                                             <img class="conArrow"
                                                  src="{% static 'img/common/dashboard/arrowTop.png' %}">
-                                            {% else %}
+                                            {% elif bannerData.roc < 0 %}
                                             <img class="conArrow"
                                                  src="{% static 'img/common/dashboard/arrowBot.png' %}">
+                                            {% else %}
+                                            <a class="conNumIcon text-decoration-none"> - </a>
                                             {% endif %}
                                         </div>
                                         <span class="conNum text-theme fw-bold">
@@ -615,6 +618,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             {% endfor %}
                             {% endif %}
                         </div>

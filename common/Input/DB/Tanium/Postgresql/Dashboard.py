@@ -285,6 +285,8 @@ def plug_in(table, day, type):
                             classification = 'manufacturer'
                         and 
                             statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                        and 
+                            item != 'unconfirmed'
                         order by
                             item_count::INTEGER desc 
                         limit 3
@@ -325,6 +327,7 @@ def plug_in(table, day, type):
                                 minutely_statistics
                             where
                                 classification = 'nvidia_smi'
+                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                             union all
                             select
                                 item, item_count
@@ -341,6 +344,8 @@ def plug_in(table, day, type):
                                 minutely_statistics
                             where
                                 classification = 'session_ip' and item != 'NO'
+                            and 
+                                statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                             order by
                                 item_count::INTEGER desc limit 3
                     """
@@ -492,6 +497,8 @@ def plug_in(table, day, type):
                             ipv_address, computer_name, session_ip_count
                         from
                             minutely_statistics_list
+                        where
+                            asset_list_statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
                         order by
                             session_ip_count::INTEGER desc limit 3
                     """
