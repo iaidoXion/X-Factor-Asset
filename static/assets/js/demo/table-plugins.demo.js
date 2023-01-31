@@ -215,7 +215,7 @@ var handleRenderWeakDetailModalTableData = function () {
 var OshandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#OsDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -267,7 +267,7 @@ var OshandleRenderDashboardPopupTableData = function () {
 var serverhandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#serverBandBydashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -319,7 +319,7 @@ var serverhandleRenderDashboardPopupTableData = function () {
 var runningServicehandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#runningServiceDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -371,7 +371,7 @@ var runningServicehandleRenderDashboardPopupTableData = function () {
 var physicalServerhandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#physicalServerDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -423,7 +423,7 @@ var physicalServerhandleRenderDashboardPopupTableData = function () {
 var gpuServerhandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#gpuServerDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -448,7 +448,9 @@ var gpuServerhandleRenderDashboardPopupTableData = function () {
 		columnDefs: [
 			{width: "5%", target: [0]},
 			{width: "15%", target: [1]},
-			{width: "14%", target: [2]}
+			{width: "14%", target: [2]},
+			{width: "14%", target: [3]},
+			{width: "14%", target: [4]}
 
 		],
 		language: {
@@ -477,7 +479,7 @@ var gpuServerhandleRenderDashboardPopupTableData = function () {
 var handleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#MemoryDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -535,7 +537,7 @@ var handleRenderDashboardPopupTableData = function () {
 var CpuhandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#CpuDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -591,7 +593,7 @@ var CpuhandleRenderDashboardPopupTableData = function () {
 var DiskhandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#DiskDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
@@ -650,7 +652,7 @@ var DiskhandleRenderDashboardPopupTableData = function () {
 var alarmCasehandleRenderDashboardPopupTableData = function () {
 	var dashboardpopupTable = $('#alarmCaseDashboard-popupTable').DataTable({
 		dom: "<'d-flex justify-content-between mb-3'<'col-md-4 mb-md-0'l><'text-right'<'d-flex justify-content-end'fB>>>t<'align-items-center d-flex justify-content-between'<' mr-auto col-md-6 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
-		lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+		lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
 		responsive: true,
 		searching: true,
 		ordering: false,
