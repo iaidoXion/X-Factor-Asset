@@ -16,13 +16,12 @@ DBPwd = SETTING['DB']['DBPwd']
 AssetTNM = SETTING['DB']['AssetTNM']
 StatisticsTNM = SETTING['DB']['StatisticsTNM']
 BS = SETTING['FILE']
-
+DBSelectTime = SETTING['DB']['DBSelectTime']
 day = datetime.today().strftime("%Y-%m-%d")
-
 
 def plug_in(table, day, type):
     try:
-        fiveMinutesAgo = (datetime.today() - timedelta(minutes=5)).strftime("%Y-%m-%d %H:%M:%S")
+        fiveMinutesAgo = (datetime.today() - timedelta(minutes=DBSelectTime)).strftime("%Y-%m-%d %H:%M:%S")
         halfHourAgo = (datetime.today() - timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
         yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
         fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
