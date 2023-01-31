@@ -1452,7 +1452,7 @@ var apexPhysicalServerOptions = {
 
 function worldMap(worldMapData) {
         var width = 750,
-            height = 330,
+            height = 350,
             centered,
             clicked_point;
 
@@ -1556,7 +1556,7 @@ svg.selectAll("circle")
 function koreaMap(worldMapData) {
 
 var width = 750,
-    height = 330,
+    height = 350,
     initialScale = 2700,
     centered,
     labels;
@@ -1699,7 +1699,7 @@ function translateCircle(datum, index)
 
 function seongnamMap(worldMapData) {
         var width = 750,
-            height = 330,
+            height = 360,
             centered,
             clicked_point;
 	var svg = d3.select("#seongnam-map").append("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`);
