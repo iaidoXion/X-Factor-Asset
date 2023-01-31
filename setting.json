@@ -46,11 +46,12 @@
     "DataLoadingType" : "DB"
   },
   "DB" : {
-    "DBHost" : "localhost",
-    "DBPort" : "5432",
+    "DBHost" : "1.223.168.93",
+    "DBPort" : "40011",
     "DBName" : "postgres",
     "DBUser" : "postgres",
     "DBPwd" : "psql",
+    "DBSelectTime" : 5,
     "AssetTNM" : "daily_asset",
     "StatisticsTNM" : "daily_statistics",
     "MenuTNM": "web_menusetting",
