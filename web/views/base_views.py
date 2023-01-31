@@ -155,9 +155,7 @@ def customizing(request):
 
 ############################ 팝업 ############################################
 def osVersion_moreInfo(request):
-    os_donutChartData = DCDL["os_donutChartData"]
-    returnData = {'menuList': menuListDB, 'data': os_donutChartData}
-    return render(request, 'popup/osVersion_moreInfo.html', returnData)
+    return render(request, 'popup/osVersion_moreInfo.html')
 @csrf_exempt
 def osVersion_moreInfo_paging(request):
     draw = int(request.POST.get('draw'))
@@ -167,6 +165,8 @@ def osVersion_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'osMore', data)
+    for i in range(len(SMD)):
+        SMD[i]['count'] = str(SMD[i]['count']) + '개'
     SMC = PDPI('statistics', 'osCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -177,9 +177,7 @@ def osVersion_moreInfo_paging(request):
     return JsonResponse(returnData)
 
 def serverBandBy_moreInfo(request):
-    server_barChartData = DCDL["server_BChartDataList"]
-    returnData = {'menuList': menuListDB, 'data': server_barChartData}
-    return render(request, 'popup/serverBandBy_moreInfo.html', returnData)
+    return render(request, 'popup/serverBandBy_moreInfo.html')
 @csrf_exempt
 def serverBandBy_moreInfo_paging(request):
     draw = int(request.POST.get('draw'))
@@ -189,6 +187,8 @@ def serverBandBy_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'serverBandByMore', data)
+    for i in range(len(SMD)):
+        SMD[i]['count'] = str(SMD[i]['count']) + '개'
     SMC = PDPI('statistics', 'serverBandByCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -199,9 +199,7 @@ def serverBandBy_moreInfo_paging(request):
     return JsonResponse(returnData)
 
 def runningService_moreInfo(request):
-    service_donutChartData = DCDL["service_donutChartData"]
-    returnData = {'menuList': menuListDB, 'data': service_donutChartData}
-    return render(request, 'popup/runningService_moreInfo.html', returnData)
+    return render(request, 'popup/runningService_moreInfo.html')
 @csrf_exempt
 def runningService_moreInfo_paging(request):
     draw = int(request.POST.get('draw'))
@@ -211,6 +209,8 @@ def runningService_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'runningServiceMore', data)
+    for i in range(len(SMD)):
+        SMD[i]['count'] = str(SMD[i]['count']) + '개'
     SMC = PDPI('statistics', 'runningServiceCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -236,6 +236,8 @@ def memory_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'memoryMore', data)
+    for i in range(len(SMD)):
+        SMD[i]['usage'] = str(SMD[i]['usage']) + '%'
     SMC = PDPI('statistics', 'memoryCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -257,6 +259,8 @@ def cpu_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'cpuMore', data)
+    for i in range(len(SMD)):
+        SMD[i]['usage'] = str(SMD[i]['usage']) + '%'
     SMC = PDPI('statistics', 'cpuCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -277,6 +281,8 @@ def disk_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'diskMore', data)
+    for i in range(len(SMD)):
+        SMD[i]['usage'] = str(SMD[i]['usage']) + '%'
     SMC = PDPI('statistics', 'diskCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -299,6 +305,8 @@ def physicalServer_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'physicalServerMore', data)
+    for i in range(len(SMD)):
+        SMD[i]['count'] = str(SMD[i]['count']) + '개'
     SMC = PDPI('statistics', 'physicalServerCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -323,10 +331,10 @@ def gpuServer_moreInfo_paging(request):
         model = eval(SMD[i]['model'])
         if type(list(model)[0]) == str:
             SMD[i]['model'] = list(model)[0]
-            SMD[i]['count'] = list(model)[1]
+            SMD[i]['count'] = str(list(model)[1]) + '개'
         else:
             SMD[i]['model'] = list(model)[1]
-            SMD[i]['count'] = list(model)[0]
+            SMD[i]['count'] = str(list(model)[0]) + '개'
 
         # model = SMD[i]['model'].replace(',', '').replace('"', '').replace('{', '').replace('}','')[1:]
         # count = SMD[i]['model'].replace(',', '').replace('"', '').replace('{', '').replace('}','')[0]
@@ -353,7 +361,6 @@ def alarmCase_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'alarmCaseMore', data)
-    # print(SMD)
 
     for i in range(len(SMD)):
         if SMD[i]['date'] < halfHour:

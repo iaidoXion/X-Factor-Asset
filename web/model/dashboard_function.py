@@ -382,6 +382,8 @@ def DashboardData():
                         chart.append({"name": "75Risk", "value": 0})
                     if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
                         chart.append({"name": "95Risk", "value": 0})
+                    if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '99Risk'), None) == None:
+                        chart.append({"name": "99Risk", "value": 0})
                     if case != '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
                         alarmData.append({"alarmCase": case + " 사용량 95% 초과", "alarmCount": 0})
                         chart.append({"name": "95Risk", "value": 0})
@@ -495,7 +497,6 @@ def DashboardData():
                     if memoryMore[i][0] != 'unconfirmed' and not memoryMore[i][2].startswith('[current') and not memoryMore[i][3].startswith('[current') and memoryMore[i][4] != 'unconfirmed':
                         count = math.trunc(float(memoryMore[i][4]))
                         memoryMoreDataList.append({"ip": memoryMore[i][0], "name": memoryMore[i][1], "use": memoryMore[i][2], "total": memoryMore[i][3], "usage": count})
-
 
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData

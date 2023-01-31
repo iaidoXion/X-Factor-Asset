@@ -858,7 +858,7 @@ def plug_in(table, day, type):
         RS = Cur.fetchall()
         for i, R in enumerate(RS, start=1):
             if day == 'memoryMore' or day == 'diskMore':
-                index = (int(type[1]) - 1) * 10 + i
+                index = (int(type[1]) - 1) * int(type[0]) + i
                 SDL.append(dict(
                                 (
                                     ('index', index),
@@ -866,22 +866,22 @@ def plug_in(table, day, type):
                                     ('name', R[1]),
                                     ('use', R[2]),
                                     ('total', R[3]),
-                                    ('usage', math.trunc(float(R[4])))
+                                    ('usage', round(float(R[4]), 1))
                                 )
                 ))
             elif day == 'cpuMore':
-                index = (int(type[1]) - 1) * 10 + i
+                index = (int(type[1]) - 1) * int(type[0]) + i
                 SDL.append(dict(
                     (
                         ('index', index),
                         ('ip', R[0]),
                         ('name', R[1]),
                         ('use', R[2]),
-                        ('usage', math.trunc(float(R[3])))
+                        ('usage', round(float(R[3]), 1))
                     )
                 ))
             elif day == 'osMore' or day == 'serverBandByMore' or day == 'runningServiceMore' or day == 'physicalServerMore':
-                index = (int(type[1]) - 1) * 10 + i
+                index = (int(type[1]) - 1) * int(type[0]) + i
                 SDL.append(dict(
                     (
                         ('index', index),
@@ -890,7 +890,7 @@ def plug_in(table, day, type):
                     )
                 ))
             elif day == 'gpuServerMore':
-                index = (int(type[1]) - 1) * 10 + i
+                index = (int(type[1]) - 1) * int(type[0]) + i
                 SDL.append(dict(
                     (
                         ('index', index),
@@ -900,7 +900,7 @@ def plug_in(table, day, type):
                     )
                 ))
             elif day == 'alarmCaseMore':
-                index = (int(type[1]) - 1) * 10 + i
+                index = (int(type[1]) - 1) * int(type[0]) + i
                 SDL.append(dict(
                     (
                         ('index', index),
