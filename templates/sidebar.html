@@ -1,4 +1,5 @@
 {% load static %}
+
 <div id="sidebar" class="app-sidebar">
     <!-- BEGIN scrollbar -->
     <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
@@ -9,108 +10,112 @@
             {% for menu in menuList %}
             {% if menu.menuUse == '1' %}
 
-			{% if menu.menuName == "대시보드" or menu.menuName == "취약점 진단" %}
-				{% if request.get_full_path|cut:'/' == menu.menuUrl %}
-				<div class="menu-item active">
-				{% else %}
-				<div class="menu-item">
-				{% endif %}
+            {% if menu.menuName == "대시보드" or menu.menuName == "취약점 진단" %}
+            {% if request.get_full_path|cut:'/' == menu.menuUrl %}
+            <div class="menu-item active">
+                {% else %}
+                <div class="menu-item">
+                    {% endif %}
 
-					<a href="../{{menu.menuUrl}}" class="menu-link">
-						{% if menu.menuName == "대시보드" %}
-						<span class="menu-icon"><i class="bi bi-columns-gap"></i></span>
-						{% elif menu.menuName == "취약점 진단" %}
-						<span class="menu-icon"><i class="bi bi-cpu"></i></span>
-						{% else %}
-						{% endif %}
-						{% if menu.menuName != "설정" and menu.menuName != "보고서" %}
-						<span class="menu-text">{{ menu.menuName }}</span>
-						{% else %}
-						{% endif %}
-					</a>
+                    <a href="../{{menu.menuUrl}}" class="menu-link">
+                        {% if menu.menuName == "대시보드" %}
+                        <span class="menu-icon"><i class="bi bi-columns-gap"></i></span>
+                        {% elif menu.menuName == "취약점 진단" %}
+                        <span class="menu-icon"><i class="bi bi-cpu"></i></span>
+                        {% else %}
+                        {% endif %}
+                        {% if menu.menuName != "설정" and menu.menuName != "보고서" %}
+                        <span class="menu-text">{{ menu.menuName }}</span>
+                        {% else %}
+                        {% endif %}
+                    </a>
 
-				</div>
+                </div>
 
-            {% elif menu.menuName == "보고서" %}
-				{% if request.get_full_path|cut:'/' == 'reportdaily' or request.get_full_path|cut:'/' == 'reportmonthly' or request.get_full_path|cut:'/' == 'reportannual' or request.get_full_path|cut:'/' == 'report' %}
-				<div class="menu-item has-sub active">
-				{% else %}
-				<div class="menu-item has-sub">
-				{% endif %}
-					<a href="#" class="menu-link">
+                {% elif menu.menuName == "보고서" %}
+                {% if request.get_full_path|cut:'/' == 'reportdaily' or request.get_full_path|cut:'/' == 'reportmonthly' or request.get_full_path|cut:'/' == 'reportannual' or request.get_full_path|cut:'/' == 'report' %}
+                <div class="menu-item has-sub active">
+                    {% else %}
+                    <div class="menu-item has-sub">
+                        {% endif %}
+                        <a href="#" class="menu-link">
 							<span class="menu-icon">
 								<i class="bi bi-collection"></i>
 							</span>
-						<span class="menu-text">{{ menu.menuName }}</span>
-						<span class="menu-caret"><b class="caret"></b></span>
-					</a>
-					<div class="menu-submenu">
-						<div class="menu-item">
-							<a href="../reportdaily" class="menu-link">
-								<span class="menu-text">일간 보고서</span>
-							</a>
-						</div>
-						<div class="menu-item">
-							<a href="../reportmonthly" class="menu-link">
-								<span class="menu-text">주간 보고서</span>
-							</a>
-						</div>
-						<div class="menu-item">
-							<a href="../reportannual" class="menu-link">
-								<span class="menu-text">연간 보고서</span>
-							</a>
-						</div>
-						<div class="menu-item">
-							<a href="../report" class="menu-link">
-								<span class="menu-text">보고서</span>
-							</a>
-						</div>
-					</div>
-				</div>
+                            <span class="menu-text">{{ menu.menuName }}</span>
+                            <span class="menu-caret"><b class="caret"></b></span>
+                        </a>
+                        <div class="menu-submenu">
+                            <div class="menu-item">
+                                <a href="../reportdaily" class="menu-link">
+                                    <span class="menu-text">일간 보고서</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="../reportmonthly" class="menu-link">
+                                    <span class="menu-text">주간 보고서</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="../reportannual" class="menu-link">
+                                    <span class="menu-text">연간 보고서</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="../report" class="menu-link">
+                                    <span class="menu-text">보고서</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-			{% elif menu.menuName == "설정" %}
+                    {% elif menu.menuName == "설정" %}
 
-				<div class="menu-item has-sub">
-					<a href="#" class="menu-link">
+                    <div class="menu-item has-sub">
+                        <a href="#" class="menu-link">
 								<span class="menu-icon">
 									<i class="bi bi-gear"></i>
 								</span>
-						<span class="menu-text">{{ menu.menuName }}</span>
-						<span class="menu-caret"><b class="caret"></b></span>
-					</a>
-					<div class="menu-submenu">
-						<div class="menu-item">
-							<a href="#" class="menu-link">
-								<span class="menu-text">Inbox</span>
-							</a>
-						</div>
-						<div class="menu-item">
-							<a href="#" class="menu-link">
-								<span class="menu-text">Compose</span>
-							</a>
-						</div>
-						<div class="menu-item">
-							<a href="#" class="menu-link">
-								<span class="menu-text">Detail</span>
-							</a>
-						</div>
-					</div>
-				</div>
-            {% else %}
+                            <span class="menu-text">{{ menu.menuName }}</span>
+                            <span class="menu-caret"><b class="caret"></b></span>
+                        </a>
+                        <div class="menu-submenu">
+                            <div class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <span class="menu-text">Inbox</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <span class="menu-text">Compose</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <span class="menu-text">Detail</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <!-- END menu -->
+                {% if Customer == 'Xfactor'%}
+                <div class="p-3 px-4 mt-auto">
+                    <a href="../documentation_ug" class="btn d-block btn-outline-theme">
+                        <i class="fa fa-code-branch me-2 ms-n2 opacity-5"></i> Documentation
+                    </a>
+                </div>
+                {% else %}
+
+                {% endif %}
+            </div>
             {% endif %}
-            {% endif %}
-            {% endfor %}
-			</div>
-			<!-- END menu -->
-			<div class="p-3 px-4 mt-auto">
-				<a href="../documentation_ug" class="btn d-block btn-outline-theme">
-					<i class="fa fa-code-branch me-2 ms-n2 opacity-5"></i> Documentation
-				</a>
-			</div>
-		</div>
-		{% endif %}
-		<!-- END scrollbar -->
-	</div>
-	<!-- BEGIN mobile-sidebar-backdrop -->
-	<button class="app-sidebar-mobile-backdrop" data-toggle-target=".app" data-toggle-class="app-sidebar-mobile-toggled"></button>
-	<!-- END mobile-sidebar-backdrop -->
+            <!-- END scrollbar -->
+        </div>
+        <!-- BEGIN mobile-sidebar-backdrop -->
+        <button class="app-sidebar-mobile-backdrop" data-toggle-target=".app" data-toggle-class="app-sidebar-mobile-toggled"></button>
+        <!-- END mobile-sidebar-backdrop -->
