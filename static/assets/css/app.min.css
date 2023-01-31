@@ -4110,19 +4110,19 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-theme {
-    --bs-btn-color: #3cd2a5;
-    --bs-btn-border-color: #3cd2a5;
+    --bs-btn-color: #ff9f0c;
+    --bs-btn-border-color: #ff9f0c;
     --bs-btn-hover-color: #000000;
-    --bs-btn-hover-bg: #3cd2a5;
-    --bs-btn-hover-border-color: #3cd2a5;
-    --bs-btn-focus-shadow-rgb: 60, 210, 165;
+    --bs-btn-hover-bg: #ff9f0c;
+    --bs-btn-hover-border-color: #ff9f0c;
+    --bs-btn-focus-shadow-rgb: #ff9f0c;
     --bs-btn-active-color: #000000;
-    --bs-btn-active-bg: #3cd2a5;
-    --bs-btn-active-border-color: #3cd2a5;
+    --bs-btn-active-bg: #ff9f0c;
+    --bs-btn-active-border-color: #ff9f0c;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     --bs-btn-disabled-color: #3cd2a5;
     --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #3cd2a5;
+    --bs-btn-disabled-border-color: #ff9f0c;
     --bs-gradient: none
 }
 
@@ -25520,12 +25520,12 @@ a:hover {
 }
 
 .navbar.navbar-sticky .nav .nav-link:hover {
-    color: rgba(255, 255, 255, .75)
+    color: #ff9f0c;
 }
 
 .navbar.navbar-sticky .nav .nav-link.active {
     color: var(--bs-theme);
-    font-weight: 600
+    font-weight: 800px;
 }
 
 .page-header {
@@ -30376,7 +30376,7 @@ body .note-modal-backdrop {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-/* END specification-table*/
+/* END specificsation-table*/
 
 /* BiGIN 원 직접 만들기 */
 .documentation-wrapper{
@@ -30397,7 +30397,7 @@ body .note-modal-backdrop {
 
 /* 유저 가이드 이미지 */
 .userguide-img{
-    width: 100%;
+    width: 97%;
     border: 1px solid rgba(255, 255, 255, .5);
 }
 

@@ -17,18 +17,18 @@
                                     <ol class="mb-auto">
                                         <li>
                                             웹서버에서 ps -ef|grep python3.10명령어를 입력하여 현재 구동중인 프로세스를 조회합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/faq-process-lookup.png">
                                         </li>
                                         <li>
                                             해당 프로세스 kill PID값(ex. kill 127143)을 입력하여 프로세스를 종료시킵니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/faq-end-process.png">
                                         </li>
                                         <li>재실행을 위하여 ‘source /venvs/xion/bin/activate’를 입력하여 가상환경에 진입합니다.</li>
                                         <li>
                                             cd /venvs/xion/bin/projects/projects를 입력해 경로를 이동한 후, nohup python3.10 run.py runsslserver --certificate django.crt --key django.key 192.168.10.50:8000 &  를 입력하여 프로세스를 실행합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/faq-start-process.png">
                                         </li>
                                         <li>마지막으로 ps -ef|grep python3.10 를 입력해 프로세스가 목록에 있는지 확인합니다.</li>
@@ -49,19 +49,19 @@
                             <div class="card mb-5">
                                 <div class="card-body">
                                     <ol class="mb-auto">
-                                        <li>Web에서 특정 PC의 정보가 조회되지 않는 현상이 발생한다면 해당 PC로 로그인을 합니다.</li>
-                                        <li>해당 PC에서 Win + R 키로 ‘실행’창을 불러옵니다.</li>
+                                        <li class="mb-10px">Web에서 특정 PC의 정보가 조회되지 않는 현상이 발생한다면 해당 PC로 로그인을 합니다.</li>
+                                        <li class="mb-10px">해당 PC에서 Win + R 키로 ‘실행’창을 불러옵니다.</li>
                                         <li>
                                             ‘services.msc’을 입력하여 실행시킵니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <div class="text-center "><img class="userguide-img w-50 mb-30px" src="/static/img/X-Factor_documentation/faq-execution.png"></div>
                                         </li>
                                         <li>
                                             ‘Tanium Client’ 서비스의 실행 여부를 확인 후 ‘다시 시작’ 버튼으로 재실행 합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <div class="text-center "><img class="userguide-img w-70 mb-30px" src="/static/img/X-Factor_documentation/tanium-client-restart.png"></div>
                                         </li>
-                                        <li>위의 화면과 같이 서비스가 실행되고 있는지 확인합니다.</li>
+                                        <li class="mb-10px">위의 화면과 같이 서비스가 실행되고 있는지 확인합니다.</li>
                                         <li>Web에서 해당 PC의 정보가 정상적으로 조회되는지 확인합니다.</li>
                                     </ol>
                                 </div>
@@ -80,17 +80,17 @@
                             <div class="card mb-5">
                                 <div class="card-body">
                                     <ol class="mb-auto">
-                                        <li>Web은 정상적으로 실행 중이나 API 호출이 정상적으로 이루어 지지 않아 데이터가 확인이 안될 경우 <br> 모듈 서버에 접속합니다.
+                                        <li class="mb-10px">Web은 정상적으로 실행 중이나 API 호출이 정상적으로 이루어 지지 않아 데이터가 확인이 안될 경우 <br> 모듈 서버에 접속합니다.
                                             <br>※ 모듈 서버는 Tanium 서버를 의미합니다. 명칭 변경이 필요하다면 변경 부탁드립니다.
                                         </li>
-                                        <li>해당 PC에서 Win + R 키로 ‘실행’창을 불러옵니다.</li>
-                                        <li>‘services.msc’을 입력하여 실행시킵니다.</li>
+                                        <li class="mb-10px">해당 PC에서 Win + R 키로 ‘실행’창을 불러옵니다.</li>
+                                        <li class="mb-10px">‘services.msc’을 입력하여 실행시킵니다.</li>
                                         <li>
                                             ‘Tanium Module Server’ 와 ‘Tanium Server’ 서비스를 중지한 후 ‘다시 시작’합니다. <br> 또는 실행 중이 아니라면 ‘시작’ 버튼으로 서비스를 실행합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <div class="text-center"><img class="userguide-img w-70 mb-30px" src="/static/img/X-Factor_documentation/tanium-client-start.png"></div>
                                         </li>
-                                        <li>위 사진과 같이 서비스가 실행되고 있는지 확인합니다.</li>
+                                        <li class="mb-10px">위 사진과 같이 서비스가 실행되고 있는지 확인합니다.</li>
                                         <li>Web에서 정상적으로 정보가 조회되는 지 확인합니다.</li>
                                     </ol>
                                 </div>
@@ -110,10 +110,10 @@
                                 <div class="card-body">
                                     <ol class="mb-auto">
                                         <li>삭제를 원하는 Client PC에 접속합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <div class="text-center"><img class="userguide-img w-70 mb-30px" src="/static/img/X-Factor_documentation/faq-delete-clientpc.png"></div>
                                         </li>
-                                        <li>제어판 – 프로그램 제거 – Tanium Client를 삭제합니다</li>
+                                        <li class="mb-10px">제어판 – 프로그램 제거 – Tanium Client를 삭제합니다</li>
                                         <li>정상적으로 삭제되었는지 Web에서 확인합니다.</li>
                                     </ol>
                                 </div>
@@ -132,13 +132,13 @@
                             <div class="card mb-5">
                                 <div class="card-body">
                                     <ol class="mb-auto">
-                                        <li>모니터링 대상으로 추가할 Client PC에 접속합니다.</li>
-                                        <li>Chrome으로 접속 후, 주소창에 ‘https://”서버의 IP주소”/install.zip’ 입력하여 Client 설치파일을 다운로드 합니다.</li>
+                                        <li class="mb-10px">모니터링 대상으로 추가할 Client PC에 접속합니다.</li>
+                                        <li class="mb-10px">Chrome으로 접속 후, 주소창에 ‘https://”서버의 IP주소”/install.zip’ 입력하여 Client 설치파일을 다운로드 합니다.</li>
                                         <li>다운된 압축 파일 해제하여 설치 파일을 확인합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <div class="text-center"><img class="userguide-img w-70 mb-30px" src="/static/img/X-Factor_documentation/faq-file-confirm.png"></div>
                                         </li>
-                                        <li>‘Set up Client’ 파일 실행하여 Client를 설치합니다.</li>
+                                        <li class="mb-10px">‘Set up Client’ 파일 실행하여 Client를 설치합니다.</li>
                                         <li>Web에서 정상적으로 정보 확인이 되는지 확인합니다.</li>
                                     </ol>
                                 </div>

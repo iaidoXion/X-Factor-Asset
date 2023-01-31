@@ -10,19 +10,19 @@
                 <div class="row">
                     <div class="col-xl-10">
                         <!-- BEGIN X-Factor-sing-up -->
-                        <div id="start-singup">
+                        <div id="start-singup" class="active">
                             <p class="documentation-header">회원가입</p>
                             <div class="card mb-5">
                                 <div class="card-body">
                                     <ol class="mb-auto">
                                         <li>최초 실행 시 회원가입을 통해 아이디 및 비밀번호를 생성합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/x-factor-login-singup-mark.png">
                                         </li>
-                                        <li><span style="color: #ff0000;">*</span><span>마크가 있는 항목(아이디, 비밀번호, 비밀번확인, 이메일, 부서, 직급)은 필수 입력 항목 입니다.</span></li>
+                                        <li class="mb-10px"><span style="color: #ff0000;">*</span><span>마크가 있는 항목(아이디, 비밀번호, 비밀번확인, 이메일, 부서, 직급)은 필수 입력 항목 입니다.</span></li>
                                         <li>
                                             이미 가입한 아이디가 있을 경우, 하단의 로그인 링크를 통해 로그인 페이지로 이동합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <img class="userguide-img" src="/static/img/X-Factor_documentation/x-factor-singup.png">
                                         </li>
                                     </ol>
@@ -42,11 +42,11 @@
                             <div class="card mb-6">
                                 <div class="card-body">
                                     <ol class="mb-auto">
-                                        <li>생성한 아이디 및 비밀번호를 입력하여 로그인 합니다.</li>
-                                        <li>체크 박스에 체크한 후, 로그인에 성공하면 사용자 아이디가 저장됩니다.</li>
+                                        <li class="mb-10px">생성한 아이디 및 비밀번호를 입력하여 로그인 합니다.</li>
+                                        <li class="mb-10px">체크 박스에 체크한 후, 로그인에 성공하면 사용자 아이디가 저장됩니다.</li>
                                         <li>
                                             가입한 아이디가 없을 경우, 하단의 회원가입 링크를 통해 회원가입 페이지로 이동합니다.
-                                            <div class="h-10px"></div>
+                                            <div class="mb-15px"></div>
                                             <img class="userguide-img" src="/static/img/X-Factor_documentation/x-factor-login-guide.png">
                                         </li>
                                     </ol>
@@ -61,10 +61,10 @@
                         </div>
                         <!-- END X-Factor-login -->
                     </div>
-                    <div class="w-auto">
-                        <nav class="navbar navbar-sticky d-none d-xl-block">
+                    <div class="col-xl-2">
+                        <nav id="sidebar-bootstrap" class="navbar navbar-sticky d-none d-xl-block">
                             <nav class="nav">
-                                <a class="nav-link fs-16px" href="#start-singup" data-toggle="scroll-to">회원 가입</a>
+                                <a class="nav-link fs-16px" aria-current="page" href="#start-singup" data-toggle="scroll-to">회원 가입</a>
                                 <a class="nav-link fs-16px" href="#start-login" data-toggle="scroll-to">로그인</a>
                             </nav>
                         </nav>
@@ -75,5 +75,31 @@
     </div>
 </div>
 <!-- END content -->
+<script>
+    $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
 
+    if (scroll < about)
+    {
+      $("#header-menu-hero").addClass("menu-active");
+      $("#header-menu-about").removeClass("menu-active");
+    }
+    else if (about <= scroll && scroll< hhistory)
+    {
+      $("#header-menu-hero").removeClass("menu-active");
+      $("#header-menu-about").addClass("menu-active");
+      $("#header-menu-history").removeClass("menu-active");
+    }
+    else if (hhistory <= scroll && scroll < contact)
+    {
+      $("#header-menu-about").removeClass("menu-active");
+      $("#header-menu-history").addClass("menu-active");
+      $("#header-menu-contact").removeClass("menu-active");
+    }
+    else if (contact <= scroll)
+    {
+      $("#header-menu-history").removeClass("menu-active");
+      $("#header-menu-contact").addClass("menu-active");
+    }
+</script>
 {% endblock %}
