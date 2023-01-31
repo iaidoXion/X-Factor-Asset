@@ -459,10 +459,13 @@ def DashboardData():
 
                 #GPU 서버 수량
                 GpuServerData = PDPI('statistics', 'today', 'gpu')
-                tValue = int(GpuServerData[0][1])
-                yValue = int(GpuServerData[1][1])
-                roc = tValue - yValue
-                GpuServerDataList = {"value" : tValue, 'roc': roc}
+                try:
+                    tValue = int(GpuServerData[0][1])
+                    yValue = int(GpuServerData[1][1])
+                    roc = tValue - yValue
+                    GpuServerDataList = {"value" : tValue, 'roc': roc}
+                except :
+                    GpuServerDataList = {"value": '-', 'roc': '-'}
 
                 #서버 최다 연결 IP
                 connectIpDataList = []

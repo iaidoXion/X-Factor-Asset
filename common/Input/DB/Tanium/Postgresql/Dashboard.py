@@ -823,6 +823,7 @@ def plug_in(table, day, type):
                             minutely_statistics_list
                         where
                             asset_list_statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            and NOT ipv_address IN ('unconfirmed')
                         order by
                             session_ip_count::INTEGER desc limit 3
                     """
