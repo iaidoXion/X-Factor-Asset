@@ -14,7 +14,6 @@ import json
 import math
 
 menuListDB = MenuSetting()
-DCDL = DashboardData()
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
@@ -31,6 +30,7 @@ def index(request):
 
 
 def dashboard(request):
+    DCDL = DashboardData()
     res_data = {}
     if not 'sessionid' in request.session:
         res_data['error'] = '먼저 로그인을 해주세요.'
@@ -293,9 +293,7 @@ def disk_moreInfo_paging(request):
     return JsonResponse(returnData)
 
 def physicalServer_moreInfo(request):
-    vendorChartList = DCDL["vendorChartList"]
-    returnData = {'menuList': menuListDB, 'data': vendorChartList}
-    return render(request, 'popup/physicalServer_moreInfo.html', returnData)
+    return render(request, 'popup/physicalServer_moreInfo.html')
 @csrf_exempt
 def physicalServer_moreInfo_paging(request):
     draw = int(request.POST.get('draw'))
@@ -381,7 +379,7 @@ def alarmCase_moreInfo_paging(request):
                 SMD[i]['driveusage'] = 'False'
 
         elif SMD[i]['ramusage'] > 95:
-            SMD[i]['ramusage'] = 'True ' + str(SMD[i]['ramusage']) + '%'
+            SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
             if SMD[i]['cpuusage'] > 95:
                 SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + '%)'
             else:
