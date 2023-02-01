@@ -30401,3 +30401,15 @@ body .note-modal-backdrop {
     border: 1px solid rgba(255, 255, 255, .5);
 }
 
+.selectMap{
+    cursor: grab ;
+}
+
+.maps{
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select:none;
+}
+
