@@ -12,7 +12,7 @@
 <!-- END #sidebar -->
 
 <!-- BEGIN #content -->
-<div id="content" class="app-content col-12">
+<div id="content" class="app-content">
     <!-- BEGIN row -->
     <div class="row">
         <!-- BEGIN col-3 -->
@@ -33,28 +33,28 @@
                             {% if chartData.os_chartPartOne %}
                             <div class="col-5 small text-white text-opacity-50 text-truncate">
                                 {% for data in chartData.os_chartPartOne %}
-                                <i class="fas fa-server fa-fw me-1" ></i>
+                                <i class="fas fa-server fa-fw me-1"></i>
                                 <span title="{{data.name}}">{{data.name}}</span>
                                 <br>
                                 {% endfor %}
                             </div>
                             <div class="col-1 small text-white text-opacity-50 text-truncate text-center">
                                 {% for data in chartData.os_chartPartOne %}
-                                    {{ data.value }}
+                                {{ data.value }}
                                 <br>
                                 {% endfor %}
                             </div>
                             {% endif %}
-                        <div class="small text-white text-opacity-50 text-truncate ps-3">
-                            {% for data in chartData.os_chartPartTwo %}
-                                <i class="fas fa-server fa-fw me-1" ></i>
+                            <div class="col-5 small text-white text-opacity-50 text-truncate ps-3">
+                                {% for data in chartData.os_chartPartTwo %}
+                                <i class="fas fa-server fa-fw me-1"></i>
                                 <span title="{{data.name}}">{{data.name}}</span>
                                 <br>
                                 {% endfor %}
                             </div>
-                            <div class="small text-white text-opacity-50 text-truncate ps-2">
+                            <div class="col-1 small text-white text-opacity-50 text-truncate text-center">
                                 {% for data in chartData.os_chartPartTwo %}
-                                    {{ data.value }}
+                                {{ data.value }}
                                 <br>
                                 {% endfor %}
                             </div>
@@ -133,26 +133,29 @@
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
                     <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
-                        <div class="small text-white text-opacity-50 text-truncate col-5">
-                            {% if chartData.donutChartDataList %}
-                            {% for data in chartData.donutChartDataList %}
-                            <i class="fas fa-cogs fa-fw me-1" ></i>
-                            <span title="{{data.name}}">{{data.name}}</span>
-                            <br>
-                            {% endfor %}
+                        <div class="col-5 small text-white text-opacity-50 text-truncate">
+                            <i class="fas fa-cogs fa-fw me-1"></i>
+                            <span>DCOM Server Process Launcher</span><br>
+                            <i class="fas fa-cogs fa-fw me-1"></i>
+                            <span>Network Store Interface Service</span><br>
+                            <i class="fas fa-cogs fa-fw me-1"></i>
+                            <span>DCOM Server Process Launcher</span><br>
+                            <i class="fas fa-cogs fa-fw me-1"></i>
+                            <span>Network Store Interface Service</span><br>
+                            <i class="fas fa-cogs fa-fw me-1"></i>
+                            <span>DCOM Server Process Launcher</span>
                         </div>
-                        <div class="small text-white text-opacity-50 text-truncate col-1"
+                        <div class="small text-white text-opacity-50 text-truncate"
                              style="padding-left: 10px;">
-                            {% for data in chartData.donutChartDataList %}
-                            {{data.value}}
-                            <br>
-                            {% endfor %}
-                            {% endif %}
+                            <span>4500</span><br>
+                            <span>4500</span><br>
+                            <span>4500</span><br>
+                            <span>4500</span><br>
+                            <span>4500</span>
+
                         </div>
-                        <div>
-                            <div class="col-12">
-                                <div class="mt-n3 mb-n2 h-100px" id="apexRunServiceChart"></div>
-                            </div>
+                        <div class="col-5">
+                            <div class="mt-n3 mb-n2 h-100px" id="apexRunServiceChart"></div>
                         </div>
                     </div>
                     <!-- END stat-lg -->
@@ -453,7 +456,7 @@
                                 {% elif chartData.GpuServerDataList.roc > 0 %}
                                 <img class="conArrow
 " src="{% static 'img/common/dashboard/arrowTop.png' %}"
-                                    >
+                                >
                                 {% elif chartData.GpuServerDataList.roc < 0 %}
                                 <img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
                                 {% endif %}
@@ -643,6 +646,8 @@
 <!-- END #content -->
 <script>
 	window.setTimeout('window.location.reload()',600000);
+
+
 </script>
 {% endblock %}
 
