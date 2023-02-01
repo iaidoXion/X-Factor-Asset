@@ -134,25 +134,19 @@
                     <!-- BEGIN stat-lg -->
                     <div class="h-100px d-flex flex-row align-items-center justify-content-sm-between">
                         <div class="col-5 small text-white text-opacity-50 text-truncate">
+                            {% if chartData.donutChartDataList %}
+                            {% for data in chartData.donutChartDataList %}
                             <i class="fas fa-cogs fa-fw me-1"></i>
-                            <span>DCOM Server Process Launcher</span><br>
-                            <i class="fas fa-cogs fa-fw me-1"></i>
-                            <span>Network Store Interface Service</span><br>
-                            <i class="fas fa-cogs fa-fw me-1"></i>
-                            <span>DCOM Server Process Launcher</span><br>
-                            <i class="fas fa-cogs fa-fw me-1"></i>
-                            <span>Network Store Interface Service</span><br>
-                            <i class="fas fa-cogs fa-fw me-1"></i>
-                            <span>DCOM Server Process Launcher</span>
+                            <span title="{{data.name}}">{{data.name}}</span>
+                            <br>
+                            {% endfor %}
                         </div>
-                        <div class="small text-white text-opacity-50 text-truncate"
-                             style="padding-left: 10px;">
-                            <span>4500</span><br>
-                            <span>4500</span><br>
-                            <span>4500</span><br>
-                            <span>4500</span><br>
-                            <span>4500</span>
-
+                        <div class="col-2 small text-white text-opacity-50 text-truncate text-center">
+                            {% for data in chartData.donutChartDataList %}
+                            {{data.value}}
+                            <br>
+                            {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="col-5">
                             <div class="mt-n3 mb-n2 h-100px" id="apexRunServiceChart"></div>
@@ -646,6 +640,8 @@
 <!-- END #content -->
 <script>
 	window.setTimeout('window.location.reload()',600000);
+
+
 
 
 </script>
