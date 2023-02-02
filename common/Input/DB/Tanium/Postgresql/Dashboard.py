@@ -415,14 +415,15 @@ def plug_in(table, day, type):
             elif day == 'alarmCaseMore':
                 query = """
                         select 
-                            ipv_address, computer_name, ram, cpu, drive, asset_list_statistics_collection_date 
+                            ipv_address, computer_name, ram, cpu, drive, TF 
                         from
                             minutely_statistics_list msl
                         inner join 
                         (select computer_id ,        
                         case when ramusage = 'unconfirmed' then 0 else ramusage::NUMERIC end as ram,
                         case when cpuusage = 'unconfirmed' then 0 else cpuusage::numeric end as cpu,
-                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive
+                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive,
+                        case when asset_list_statistics_collection_date < '""" + halfHourAgo + """' then 'True' else 'False' end as TF
                         from
                             minutely_statistics_list) msli
                         on msl.computer_id = msli.computer_id
@@ -433,7 +434,7 @@ def plug_in(table, day, type):
                             ram || 
                             cpu || 
                             drive ||
-                            asset_list_statistics_collection_date) like '%""" + type[2] + """%'
+                            TF) like '%""" + type[2] + """%'
                         LIMIT """ + type[0] + """
                         OFFSET (""" + type[1] + """-1) * """ + type[0] + """
                 """
@@ -447,7 +448,8 @@ def plug_in(table, day, type):
                         (select computer_id,
                         case when ramusage = 'unconfirmed' then 0 else ramusage::NUMERIC end as ram,
                         case when cpuusage = 'unconfirmed' then 0 else cpuusage::numeric end as cpu,
-                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive
+                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive,
+                        case when asset_list_statistics_collection_date < '""" + halfHourAgo + """' then 'True' else 'False' end as TF
                         from
                             minutely_statistics_list) msli
                         on msl.computer_id = msli.computer_id
@@ -458,7 +460,7 @@ def plug_in(table, day, type):
                             ram || 
                             cpu || 
                             drive ||
-                            asset_list_statistics_collection_date) like '%""" + type[2] + """%'
+                            TF) like '%""" + type[2] + """%'
                 """
             #################################################################### 페이징 끝 ########################################################################
             if day == 'today':

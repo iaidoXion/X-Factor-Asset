@@ -359,10 +359,8 @@ def alarmCase_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'alarmCaseMore', data)
-
     for i in range(len(SMD)):
-        if SMD[i]['date'] < halfHour:
-            SMD[i]['date'] = 'True'
+        if SMD[i]['date'] == 'True':
             if SMD[i]['ramusage'] > 95:
                 SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
             else:
@@ -377,48 +375,43 @@ def alarmCase_moreInfo_paging(request):
                 SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
             else:
                 SMD[i]['driveusage'] = 'False'
+        else:
+            if SMD[i]['ramusage'] > 95:
+                SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
+                if SMD[i]['cpuusage'] > 95:
+                    SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + '%)'
+                else:
+                    SMD[i]['cpuusage'] = 'False'
 
-        elif SMD[i]['ramusage'] > 95:
-            SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
-            if SMD[i]['cpuusage'] > 95:
+                if SMD[i]['driveusage'] > 95:
+                    SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+                else:
+                    SMD[i]['driveusage'] = 'False'
+
+            elif SMD[i]['cpuusage'] > 95:
                 SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + '%)'
-            else:
-                SMD[i]['cpuusage'] = 'False'
+                if SMD[i]['ramusage'] > 95:
+                    SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
+                else:
+                    SMD[i]['ramusage'] = 'False'
 
-            if SMD[i]['driveusage'] > 95:
+                if SMD[i]['driveusage'] > 95:
+                    SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+                else:
+                    SMD[i]['driveusage'] = 'False'
+
+            elif SMD[i]['driveusage'] > 95:
                 SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
-            else:
-                SMD[i]['driveusage'] = 'False'
+                if SMD[i]['ramusage'] > 95:
+                    SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
+                else:
+                    SMD[i]['ramusage'] = 'False'
 
-            SMD[i]['date'] = 'False'
+                if SMD[i]['cpuusage'] > 95:
+                    SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
+                else:
+                    SMD[i]['cpuusage'] = 'False'
 
-        elif SMD[i]['cpuusage'] > 95:
-            SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + '%)'
-            if SMD[i]['ramusage'] > 95:
-                SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
-            else:
-                SMD[i]['ramusage'] = 'False'
-
-            if SMD[i]['driveusage'] > 95:
-                SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
-            else:
-                SMD[i]['driveusage'] = 'False'
-
-            SMD[i]['date'] = 'False'
-
-        elif SMD[i]['driveusage'] > 95:
-            SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
-            if SMD[i]['ramusage'] > 95:
-                SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + '%)'
-            else:
-                SMD[i]['ramusage'] = 'False'
-
-            if SMD[i]['cpuusage'] > 95:
-                SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['driveusage']) + '%)'
-            else:
-                SMD[i]['cpuusage'] = 'False'
-
-            SMD[i]['date'] = 'False'
 
     SMC = PDPI('statistics', 'alarmCaseCount', data)
     RD = {"item": SMD}
