@@ -92,14 +92,14 @@ def assetweb(request):
         return render(request, 'common/login.html', res_data)
     else:
         Data = AssetData('Count', '')
-        returnData = {'menuList': menuListDB, 'data': Data}
+        returnData = {'menuList': menuListDB, 'data': Data, 'Customer': Customer,}
         return render(request, 'web/asset.html', returnData)
 
 
 def assetDetailweb(request):
     swv = request.GET.get('swv')
     Data = AssetData('SWL', swv)
-    returnData = {'menuList': menuListDB, 'data': Data}
+    returnData = {'menuList': menuListDB, 'data': Data, 'Customer': Customer,}
     return render(request, 'web/asset_detail.html', returnData)
 
 
@@ -124,32 +124,32 @@ def assetDetailweb_paging(request):
 
 
 def report(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'web/report.html', returnData)
 
 
 def reportdaily(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'web/report_daily.html', returnData)
 
 
 def reportmonthly(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'web/report_monthly.html', returnData)
 
 
 def reportannual(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'web/report_annual.html', returnData)
 
 
 def ncBanner(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'web/dashboard_NC_banner.html', returnData)
 
 
 def customizing(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'web/customizing.html', returnData)
 
 
@@ -433,58 +433,58 @@ def alarmCase_moreInfo_paging(request):
 
 ############################ 유저가이드 ############################################
 def userGuide_docs_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/documentation_ug.html', returnData)
 
 def specification_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/specification_ug.html', returnData)
 
 def start_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/start_ug.html', returnData)
 
 def dashboard_public_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/dashboard_public_ug.html', returnData)
 
 def dashboard_chart_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/dashboard_chart_ug.html', returnData)
 
 def dashboard_etc_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/dashboard_etc_ug.html', returnData)
 
 def weak_public_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/weak_public_ug.html', returnData)
 
 def weak_windows_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/weak_windows_ug.html', returnData)
 
 def weak_linux_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/weak_linux_ug.html', returnData)
 
 def setting_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/setting_ug.html', returnData)
 
 def report_public_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/report_public_ug.html', returnData)
 
 def report_all_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/report_all_ug.html', returnData)
 
 def technical_support_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/technical_support_ug.html', returnData)
 
 def faq_ug(request):
-    returnData = {'menuList': menuListDB}
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/faq_ug.html', returnData)
 
