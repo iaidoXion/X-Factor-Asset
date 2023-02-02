@@ -36,7 +36,7 @@ def dashboard(request):
         res_data['error'] = '먼저 로그인을 해주세요.'
         return render(request, 'common/login.html', res_data)
     else:
-        if Customer == 'NC':
+        if Customer == 'NC' or Customer == 'Xfactor':
             dashboardType = 'web/dashboard_NC_banner.html'
             MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
 

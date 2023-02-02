@@ -2,8 +2,13 @@
   "PROJECT" : {
     "CORE" : "Tanium",
     "LOGIN" : "WEB",
-    "CUSTOMER" : "NC",
+    "CUSTOMER" : "Xfactor",
     "TYPE" : "System",
+    "LOG" : {
+      "directory" : "log/",
+      "fileName" : "log_",
+      "fileFormat" : ".log"
+    },
     "MAP" : {
       "World" : "block",
       "Korea" : "block",
@@ -46,8 +51,8 @@
     "DataLoadingType" : "DB"
   },
   "DB" : {
-    "DBHost" : "localhost",
-    "DBPort" : "5432",
+    "DBHost" : "1.223.168.93",
+    "DBPort" : "40011",
     "DBName" : "postgres",
     "DBUser" : "postgres",
     "DBPwd" : "psql",
