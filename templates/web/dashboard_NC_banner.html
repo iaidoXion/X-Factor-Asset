@@ -451,11 +451,9 @@
                                 {% if chartData.GpuServerDataList.roc == 0 %}
                                 <a class="conNumIcon text-decoration-none fs-25px"> - </a>
                                 {% elif chartData.GpuServerDataList.roc > 0 %}
-                                <img class="conArrow
-" src="{% static 'img/common/dashboard/arrowTop.png' %}"
-                                    >
+                                <img class="conArrow fs-25px pt-25px" src="{% static 'img/common/dashboard/arrowTop.png' %}">
                                 {% elif chartData.GpuServerDataList.roc < 0 %}
-                                <img class="conArrow" src="{% static 'img/common/dashboard/arrowBot.png' %}">
+                                <img class="conArrow fs-25px pt-25px" src="{% static 'img/common/dashboard/arrowBot.png' %}">
                                 {% endif %}
                             </div>
                             <span class="conNum text-theme fw-bold fs-25px">

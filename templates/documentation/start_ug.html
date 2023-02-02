@@ -19,7 +19,7 @@
                                             <div class="mb-15px"></div>
                                             <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/x-factor-login-singup-mark.png">
                                         </li>
-                                        <li class="mb-10px"><span style="color: #ff0000;">*</span><span>마크가 있는 항목(아이디, 비밀번호, 비밀번확인, 이메일, 부서, 직급)은 필수 입력 항목 입니다.</span></li>
+                                        <li class="mb-10px"><span class="fs-25px" style="color: #ff0000;">*</span><span>마크가 있는 항목(아이디, 비밀번호, 비밀번확인, 이름, 전화번호, 이메일, 부서, 직급)은 필수 입력 항목 입니다.</span></li>
                                         <li>
                                             이미 가입한 아이디가 있을 경우, 하단의 로그인 링크를 통해 로그인 페이지로 이동합니다.
                                             <div class="mb-15px"></div>
@@ -75,31 +75,5 @@
     </div>
 </div>
 <!-- END content -->
-<script>
-    $(window).scroll(function() {
-    var scroll = $(window).scrollTop();
 
-    if (scroll < about)
-    {
-      $("#header-menu-hero").addClass("menu-active");
-      $("#header-menu-about").removeClass("menu-active");
-    }
-    else if (about <= scroll && scroll< hhistory)
-    {
-      $("#header-menu-hero").removeClass("menu-active");
-      $("#header-menu-about").addClass("menu-active");
-      $("#header-menu-history").removeClass("menu-active");
-    }
-    else if (hhistory <= scroll && scroll < contact)
-    {
-      $("#header-menu-about").removeClass("menu-active");
-      $("#header-menu-history").addClass("menu-active");
-      $("#header-menu-contact").removeClass("menu-active");
-    }
-    else if (contact <= scroll)
-    {
-      $("#header-menu-history").removeClass("menu-active");
-      $("#header-menu-contact").addClass("menu-active");
-    }
-</script>
 {% endblock %}
