@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+import json
 import os
 import sys
+import logging
+from datetime import datetime
 
 
 def main():
@@ -19,4 +22,20 @@ def main():
 
 
 if __name__ == '__main__':
+
+    with open("setting.json", encoding="UTF-8") as f:
+        SETTING = json.loads(f.read())
+    LOGFD = SETTING['PROJECT']['LOG']['directory']
+    LOGFNM = SETTING['PROJECT']['LOG']['fileName']
+    LOGFF = SETTING['PROJECT']['LOG']['fileFormat']
+    today = datetime.today().strftime("%Y%m%d")
+    logFile = LOGFD + LOGFNM + today + LOGFF
+    logFormat = '%(levelname)s, %(asctime)s, %(message)s'
+    logDateFormat = '%Y%m%d%H%M%S'
+    logging.basicConfig(filename=logFile, format=logFormat, datefmt=logDateFormat, level=logging.DEBUG)
+    logging.info('Run Started')
     main()
+    logging.info('Run Finished')
+
+
+
