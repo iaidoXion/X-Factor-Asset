@@ -1,3 +1,4 @@
+import logging
 from pprint import pprint
 
 import pandas as pd
@@ -336,170 +337,234 @@ def DashboardData():
                 vendorChartList = []
 
                 # NC 대역벌 서버수량 chart
-                SBCQ = PDPI('statistics', 'today', 'group_server_count')
-                server_BChartDataList = CTDF(SBCQ, 'bar')
-                if not SBCQ:
-                    server_BChartDataList = [{"name": "-", "value": 0}]
+                try:
+                    SBCQ = PDPI('statistics', 'today', 'group_server_count')
+                    #print(SBCQ)
+                    server_BChartDataList = CTDF(SBCQ, 'bar')
+                    if not SBCQ:
+                        server_BChartDataList = [{"name": "-", "value": 0}]
+                    logging.info('dashboard_function.py - server_BChartDataList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - server_BChartDataList')
 
                 # 실행 중인 서비스 통계 차트
                 Rchart = PDPI('statistics', 'today', 'running')
-                for i in range(len(Rchart)):
-                    service_donutChartData.append({"name": Rchart[i][0], "value": int(Rchart[i][1])})
-                if not service_donutChartData:
-                    service_donutChartData = [{"name": "-", "value": 0}]
+                try:
+                    for i in range(len(Rchart)):
+                        service_donutChartData.append({"name": Rchart[i][0], "value": int(Rchart[i][1])})
+                    if not service_donutChartData:
+                        service_donutChartData = [{"name": "-", "value": 0}]
+                    logging.info('dashboard_function.py - service_donutChartData - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - service_donutChartData')
 
                 #디스크, cpu, ram 95%, 75%, 60% 사용량 차트
-                Usagechart = PDPI('statistics', 'today', 'usage')
-                alarmData = []
-                for i in range(len(Usagechart)):
-                    if Usagechart[i][0].startswith('ram_') :
-                        MemoryChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
-                        if Usagechart[i][1] == '95Risk':
-                            alarmData.append({"alarmCase": "메모리 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
+                try:
+                    Usagechart = PDPI('statistics', 'today', 'usage')
+                    alarmData = []
+                    for i in range(len(Usagechart)):
+                        if Usagechart[i][0].startswith('ram_') :
+                            MemoryChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
+                            if Usagechart[i][1] == '95Risk':
+                                alarmData.append({"alarmCase": "메모리 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('cpu_'):
-                        CpuChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
-                        if Usagechart[i][1] == '95Risk':
-                            alarmData.append({"alarmCase": "CPU 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
+                        elif Usagechart[i][0].startswith('cpu_'):
+                            CpuChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
+                            if Usagechart[i][1] == '95Risk':
+                                alarmData.append({"alarmCase": "CPU 사용량 95% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('drive_'):
-                        DiskChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
+                        elif Usagechart[i][0].startswith('drive_'):
+                            DiskChartDataList.append({"name": Usagechart[i][1], "value": int(Usagechart[i][2])})
 
-                        if Usagechart[i][1] == '99Risk':
-                            alarmData.append({"alarmCase": "디스크 사용량 99% 초과", "alarmCount": Usagechart[i][2]})
+                            if Usagechart[i][1] == '99Risk':
+                                alarmData.append({"alarmCase": "디스크 사용량 99% 초과", "alarmCount": Usagechart[i][2]})
 
-                    elif Usagechart[i][0].startswith('last_online'):
-                        if Usagechart[i][1] == 'Yes':
-                            alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": Usagechart[i][2]})
+                        elif Usagechart[i][0].startswith('last_online'):
+                            if Usagechart[i][1] == 'Yes':
+                                alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": Usagechart[i][2]})
 
                 #데이터 검증 - 값이 0일 때 0 출력
-                def alarmCaseData(chart, case):
-                    if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '99Risk'), None) == None:
-                        alarmData.append({"alarmCase": case + " 사용량 99% 초과", "alarmCount": 0})
-                    if next((index for (index, data) in enumerate(chart) if data['name'] == '60Risk'), None) == None:
-                        chart.append({"name": "60Risk", "value": 0})
-                    if next((index for (index, data) in enumerate(chart) if data['name'] == '75Risk'), None) == None:
-                        chart.append({"name": "75Risk", "value": 0})
-                    if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
-                        chart.append({"name": "95Risk", "value": 0})
-                    if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '99Risk'), None) == None:
-                        chart.append({"name": "99Risk", "value": 0})
-                    if case != '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
-                        alarmData.append({"alarmCase": case + " 사용량 95% 초과", "alarmCount": 0})
-                        chart.append({"name": "95Risk", "value": 0})
+                    def alarmCaseData(chart, case):
+                        if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '99Risk'), None) == None:
+                            alarmData.append({"alarmCase": case + " 사용량 99% 초과", "alarmCount": 0})
+                        if next((index for (index, data) in enumerate(chart) if data['name'] == '60Risk'), None) == None:
+                            chart.append({"name": "60Risk", "value": 0})
+                        if next((index for (index, data) in enumerate(chart) if data['name'] == '75Risk'), None) == None:
+                            chart.append({"name": "75Risk", "value": 0})
+                        if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
+                            chart.append({"name": "95Risk", "value": 0})
+                        if case == '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '99Risk'), None) == None:
+                            chart.append({"name": "99Risk", "value": 0})
+                        if case != '디스크' and next((index for (index, data) in enumerate(chart) if data['name'] == '95Risk'), None) == None:
+                            alarmData.append({"alarmCase": case + " 사용량 95% 초과", "alarmCount": 0})
+                            chart.append({"name": "95Risk", "value": 0})
 
-                alarmCaseData(MemoryChartDataList, "메모리")
-                alarmCaseData(CpuChartDataList, 'CPU')
-                alarmCaseData(DiskChartDataList, '디스크')
-                if next((index for (index, data) in enumerate(alarmData) if data['alarmCase'] == '최근 30분 이내 오프라인 여부'), None) == None:
-                    alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
-                # alarmData.reverse()
+                    alarmCaseData(MemoryChartDataList, "메모리")
+                    alarmCaseData(CpuChartDataList, 'CPU')
+                    alarmCaseData(DiskChartDataList, '디스크')
+                    if next((index for (index, data) in enumerate(alarmData) if data['alarmCase'] == '최근 30분 이내 오프라인 여부'), None) == None:
+                        alarmData.append({"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": 0})
+                    # alarmData.reverse()
 
-                if not Usagechart:
-                    alarmData = [{"alarmCase": "메모리 사용량 95% 초과", "alarmCount": '-'},
-                                 {"alarmCase": "CPU 사용량 95% 초과", "alarmCount": '-'},
-                                 {"alarmCase": "디스크 사용량 95% 초과", "alarmCount": '-'},
-                                 {"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": '-'}]
-                    UsageChartExcept = [{"name": '-', "value": '-'}]
-                    MemoryChartDataList = UsageChartExcept * 3
-                    CpuChartDataList = UsageChartExcept * 3
-                    DiskChartDataList = UsageChartExcept * 3
-
-                alarmDataList = {"nodeDataList": alarmData}
+                    if not Usagechart:
+                        alarmData = [{"alarmCase": "메모리 사용량 95% 초과", "alarmCount": '-'},
+                                     {"alarmCase": "CPU 사용량 95% 초과", "alarmCount": '-'},
+                                     {"alarmCase": "디스크 사용량 95% 초과", "alarmCount": '-'},
+                                     {"alarmCase": "최근 30분 이내 오프라인 여부", "alarmCount": '-'}]
+                        UsageChartExcept = [{"name": '-', "value": '-'}]
+                        MemoryChartDataList = UsageChartExcept * 3
+                        CpuChartDataList = UsageChartExcept * 3
+                        DiskChartDataList = UsageChartExcept * 3
+                    alarmDataList = {"nodeDataList": alarmData}
+                    logging.info('dashboard_function.py - alarmData - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - alarmData')
 
                 # NC 서버 총 수량 추이 그래프
-                SCLCQ = PDPI('statistics', 'monthly', 'asset')
-                server_LChartDataList = TDCD(SCLCQ, 'Monthly_Line')
+                try:
+                    SCLCQ = PDPI('statistics', 'monthly', 'asset')
+                    server_LChartDataList = TDCD(SCLCQ, 'Monthly_Line')
+                    logging.info('dashboard_function.py - server_LChartDataList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - server_LChartDataList')
 
                 # OS 버전별 서버 수 차트
-                Ochart = PDPI('statistics', 'today', 'os_version')
-                for i in range(len(Ochart)):
-                    os_donutChartData.append({"name": Ochart[i][0], "value": int(Ochart[i][1])})
-
-                OSNum = 4
-                result = [os_donutChartData[i * OSNum:(i + 1) * OSNum] for i in range((len(os_donutChartData) + OSNum - 1) // OSNum)]
                 try:
-                    os_chartPartOne = result[0]
-                    os_chartPartTwo = result[1]
-                except:
-                    os_chartPartOne = [{"name": "-", "value": 0}]
-                    os_chartPartTwo = [{"name": "-", "value": 0}]
+                    Ochart = PDPI('statistics', 'today', 'os_version')
+                    for i in range(len(Ochart)):
+                        os_donutChartData.append({"name": Ochart[i][0], "value": int(Ochart[i][1])})
 
+                    OSNum = 4
+                    result = [os_donutChartData[i * OSNum:(i + 1) * OSNum] for i in range((len(os_donutChartData) + OSNum - 1) // OSNum)]
+                    try:
+                        os_chartPartOne = result[0]
+                        os_chartPartTwo = result[1]
+                    except:
+                        os_chartPartOne = [{"name": "-", "value": 0}]
+                        os_chartPartTwo = [{"name": "-", "value": 0}]
+                    logging.info('dashboard_function.py - os_donutChartData - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - os_donutChartData')
 
                 #물리서버 벤더별 수량 차트
-                venChart = PDPI('statistics', 'today', 'vendor')
-                for i in range(len(venChart)):
-                    vendorChartList.append({"name": venChart[i][0], "value": venChart[i][1]})
-                if not venChart :
-                    vendorChartList = [{'name': '-', 'value': '-'}]
+                try:
+                    venChart = PDPI('statistics', 'today', 'vendor')
+                    for i in range(len(venChart)):
+                        vendorChartList.append({"name": venChart[i][0], "value": venChart[i][1]})
+                    if not venChart :
+                        vendorChartList = [{'name': '-', 'value': '-'}]
+                    logging.info('dashboard_function.py - vendorChartList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - vendorChartList')
 
 
                 # IP 대역별 총 알람 수 차트
-                Achart = PDPI('statistics', 'today', 'group_alarm')
-                for i in range(len(Achart)):
-                    alarm_donutChartData.append({Achart[i][0]: int(Achart[i][1])})
-                alarmCounter = Counter()
-                for i in alarm_donutChartData:
-                    alarmCounter.update(i)
-                alarm_donutChartDataList = [{key: value} for key, value in alarmCounter.most_common()]
+                try:
+                    Achart = PDPI('statistics', 'today', 'group_alarm')
+                    for i in range(len(Achart)):
+                        alarm_donutChartData.append({Achart[i][0]: int(Achart[i][1])})
+                    alarmCounter = Counter()
+                    for i in alarm_donutChartData:
+                        alarmCounter.update(i)
+                    alarm_donutChartDataList = [{key: value} for key, value in alarmCounter.most_common()]
+                    logging.info('dashboard_function.py - alarm_donutChartData - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - alarm_donutChartData')
 
                 # 배너 슬라이드
-                BNY = PDPI('statistics', 'yesterday', 'bannerNC')   #daily statistics에서 날짜가 어제인 data호출(running service, session ip, group 제외)
-                TSDLY = TDBA(BNY, 'yetodayNC')
-                BNT = PDPI('statistics', 'today', 'bannerNC')
-                TSDLT = TDBA(BNT, 'yetodayNC')
-                SBNDL = ASDC(TSDLY, TSDLT)          #value_x=어제자 데이터, value_y=오늘자 데이터
-                BNChartDataList = TDCD(SBNDL, 'bannerNC')
-                if not BNT :
-                    BNChartDataExcept = [{'name': '-', 'value': '-'}]
-                    BNChartDataList = BNChartDataExcept * 8
+                try:
+                    BNY = PDPI('statistics', 'yesterday', 'bannerNC')   #daily statistics에서 날짜가 어제인 data호출(running service, session ip, group 제외)
+                    TSDLY = TDBA(BNY, 'yetodayNC')
+                    BNT = PDPI('statistics', 'today', 'bannerNC')
+                    TSDLT = TDBA(BNT, 'yetodayNC')
+                    SBNDL = ASDC(TSDLY, TSDLT)          #value_x=어제자 데이터, value_y=오늘자 데이터
+                    BNChartDataList = TDCD(SBNDL, 'bannerNC')
+                    if not BNT :
+                        BNChartDataExcept = [{'name': '-', 'value': '-'}]
+                        BNChartDataList = BNChartDataExcept * 8
+                    logging.info('dashboard_function.py - BNChartDataList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - BNChartDataList')
 
                 # worldmap data
-                WMAC = WDDFNC(Achart)
-                WMCDL = [WMAC]
-
+                try:
+                    WMAC = WDDFNC(Achart)
+                    WMCDL = [WMAC]
+                    logging.info('dashboard_function.py - WMCDL(World Map Chart Data List) - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - WMCDL(World Map Chart Data List)')
 
                 #GPU 서버 수량
-                GpuServerData = PDPI('statistics', 'today', 'gpu')
                 try:
-                    tValue = int(GpuServerData[0][1])
-                    yValue = int(GpuServerData[1][1])
-                    roc = tValue - yValue
-                    GpuServerDataList = {"value" : tValue, 'roc': roc}
-                except :
-                    GpuServerDataList = {"value": '-', 'roc': '-'}
+                    GpuServerData = PDPI('statistics', 'today', 'gpu')
+                    try:
+                        tValue = int(GpuServerData[0][1])
+                        yValue = int(GpuServerData[1][1])
+                        roc = tValue - yValue
+                        GpuServerDataList = {"value" : tValue, 'roc': roc}
+                    except :
+                        GpuServerDataList = {"value": '-', 'roc': '-'}
+                    logging.info('dashboard_function.py - GpuServerDataList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - GpuServerDataList')
 
                 #서버 최다 연결 IP
-                connectIpDataList = []
-                connectIpData = PDPI('statistics', 'today', 'ip')
-                for i in range(len(connectIpData)):
-                    if connectIpData[i][0].startswith('::'):
-                        break
-                    else:
-                        split = connectIpData[i][0].split(':')
-                        ip = split[0]
-                        host = split[1]
-                        connectIpDataList.append({'ip': ip, 'host': host, 'count': connectIpData[i][1]})
-                if not connectIpData:
-                    connectIpDataExcept = [{'ip': '-', 'host': '-', 'count': '-' }]
-                    connectIpDataList = connectIpDataExcept * 3
+                try:
+                    connectIpDataList = []
+                    connectIpData = PDPI('statistics', 'today', 'ip')
+                    for i in range(len(connectIpData)):
+                        if connectIpData[i][0].startswith('::'):
+                            break
+                        else:
+                            split = connectIpData[i][0].split(':')
+                            ip = split[0]
+                            host = split[1]
+                            connectIpDataList.append({'ip': ip, 'host': host, 'count': connectIpData[i][1]})
+                    if not connectIpData:
+                        connectIpDataExcept = [{'ip': '-', 'host': '-', 'count': '-' }]
+                        connectIpDataList = connectIpDataExcept * 3
+                    logging.info('dashboard_function.py - connectIpDataList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - connectIpDataList')
 
                 #세션 최다 연결 서버
-                connectServerDataList = []
-                connectServerData = PDPI('statistics_list', 'today', 'server')
-                for i in range(len(connectServerData)):
-                    connectServerDataList.append({'ip': connectServerData[i][0], 'name': connectServerData[i][1], 'count': connectServerData[i][2]})
-                if not connectServerData:
-                    connectServerDataExcept = [{'ip': '-', 'name': '-', 'count': '-' }]
-                    connectServerDataList = connectServerDataExcept * 3
+                try:
+                    connectServerDataList = []
+                    connectServerData = PDPI('statistics_list', 'today', 'server')
+                    for i in range(len(connectServerData)):
+                        connectServerDataList.append({'ip': connectServerData[i][0], 'name': connectServerData[i][1], 'count': connectServerData[i][2]})
+                    if not connectServerData:
+                        connectServerDataExcept = [{'ip': '-', 'name': '-', 'count': '-' }]
+                        connectServerDataList = connectServerDataExcept * 3
+                    logging.info('dashboard_function.py - connectServerDataList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - connectServerDataList')
+
                 #게이지 차트 사용량 더보기
                 #메모리 부분
-                memoryMoreDataList = []
-                memoryMore = PDPI('statistics_list', 'today', 'memoryMore')
-                for i in range(len(memoryMore)):
-                    if memoryMore[i][0] != 'unconfirmed' and not memoryMore[i][2].startswith('[current') and not memoryMore[i][3].startswith('[current') and memoryMore[i][4] != 'unconfirmed':
-                        count = math.trunc(float(memoryMore[i][4]))
-                        memoryMoreDataList.append({"ip": memoryMore[i][0], "name": memoryMore[i][1], "use": memoryMore[i][2], "total": memoryMore[i][3], "usage": count})
+                try:
+                    memoryMoreDataList = []
+                    memoryMore = PDPI('statistics_list', 'today', 'memoryMore')
+                    for i in range(len(memoryMore)):
+                        if memoryMore[i][0] != 'unconfirmed' and not memoryMore[i][2].startswith('[current') and not memoryMore[i][3].startswith('[current') and memoryMore[i][4] != 'unconfirmed':
+                            count = math.trunc(float(memoryMore[i][4]))
+                            memoryMoreDataList.append({"ip": memoryMore[i][0], "name": memoryMore[i][1], "use": memoryMore[i][2], "total": memoryMore[i][3], "usage": count})
+                    logging.info('dashboard_function.py - memoryMoreDataList - Success')
+                except:
+                    logging.warning('dashboard_function.py - Error Occurred')
+                    logging.warning('Error - memoryMoreDataList')
 
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
