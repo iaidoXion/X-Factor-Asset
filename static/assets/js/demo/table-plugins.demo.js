@@ -238,7 +238,7 @@ var OshandleRenderDashboardPopupTableData = function () {
 		columnDefs: [
 			{width: "5%", target: [0]},
 			{width: "15%", target: [1]},
-			{width: "14%", target: [2]}
+			{width: "14%", target: [2], className: "text-center"}
 
 		],
 		language: {
@@ -290,7 +290,7 @@ var serverhandleRenderDashboardPopupTableData = function () {
 		columnDefs: [
 			{width: "5%", target: [0]},
 			{width: "15%", target: [1]},
-			{width: "1%", target: [2]}
+			{width: "1%", target: [2], className: "text-center"}
 
 		],
 		language: {
@@ -342,7 +342,7 @@ var runningServicehandleRenderDashboardPopupTableData = function () {
 		columnDefs: [
 			{width: "5%", target: [0]},
 			{width: "15%", target: [1]},
-			{width: "14%", target: [2]}
+			{width: "14%", target: [2], className: "text-center"}
 
 		],
 		language: {
@@ -394,7 +394,7 @@ var physicalServerhandleRenderDashboardPopupTableData = function () {
 		columnDefs: [
 			{width: "5%", target: [0]},
 			{width: "15%", target: [1]},
-			{width: "14%", target: [2]}
+			{width: "14%", target: [2], className: "text-center"}
 
 		],
 		language: {
@@ -450,7 +450,7 @@ var gpuServerhandleRenderDashboardPopupTableData = function () {
 			{width: "15%", target: [1]},
 			{width: "14%", target: [2]},
 			{width: "14%", target: [3]},
-			{width: "14%", target: [4]}
+			{width: "14%", target: [4], className: "text-center"}
 
 		],
 		language: {

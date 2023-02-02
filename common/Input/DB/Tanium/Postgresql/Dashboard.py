@@ -19,6 +19,7 @@ BS = SETTING['FILE']
 DBSelectTime = SETTING['DB']['DBSelectTime']
 day = datetime.today().strftime("%Y-%m-%d")
 
+
 def plug_in(table, day, type):
     try:
         fiveMinutesAgo = (datetime.today() - timedelta(minutes=DBSelectTime)).strftime("%Y-%m-%d %H:%M:%S")
@@ -104,7 +105,7 @@ def plug_in(table, day, type):
                             and NOT item IN ('unconfirmed')
                             and to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'                  
                     """
-######################################################### 페이징 시작 ###############################################################
+            ######################################################### 페이징 시작 ###############################################################
             if day == 'osMore':
                 query = """
                             select
@@ -292,7 +293,7 @@ def plug_in(table, day, type):
                             order by float8(ramusage) desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
-                            
+
                         """
             elif day == 'memoryCount':
                 query = """
@@ -413,57 +414,55 @@ def plug_in(table, day, type):
                 """
             elif day == 'alarmCaseMore':
                 query = """
-                        select
-                            ipv_address, computer_name, ramusage, cpuusage, driveusage, asset_list_statistics_collection_date
+                        select 
+                            ipv_address, computer_name, ram, cpu, drive, TF 
                         from
-                            minutely_statistics_list
-                        where
-                            ramusage != 'unconfirmed'
-                        and
-                            cpuusage != 'unconfirmed'
-                        and
-                            driveusage != 'unconfirmed'
-                        and 
-                            (float8(ramusage) > 95 or
-                            float8(cpuusage) > 95 or
-                            float8(driveusage) > 99 or
-                            asset_list_statistics_collection_date  < '""" + halfHourAgo + """')
+                            minutely_statistics_list msl
+                        inner join 
+                        (select computer_id ,        
+                        case when ramusage = 'unconfirmed' then 0 else ramusage::NUMERIC end as ram,
+                        case when cpuusage = 'unconfirmed' then 0 else cpuusage::numeric end as cpu,
+                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive,
+                        case when asset_list_statistics_collection_date < '""" + halfHourAgo + """' then 'True' else 'False' end as TF
+                        from
+                            minutely_statistics_list) msli
+                        on msl.computer_id = msli.computer_id
+                        where (ram > 95 or cpu > 95 or drive > 99 or asset_list_statistics_collection_date < '""" + halfHourAgo + """')
                         and
                             (ipv_address ||
                             computer_name || 
-                            ramusage || 
-                            cpuusage || 
-                            driveusage ||
-                            asset_list_statistics_collection_date) like '%""" + type[2] + """%'
+                            ram || 
+                            cpu || 
+                            drive ||
+                            TF) like '%""" + type[2] + """%'
                         LIMIT """ + type[0] + """
                         OFFSET (""" + type[1] + """-1) * """ + type[0] + """
                 """
             elif day == 'alarmCaseCount':
                 query = """
-                        select
+                        select 
                             COUNT(*)
                         from
-                            minutely_statistics_list
-                        where
-                            ramusage != 'unconfirmed'
-                        and
-                            cpuusage != 'unconfirmed'
-                        and
-                            driveusage != 'unconfirmed'
-                        and 
-                            (float8(ramusage) > 95 or
-                            float8(cpuusage) > 95 or
-                            float8(driveusage) > 99 or
-                            asset_list_statistics_collection_date  < '""" + halfHourAgo + """')
+                            minutely_statistics_list msl
+                        inner join
+                        (select computer_id,
+                        case when ramusage = 'unconfirmed' then 0 else ramusage::NUMERIC end as ram,
+                        case when cpuusage = 'unconfirmed' then 0 else cpuusage::numeric end as cpu,
+                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive,
+                        case when asset_list_statistics_collection_date < '""" + halfHourAgo + """' then 'True' else 'False' end as TF
+                        from
+                            minutely_statistics_list) msli
+                        on msl.computer_id = msli.computer_id
+                        where (ram > 95 or cpu > 95 or drive > 99 or asset_list_statistics_collection_date < '""" + halfHourAgo + """')
                         and
                             (ipv_address ||
                             computer_name || 
-                            ramusage || 
-                            cpuusage || 
-                            driveusage ||
-                            asset_list_statistics_collection_date) like '%""" + type[2] + """%'
+                            ram || 
+                            cpu || 
+                            drive ||
+                            TF) like '%""" + type[2] + """%'
                 """
-#################################################################### 페이징 끝 ########################################################################
+            #################################################################### 페이징 끝 ########################################################################
             if day == 'today':
                 if type == '':
                     query = """ 
@@ -486,7 +485,7 @@ def plug_in(table, day, type):
                         and 
                             item NOT like '%TSE-Error%'
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                     """
 
                 elif type == 'bar':
@@ -498,7 +497,7 @@ def plug_in(table, day, type):
                         where 
                             classification ='asset'
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                         order by 
                             item_count desc limit 3    
                     """
@@ -509,7 +508,7 @@ def plug_in(table, day, type):
                         where 
                             classification = 'os'
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""' 
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """' 
                         order by item_count::INTEGER desc limit 3
                     """
                 elif type == 'os_version':
@@ -521,7 +520,7 @@ def plug_in(table, day, type):
                         where 
                             classification = 'operating_system' AND item != 'unconfirmed'
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                         order by item_count::INTEGER desc limit 8
                     """
                 elif type == 'donut':
@@ -533,7 +532,7 @@ def plug_in(table, day, type):
                         where
                             classification = 'installed_applications'
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                         order by
                             item_count::INTEGER 
                         desc limit 5
@@ -555,9 +554,9 @@ def plug_in(table, day, type):
                             from 
                                 minutely_statistics  
                             where 
-                                classification ='group_server_count' AND item != 'unconfirmed'
+                                classification ='group_server_count' AND NOT item IN ('unconfirmed')
                             and 
-                                statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                                statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             order by
                                 item_count::INTEGER 
                             desc limit 5
@@ -572,7 +571,7 @@ def plug_in(table, day, type):
                         where 
                             classification = 'running_service'
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                         order by
                             item_count::INTEGER desc limit 5
                     """
@@ -587,10 +586,10 @@ def plug_in(table, day, type):
                         and
                             NOT item IN ('unconfirmed', 'No', 'Safety')
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
-                       
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
+
                     """
-                #물리서버 벤더별 수량
+                # 물리서버 벤더별 수량
                 elif type == 'vendor':
                     query = """
                         select
@@ -600,7 +599,7 @@ def plug_in(table, day, type):
                         where
                             classification = 'manufacturer'
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                         and 
                             item != 'unconfirmed'
                         order by
@@ -621,7 +620,7 @@ def plug_in(table, day, type):
                                 'group_cpu_usage_exceeded',
                                 'group_drive_usage_size_exceeded')
                                 AND item != 'unconfirmed'
-                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                                and statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             """
                 elif type == 'bannerNC':
                     query = """
@@ -633,7 +632,7 @@ def plug_in(table, day, type):
                                 classification in ('online_asset', 'virtual', 'os', 'group_server_count')
                                 AND item != 'unconfirmed'
                                 and NOT item IN ('unconfirmed')
-                                and statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                                and statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             """
                 elif type == 'gpu':
                     query = """
@@ -646,7 +645,7 @@ def plug_in(table, day, type):
                             and
                                 item = 'YES'
                             and 
-                                statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                                statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             union all
                             select
                                 item, item_count
@@ -657,7 +656,7 @@ def plug_in(table, day, type):
                             and
                                 item = 'YES'
                             and 
-                                to_char(statistics_collection_date, 'YYYY-MM-DD') = '"""+ yesterday +"""'
+                                to_char(statistics_collection_date, 'YYYY-MM-DD') = '""" + yesterday + """'
                     """
                 elif type == 'ip':
                     query = """
@@ -668,7 +667,7 @@ def plug_in(table, day, type):
                             where
                                 classification = 'session_ip' and item != 'NO'
                             and 
-                                statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                                statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             order by
                                 item_count::INTEGER desc limit 3
                     """
@@ -700,7 +699,7 @@ def plug_in(table, day, type):
                                 and
                                     item != 'unconfirmed'
                                 and 
-                                    statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                                    statistics_collection_date >= '""" + fiveMinutesAgo + """'
                                 order by
                                     statistics_collection_date ASC;
                             """
@@ -733,7 +732,7 @@ def plug_in(table, day, type):
                         where 
                             classification ='asset' 
                         and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                     """
             if type == 'ram':
                 query = """
@@ -744,7 +743,7 @@ def plug_in(table, day, type):
                     where 
                         classification in ('group_ram_usage_exceeded')
                     and 
-                            statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            statistics_collection_date >= '""" + fiveMinutesAgo + """'
                     order by
                         item_count::INTEGER desc limit 5
                 """
@@ -757,7 +756,7 @@ def plug_in(table, day, type):
                     where 
                         classification in ('group_cpu_usage_exceeded')
                     and 
-                        statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                        statistics_collection_date >= '""" + fiveMinutesAgo + """'
                     order by
                         item_count::INTEGER desc limit 5
                 """
@@ -771,7 +770,7 @@ def plug_in(table, day, type):
                         classification in ('group_cpu_usage_exceeded', 'group_ram_usage_exceeded', 'group_running_service_count_exceeded', 
                         'group_last_reboot', 'drive_usage_size_exceeded')
                     and 
-                        statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                        statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
         if table == 'statistics_list':
             if day == 'today':
@@ -821,7 +820,7 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics_list
                         where
-                            asset_list_statistics_collection_date >= '"""+ fiveMinutesAgo +"""'
+                            asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and NOT ipv_address IN ('unconfirmed')
                         order by
                             session_ip_count::INTEGER desc limit 3
@@ -860,14 +859,14 @@ def plug_in(table, day, type):
             if day == 'memoryMore' or day == 'diskMore':
                 index = (int(type[1]) - 1) * int(type[0]) + i
                 SDL.append(dict(
-                                (
-                                    ('index', index),
-                                    ('ip', R[0]),
-                                    ('name', R[1]),
-                                    ('use', R[2]),
-                                    ('total', R[3]),
-                                    ('usage', round(float(R[4]), 1))
-                                )
+                    (
+                        ('index', index),
+                        ('ip', R[0]),
+                        ('name', R[1]),
+                        ('use', R[2]),
+                        ('total', R[3]),
+                        ('usage', round(float(R[4]), 1))
+                    )
                 ))
             elif day == 'cpuMore':
                 index = (int(type[1]) - 1) * int(type[0]) + i
