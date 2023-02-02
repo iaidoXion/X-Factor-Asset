@@ -93,19 +93,19 @@ $(document).ready(function(){
     const dragMap = function(){
 // 이미지 드래그 기능
     $('.selectMap').on({
-    'dragstart':function(e){
+    'mousedown':function(e){
         startDrag = [event.offsetX,event.offsetY];
-        $('.maps').css('cursor','grabbing !important')
+        $('.selectMap').css('cursor','grabbing')
     },
-    'dragend':function(e){
+    'mouseup':function(e){
         endDrag = [event.offsetX,event.offsetY];
         xLocation = endDrag[0] - startDrag[0];
         yLocation = endDrag[1] - startDrag[1];
         lastX = lastX + xLocation
         lastY = lastY + yLocation
-
+        $('.selectMap').css('cursor','grab')
         $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" +  lastX  + "px," + lastY  +"px)")
-
+        $('.selectMap').css('cursor','grab')
 
     }
     });
