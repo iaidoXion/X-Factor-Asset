@@ -460,9 +460,9 @@
                             </div>
                             <span class="conNum text-theme fw-bold fs-25px">
                             {% if chartData.GpuServerDataList.roc < 0 %}
-                            {% widthratio chartData.GpuServerDataList.roc 1 -1 %}개
+                            {% widthratio chartData.GpuServerDataList.roc 1 -1 %}
                             {% else %}
-                            {{ chartData.GpuServerDataList.roc }}개
+                            {{ chartData.GpuServerDataList.roc }}
                             {% endif %}
                             </span>
                         </div>
@@ -551,7 +551,7 @@
                             <table class="table w-90 text-truncate text-white text-opacity-60" style="margin: 0 auto; vertical-align: middle;">
                                 <tbody>
                                 {% for data in chartData.connectServerDataList %}
-                                <tr>
+                                <tr class="text-opacity-60">
                                     <td>{{ data.ip }}</td>
                                     <td>{{ data.name }}</td>
                                     <td>{{ data.count }}</td>
