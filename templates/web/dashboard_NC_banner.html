@@ -90,7 +90,7 @@
                     <!-- BEGIN title -->
                     <button type="button" class="btn btn-outline-link btn-sm btn-moreInfo serverBandBy-moreInfo"><i class="fas fa-ellipsis-h"></i></button>
                     <div class="d-flex fw-bold small">
-                        <div class="flex-grow-1">각 대역별 서버 수 (상위 5개)</div>
+                        <div class="flex-grow-1">각 대역별 서버 수 (상위 3개)</div>
                     </div>
                     <!-- END title -->
                     <!-- BEGIN stat-lg -->
@@ -300,8 +300,6 @@
                             <a href="#" data-toggle="card-expand"
                                class="pt-6px text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
                         </div>
-
-
                         <!-- END title -->
                         <!-- BEGIN map -->
                         <div class="ratio ratio-21x9 maps" style="width: 100%; height: 90%; margin: 0 auto;">
@@ -496,13 +494,13 @@
                         <!-- END stat-sm -->
                         {% if chartData.connectIpDataList %}
                         <div class="fs-12px">
-                            <table class="table w-90 text-truncate text-white text-opacity-60" style="margin: 0 auto; vertical-align: middle;">
+                            <table class="table w-90 text-white text-opacity-60" style="margin: 0 auto; vertical-align: middle;">
                                 <tbody>
                                 {% for data in chartData.connectIpDataList %}
                                 <tr class="text-opacity-60">
-                                    <td>{{ data.ip }}</td>
-                                    <td>{{ data.host }}</td>
-                                    <td>{{ data.count }}</td>
+                                    <td class="w-150px text-center text-truncate" title="{{ data.ip }}">{{ data.ip }}</td>
+                                    <td class="text-center text-truncate" title="{{ data.host }}">{{ data.host }}</td>
+                                    <td class="text-center">{{ data.count }}</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
@@ -543,13 +541,13 @@
                         <!-- END stat-sm -->
                         {% if chartData.connectServerDataList %}
                         <div class="fs-12px  ">
-                            <table class="table w-90 text-truncate text-white text-opacity-60" style="margin: 0 auto; vertical-align: middle;">
+                            <table class="table w-90 text-white text-opacity-60" style="margin: 0 auto; vertical-align: middle;">
                                 <tbody>
                                 {% for data in chartData.connectServerDataList %}
                                 <tr class="text-opacity-60">
-                                    <td>{{ data.ip }}</td>
-                                    <td>{{ data.name }}</td>
-                                    <td>{{ data.count }}</td>
+                                    <td class="w-150px text-center text-truncate" title="{{ data.ip }}">{{ data.ip }}</td>
+                                    <td class="text-center text-truncate" title="{{ data.name }}">{{ data.name }}</td>
+                                    <td class="text-center">{{ data.count }}</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>

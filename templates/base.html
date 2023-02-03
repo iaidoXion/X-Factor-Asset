@@ -125,7 +125,7 @@
   <!-- ================== END dashboard-js ================== -->
 
   <!-- ================== BEGIN documentation_charts-js ================ -->
-  <script src="{% static 'js/documentationJS/documentation_charts.js' %}"></script>
+<!--  <script src="{% static 'js/documentationJS/documentation_charts.js' %}"></script>-->
   <!-- ================== END documentation_charts-js ================== -->
 
   <!-- ================== BEGIN TABLE-js ================== -->
@@ -190,7 +190,7 @@
 		});
 
     $('.osVersion-moreInfo').on('click',function(){
-         window.open("../osVersion_moreInfo", "osVersion", "width=800, height=650");
+         window.open("../osVersion_moreInfo", "osVersion", "width=1000, height=650");
     });
 
     $('.serverBandBy-moreInfo').on('click',function(){
@@ -198,20 +198,20 @@
     });
 
     $('.runningService-moreInfo').on('click',function(){
-        window.open("../runningService_moreInfo", "runningService", "width=800, height=650");
+        window.open("../runningService_moreInfo", "runningService", "width=1000, height=650");
     });
 
     $('.memoryCpuDisk-moreInfo').on('click',function(){
       if($('#btn-memory').hasClass("active") === true) {
-        window.open("../memory_moreInfo", "memory", "width=800, height=650");
+        window.open("../memory_moreInfo", "memory", "width=1000, height=650");
         return;
       }
       if($('#btn-cpu').hasClass("active") === true){
-        window.open("../cpu_moreInfo", "cpu", "width=800, height=650");
+        window.open("../cpu_moreInfo", "cpu", "width=1000, height=650");
         return;
       }
       if($('#btn-disk').hasClass("active") === true){
-        window.open("../disk_moreInfo", "disk", "width=800, height=650");
+        window.open("../disk_moreInfo", "disk", "width=1000, height=650");
         return;
       }
     });
@@ -225,7 +225,7 @@
     });
 
     $('.alarmCase-moreInfo').on('click',function(){
-    window.open("../alarmCase_moreInfo", "alarmCase", "width=1100, height=650");
+    window.open("../alarmCase_moreInfo", "alarmCase", "width=1400, height=650");
     });
 
       var a = {{ chartData| safe}};
