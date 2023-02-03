@@ -20,6 +20,12 @@ $(document).ready(function(){
         }
     };
 
+
+   $(".who_btn").click(function() {
+       $(".who_btn").removeClass("active");
+        $(this).addClass("active");
+    });
+
 //map chart 버튼
     $('#worldBtn').click(function() {
         $('#world-map').show();
