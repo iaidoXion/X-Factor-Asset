@@ -236,8 +236,6 @@ def memory_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'memoryMore', data)
-    for i in range(len(SMD)):
-        SMD[i]['usage'] = str(SMD[i]['usage']) + '%'
     SMC = PDPI('statistics', 'memoryCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -259,8 +257,6 @@ def cpu_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'cpuMore', data)
-    for i in range(len(SMD)):
-        SMD[i]['usage'] = str(SMD[i]['usage']) + '%'
     SMC = PDPI('statistics', 'cpuCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,
@@ -281,8 +277,6 @@ def disk_moreInfo_paging(request):
     page = math.ceil(start / length) + 1
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'diskMore', data)
-    for i in range(len(SMD)):
-        SMD[i]['usage'] = str(SMD[i]['usage']) + '%'
     SMC = PDPI('statistics', 'diskCount', data)
     RD = {"item": SMD}
     returnData = {'data': RD,

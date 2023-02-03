@@ -25521,8 +25521,7 @@ a:hover {
 }
 
 .navbar.navbar-sticky .nav .nav-link:hover {
-    color: #ff9f0c;
-    font-weight: bold;
+    color: #fff;
 }
 
 .navbar.navbar-sticky .nav .nav-link.active {
