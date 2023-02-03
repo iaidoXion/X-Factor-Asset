@@ -559,7 +559,7 @@ def plug_in(table, day, type):
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             order by
                                 item_count::INTEGER 
-                            desc limit 5
+                            desc limit 3
                         """
                 # NC running service chart
                 elif type == 'running':
@@ -619,7 +619,6 @@ def plug_in(table, day, type):
                                 'group_last_online_time_exceeded',
                                 'group_cpu_usage_exceeded',
                                 'group_drive_usage_size_exceeded')
-                                AND item != 'unconfirmed'
                                 and statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             """
                 elif type == 'bannerNC':
