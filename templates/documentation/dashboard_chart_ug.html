@@ -22,12 +22,73 @@
                                         <li>
                                             Bar 위로 커서를 이동할 경우, 각 항목별로 항목명과 수를 툴팁으로 표출합니다.
                                             <div class="mb-15px"></div>
-                                            <div class="d-flex pe-30px">
-                                                <img class="userguide-img" src="/static/img/X-Factor_documentation/bar-length-chart.png">
-                                                <img class="userguide-img" src="/static/img/X-Factor_documentation/bar-width-chart.png">
+                                            <div class="d-flex ">
+                                                <!-- BEGIN col-6 -->
+                                                <div class="col-xl-6 col-lg-6">
+                                                    <!-- BEGIN card -->
+                                                    <div class="card mb-3">
+                                                        <!-- BEGIN card-body -->
+                                                        <div class="card-body h-150px">
+                                                            <!-- BEGIN title -->
+                                                            <div class="d-flex fw-bold small">
+                                                                <div class="flex-grow-1">각 대역별 서버 수 (상위 5개)</div>
+                                                            </div>
+                                                            <!-- END title -->
+                                                            <!-- BEGIN stat-lg -->
+                                                            <div>
+                                                                <div class="col-12">
+                                                                    <div class="mt-n3 mb-n2 h-100px" id="DocumentColumnChart"></div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- END stat-lg -->
+                                                        </div>
+                                                        <!-- END card-body -->
+
+                                                        <!-- BEGIN card-arrow -->
+                                                        <div class="card-arrow">
+                                                            <div class="card-arrow-top-left"></div>
+                                                            <div class="card-arrow-top-right"></div>
+                                                            <div class="card-arrow-bottom-left"></div>
+                                                            <div class="card-arrow-bottom-right"></div>
+                                                        </div>
+                                                        <!-- END card-arrow -->
+                                                    </div>
+                                                    <!-- END card -->
+                                                </div>
+                                                <!-- END col-6 -->
+                                                 <!-- BEGIN col-6 -->
+                                                <div class="col-xl-6 col-lg-6">
+                                                    <!-- BEGIN card -->
+                                                    <div class="card mb-3">
+                                                        <!-- BEGIN card-body -->
+                                                        <div class="card-body h-150px">
+                                                            <!-- BEGIN title -->
+                                                            <div class="d-flex fw-bold small">
+                                                                <div class="flex-grow-1">물리서버 벤더별 수량 (상위 3개)</div>
+                                                            </div>
+                                                            <!-- END title -->
+                                                            <!-- BEGIN stat-lg -->
+                                                            <div>
+                                                                <div class="col-12">
+                                                                    <div class="mt-n3 mb-n2 h-100px" id="DocumentBarChart"></div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- END stat-lg -->
+                                                        </div>
+                                                        <!-- END card-body -->
+                                                        <!-- BEGIN card-arrow -->
+                                                        <div class="card-arrow">
+                                                            <div class="card-arrow-top-left"></div>
+                                                            <div class="card-arrow-top-right"></div>
+                                                            <div class="card-arrow-bottom-left"></div>
+                                                            <div class="card-arrow-bottom-right"></div>
+                                                        </div>
+                                                        <!-- END card-arrow -->
+                                                    </div>
+                                                    <!-- END card -->
+                                                </div>
+                                                <!-- END col-6 -->
                                             </div>
-                                            <div id="DocumentColumnChart"></div>
-                                            <div id="DocumentBarChart"></div>
                                         </li>
                                     </ol>
                                 </div>
@@ -50,22 +111,37 @@
                                     <span>• 해당 차트는 다음과 같이 수행합니다.</span>
                                     <div class="mb-10px"></div>
                                     <ol class="mb-auto">
-                                        <li>Line 위로 커서를 이동할 경우, 각 항목별 자산 수를 툴팁으로 표출합니다.
-                                            <div class="mb-15px"></div>
-                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-mouse-over.png">
-                                        </li>
-                                        <li>Line 차트 영역중 일부 기간을 지정(drag)할 경우 지정된 일자의 그래프를 볼 수 있습니다.
-                                        <div class="mb-15px"></div>
-                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-drag.png">
-                                            <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
-                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-enlargement.png">
-                                        </li>
+                                        <li class="mb-10px">Line 차트 영역중 일부 기간을 지정(drag)할 경우 지정된 일자의 그래프를 볼 수 있습니다.</li>
                                         <li>전체 영역을 다시 지정(drag)하면 원래 상태로 돌아갑니다.
-                                            <div class="mb-15px"></div>
-                                            <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/line-chart-drag-all.png">
-                                            <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
-                                            <img class="userguide-img " src="/static/img/X-Factor_documentation/line-chart-reduction.png">
-                                            <div id="DocumentLineChart"></div>
+                                            <div class="mb-10px"></div>
+                                            <!-- BEGIN card -->
+                                            <div class="card">
+                                                <!-- BEGIN card-body -->
+                                                <div class="card-body h-205px">
+                                                    <!-- BEGIN title -->
+                                                    <div class="d-flex fw-bold small mb-2">
+                                                        <div class="flex-grow-1">서버 총 수량 추이 그래프 (최근 30일)</div>
+                                                    </div>
+                                                    <!-- END title -->
+                                                    <div class="col-12" style="padding-right: 5px;">
+                                                        <!-- BEGIN chart -->
+                                                        <div id="DocumentLineChart"></div>
+                                                        <!-- END chart -->
+                                                        <!-- BEGIN row -->
+                                                        <!-- END row -->
+                                                    </div>
+                                                </div>
+                                                <!-- END card-body -->
+                                                <!-- BEGIN card-arrow -->
+                                                <div class="card-arrow">
+                                                    <div class="card-arrow-top-left"></div>
+                                                    <div class="card-arrow-top-right"></div>
+                                                    <div class="card-arrow-bottom-left"></div>
+                                                    <div class="card-arrow-bottom-right"></div>
+                                                </div>
+                                                <!-- END card-arrow -->
+                                            </div>
+                                            <!-- END card -->
                                         </li>
                                     </ol>
                                 </div>
@@ -125,7 +201,7 @@
                                         <li>현재 차트의 상태 비율은 95%, 75%, 60% 이상 사용중인 자산의 수를 나타냅니다.
                                             <div class="mb-15px"></div>
                                             <img class="userguide-img" src="/static/img/X-Factor_documentation/gauge-chart.png">
-                                            <div class="DocumentCircleChart"></div>
+                                            <div id="DocumentGaugeChart"></div>
                                         </li>
                                     </ol>
                                 </div>
@@ -165,6 +241,17 @@
                                             <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/rader-chart-default.png">
                                             <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
                                             <img class="userguide-img" src="/static/img/X-Factor_documentation/rader-chart-change.png">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div id="DocumentRaderChart"></div>
+                                                </div>
+                                                <div class="card-arrow">
+                                                    <div class="card-arrow-top-left"></div>
+                                                    <div class="card-arrow-top-right"></div>
+                                                    <div class="card-arrow-bottom-left"></div>
+                                                    <div class="card-arrow-bottom-right"></div>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ol>
                                 </div>
@@ -204,6 +291,17 @@
                                             <img class="userguide-img mb-30px" src="/static/img/X-Factor_documentation/map-chart-4-1.png">
                                             <div class="text-center mb-30px"><i class="fas fa-lg fa-fw me-2 fa-angle-down"></i></div>
                                             <img class="userguide-img" src="/static/img/X-Factor_documentation/map-chart-4-2.png">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                     <div id="jvectorMap"></div>
+                                                </div>
+                                                <div class="card-arrow">
+                                                    <div class="card-arrow-top-left"></div>
+                                                    <div class="card-arrow-top-right"></div>
+                                                    <div class="card-arrow-bottom-left"></div>
+                                                    <div class="card-arrow-bottom-right"></div>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ol>
                                 </div>
