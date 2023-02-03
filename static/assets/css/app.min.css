@@ -2308,7 +2308,8 @@ progress {
     margin-bottom: 1rem;
     color: var(--bs-table-color);
     vertical-align: top;
-    border-color: var(--bs-table-border-color)
+    border-color: var(--bs-table-border-color);
+    table-layout: fixed;
 }
 
 .table>:not(caption)>*>* {
@@ -30072,8 +30073,15 @@ body .note-modal-backdrop {
     top: 10px !important;
 }
 
-/* end - apexchart css */
+#apexOSversionChart, #apexIPlistChart, #apexRunServiceChart,
+#apexMemory95usageChart, #apexMemory75usageChart, #apexMemory60usageChart,
+#apexCPU95usageChart, #apexCPU75usageChart, #apexCPU60usageChart,
+#apexDisk95usageChart, #apexDisk75usageChart, #apexDisk60usageChart,
+#apexTotalAlarmChart, #apexPhysicalServerChart {
+    cursor: pointer;
+}
 
+/* end - apexchart css */
 
 /* begin - datatable weak Table css */
 .weakTable thead tr th:nth-child(3) {
@@ -30111,7 +30119,6 @@ body .note-modal-backdrop {
 }
 /* end - datatable weak Table css */
 
-
 /* begin - datatable weak detail Table css */
 #weakTableDetail thead tr th{
     text-align: center;
@@ -30145,9 +30152,7 @@ body .note-modal-backdrop {
 .weakDetail tbody tr td {
     vertical-align: middle;
 }
-
 /* end - datatable weak detail Table css */
-
 
 /* begin - datatable weak detail modal Table css */
 #weakTableModal div.dataTables_wrapper div.dataTables_filter label {
@@ -30279,64 +30284,7 @@ body .note-modal-backdrop {
 .maps{
     overflow:hidden;
 }
-
 /* end - table-report css */
-
-/* BEGIN - osVersion css */
-.osVersionTable thead tr th{
-    text-align: center;
-}
-/* END - osVersion css */
-
-/* BEGIN - serverBandBy css */
-.serverBandByTable{
-}
-/* END - serverBandBy css */
-
-/* BEGIN - runningService css */
-.runningServiceTable{
-}
-/* END - runningService css */
-
-/* BEGIN - memory css */
-.memoryTable{
-}
-/* END - memory css */
-
-/* BEGIN - cpu css */
-.cpuTable{
-}
-/* END - cpu css */
-
-/* BEGIN - disk css */
-.diskTable{
-}
-/* END - disk css */
-
-/* BEGIN - physicalServer css */
-.physicalServerTable{
-}
-/* END - physicalServer css */
-
-/* BEGIN - gpuServertable css */
-.gpuServerTable tbody tr td {
-    vertical-align: middle;
-}
-
-.gpuServerTable thead tr th {
-   text-align: center;
-}
-
-.gpuServerTable tbody tr td:nth-child(4) {
-    white-space: normal;
-}
-/* BEGIN - gpuServertable css */
-
-/* BEGIN - alarmCase css */
-.alarmCase thead tr th :nth-child(4){
-    text-align: center;
-}
-/* END - alarmCase css */
 
 /* begin - tab css */
 .nav-border {

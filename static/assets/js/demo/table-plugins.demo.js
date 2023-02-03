@@ -225,7 +225,6 @@ var OshandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -234,12 +233,12 @@ var OshandleRenderDashboardPopupTableData = function () {
 			{data: 'index'},
 			{data: 'name'},
 			{data: 'count'},
-		],
-		columnDefs: [
-			{width: "5%", target: [0]},
-			{width: "15%", target: [1]},
-			{width: "14%", target: [2], className: "text-center"}
 
+		],
+		columnDefs : [
+		    {targets: 0, width: "10%", className: 'text-center'},
+		    {targets: 1, width: "70%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+		    {targets: 2, width: "20%", className: 'text-center'}
 		],
 		language: {
 			"decimal": "",
@@ -277,7 +276,6 @@ var serverhandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -288,10 +286,9 @@ var serverhandleRenderDashboardPopupTableData = function () {
 			{data: 'count'},
 		],
 		columnDefs: [
-			{width: "5%", target: [0]},
-			{width: "15%", target: [1]},
-			{width: "1%", target: [2], className: "text-center"}
-
+		    {targets: 0, width: "10%", className: 'text-center'},
+		    {targets: 1, width: "70%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+		    {targets: 2, width: "20%", className: 'text-center'}
 		],
 		language: {
 			"decimal": "",
@@ -329,7 +326,6 @@ var runningServicehandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -340,10 +336,9 @@ var runningServicehandleRenderDashboardPopupTableData = function () {
 			{data: 'count'},
 		],
 		columnDefs: [
-			{width: "5%", target: [0]},
-			{width: "15%", target: [1]},
-			{width: "14%", target: [2], className: "text-center"}
-
+		    {targets: 0, width: "10%", className: 'text-center'},
+		    {targets: 1, width: "70%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+		    {targets: 2, width: "20%", className: 'text-center'}
 		],
 		language: {
 			"decimal": "",
@@ -381,7 +376,6 @@ var physicalServerhandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -392,9 +386,9 @@ var physicalServerhandleRenderDashboardPopupTableData = function () {
 			{data: 'count'},
 		],
 		columnDefs: [
-			{width: "5%", target: [0]},
-			{width: "15%", target: [1]},
-			{width: "14%", target: [2], className: "text-center"}
+		    {targets: 0, width: "10%", className: 'text-center'},
+		    {targets: 1, width: "70%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+		    {targets: 2, width: "20%", className: 'text-center'}
 
 		],
 		language: {
@@ -433,7 +427,6 @@ var gpuServerhandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -446,11 +439,11 @@ var gpuServerhandleRenderDashboardPopupTableData = function () {
 			{data: 'count'},
 		],
 		columnDefs: [
-			{width: "5%", target: [0]},
-			{width: "15%", target: [1]},
-			{width: "14%", target: [2]},
-			{width: "14%", target: [3]},
-			{width: "14%", target: [4], className: "text-center"}
+            {targets: 0, width: "10%", className: 'text-center'},
+            {targets: 1, width: "20%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 2, width: "30%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 3, width: "30%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.model+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 4, width: "10%", className: 'text-center'},
 
 		],
 		language: {
@@ -489,7 +482,6 @@ var handleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -503,14 +495,12 @@ var handleRenderDashboardPopupTableData = function () {
 			{data : 'usage'},
 		],
 		columnDefs: [
-			{ width: "5%", target: [0] },
-			{ width: "15%", target: [1] },
-			{ width: "16%", target: [2] },
-			{ width: "20%", target: [3] },
-			{ width: "14%", target: [4] },
-			{
-				width: "5%", target: [5]}
-
+            {targets: 0, width: "10%", className: 'text-center'},
+            {targets: 1, width: "20%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 2, width: "40%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 3, width: "10%", className: 'text-center'},
+            {targets: 4, width: "10%", className: 'text-center'},
+            {targets: 5, width: "10%", className: 'text-center'}
 		],
 		language: {
 			"decimal": "",
@@ -547,7 +537,6 @@ var CpuhandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -560,12 +549,11 @@ var CpuhandleRenderDashboardPopupTableData = function () {
 			{data: 'usage'},
 		],
 		columnDefs: [
-			{width: "5%", target: [0]},
-			{width: "15%", target: [1]},
-			{width: "16%", target: [2]},
-			{width: "20%", target: [3]},
-			{width: "14%", target: [4]}
-
+            {targets: 0, width: "10%", className: 'text-center'},
+            {targets: 1, width: "20%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 2, width: "40%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 3, width: "17%", className: 'text-center'},
+            {targets: 4, width: "13%", className: 'text-center'},
 		],
 		language: {
 			"decimal": "",
@@ -603,7 +591,6 @@ var DiskhandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -617,14 +604,12 @@ var DiskhandleRenderDashboardPopupTableData = function () {
 			{data : 'usage'},
 		],
 		columnDefs: [
-			{ width: "5%", target: [0] },
-			{ width: "15%", target: [1] },
-			{ width: "16%", target: [2] },
-			{ width: "20%", target: [3] },
-			{ width: "14%", target: [4] },
-			{
-				width: "5%", target: [5]}
-
+            {targets: 0, width: "10%", className: 'text-center'},
+            {targets: 1, width: "20%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 2, width: "40%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 3, width: "10%", className: 'text-center'},
+            {targets: 4, width: "10%", className: 'text-center'},
+            {targets: 5, width: "10%", className: 'text-center'}
 		],
 		language: {
 			"decimal": "",
@@ -662,7 +647,6 @@ var alarmCasehandleRenderDashboardPopupTableData = function () {
 			url: 'paging/',
 			type: "POST",
 			dataSrc: function (res) {
-				console.log(res);
 				var data = res.data.item;
 				return data;
 			}
@@ -677,14 +661,13 @@ var alarmCasehandleRenderDashboardPopupTableData = function () {
 			{data: 'date'},
 		],
 		columnDefs: [
-			{width: "5%", target: [0]},
-			{width: "15%", target: [1]},
-			{width: "16%", target: [2]},
-			{width: "20%", target: [3]},
-			{width: "14%", target: [4]},
-			{width: "14%", target: [5]},
-			{width: "14%", target: [6]}
-
+            {targets: 0, width: "6%", className: 'text-center'},
+            {targets: 1, width: "16%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 2, width: "30%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 3, width: "12%", className: 'text-center'},
+            {targets: 4, width: "12%", className: 'text-center'},
+            {targets: 5, width: "12%", className: 'text-center'},
+            {targets: 6, width: "12%", className: 'text-center'}
 		],
 		language: {
 			"decimal": "",
