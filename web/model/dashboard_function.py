@@ -212,11 +212,20 @@ def DashboardData():
                         roc = tValue - yValue
                         GpuServerDataList = {"value" : tValue, 'roc': roc}
                     except :
-                        GpuServerDataList = {"value": '-', 'roc': '-'}
+                        if not tValue :
+                            GpuServerDataList = {"value": '-', 'roc': '-'}
+                        else :
+                            GpuServerDataList = {"value": tValue, 'roc': tValue}
+
                     logging.info('dashboard_function.py - GpuServerDataList - Success')
+
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - GpuServerDataList')
+                    GpuServerDataList = []
+                    if len(GpuServerDataList) == 0:
+                        GpuServerDataList = {"value": '-', 'roc': '-'}
+                    else:
+                        logging.warning('dashboard_function.py - Error Occurred')
+                        logging.warning('Error - GpuServerDataList')
 
                 #서버 최다 연결 IP
                 try:
