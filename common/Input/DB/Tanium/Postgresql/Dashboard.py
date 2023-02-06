@@ -26,7 +26,9 @@ def plug_in(table, day, type):
         halfHourAgo = (datetime.today() - timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
         yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
         fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
-        monthDay = (datetime.today() - timedelta(30)).strftime("%Y-%m-%d")
+        #monthDay = (datetime.today() - timedelta(30)).strftime("%Y-%m-%d")
+        monthDay = (datetime.today() - relativedelta(days=31)).strftime("%Y-%m-%d")
+
         month_str = (datetime.today() - relativedelta(months=1)).strftime("%Y-%m-%d")
         SDL = []
         Conn = psycopg2.connect(
@@ -113,7 +115,7 @@ def plug_in(table, day, type):
                             from
                                 minutely_statistics
                             where
-                                classification = 'operating_system' AND item != 'unconfirmed'
+                                classification = 'operating_system' 
                             and 
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
@@ -134,7 +136,7 @@ def plug_in(table, day, type):
                             (item ||
                             item_count) like '%""" + type[2] + """%'
                         and 
-                            classification = 'operating_system' AND item != 'unconfirmed'
+                            classification = 'operating_system'
                         and 
                             statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
@@ -145,7 +147,7 @@ def plug_in(table, day, type):
                             from
                                 minutely_statistics
                             where
-                                classification ='group_server_count' AND item != 'unconfirmed'
+                                classification ='group_server_count' 
                             and 
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
@@ -166,7 +168,7 @@ def plug_in(table, day, type):
                             (item ||
                             item_count) like '%""" + type[2] + """%'
                         and 
-                            classification ='group_server_count' AND item != 'unconfirmed'
+                            classification ='group_server_count' 
                         and 
                             statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
@@ -275,14 +277,7 @@ def plug_in(table, day, type):
                             from
                                 minutely_statistics_list
                             where
-                                NOT ipv_address IN ('unconfirmed')
-                            and 
-                                NOT ramusage IN ('unconfirmed')
-                            and 
-                                ram_use_size NOT like '%[current%'
-                            and 
-                                ram_total_size NOT like '%[current%'
-                            and 
+                                
                                 asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
                                 (ipv_address ||
@@ -290,7 +285,9 @@ def plug_in(table, day, type):
                                 ram_use_size || 
                                 ram_total_size || 
                                 ramusage) like '%""" + type[2] + """%'
-                            order by float8(ramusage) desc
+                            order by 
+                                NULLIF(regexp_replace(ramusage, '[0-9]', '', 'g'), '') asc,
+		                        NULLIF(regexp_replace(ramusage, '\D', '', 'g'), '')::int desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
 
@@ -307,15 +304,7 @@ def plug_in(table, day, type):
                                  ram_use_size || 
                                  ram_total_size || 
                                  ramusage) like '%""" + type[2] + """%'
-                        and 
-                            NOT ipv_address IN ('unconfirmed')
-                        and 
-                            NOT ramusage IN ('unconfirmed')
-                        and 
-                            ram_use_size NOT like '%[current%'
-                        and 
-                            ram_total_size NOT like '%[current%'
-                        and 
+                        and                            
                             asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
             elif day == 'cpuMore':
@@ -325,19 +314,15 @@ def plug_in(table, day, type):
                                 from
                                     minutely_statistics_list
                                 where
-                                    NOT ipv_address IN ('unconfirmed')
-                                and 
-                                    NOT cpuusage IN ('unconfirmed')
-                                and 
-                                    cup_details_cup_speed NOT like '%[current%'
-                                and 
                                     asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                                 and
                                     (ipv_address ||
                                     computer_name || 
                                     cup_details_cup_speed || 
                                     cpuusage) like '%""" + type[2] + """%'
-                                order by float8(cpuusage) desc
+                                order by 
+                                    NULLIF(regexp_replace(cpuusage, '[0-9]', '', 'g'), '') asc,
+	                                NULLIF(regexp_replace(cpuusage, '\D', '', 'g'), '')::float desc
                                 LIMIT """ + type[0] + """
                                 OFFSET (""" + type[1] + """-1) * """ + type[0] + """
 
@@ -353,13 +338,7 @@ def plug_in(table, day, type):
                                      computer_name || 
                                      cup_details_cup_speed || 
                                      cpuusage) like '%""" + type[2] + """%'
-                            and 
-                                NOT ipv_address IN ('unconfirmed')
-                            and 
-                                NOT cpuusage IN ('unconfirmed')
-                            and 
-                                cup_details_cup_speed NOT like '%[current%'
-                            and 
+                            and                               
                                 asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                     """
             elif day == 'diskMore':
@@ -368,15 +347,7 @@ def plug_in(table, day, type):
                                 ipv_address, computer_name, disk_used_space, disk_total_space, driveusage
                             from
                                 minutely_statistics_list
-                            where
-                                NOT ipv_address IN ('unconfirmed')
-                            and 
-                                NOT driveusage IN ('unconfirmed')
-                            and 
-                                disk_used_space NOT like '%[current%'
-                            and 
-                                disk_total_space NOT like '%[current%'
-                            and 
+                            where 
                                 asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
                                 (ipv_address ||
@@ -384,7 +355,9 @@ def plug_in(table, day, type):
                                 disk_used_space || 
                                 disk_total_space || 
                                 driveusage) like '%""" + type[2] + """%'
-                            order by float8(driveusage) desc
+                            order by 
+                                NULLIF(regexp_replace(driveusage, '[0-9]', '', 'g'), '') asc,
+	                            NULLIF(regexp_replace(driveusage, '\D', '', 'g'), '')::int desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
 
@@ -401,14 +374,6 @@ def plug_in(table, day, type):
                                  disk_used_space || 
                                  disk_total_space || 
                                  driveusage) like '%""" + type[2] + """%'
-                        and 
-                            NOT ipv_address IN ('unconfirmed')
-                        and 
-                            NOT driveusage IN ('unconfirmed')
-                        and 
-                            disk_used_space NOT like '%[current%'
-                        and 
-                            disk_total_space NOT like '%[current%'
                         and 
                             asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
@@ -518,7 +483,7 @@ def plug_in(table, day, type):
                         from 
                             minutely_statistics
                         where 
-                            classification = 'operating_system' AND item != 'unconfirmed'
+                            classification = 'operating_system' 
                         and 
                             statistics_collection_date >= '""" + fiveMinutesAgo + """'
                         order by item_count::INTEGER desc limit 8
@@ -554,7 +519,7 @@ def plug_in(table, day, type):
                             from 
                                 minutely_statistics  
                             where 
-                                classification ='group_server_count' AND NOT item IN ('unconfirmed')
+                                classification ='group_server_count'
                             and 
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             order by
@@ -600,8 +565,6 @@ def plug_in(table, day, type):
                             classification = 'manufacturer'
                         and 
                             statistics_collection_date >= '""" + fiveMinutesAgo + """'
-                        and 
-                            item != 'unconfirmed'
                         order by
                             item_count::INTEGER desc 
                         limit 3
@@ -864,7 +827,7 @@ def plug_in(table, day, type):
                         ('name', R[1]),
                         ('use', R[2]),
                         ('total', R[3]),
-                        ('usage', round(float(R[4]), 1))
+                        ('usage', str(R[4]))
                     )
                 ))
             elif day == 'cpuMore':
@@ -875,7 +838,7 @@ def plug_in(table, day, type):
                         ('ip', R[0]),
                         ('name', R[1]),
                         ('use', R[2]),
-                        ('usage', round(float(R[3]), 1))
+                        ('usage', str(R[3]))
                     )
                 ))
             elif day == 'osMore' or day == 'serverBandByMore' or day == 'runningServiceMore' or day == 'physicalServerMore':
