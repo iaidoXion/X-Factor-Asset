@@ -230,6 +230,9 @@ var handleRenderChartNC = function () {
         yaxis: {
           labels: {
             show: true,
+            formatter : function (val){
+                return parseInt(val);
+            }
           }
         },
         fill: {
@@ -1413,13 +1416,12 @@ var handleRenderChartNC = function () {
     var vendorValue = [];
     var vendorName = [];
 
-    if (a.vendorChartList.length >= 3) {
-        for (var i = 0; i < 3; i++) {
-          vendorValue.push(a.vendorChartList[i]['value']);
-          vendorName.push(a.vendorChartList[i]['name']);
-        };
-    }
-    else if (a.vendorChartList.length == 0) {
+    for (var i = 0; i < a.vendorChartList.length; i++) {
+      vendorValue.push(a.vendorChartList[i]['value']);
+      vendorName.push(a.vendorChartList[i]['name']);
+    };
+
+    if (a.vendorChartList.length == 0) {
         vendorValue.push(0);
         vendorName.push('-');
     }
@@ -1474,6 +1476,9 @@ var handleRenderChartNC = function () {
           categories: vendorName,
           labels: {
             show: true,
+                formatter : function (val){
+                return parseInt(val);
+            },
             style: {
               colors: '#fff',
               fontSize: '9px',

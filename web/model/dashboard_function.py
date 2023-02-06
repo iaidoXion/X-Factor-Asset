@@ -135,14 +135,17 @@ def DashboardData():
                 # OS 버전별 서버 수 차트
                 try:
                     Ochart = PDPI('statistics', 'today', 'os_version')
-                    for i in range(len(Ochart)):
-                        os_donutChartData.append({"name": Ochart[i][0], "value": int(Ochart[i][1])})
-
-                    OSNum = 4
-                    result = [os_donutChartData[i * OSNum:(i + 1) * OSNum] for i in range((len(os_donutChartData) + OSNum - 1) // OSNum)]
                     try:
-                        os_chartPartOne = result[0]
-                        os_chartPartTwo = result[1]
+                        for i in range(len(Ochart)):
+                            os_donutChartData.append({"name": Ochart[i][0], "value": int(Ochart[i][1])})
+                        OSNum = 4
+                        result = [os_donutChartData[i * OSNum:(i + 1) * OSNum] for i in range((len(os_donutChartData) + OSNum - 1) // OSNum)]
+                        if len(Ochart) <= 4:
+                            os_chartPartOne = result[0]
+                            os_chartPartTwo = []
+                        else:
+                            os_chartPartOne = result[0]
+                            os_chartPartTwo = result[1]
                     except:
                         os_chartPartOne = [{"name": "-", "value": 0}]
                         os_chartPartTwo = [{"name": "-", "value": 0}]
