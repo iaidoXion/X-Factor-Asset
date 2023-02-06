@@ -111,7 +111,6 @@ $(document).ready(function(){
         lastY = lastY + yLocation
         $('.selectMap').css('cursor','grab')
         $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" +  lastX  + "px," + lastY  +"px)")
-        $('.selectMap').css('cursor','grab')
 
     }
     });
