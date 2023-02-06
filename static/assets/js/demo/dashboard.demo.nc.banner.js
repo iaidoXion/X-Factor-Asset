@@ -936,7 +936,7 @@ var handleRenderChartNC = function () {
     };
 
     var apexDisk95usageOptions = {
-        series: [99],
+        series: [95],
         chart: {
           height: 250,
           type: 'radialBar',
@@ -1423,14 +1423,10 @@ var handleRenderChartNC = function () {
         vendorValue.push(0);
         vendorName.push('-');
     }
-
-//    for (var i = 0; i < a.vendorChartList.length; i++){
-//        vendorValue.push(a.vendorChartList[i]['value'])
-//        if (a.vendorChartList['name'].length > 10){
-//            vendorName.push(a.vendorChartList['name'].substr(0,10)+"...")
-//        }
-//        else vendorName.push(a.vendorChartList['name'])
-//    };
+    var vendorToolTip = [];
+     for (var i = 0; i < a.vendorChartList.length; i++){
+        vendorToolTip.push(a.vendorChartList[i]['name']);
+    };
 
     var apexPhysicalServerOptions = {
         chart: {
@@ -1483,12 +1479,16 @@ var handleRenderChartNC = function () {
               fontSize: '9px',
               cssClass: 'apexcharts-xaxis-label',
             },
-            offsetX: 30,
+            /*offsetX: 30,*/
           },
         },
         yaxis: {
           labels: {
             show: true,
+            formatter : function (seriesName) {
+                var len = seriesName.length
+                return len > 15 ? seriesName.substring(0, 12) + '...' : seriesName
+            }
           }
         },
         fill: {
@@ -1498,6 +1498,15 @@ var handleRenderChartNC = function () {
           theme: 'dark',
           x: {
             show: true,
+            formatter: function(value){
+                for (var i = 0; i < vendorToolTip.length; i++){
+                    if (vendorToolTip[i].includes(value.substring(0,10))){
+                        value = vendorToolTip[i];
+                        break
+                    }
+                }
+                return '' + value
+            }
           },
           y: {
             title: {
