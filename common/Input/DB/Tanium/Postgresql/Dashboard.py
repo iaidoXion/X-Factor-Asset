@@ -380,25 +380,32 @@ def plug_in(table, day, type):
             elif day == 'alarmCaseMore':
                 query = """
                         select 
-                            ipv_address, computer_name, ram, cpu, drive, TF 
+                            ipv_address, computer_name, ram, cpu, drive, TF
                         from
                             minutely_statistics_list msl
                         inner join 
                         (select computer_id ,        
-                        case when ramusage = 'unconfirmed' then 0 else ramusage::NUMERIC end as ram,
-                        case when cpuusage = 'unconfirmed' then 0 else cpuusage::numeric end as cpu,
-                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive,
-                        case when asset_list_statistics_collection_date < '""" + halfHourAgo + """' then 'True' else 'False' end as TF
+                        case when ramusage = 'unconfirmed' then -1 else ramusage::NUMERIC end as ram,
+                        case when cpuusage = 'unconfirmed' then -1 else cpuusage::numeric end as cpu,
+                        case when driveusage = 'unconfirmed' then -1 else driveusage::numeric end as drive,
+                        case when asset_list_statistics_collection_date <= '""" + fiveMinutesAgo + """' and asset_list_statistics_collection_date >= '""" + halfHourAgo + """'then 'True' else 'False' end as TF
                         from
                             minutely_statistics_list) msli
                         on msl.computer_id = msli.computer_id
-                        where (ram > 95 or cpu > 95 or drive > 99 or asset_list_statistics_collection_date < '""" + halfHourAgo + """')
+                        where 
+                               (ram > 95 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or cpu > 95 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or drive > 99 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or asset_list_statistics_collection_date <= '""" + fiveMinutesAgo + """' and asset_list_statistics_collection_date >= '""" + halfHourAgo + """')
                         and
                             (ipv_address ||
                             computer_name || 
                             ram || 
                             cpu || 
                             drive ||
+                            ramusage || 
+                            cpuusage || 
+                            driveusage ||
                             TF) like '%""" + type[2] + """%'
                         LIMIT """ + type[0] + """
                         OFFSET (""" + type[1] + """-1) * """ + type[0] + """
@@ -411,9 +418,9 @@ def plug_in(table, day, type):
                             minutely_statistics_list msl
                         inner join
                         (select computer_id,
-                        case when ramusage = 'unconfirmed' then 0 else ramusage::NUMERIC end as ram,
-                        case when cpuusage = 'unconfirmed' then 0 else cpuusage::numeric end as cpu,
-                        case when driveusage = 'unconfirmed' then 0 else driveusage::numeric end as drive,
+                        case when ramusage = 'unconfirmed' then -1 else ramusage::NUMERIC end as ram,
+                        case when cpuusage = 'unconfirmed' then -1 else cpuusage::numeric end as cpu,
+                        case when driveusage = 'unconfirmed' then -1 else driveusage::numeric end as drive,
                         case when asset_list_statistics_collection_date < '""" + halfHourAgo + """' then 'True' else 'False' end as TF
                         from
                             minutely_statistics_list) msli
@@ -540,6 +547,7 @@ def plug_in(table, day, type):
                         order by
                             item_count::INTEGER desc limit 5
                     """
+                #알람케이스
                 elif type == 'usage':
                     query = """
                         select
@@ -867,9 +875,9 @@ def plug_in(table, day, type):
                         ('index', index),
                         ('ip', R[0]),
                         ('name', R[1]),
-                        ('ramusage', math.trunc(float(R[2]))),
-                        ('cpuusage', math.trunc(float(R[3]))),
-                        ('driveusage', math.trunc(float(R[4]))),
+                        ('ramusage', R[2]),
+                        ('cpuusage', R[3]),
+                        ('driveusage', R[4]),
                         ('date', R[5]),
                     )
                 ))

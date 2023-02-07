@@ -349,16 +349,22 @@ def alarmCase_moreInfo_paging(request):
         if SMD[i]['date'] == 'True':
             if SMD[i]['ramusage'] > 95:
                 SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + ')'
+            elif SMD[i]['ramusage'] == -1:
+                SMD[i]['ramusage'] = 'unconfirmed'
             else:
                 SMD[i]['ramusage'] = 'False'
 
             if SMD[i]['cpuusage'] > 95:
                 SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + ')'
+            elif SMD[i]['cpuusage'] == -1:
+                SMD[i]['cpuusage'] = 'unconfirmed'
             else:
                 SMD[i]['cpuusage'] = 'False'
 
             if SMD[i]['driveusage'] > 95:
                 SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + ')'
+            elif SMD[i]['driveusage'] == -1:
+                SMD[i]['driveusage'] = 'unconfirmed'
             else:
                 SMD[i]['driveusage'] = 'False'
         else:
@@ -366,11 +372,15 @@ def alarmCase_moreInfo_paging(request):
                 SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + ')'
                 if SMD[i]['cpuusage'] > 95:
                     SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + ')'
+                elif SMD[i]['cpuusage'] == -1:
+                    SMD[i]['cpuusage'] = 'unconfirmed'
                 else:
                     SMD[i]['cpuusage'] = 'False'
 
                 if SMD[i]['driveusage'] > 95:
                     SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + ')'
+                elif SMD[i]['driveusage'] == -1:
+                    SMD[i]['driveusage'] = 'unconfirmed'
                 else:
                     SMD[i]['driveusage'] = 'False'
 
@@ -378,11 +388,15 @@ def alarmCase_moreInfo_paging(request):
                 SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['cpuusage']) + ')'
                 if SMD[i]['ramusage'] > 95:
                     SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + ')'
+                elif SMD[i]['ramusage'] == -1:
+                    SMD[i]['ramusage'] = 'unconfirmed'
                 else:
                     SMD[i]['ramusage'] = 'False'
 
                 if SMD[i]['driveusage'] > 95:
                     SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + ')'
+                elif SMD[i]['driveusage'] == -1:
+                    SMD[i]['driveusage'] = 'unconfirmed'
                 else:
                     SMD[i]['driveusage'] = 'False'
 
@@ -390,11 +404,15 @@ def alarmCase_moreInfo_paging(request):
                 SMD[i]['driveusage'] = 'True (' + str(SMD[i]['driveusage']) + ')'
                 if SMD[i]['ramusage'] > 95:
                     SMD[i]['ramusage'] = 'True (' + str(SMD[i]['ramusage']) + ')'
+                elif SMD[i]['ramusage'] == -1:
+                    SMD[i]['ramusage'] = 'unconfirmed'
                 else:
                     SMD[i]['ramusage'] = 'False'
 
                 if SMD[i]['cpuusage'] > 95:
                     SMD[i]['cpuusage'] = 'True (' + str(SMD[i]['driveusage']) + ')'
+                elif SMD[i]['cpuusage'] == -1:
+                    SMD[i]['cpuusage'] = 'unconfirmed'
                 else:
                     SMD[i]['cpuusage'] = 'False'
 
