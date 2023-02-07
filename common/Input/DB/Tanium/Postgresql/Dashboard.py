@@ -120,7 +120,7 @@ def plug_in(table, day, type):
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
                                 (item ||
-                                item_count) like '%""" + type[2] + """%'
+                                item_count) Ilike '%""" + type[2] + """%'
                             order by item_count::INTEGER desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
@@ -134,7 +134,7 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             (item ||
-                            item_count) like '%""" + type[2] + """%'
+                            item_count) Ilike '%""" + type[2] + """%'
                         and 
                             classification = 'operating_system'
                         and 
@@ -152,7 +152,7 @@ def plug_in(table, day, type):
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
                                 (item ||
-                                item_count) like '%""" + type[2] + """%'
+                                item_count) Ilike '%""" + type[2] + """%'
                             order by item_count::INTEGER desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
@@ -166,7 +166,7 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             (item ||
-                            item_count) like '%""" + type[2] + """%'
+                            item_count) Ilike '%""" + type[2] + """%'
                         and 
                             classification ='group_server_count' 
                         and 
@@ -184,7 +184,7 @@ def plug_in(table, day, type):
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
                                 (item ||
-                                item_count) like '%""" + type[2] + """%'
+                                item_count) Ilike '%""" + type[2] + """%'
                             order by item_count::INTEGER desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
@@ -198,7 +198,7 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             (item ||
-                            item_count) like '%""" + type[2] + """%'
+                            item_count) Ilike '%""" + type[2] + """%'
                         and 
                             classification = 'running_service'
                         and 
@@ -216,7 +216,7 @@ def plug_in(table, day, type):
                                 statistics_collection_date >= '""" + fiveMinutesAgo + """'
                             and
                                 (item ||
-                                item_count) like '%""" + type[2] + """%'
+                                item_count) Ilike '%""" + type[2] + """%'
                             order by item_count::INTEGER desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
@@ -230,7 +230,7 @@ def plug_in(table, day, type):
                             minutely_statistics
                         where
                             (item ||
-                            item_count) like '%""" + type[2] + """%'
+                            item_count) Ilike '%""" + type[2] + """%'
                         and 
                             classification = 'manufacturer'
                         and 
@@ -249,7 +249,7 @@ def plug_in(table, day, type):
                             and
                                 (ipv_address ||
                                 computer_name ||
-                                nvidia_smi) like '%""" + type[2] + """%'
+                                nvidia_smi) Ilike '%""" + type[2] + """%'
                                 order by nvidia_smi desc
                             LIMIT """ + type[0] + """
                             OFFSET (""" + type[1] + """-1) * """ + type[0] + """
@@ -264,7 +264,7 @@ def plug_in(table, day, type):
                         where
                             (ipv_address ||
                             computer_name ||
-                            nvidia_smi) like '%""" + type[2] + """%'
+                            nvidia_smi) Ilike '%""" + type[2] + """%'
                         and 
                             NOT nvidia_smi IN ('unconfirmed', 'no results')
                         and 
@@ -284,7 +284,7 @@ def plug_in(table, day, type):
                                 computer_name || 
                                 ram_use_size || 
                                 ram_total_size || 
-                                ramusage) like '%""" + type[2] + """%'
+                                ramusage) Ilike '%""" + type[2] + """%'
                             order by 
                                 NULLIF(regexp_replace(ramusage, '[0-9]', '', 'g'), '') asc,
 		                        NULLIF(regexp_replace(ramusage, '\D', '', 'g'), '')::int desc
@@ -303,7 +303,7 @@ def plug_in(table, day, type):
                                  computer_name || 
                                  ram_use_size || 
                                  ram_total_size || 
-                                 ramusage) like '%""" + type[2] + """%'
+                                 ramusage) Ilike '%""" + type[2] + """%'
                         and                            
                             asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
@@ -319,7 +319,7 @@ def plug_in(table, day, type):
                                     (ipv_address ||
                                     computer_name || 
                                     cup_details_cup_speed || 
-                                    cpuusage) like '%""" + type[2] + """%'
+                                    cpuusage) Ilike '%""" + type[2] + """%'
                                 order by 
                                     NULLIF(regexp_replace(cpuusage, '[0-9]', '', 'g'), '') asc,
 	                                NULLIF(regexp_replace(cpuusage, '\D', '', 'g'), '')::float desc
@@ -337,7 +337,7 @@ def plug_in(table, day, type):
                                     (ipv_address ||
                                      computer_name || 
                                      cup_details_cup_speed || 
-                                     cpuusage) like '%""" + type[2] + """%'
+                                     cpuusage) Ilike '%""" + type[2] + """%'
                             and                               
                                 asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                     """
@@ -354,7 +354,7 @@ def plug_in(table, day, type):
                                 computer_name || 
                                 disk_used_space || 
                                 disk_total_space || 
-                                driveusage) like '%""" + type[2] + """%'
+                                driveusage) Ilike '%""" + type[2] + """%'
                             order by 
                                 NULLIF(regexp_replace(driveusage, '[0-9]', '', 'g'), '') asc,
 	                            NULLIF(regexp_replace(driveusage, '\D', '', 'g'), '')::int desc
@@ -373,7 +373,7 @@ def plug_in(table, day, type):
                                  computer_name || 
                                  disk_used_space || 
                                  disk_total_space || 
-                                 driveusage) like '%""" + type[2] + """%'
+                                 driveusage) Ilike '%""" + type[2] + """%'
                         and 
                             asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
                 """
@@ -406,7 +406,7 @@ def plug_in(table, day, type):
                             ramusage || 
                             cpuusage || 
                             driveusage ||
-                            TF) like '%""" + type[2] + """%'
+                            TF) Ilike '%""" + type[2] + """%'
                         LIMIT """ + type[0] + """
                         OFFSET (""" + type[1] + """-1) * """ + type[0] + """
                 """
@@ -432,7 +432,10 @@ def plug_in(table, day, type):
                             ram || 
                             cpu || 
                             drive ||
-                            TF) like '%""" + type[2] + """%'
+                            ramusage || 
+                            cpuusage || 
+                            driveusage ||
+                            TF) Ilike '%""" + type[2] + """%'
                 """
             #################################################################### 페이징 끝 ########################################################################
             if day == 'today':
