@@ -442,8 +442,8 @@ var gpuServerhandleRenderDashboardPopupTableData = function () {
             {targets: 0, width: "10%", className: 'text-center'},
             {targets: 1, width: "20%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
             {targets: 2, width: "30%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
-            {targets: 3, width: "30%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.model+'" data-toggle="tooltip">'+data+'</span>'}},
-            {targets: 4, width: "10%", className: 'text-center'},
+            {targets: 3, width: "28%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.model+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 4, width: "12%", className: 'text-center'},
 
 		],
 		language: {
@@ -497,9 +497,9 @@ var handleRenderDashboardPopupTableData = function () {
 		columnDefs: [
             {targets: 0, width: "10%", className: 'text-center'},
             {targets: 1, width: "20%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
-            {targets: 2, width: "36%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 2, width: "34%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
             {targets: 3, width: "12%", className: 'text-center'},
-            {targets: 4, width: "10%", className: 'text-center'},
+            {targets: 4, width: "12%", className: 'text-center'},
             {targets: 5, width: "12%", className: 'text-center'}
 		],
 		language: {
@@ -606,9 +606,9 @@ var DiskhandleRenderDashboardPopupTableData = function () {
 		columnDefs: [
             {targets: 0, width: "10%", className: 'text-center'},
             {targets: 1, width: "20%", className: 'text-center text-truncate', render: function(data, type, row) {return '<span title="'+row.ip+'" data-toggle="tooltip">'+data+'</span>'}},
-            {targets: 2, width: "36%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
+            {targets: 2, width: "34%", className: 'text-start text-truncate', render: function(data, type, row) {return '<span title="'+row.name+'" data-toggle="tooltip">'+data+'</span>'}},
             {targets: 3, width: "12%", className: 'text-center'},
-            {targets: 4, width: "10%", className: 'text-center'},
+            {targets: 4, width: "12%", className: 'text-center'},
             {targets: 5, width: "12%", className: 'text-center'}
 		],
 		language: {

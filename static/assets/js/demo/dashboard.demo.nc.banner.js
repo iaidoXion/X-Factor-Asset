@@ -1359,7 +1359,7 @@ var handleRenderChartNC = function () {
           },
           position: 'right',
           fontSize: "10px",
-          width: 200,
+          width: 180,
           height: 120,
         },
         //        legend: {
