@@ -10144,7 +10144,8 @@ fieldset:disabled .btn {
 .text-truncate {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap
+    white-space: nowrap;
+    cursor:pointer;
 }
 
 .vr {
