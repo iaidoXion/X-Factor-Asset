@@ -38,10 +38,9 @@
                                 <br>
                                 {% endfor %}
                             </div>
-                            <div class="col-1 small text-white text-opacity-50 text-truncate text-center">
+                            <div class="col-1">
                                 {% for data in chartData.os_chartPartOne %}
-                                {{ data.value }}
-                                <br>
+                                <div class="small text-white text-opacity-50 text-truncate text-center ps-sm-4" title="{{data.value}}">{{ data.value }}</div>
                                 {% endfor %}
                             </div>
                             {% endif %}
@@ -52,10 +51,9 @@
                                 <br>
                                 {% endfor %}
                             </div>
-                            <div class="col-1 small text-white text-opacity-50 text-truncate text-center">
+                            <div class="col-1">
                                 {% for data in chartData.os_chartPartTwo %}
-                                {{ data.value }}
-                                <br>
+                                <div class="small text-white text-opacity-50 text-truncate text-center ps-sm-4" title="{{data.value}}">{{ data.value }}</div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -141,10 +139,9 @@
                             <br>
                             {% endfor %}
                         </div>
-                        <div class="col-2 small text-white text-opacity-50 text-truncate text-center">
+                        <div class="col-2">
                             {% for data in chartData.donutChartDataList %}
-                            {{data.value}}
-                            <br>
+                             <div class="small text-white text-opacity-50 text-truncate text-center ps-sm-4" title="{{data.value}}">{{data.value}}</div>
                             {% endfor %}
                             {% endif %}
                         </div>
@@ -500,7 +497,7 @@
                                 <tr class="text-opacity-60">
                                     <td class="w-150px text-start text-truncate" title="{{ data.ip }}">{{ data.ip }}</td>
                                     <td class="text-center text-truncate" title="{{ data.host }}">{{ data.host }}</td>
-                                    <td class="text-center">{{ data.count }}</td>
+                                    <td class="text-center text-truncate" title="{{ data.count }}">{{ data.count }}</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
@@ -547,7 +544,7 @@
                                 <tr class="text-opacity-60">
                                     <td class="w-150px text-start text-truncate" title="{{ data.ip }}">{{ data.ip }}</td>
                                     <td class="text-center text-truncate" title="{{ data.name }}">{{ data.name }}</td>
-                                    <td class="text-center">{{ data.count }}</td>
+                                    <td class="text-center text-truncate" title="{{ data.count }}">{{ data.count }}</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>

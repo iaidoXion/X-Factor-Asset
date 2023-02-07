@@ -96,6 +96,12 @@ $(document).ready(function(){
         lastY = 0;
     }
 
+    $(".bi-fullscreen").click(function() {
+        $('.selectMap').css('transform',"translate(0px,0px)")
+        zoomCount = 1;
+        reset_xy()
+    });
+
     const dragMap = function(){
 // 이미지 드래그 기능
     $('.selectMap').on({
