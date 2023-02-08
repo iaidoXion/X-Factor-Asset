@@ -19,6 +19,7 @@ SesstionKeyPath = SETTING['API']['PATH']['SesstionKey']
 
 
 # hi
+
 def signup(request):
     if request.method == "GET":
         return render(request, 'common/signup.html')
@@ -79,9 +80,10 @@ def login(request):
                     request.session['sessionname'] = RS[3]
                     request.session['sessionemail']=RS[5]
                     return redirect('../dashboard')
-    elif Login_Method== "Tanium" :
+    elif Login_Method == "Tanium":
         if request.method == 'GET':
-            return render(request, 'common/login.html')
+            returnData = {'Login_Method': Login_Method}
+            return render(request, 'common/login.html', returnData)
 
         elif request.method == 'POST':
 
@@ -205,6 +207,9 @@ def logout(request):
         else :
             return render(request, 'common/login.html')
     elif Login_Method == "Tanium":
+        if request.method == 'GET':
+            returnData = {'Login_Method': Login_Method}
+            return render(request, 'common/login.html', returnData)
         if 'sessionid' in request.session :
             del (request.session['sessionid'])
             return render(request, 'common/login.html')

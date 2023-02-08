@@ -22,12 +22,11 @@ WorldUse = SETTING['PROJECT']['MAP']['World']
 KoreaUse = SETTING['PROJECT']['MAP']['Korea']
 AreaUse = SETTING['PROJECT']['MAP']['Area']['use']
 AreaType = SETTING['PROJECT']['MAP']['Area']['type']
-
+Login_Method = SETTING['PROJECT']['LOGIN']
 
 def index(request):
     returnData = {'menuList': menuListDB}
     return render(request, 'web/index.html', returnData)
-
 
 def dashboard(request):
     DCDL = DashboardData()
@@ -64,7 +63,7 @@ def dashboard(request):
                         "bannerDataList": bannerData, "WorldMapDataList": WorldMapData,
                         "GpuServerDataList": GpuServerDataList, "connectIpDataList": connectIpDataList, "connectServerDataList": connectServerDataList}
 
-            returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse}
+            returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse, 'Login_Method': Login_Method}
         else:
             dashboardType = 'web/dashboard.html'
             barChartData = DCDL["barChartData"]
@@ -81,7 +80,7 @@ def dashboard(request):
             MapUse = {"WorldUse": WorldUse, "KoreaUse": KoreaUse, "AreaUse": AreaUse, "AreaType": AreaType}
             chartData = {'barChartDataList': barChartData, 'minidonutData': minidonutData, 'lineChartDataList': lineChartData, 'pieChartDataList': pieChartData, 'bannerDataList': bannerData, 'alarmDataList': alarmData, 'AssociationDataList': AssociationData,
                          'TotalTopDataList': TotalTopData, 'TotalDataList': TotalData, 'WorldMapDataList': WorldMapData, 'donutChartDataList': donutChartData}
-            returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse}
+            returnData = {'menuList': menuListDB, 'chartData': chartData, 'Customer': Customer, 'MapUse': MapUse, 'Login_Method': Login_Method}
         return render(request, dashboardType, returnData)
 
 
