@@ -25,6 +25,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def DashboardData():
+    logger = logging.getLogger(__name__)
     if Customer == 'NC' or Customer == 'Xfactor' :
         if ProjectType == 'System':
             if core == 'Tanium':
@@ -43,10 +44,10 @@ def DashboardData():
                     server_BChartDataList = CTDF(SBCQ, 'bar')
                     if not SBCQ:
                         server_BChartDataList = [{"name": "-", "value": 0}]
-                    logging.info('dashboard_function.py - server_BChartDataList - Success')
+                    logger.info('dashboard_function.py - server_BChartDataList - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - server_BChartDataList')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - server_BChartDataList')
 
                 # 실행 중인 서비스 통계 차트
                 Rchart = PDPI('statistics', 'today', 'running')
@@ -55,10 +56,10 @@ def DashboardData():
                         service_donutChartData.append({"name": Rchart[i][0], "value": int(Rchart[i][1])})
                     if not service_donutChartData:
                         service_donutChartData = [{"name": "-", "value": 0}]
-                    logging.info('dashboard_function.py - service_donutChartData - Success')
+                    logger.info('dashboard_function.py - service_donutChartData - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - service_donutChartData')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - service_donutChartData')
 
                 #디스크, cpu, ram 95%, 75%, 60% 사용량 차트
                 try:
@@ -118,19 +119,19 @@ def DashboardData():
                         CpuChartDataList = UsageChartExcept * 3
                         DiskChartDataList = UsageChartExcept * 3
                     alarmDataList = {"nodeDataList": alarmData}
-                    logging.info('dashboard_function.py - alarmData - Success')
+                    logger.info('dashboard_function.py - alarmData - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - alarmData')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - alarmData')
 
                 # NC 서버 총 수량 추이 그래프
                 try:
                     SCLCQ = PDPI('statistics', 'monthly', 'asset')
                     server_LChartDataList = TDCD(SCLCQ, 'Monthly_Line')
-                    logging.info('dashboard_function.py - server_LChartDataList - Success')
+                    logger.info('dashboard_function.py - server_LChartDataList - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - server_LChartDataList')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - server_LChartDataList')
 
                 # OS 버전별 서버 수 차트
                 try:
@@ -149,10 +150,10 @@ def DashboardData():
                     except:
                         os_chartPartOne = [{"name": "-", "value": 0}]
                         os_chartPartTwo = [{"name": "-", "value": 0}]
-                    logging.info('dashboard_function.py - os_donutChartData - Success')
+                    logger.info('dashboard_function.py - os_donutChartData - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - os_donutChartData')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - os_donutChartData')
 
                 #물리서버 벤더별 수량 차트
                 try:
@@ -161,10 +162,10 @@ def DashboardData():
                         vendorChartList.append({"name": venChart[i][0], "value": venChart[i][1]})
                     if not venChart :
                         vendorChartList = [{'name': '-', 'value': '-'}]
-                    logging.info('dashboard_function.py - vendorChartList - Success')
+                    logger.info('dashboard_function.py - vendorChartList - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - vendorChartList')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - vendorChartList')
 
 
                 # IP 대역별 총 알람 수 차트
@@ -176,10 +177,10 @@ def DashboardData():
                     for i in alarm_donutChartData:
                         alarmCounter.update(i)
                     alarm_donutChartDataList = [{key: value} for key, value in alarmCounter.most_common()]
-                    logging.info('dashboard_function.py - alarm_donutChartData - Success')
+                    logger.info('dashboard_function.py - alarm_donutChartData - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - alarm_donutChartData')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - alarm_donutChartData')
 
                 # 배너 슬라이드
                 try:
@@ -192,19 +193,19 @@ def DashboardData():
                     if not BNT :
                         BNChartDataExcept = [{'name': '-', 'value': '-'}]
                         BNChartDataList = BNChartDataExcept * 8
-                    logging.info('dashboard_function.py - BNChartDataList - Success')
+                    logger.info('dashboard_function.py - BNChartDataList - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - BNChartDataList')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - BNChartDataList')
 
                 # worldmap data
                 try:
                     WMAC = WDDFNC(Achart)
                     WMCDL = [WMAC]
-                    logging.info('dashboard_function.py - WMCDL(World Map Chart Data List) - Success')
+                    logger.info('dashboard_function.py - WMCDL(World Map Chart Data List) - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - WMCDL(World Map Chart Data List)')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - WMCDL(World Map Chart Data List)')
 
                 #GPU 서버 수량
                 try:
@@ -220,15 +221,15 @@ def DashboardData():
                         else :
                             GpuServerDataList = {"value": tValue, 'roc': tValue}
 
-                    logging.info('dashboard_function.py - GpuServerDataList - Success')
+                    logger.info('dashboard_function.py - GpuServerDataList - Success')
 
                 except:
                     GpuServerDataList = []
                     if len(GpuServerDataList) == 0:
                         GpuServerDataList = {"value": '-', 'roc': '-'}
                     else:
-                        logging.warning('dashboard_function.py - Error Occurred')
-                        logging.warning('Error - GpuServerDataList')
+                        logger.warning('dashboard_function.py - Error Occurred')
+                        logger.warning('Error - GpuServerDataList')
 
                 #서버 최다 연결 IP
                 try:
@@ -245,10 +246,10 @@ def DashboardData():
                     if not connectIpData:
                         connectIpDataExcept = [{'ip': '-', 'host': '-', 'count': '-' }]
                         connectIpDataList = connectIpDataExcept * 3
-                    logging.info('dashboard_function.py - connectIpDataList - Success')
+                    logger.info('dashboard_function.py - connectIpDataList - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - connectIpDataList')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - connectIpDataList')
 
                 #세션 최다 연결 서버
                 try:
@@ -259,10 +260,10 @@ def DashboardData():
                     if not connectServerData:
                         connectServerDataExcept = [{'ip': '-', 'name': '-', 'count': '-' }]
                         connectServerDataList = connectServerDataExcept * 3
-                    logging.info('dashboard_function.py - connectServerDataList - Success')
+                    logger.info('dashboard_function.py - connectServerDataList - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - connectServerDataList')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - connectServerDataList')
 
                 #게이지 차트 사용량 더보기
                 #메모리 부분
@@ -273,10 +274,10 @@ def DashboardData():
                         if memoryMore[i][0] != 'unconfirmed' and not memoryMore[i][2].startswith('[current') and not memoryMore[i][3].startswith('[current') and memoryMore[i][4] != 'unconfirmed':
                             count = math.trunc(float(memoryMore[i][4]))
                             memoryMoreDataList.append({"ip": memoryMore[i][0], "name": memoryMore[i][1], "use": memoryMore[i][2], "total": memoryMore[i][3], "usage": count})
-                    logging.info('dashboard_function.py - memoryMoreDataList - Success')
+                    logger.info('dashboard_function.py - memoryMoreDataList - Success')
                 except:
-                    logging.warning('dashboard_function.py - Error Occurred')
-                    logging.warning('Error - memoryMoreDataList')
+                    logger.warning('dashboard_function.py - Error Occurred')
+                    logger.warning('Error - memoryMoreDataList')
 
                 USCDL = {"DiskChartDataList": DiskChartDataList, "CpuChartDataList": CpuChartDataList, "MemoryChartDataList": MemoryChartDataList}
                 ODDLC = os_donutChartData
