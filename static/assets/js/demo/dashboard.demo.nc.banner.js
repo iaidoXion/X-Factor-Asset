@@ -1336,52 +1336,20 @@ var handleRenderChartNC = function () {
             colors: [app.color.white],
             fontWeight: 400
           },
-          //			dropShadow: {
-          //				enabled: true,
-          //				color: 'rgba(' + app.color.darkRgb + ', .75)',
-          //				top: -2,
-          //				left: 4,
-          //				blur: 1,
-          //				opacity: 0.5
-          //			}
         },
         stroke: {
           show: false
         },
-        //		legend: {
-        //			show: true,
-        //			position:"right"
-        //
-        //		},
         legend: {
-          formatter: function (group, value) {
-            return [group + "&nbsp;&nbsp;&nbsp;" + value.w.globals.series[value.seriesIndex]]
-          },
-          position: 'right',
-          fontSize: "10px",
-          width: 180,
-          height: 120,
+            show: true,
+            width: 175,
+            height: 120,
+            position: 'right',
+            fontSize: '10px',
+            formatter: function (group, value) {
+            return [group + "&nbsp;-&nbsp;" + value.w.globals.series[value.seriesIndex]]
+            },
         },
-        //        legend: {
-        //			show: true,
-        //			position: 'left',
-        //			width : '100%',
-        //			height: 150,
-        //			horizontalAlign: 'left',
-        //			floating: false,
-        //			formatter: function (value, opts) {
-        //                return [value +  opts.w.globals.series[opts.seriesIndex]]
-        //            },
-        //			itemMargin: {
-        //				horizontal: 0,
-        //				vertical: 0
-        //			},
-        //			labels: {
-        //				colors: '#fff',
-        //				fontSize: '10px'
-        //			}
-        //		},
-
         colors: ['rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
         labels: alarmName.flat(),
         series: alarmValue.flat(),
@@ -1399,9 +1367,6 @@ var handleRenderChartNC = function () {
             formatter: (value) => { return '' + value },
           }
         },
-        //		tooltipHoverFormatter: function(group, value) {
-        //            return '<strong>' + value.w.globals.series[value.seriesIndex][value.dataPointIndex] + '</strong>'
-        //        },
     };
     var apexTotalAlarmChart = new ApexCharts(
     document.querySelector('#apexTotalAlarmChart'),
@@ -1425,10 +1390,6 @@ var handleRenderChartNC = function () {
         vendorValue.push(0);
         vendorName.push('-');
     }
-    var vendorToolTip = [];
-     for (var i = 0; i < a.vendorChartList.length; i++){
-        vendorToolTip.push(a.vendorChartList[i]['name']);
-    };
 
     var apexPhysicalServerOptions = {
         chart: {
@@ -1490,10 +1451,6 @@ var handleRenderChartNC = function () {
         yaxis: {
           labels: {
             show: true,
-            formatter : function (seriesName) {
-                var len = seriesName.length
-                return len > 15 ? seriesName.substring(0, 12) + '...' : seriesName
-            }
           }
         },
         fill: {
@@ -1503,15 +1460,6 @@ var handleRenderChartNC = function () {
           theme: 'dark',
           x: {
             show: true,
-            formatter: function(value){
-                for (var i = 0; i < vendorToolTip.length; i++){
-                    if (vendorToolTip[i].includes(value.substring(0,10))){
-                        value = vendorToolTip[i];
-                        break
-                    }
-                }
-                return '' + value
-            }
           },
           y: {
             title: {

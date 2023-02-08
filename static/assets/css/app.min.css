@@ -30072,6 +30072,7 @@ body .note-modal-backdrop {
 
 #apexTotalAlarmChart .apexcharts-legend {
     top: 10px !important;
+    padding: 0;
 }
 
 #apexOSversionChart, #apexIPlistChart, #apexRunServiceChart,
