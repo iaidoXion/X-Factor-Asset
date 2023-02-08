@@ -422,7 +422,11 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics_list) msli
                         on msl.computer_id = msli.computer_id
-                        where (ram > 95 or cpu > 95 or drive > 99 or asset_list_statistics_collection_date < '""" + halfHourAgo + """')
+                        where 
+                             (ram > 95 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or cpu > 95 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or drive > 99 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or asset_list_statistics_collection_date <= '""" + fiveMinutesAgo + """' and asset_list_statistics_collection_date >= '""" + halfHourAgo + """')
                         and
                             (ipv_address Ilike '%""" + type[2] + """%' or
                             computer_name Ilike '%""" + type[2] + """%' or                          
