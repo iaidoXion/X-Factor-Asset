@@ -45,8 +45,12 @@ var handleRenderWeakTableData = function () {
 		autoWidth: false,
 		ordering: false,
 		columnDefs: [
-			{ width: "22%", target: [2] },
-			{ width: "65%", target: [3] },
+            { width: "2%", target: [0] },
+            { width: "4%", target: [1] },
+            { width: "20%", target: [2] },
+            { width: "66%", target: [3] },
+            { width: "3%", target: [4] },
+            { width: "4%", target: [5] }
 		],
 		language: {
 			"decimal": "",
