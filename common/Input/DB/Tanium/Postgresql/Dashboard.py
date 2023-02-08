@@ -425,17 +425,18 @@ def plug_in(table, day, type):
                         from
                             minutely_statistics_list) msli
                         on msl.computer_id = msli.computer_id
-                        where (ram > 95 or cpu > 95 or drive > 99 or asset_list_statistics_collection_date < '""" + halfHourAgo + """')
+                        where 
+                             (ram > 95 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or cpu > 95 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or drive > 99 and asset_list_statistics_collection_date >= '""" + fiveMinutesAgo + """'
+                             or asset_list_statistics_collection_date <= '""" + fiveMinutesAgo + """' and asset_list_statistics_collection_date >= '""" + halfHourAgo + """')
                         and
-                            (ipv_address ||
-                            computer_name || 
-                            ram || 
-                            cpu || 
-                            drive ||
-                            ramusage || 
-                            cpuusage || 
-                            driveusage ||
-                            TF) Ilike '%""" + type[2] + """%'
+                            (ipv_address Ilike '%""" + type[2] + """%' or
+                            computer_name Ilike '%""" + type[2] + """%' or                          
+                            ramusage Ilike '%""" + type[2] + """%' or
+                            cpuusage Ilike '%""" + type[2] + """%' or
+                            driveusage Ilike '%""" + type[2] + """%' or
+                            TF Ilike '%""" + type[2] + """%')
                 """
             #################################################################### 페이징 끝 ########################################################################
             if day == 'today':
