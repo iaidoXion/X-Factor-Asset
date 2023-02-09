@@ -176,11 +176,14 @@ def DashboardData():
                     alarmCounter = Counter()
                     for i in alarm_donutChartData:
                         alarmCounter.update(i)
-                    alarm_donutChartDataList = [{key: value} for key, value in alarmCounter.most_common()]
+                    #alarm_donutChartDataList = [{key:value} for key, value in alarmCounter.most_common()]
+                    alarm_donutChartDataList = [{'key':key,'value':value} for key, value in alarmCounter.most_common()]
                     logger.info('dashboard_function.py - alarm_donutChartData - Success')
                 except:
                     logger.warning('dashboard_function.py - Error Occurred')
                     logger.warning('Error - alarm_donutChartData')
+                
+                # alarm_donutChartDataList = [{'key': '192.168.0.0/21', 'value': 4}, {'key': '192.168.0.0/22', 'value': 4}, {'key': '192.168.0.0/23', 'value': 4},{'key': '192.168.0.0/24', 'value': 4},{'key': '192.168.0.0/25', 'value': 4}]*2
 
                 # 배너 슬라이드
                 try:

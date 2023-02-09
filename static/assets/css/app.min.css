@@ -30070,6 +30070,10 @@ body .note-modal-backdrop {
     float: right;
 }
 
+.totalAlarmPin {
+    padding-top: 3px;
+}
+
 #apexTotalAlarmChart .apexcharts-legend {
     top: 10px !important;
     padding: 0;
