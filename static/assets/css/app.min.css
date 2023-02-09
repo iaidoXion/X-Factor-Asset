@@ -18757,6 +18757,14 @@ fieldset:disabled .btn {
     width: 150px !important
 }
 
+.w-170px {
+    width: 170px !important
+}
+
+.w-180px {
+    width: 180px !important
+}
+
 .w-200px {
     width: 200px !important
 }
@@ -18955,6 +18963,10 @@ fieldset:disabled .btn {
 
 .h-100px {
     height: 100px !important
+}
+
+.h-120px {
+    height: 120px !important
 }
 
 .h-130px {
