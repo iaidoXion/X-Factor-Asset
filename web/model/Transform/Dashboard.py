@@ -76,18 +76,28 @@ def banner(data, type):
             #     name = 'RAM Usage Exceeded'
             DFDL.append([name, data[i][2]])
         elif type =='yetodayNC':
-            if data[i][0] == "online_asset":
-                name = "Online Asset"
-            elif data[i][0] == "virtual" and data[i][1] == 'Yes':
-                name = "Virtual"
-            elif data[i][0] == "virtual" and data[i][1] == 'No':
-                name = "Physical"
-            elif data[i][0] == "os" and data[i][1] == 'Windows':
-                name = "Windows"
-            elif data[i][0] == "os" and data[i][1] == 'Linux':
-                name = "Linux"
-            elif data[i][0] == "group_server_count":
-                name = data[i][1]
+            if data[i][0] == 'online_asset':
+                if data[i][1] == 'online_asset':
+                    name = "Online Asset"
+                else :
+                    name = "onlineAsset_unconfirmed"
+            elif data[i][0] == 'virtual':
+                if data[i][1] == 'Yes':
+                    name = "Virtual"
+                elif data[i][1] == 'No':
+                    name = "Physical"
+                else:
+                    name = "isVirtual_unconfirmed"
+            elif data[i][0] == 'os':
+                if data[i][1] == 'unconfirmed':
+                    name = "os_unconfirmed"
+                else :
+                    name = data[i][1]
+            elif data[i][0] == 'group_server_count':
+                if data[i][1] == 'unconfirmed':
+                    name = "ipScope_unconfirmed"
+                else :
+                    name = data[i][1]
             else:
                 continue
             DFDL.append([name, data[i][2]])
