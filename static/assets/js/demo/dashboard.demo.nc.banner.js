@@ -1291,10 +1291,17 @@ var handleRenderChartNC = function () {
     var alarmValue = [];
     var alarmName = [];
 
+
+//    for (var i = 0; i < a.alarm_donutChartData.length; i++) {
+//        alarmValue.push(a.alarm_donutChartData[i]['value']);
+//        alarmName.push(a.alarm_donutChartData[i]['key']);
+//    };
+
+
     if (a.alarm_donutChartData.length >= 5) {
         for (var i = 0; i < 5; i++) {
-          alarmValue.push(Object.values(a.alarm_donutChartData[i]));
-          alarmName.push(Object.keys(a.alarm_donutChartData[i]));
+          alarmValue.push(a.alarm_donutChartData[i]['value']);
+          alarmName.push(a.alarm_donutChartData[i]['key']);
         };
     }
     else if (a.alarm_donutChartData.length == 0) {
@@ -1303,14 +1310,14 @@ var handleRenderChartNC = function () {
     }
     else {
         for (var i = 0; i < a.alarm_donutChartData.length; i++) {
-          alarmValue.push(Object.values(a.alarm_donutChartData[i]));
-          alarmName.push(Object.keys(a.alarm_donutChartData[i]));
+          alarmValue.push(a.alarm_donutChartData[i]['value']);
+          alarmName.push(a.alarm_donutChartData[i]['key']);
         };
     }
 
     var apexTotalAlarmOptions = {
         chart: {
-          height: 150,
+          height: 170,
           type: 'donut',
           events: {
             mounted: (chart) => {
@@ -1341,7 +1348,7 @@ var handleRenderChartNC = function () {
           show: false
         },
         legend: {
-            show: true,
+            show: false,
             width: 175,
             height: 120,
             position: 'right',
@@ -1351,8 +1358,8 @@ var handleRenderChartNC = function () {
             },
         },
         colors: ['rgba(' + app.color.themeRgb + ', .57)', 'rgba(' + app.color.themeRgb + ', .77)', 'rgba(' + app.color.themeRgb + ', .98)'],
-        labels: alarmName.flat(),
-        series: alarmValue.flat(),
+        labels: alarmName,
+        series: alarmValue,
         tooltip: {
           theme: 'dark',
           x: {

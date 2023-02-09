@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <div class="mt-n3 mb-n2" id="apexOSversionChart"></div>
+                            <div class="mt-n3 mb-n2 h-100px" id="apexOSversionChart"></div>
                         </div>
                     </div>
                     <!-- END stat-lg -->
@@ -96,7 +96,7 @@
                         <!-- END stat-sm -->
                         <div>
                             <div class="col-12">
-                                <div class="mt-n3 mb-n2 h-100px" id="apexIPlistChart"></div>
+                                <div id="apexIPlistChart"></div>
                             </div>
                         </div>
                     </div>
@@ -370,7 +370,26 @@
                             <div class="text-white text-opacity-75 mb-2">
                                 <span class="w-50" style="font-size:12px;">IP 대역별 총 알람 수 (상위 5개)</span>
                             </div>
-                            <div id="apexTotalAlarmChart"></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div id="apexTotalAlarmChart"></div>
+                                </div>
+                                <div class="col-6">
+                                    {% if chartData.alarm_donutChartData %}
+                                    <div class="pt-sm-2">
+                                        {% for data in chartData.alarm_donutChartData|slice:":5" %}
+                                        <div class="d-flex small text-white text-opacity-50 text-truncate">
+                                            <div class="col-9 d-flex">
+                                                <i class="fas fa-neuter fa-fw me-1 totalAlarmPin"></i>
+                                                <div title="{{data.key}}">{{data.key}}</div>
+                                            </div>
+                                            <div class="col-2 text-center mb-sm-2">{{data.value}}</div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                         <!-- END card-body -->
                         <!-- BEGIN card-arrow -->
@@ -633,6 +652,9 @@
 <!-- END #content -->
 <script>
 	window.setTimeout('window.location.reload()',600000);
+
+
+
 
 
 
