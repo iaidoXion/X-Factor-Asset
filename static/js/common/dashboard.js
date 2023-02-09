@@ -108,21 +108,23 @@ $(document).ready(function(){
     'mousedown':function(e){
         startDrag = [event.offsetX,event.offsetY];
         $('.selectMap').css('cursor','grabbing')
+        $('.selectMap').on('mousemove', function(e){
+            endDrag = [event.offsetX,event.offsetY];
+            xLocation = endDrag[0] - startDrag[0];
+            yLocation = endDrag[1] - startDrag[1];
+            lastX = lastX + xLocation
+            lastY = lastY + yLocation
+            $('.selectMap').css('cursor','grabbing')
+            $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" +  lastX  + "px," + lastY  +"px)")
+        });
     },
     'mouseup':function(e){
-        endDrag = [event.offsetX,event.offsetY];
-        xLocation = endDrag[0] - startDrag[0];
-        yLocation = endDrag[1] - startDrag[1];
-        lastX = lastX + xLocation
-        lastY = lastY + yLocation
-        $('.selectMap').css('cursor','grab')
-        $('.selectMap').css('transform',"scale("+ zoomCount + ") translate(" +  lastX  + "px," + lastY  +"px)")
-
+       $('.selectMap').off('mousemove');
+       $('.selectMap').css('cursor','grab')
     }
-    });
+
+});
 };
-
-
     dragMap()
 });
 
