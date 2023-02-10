@@ -18997,6 +18997,10 @@ fieldset:disabled .btn {
     height: 205px !important
 }
 
+.h-224px {
+    height: 224px !important
+}
+
 .h-240px {
     height: 240px !important
 }
@@ -19015,6 +19019,14 @@ fieldset:disabled .btn {
 
 .h-300px {
     height: 300px !important
+}
+
+.h-330px {
+    height: 330px !important
+}
+
+.h-340px {
+    height: 340px !important
 }
 
 .h-350px {
@@ -30377,5 +30389,44 @@ body .note-modal-backdrop {
     -webkit-user-select: none;
     -khtml-user-select: none;
     user-select:none;
+}
+
+/* monitoring-page*/
+.Query-History-card{
+    padding: 16px 0px 16px 12px;
+}
+
+.monitoring-table{
+    overflow: auto;
+    height: 230px
+}
+
+/* BEGIN Query-History-table-head*/
+.Query-History-table{
+    text-align: center;
+    width: 99%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.Query-History-table thead tr th{
+    font-weight: lighter;
+}
+
+.Query-History-table thead tr th:nth-child(1){
+    width: 20%;
+}
+
+.Query-History-table thead tr th:nth-child(2),
+.Query-History-table thead tr th:nth-child(3),
+.Query-History-table thead tr th:nth-child(4),{
+    width: 10%;
+}
+
+.Query-History-table thead tr th:nth-child(5){
+    width: 30%;
+}
+
+.Query-History-table thead tr th:nth-child(6){
+    width: 15%;
 }
 

@@ -482,3 +482,15 @@ def faq_ug(request):
     returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'documentation/faq_ug.html', returnData)
 
+############################ X-factor-DF ############################################
+def dataFabric_webQuery(request):
+    returnData = {'menuList': menuListDB, 'Customer': Customer}
+    return render(request, 'dataFabric/webQuery_DF.html', returnData)
+
+def dataFabric_monitoring(request):
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
+    return render(request, 'dataFabric/monitoring_DF.html', returnData)
+
+def dataFabric_Navigator(request):
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
+    return render(request, 'dataFabric/Navigator_DF.html', returnData)

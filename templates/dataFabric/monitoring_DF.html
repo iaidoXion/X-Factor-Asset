@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN content -->
+<div id="content" class="app-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="row">
+                    <!-- BEGIN col-xl-6 -->
+                    <div class="col-xl-6">
+                        <!-- BEGIN card -->
+                        <div class="card mb-3">
+                            <!-- BEGIN card-body -->
+                            <div class="card-body h-224px">
+                                <!-- BEGIN title -->
+                                <span class="fs-16px">Database 접속량</span>
+                                <!-- END title -->
+                                <div class="mt-n3 mb-n2" id="databaseConnectChart"></div>
+                            </div>
+                            <!-- END card-body -->
+
+                            <!-- BEGIN card-arrow -->
+                            <div class="card-arrow">
+                                <div class="card-arrow-top-left"></div>
+                                <div class="card-arrow-top-right"></div>
+                                <div class="card-arrow-bottom-left"></div>
+                                <div class="card-arrow-bottom-right"></div>
+                            </div>
+                            <!-- END card-arrow -->
+                        </div>
+                        <!-- END card -->
+                    </div>
+                    <!-- END col-xl-6 -->
+
+                    <!-- BEGIN col-xl-6 -->
+                    <div class="col-xl-6">
+                        <!-- BEGIN card -->
+                        <div class="card mb-3">
+                            <!-- BEGIN card-body -->
+                            <div class="card-body h-224px">
+                                <!-- BEGIN title -->
+                                <span>User 접속량</span>
+                                <!-- END title -->
+                                <div class="mt-n3 mb-n2" id="UserConnectChart"></div>
+                            </div>
+                            <!-- END card-body -->
+
+                            <!-- BEGIN card-arrow -->
+                            <div class="card-arrow">
+                                <div class="card-arrow-top-left"></div>
+                                <div class="card-arrow-top-right"></div>
+                                <div class="card-arrow-bottom-left"></div>
+                                <div class="card-arrow-bottom-right"></div>
+                            </div>
+                            <!-- END card-arrow -->
+                        </div>
+                        <!-- END card -->
+                    </div>
+                    <!-- END col-xl-6 -->
+
+                    <!-- END col-xl-12 -->
+                    <div class="col-xl-12">
+                        <!-- BEGIN card -->
+                        <div class="card mb-3">
+                            <!-- BEGIN card-body -->
+                            <div class="card-body h-270px">
+                                <!-- BEGIN title -->
+                                <p class="fs-16px">Database CPU 사용량</p>
+                                <!-- END title -->
+                            </div>
+                            <!-- END card-body -->
+                            <div id="CpuLinChart"></div>
+                            <!-- BEGIN card-arrow -->
+                            <div class="card-arrow">
+                                <div class="card-arrow-top-left"></div>
+                                <div class="card-arrow-top-right"></div>
+                                <div class="card-arrow-bottom-left"></div>
+                                <div class="card-arrow-bottom-right"></div>
+                            </div>
+                            <!-- END card-arrow -->
+                        </div>
+                        <!-- END card -->
+                    </div>
+                    <!-- END col-xl-12 -->
+
+                    <!-- END col-xl-12 -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <!-- BEGIN card-body -->
+                            <div class="card-body h-320px Query-History-card">
+                                <p class="fs-16px">Query History</p>
+                                <!-- BEGIN #weak datatable -->
+                                <div class="monitoring-table ps ps--active-y" data-scrollbar="true">
+                                    <table class="table Query-History-table">
+                                        <thead class="table-active">
+                                            <tr>
+                                                <th>Timestamp</th>
+                                                <th>Database</th>
+                                                <th>Table</th>
+                                                <th>User</th>
+                                                <th>Query</th>
+                                                <th>Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2023-01-27 15:10:45</td>
+                                                <td>Teradata</td>
+                                                <td>Menu</td>
+                                                <td>Manager</td>
+                                                <td class="text-truncate" title="SELECT count(*) FROM Menu GG/GOOD/BAD">SELECT count(*) FROM Menu GG/GOOD/BAD</td>
+                                                <td class="text-truncate" title="SUCCES ROWS GG/GOOD/BAD">SUCCES ROWS GG/GOOD/BAD</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-27 14:35:13</td>
+                                                <td>Postgres</td>
+                                                <td>Statistics</td>
+                                                <td>Guest</td>
+                                                <td>CREATE TABLE Statistic</td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-27 14:20:22</td>
+                                                <td>Postgres</td>
+                                                <td>Statistics</td>
+                                                <td>Guest</td>
+                                                <td>DROP TABLE Statistic</td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-27 13:41:51</td>
+                                                <td>Teradata</td>
+                                                <td>Menu</td>
+                                                <td>Admin</td>
+                                                <td>INSERT INTO Menu Values</td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-27 11:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-26 19:40:02</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Manager</td>
+                                                <td>SELECT * FROM USER ORDER BY</td>
+                                                <td>Excuted as Error</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-26 18:10:16</td>
+                                                <td>Teradata</td>
+                                                <td>Web</td>
+                                                <td>Manager</td>
+                                                <td>SELECT count(*) FROM Menu </td>
+                                                <td>Excuted as Error</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-26 17:10:45</td>
+                                                <td>Teradata</td>
+                                                <td>Menu</td>
+                                                <td>Manager</td>
+                                                <td>SELECT count(*) FROM Menu </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-26 16:10:16</td>
+                                                <td>Teradata</td>
+                                                <td>Web</td>
+                                                <td>Manager</td>
+                                                <td>SELECT count(*) FROM Menu </td>
+                                                <td>Excuted as Error</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-26 15:10:16</td>
+                                                <td>Teradata</td>
+                                                <td>Web</td>
+                                                <td>Manager</td>
+                                                <td>SELECT count(*) FROM Menu </td>
+                                                <td>Excuted as Error</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-26 14:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr class="table-active">
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- END #weak datatable -->
+                            </div>
+                            <!-- END card-body -->
+                            <div class="card-arrow">
+                                <div class="card-arrow-top-left"></div>
+                                <div class="card-arrow-top-right"></div>
+                                <div class="card-arrow-bottom-left"></div>
+                                <div class="card-arrow-bottom-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END col-xl-12 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END content -->
+{% endblock %}

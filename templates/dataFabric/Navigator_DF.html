@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load web_filter %}
+{% block content %}
+{% load static %}
+
+<div id="content" class="app-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="d-flex justify-content-sm-around align-items-center text-center">
+                    <div>
+                        <div class="form-control form-control-lg bg-white bg-opacity-25">
+                            <span class ="fs-12px" style="color: white">Database Navigator</span>
+                        </div>
+                        <div>
+                            <button type="button" class="w-70 btn btn-outline-default d-block mt-1 mb-1" style="color: white">Teradata</button>
+                            <button type="button" class="w-70 btn btn-outline-default d-block mb-1" style="color: white">Postgre</button>
+                            <button type="button" class="w-70 btn btn-outline-default d-block mb-1" style="color: white">ETC</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-control form-control-lg bg-white bg-opacity-25">
+                            <span class ="fs-12px" style="color: white">Table Properties</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

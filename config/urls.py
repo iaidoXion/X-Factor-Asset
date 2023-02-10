@@ -54,4 +54,8 @@ urlpatterns = [
     path('report_all_ug/', base_views.report_all_ug, name='report_all_ug'),
     path('technical_support_ug/', base_views.technical_support_ug, name='technical_support_ug'),
     path('faq_ug/', base_views.faq_ug, name='faq_ug'),
+    ########################### x-factor-DF ##########################################
+    path('webQuery_DF/', base_views.dataFabric_webQuery, name='webQuery_DF'),
+    path('monitoring_DF/', base_views.dataFabric_monitoring, name='monitoring_DF'),
+    path('Navigator_DF/', base_views.dataFabric_Navigator, name='Navigator_DF')
 ]
