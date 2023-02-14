@@ -18641,6 +18641,10 @@ fieldset:disabled .btn {
     width: 7px !important
 }
 
+.w-130px {
+    width: 130px !important
+}
+
 .w-40px {
     width: 40px !important
 }
@@ -30429,4 +30433,119 @@ body .note-modal-backdrop {
 .Query-History-table thead tr th:nth-child(6){
     width: 15%;
 }
+
+.TableProperties{
+    text-align: center;
+    width: 99%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+}
+
+.DataFabric-scroll{
+    overflow: overlay;
+    height: 100%;
+    padding-right: 10px;
+}
+
+.DataFabric-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+
+.DataFabric-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+
+.properties tbody tr, .properties tbody tr td, .properties thead tr th{
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      vertical-align: middle
+}
+
+.properties thead tr th:nth-child(1){
+    width: 10%;
+}
+
+.properties thead tr th:nth-child(2){
+    width: 20%;
+}
+
+.properties thead tr th:nth-child(3),
+.properties thead tr th:nth-child(4),
+.properties thead tr th:nth-child(5),{
+    width: 20%;
+}
+
+.properties-View tbody tr td:nth-child(3), .properties-Procedure tbody tr td:nth-child(3), .properties-DDL tbody tr td:nth-child(3){
+    text-align:left;
+}
+
+.properties thead{
+    sposition: -webkit-sticky;
+    position: sticky;
+    height:30px;
+    top: 0;
+    background-color: #f39c12;
+    border:none;
+}
+
+.menu-list{
+    color: white;
+}
+
+
+
+.menu-list:hover{
+    color: rgba(255,255,255,0.7);
+    cursor:pointer;
+}
+
+
+.Navi-DF-menu2,.Navi-DF-menu3, .Navi-DF-menu4, .Navi-DF-menu5 {
+    padding-left:14px;
+}
+
+.Navi-DF-menu1, .Navi-DF-menu2,.Navi-DF-menu3, .Navi-DF-menu4, .Navi-DF-menu5 {
+    font-size:12px;
+}
+
+.properties-View thead tr th:nth-child(2){
+    width: 30%;
+}
+
+.properties-View tr th:nth-child(3){
+    width: 60%;
+}
+
+.properties-View table{
+    table-layout:fixed;
+}
+
+
+
+
+.table-textBox{
+    height: 90px;
+    overflow: hidden;
+}
+
+
+
+.textBox-scroll{
+    overflow:auto;
+}
+
+
+
+.textBox-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+
+.textBox-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
 
