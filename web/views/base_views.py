@@ -494,3 +494,7 @@ def dataFabric_monitoring(request):
 def dataFabric_Navigator(request):
     returnData = {'menuList': menuListDB, 'Customer': Customer,}
     return render(request, 'dataFabric/Navigator_DF.html', returnData)
+
+def dataFabric_setting(request):
+    returnData = {'menuList': menuListDB, 'Customer': Customer,}
+    return render(request, 'dataFabric/setting_DF.html', returnData)

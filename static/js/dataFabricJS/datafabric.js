@@ -156,74 +156,192 @@ var handleRenderDataFabricApexChart = function () {
 //--------------------------------------------------------------------------
   // BEGIN UserConnectChart
   var UserConnectChartOptions = {
-    //    chart: {
-    //      height: 190,
-    //      type: 'bar',
-    //        toolbar: {
-    //          show: false
-    //        },
-    //    },
-    //    plotOptions: {
-    //      bar: {
-    //        columnWidth: '50%',
-    //        distributed: true,
-    //      }
-    //    },
-    //    legend: {
-    //      show: false
-    //    },
-    //    dataLabels: {
-    //      enabled: false
-    //    },
-    //    stroke: {
-    //        show: true,
-    //        width: 1,
-    //        colors: ['transparent']
-    //    },
-    //    colors: ["#c58a2e", "#ffc365", "#fdb43f", "#f39c12"],
-    //    series: [{
-    //      data: [4, 11, 8, 18,]
-    //    }],
-    //    grid: {
-    //        show: true
-    //    },
-    //    xaxis: {
-    //      categories: ['User1', 'Admin', 'Guest', 'Manager'],
-    //      labels: {
-    //        show: true,
-    //        style: {
-    //          colors: '#fff',
-    //          fontSize: '9px',
-    //          cssClass: 'apexcharts-xaxis-label',
-    //        }
-    //      }
-    //    },
-    //    yaxis: {
-    //      labels: {
-    //        show: true,
-    //      }
-    //    },
-    //	fill: {
-    //	  opacity: 1
-    //	},
-    //    tooltip: {
-    //      theme: 'dark',
-    //        x: {
-    //          show: true,
-    //        },
-    //		y: {
-    //	      title: {
-    //		    formatter: function (seriesName) {
-    //		    return ''
-    //			}
-    //		  },
-    //	    formatter: (value) => { return '' + value },
-    //	  }
-    //    }
-
-
+//   BEGIN Columchart
+//    chart: {
+//      height: 190,
+//      type: 'bar',
+//        toolbar: {
+//          show: false
+//        },
+//    },
+//    plotOptions: {
+//      bar: {
+//        columnWidth: '50%',
+//        distributed: true,
+//      }
+//    },
+//    legend: {
+//      show: false
+//    },
+//    dataLabels: {
+//      enabled: false
+//    },
+//    stroke: {
+//        show: true,
+//        width: 1,
+//        colors: ['transparent']
+//    },
+//    colors: ["#c58a2e", "#ffc365", "#fdb43f", "#f39c12"],
+//    series: [{
+//      data: [4, 11, 8, 18]
+//    }],
+//    grid: {
+//        show: true
+//    },
+//    xaxis: {
+//      categories: ['User1', 'Admin', 'Guest', 'Manager'],
+//      labels: {
+//        show: true,
+//        style: {
+//          colors: '#fff',
+//          fontSize: '9px',
+//          cssClass: 'apexcharts-xaxis-label',
+//        }
+//      }
+//    },
+//    yaxis: {
+//      labels: {
+//        show: true,
+//      }
+//    },
+//    fill: {
+//      opacity: 1
+//    },
+//    tooltip: {
+//      theme: 'dark',
+//        x: {
+//          show: true,
+//        },
+//        y: {
+//          title: {
+//            formatter: function (seriesName) {
+//            return ''
+//            }
+//          },
+//        formatter: (value) => { return '' + value },
+//      }
+//    }
+  // END Columchart
+// ============================================================================
+  // BEGIN Bar
+//    chart: {
+//      height: 190,
+//      type: 'bar',
+//      toolbar: {
+//        show: false
+//      },
+//    },
+//    plotOptions: {
+//      bar: {
+//        horizontal: true,
+//        distributed: true
+//      },
+//    },
+//    legend : {
+//      show: false
+//    },
+//    dataLabels: {
+//      enabled: false
+//    },
+//    stroke: {
+//      show: true,
+//      width: 1,
+//      colors: ['transparent']
+//    },
+//    colors: ["#f39c12", "#fdb43f", "#ffc365", "#c58a2e"],
+//    series: [{
+//      data: [4, 11, 8, 18]
+//    }],
+//    grid: {
+//      show: true
+//    },
+//    xaxis: {
+//      categories: ['Manager', 'Admin', 'Guest', 'Manager'],
+//        labels: {
+//          show: true,
+//          style: {
+//            colors: '#fff',
+//              fontSize: '9px',
+//              cssClass: 'apexcharts-xaxis-label',
+//          },
+//        offsetX: 30,
+//        },
+//    },
+//    yaxis: {
+//        labels: {
+//            show: true,
+//        }
+//    },
+//    fill: {
+//        opacity: 1
+//    },
+//    tooltip: {
+//      theme: 'dark',
+//      x: {
+//        show: true,
+//      },
+//      y: {
+//            title: {
+//                formatter: function (seriesName) {
+//                    return ''
+//                }
+//            },
+//            formatter: (value) => { return '' + value },
+//      }
+//    }
+  // END Bar
+// ============================================================================
+//   BEGIN Donut
+      chart: {
+        height: 190,
+        type: 'donut',
+        events: {
+          mounted: (chart) => {
+            chart.windowResizeHandler();
+          },
+        },
+      },
+    plotOptions: {
+      pie: {
+        dataLabels: {
+          offset: 8
+        },
+      },
+    },
+    dataLabels: {
+      enabled: true,
+      formatter(val, opts) {
+        const name = opts.w.globals.labels[opts.seriesIndex]
+        return [val.toFixed(1) + '%']
+      },
+      style: {
+        fontSize: '12px',
+        colors: [app.color.white],
+        fontWeight: 400
+      },
+    },
+    stroke: {
+      show: false
+    },
+    colors: ["#934903", "#b76306", "#db7f08", "#ff9f0c", "#ffbe48", "#ffd16d", "#ffe49d", "#fff3ce"],
+    labels: ["User1","Admin","Guest","Manager"],
+    series: [4, 11, 8, 18],
+    tooltip: {
+      theme: 'dark',
+      x: {
+        show: true
+      },
+      y: {
+        title: {
+          formatter: function (val) {
+            return '' + val + "<br>" + " Count:"
+          }
+        },
+        formatter: (value) => { return '' + value },
+      }
+    }
+//   END Donut
   }
-
     var UserConnectChart = new ApexCharts(
       document.querySelector("#UserConnectChart"),
       UserConnectChartOptions
@@ -232,19 +350,26 @@ var handleRenderDataFabricApexChart = function () {
   // END UserConnectChart
 //--------------------------------------------------------------------------
   // BEGIN Guide_LineChart
-  var cpuusageChartOptions = {
+  var CpuUsageChartOptions = {
     series: [{
-      name: "virtual",
-      data: [8, 9, 10, 7, 8, 12, 16, 20, 18, 14, 8, 10, 16, 20, 25, 18,
-       10, 8, 3, 10, 19, 21, 27, 20, 23, 27 ,30, 34, 39, 44]
+      name: "Teradata",
+      data: [8, 9, 10, 7, 8]
     },
     {
-      name: "physical",
-      data: [46, 42, 39, 36, 30, 32, 26, 28, 31, 10, 6, 14, 22, 26, 19,
-      15, 20, 26, 22, 19, 6, 10, 17, 10, 6, 18, 26, 20, 16, 25]
+      name: "Postgres",
+      data: [46, 42, 39, 36, 30]
+    },
+    {
+      name: "ETC1",
+      data: [10, 15, 30, 35, 20]
+    },
+    {
+      name: "ETC2",
+      data: [8, 9, 10, 7, 8]
     }],
     chart: {
-      height: 145,
+      width: 1300,
+      height: 220,
       type: 'line',
       toolbar: {
         show: false
@@ -253,17 +378,22 @@ var handleRenderDataFabricApexChart = function () {
         mounted: (chart) => {
           chart.windowResizeHandler();
         }
-      }
+      },
+      zoom: {
+        enabled: false
+      },
     },
-    colors: ['rgba(' + app.color.themeRgb + ', .95)', 'rgba(' + app.color.themeRgb + ', .30)'],
+    colors: ['rgba(' + app.color.themeRgb + ', .95)', 'rgba(' + app.color.themeRgb + ', .70)',  'rgba(' + app.color.themeRgb + ', .45)',  'rgba(' + app.color.themeRgb + ', .20)'],
     dataLabels: {
       enabled: false,
     },
     legend : {
-      show: false
+      show: true,
+      position: 'bottom',
+      horizontalAlign: 'center',
     },
     stroke: {
-      curve: 'smooth',
+      curve: 'straight',
       width: 3
     },
     grid: {
@@ -276,29 +406,45 @@ var handleRenderDataFabricApexChart = function () {
       size: 1
     },
     xaxis: {
-      categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
-      '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23',
-      '24', '25', '26', '27', '28', '29', '30'],
       tooltip: {
         enabled: false,
       },
-    },
-    yaxis: {
       labels: {
         show: true,
         formatter: function (val) {
-          return Math.round(val);
+          return 'Jan ' + Math.round(val) + 'nd';
         }
       }
     },
+    yaxis: {
+      forceNiceScale: false,
+      min: 0,
+      max: 100,
+      labels: {
+        formatter: (value) => value.toFixed(0) +'%',
+      },
+    },
+    tooltip: {
+      theme: 'dark',
+      x: {
+        show: true
+      },
+      y: {
+        title: {
+          formatter: function (val) {
+            return '' + val + " :"
+          }
+        },
+        formatter: (value) => { return '' + value + '%' },
+      }
+    }
   };
-  var cpuusageChart = new ApexCharts(
-    document.querySelector("#CpuLinChart"),
-    cpuusageChartOptions
+  var CpuUsageChart = new ApexCharts(
+    document.querySelector("#CpuUsageChart"),
+    CpuUsageChartOptions
   );
-  DocumentLineChart.render();
+  CpuUsageChart.render();
   // END Guide_LineChart
-
 };
 /* Controller
 ------------------------------------------------ */

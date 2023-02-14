@@ -17935,6 +17935,10 @@ fieldset:disabled .btn {
     padding-left: 35px !important
 }
 
+.ps-38px {
+    padding-left: 38px !important
+}
+
 .ps-40px {
     padding-left: 40px !important
 }
@@ -18753,12 +18757,24 @@ fieldset:disabled .btn {
     width: 100px !important
 }
 
+.w-130px {
+    width: 130px !important
+}
+
 .w-150px {
     width: 150px !important
 }
 
+.w-160px {
+    width: 160px !important
+}
+
 .w-170px {
     width: 170px !important
+}
+
+.w-177px {
+    width: 177px !important
 }
 
 .w-180px {
@@ -18801,6 +18817,9 @@ fieldset:disabled .btn {
     width: 600px !important
 }
 
+.w-1052px {
+    width: 1052px !important
+}
 .h-5px {
     height: 5px !important
 }
@@ -18965,6 +18984,10 @@ fieldset:disabled .btn {
     height: 100px !important
 }
 
+.h-110px {
+    height: 110px !important
+}
+
 .h-120px {
     height: 120px !important
 }
@@ -19025,6 +19048,10 @@ fieldset:disabled .btn {
     height: 330px !important
 }
 
+.h-339px {
+    height: 339px !important
+}
+
 .h-340px {
     height: 340px !important
 }
@@ -19035,6 +19062,10 @@ fieldset:disabled .btn {
 
 .h-392px {
     height: 392px !important
+}
+
+.h-396px {
+    height: 396px !important
 }
 
 .h-400px {
@@ -19055,6 +19086,10 @@ fieldset:disabled .btn {
 
 .h-500px {
     height: 500px !important
+}
+
+.h-520px {
+    height: 520px !important
 }
 
 .h-540px {
@@ -30356,7 +30391,7 @@ body .note-modal-backdrop {
 /* END specificsation-table*/
 
 /* BiGIN 원 직접 만들기 */
-.documentation-wrapper{
+/* .documentation-wrapper{
     margin: 0 auto;
     padding: 30px;
     max-width: 1170px;
@@ -30370,6 +30405,7 @@ body .note-modal-backdrop {
     border-radius: 50%;
     text-align: center;
 }
+*/
 /* END 원 직접 만들기 */
 
 /* 유저 가이드 이미지 */
@@ -30507,37 +30543,109 @@ body .note-modal-backdrop {
 
 .monitoring-table{
     overflow: auto;
-    height: 230px
+    height: 280px
 }
 
 /* Query-History-table-head */
 .Query-History-table{
     text-align: center;
     width: 99%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .Query-History-table thead tr th{
     font-weight: lighter;
+    position: sticky;
+    top: 0px;
 }
 
-.Query-History-table thead tr th:nth-child(1){
-    width: 20%;
-}
-
-.Query-History-table thead tr th:nth-child(2),
-.Query-History-table thead tr th:nth-child(3),
-.Query-History-table thead tr th:nth-child(4),{
-    width: 10%;
-}
-
-.Query-History-table thead tr th:nth-child(5){
-    width: 30%;
-}
-
-.Query-History-table thead tr th:nth-child(6){
+.Query-History-table thead tr th:nth-child(1),
+.Query-History-table thead tr th:nth-child(7){
     width: 15%;
 }
 /* END BEGIN Data Fabric css */
+
+
+.Query-History-table thead tr th:nth-child(3),
+.Query-History-table thead tr th:nth-child(4),
+.Query-History-table thead tr th:nth-child(5),
+.Query-History-table thead tr th:nth-child(2){
+    width: 10%;
+}
+
+.Query-History-table thead tr th:nth-child(6){
+    width: 30%;
+}
+
+
+
+
+/* END Query-History-table-head*/
+
+.database-cpu-usage{
+    width : 1052px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* BEGiN Database Connected */
+.database-connected-card{
+    padding: 16px 0px 16px 12px;
+}
+
+.setting-table{
+    overflow: auto;
+    height: 490px;
+}
+
+.database-connected-table{
+    text-align: center;
+    width: 99%;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.database-connected-table thead tr th{
+    font-weight: lighter;
+    position: sticky;
+    top: 0px;
+}
+
+.database-connected-table thead tr th:nth-child(1){
+    width: 5%;
+}
+
+.database-connected-table thead tr th:nth-child(2){
+    width: 20%;
+}
+
+.database-connected-table thead tr th:nth-child(3){
+    width: 17%;
+}
+
+.database-connected-table thead tr th:nth-child(4),{
+    width: 16%;
+}
+
+.database-connected-table thead tr th:nth-child(6){
+    width: 10%
+}
+
+.database-connected-table thead tr th:nth-child(5){
+    width: 18%;
+}
+.database-connected-table thead tr th:nth-child(7){
+    width: 10%;
+}
+
+.database-table-icon:hover{
+    cursor : pointer;
+}
+/* END Database Connected */
+.setting-save-btn{
+    border-radius: 8px;
+}
+
 
 
