@@ -57,5 +57,6 @@ urlpatterns = [
     ########################### x-factor-DF ##########################################
     path('webQuery_DF/', base_views.dataFabric_webQuery, name='webQuery_DF'),
     path('monitoring_DF/', base_views.dataFabric_monitoring, name='monitoring_DF'),
-    path('Navigator_DF/', base_views.dataFabric_Navigator, name='Navigator_DF')
+    path('Navigator_DF/', base_views.dataFabric_Navigator, name='Navigator_DF'),
+    path('setting_DF/', base_views.dataFabric_setting, name='setting_DF'),
 ]
