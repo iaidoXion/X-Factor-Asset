@@ -17935,6 +17935,10 @@ fieldset:disabled .btn {
     padding-left: 35px !important
 }
 
+.ps-38px {
+    padding-left: 38px !important
+}
+
 .ps-40px {
     padding-left: 40px !important
 }
@@ -18757,12 +18761,24 @@ fieldset:disabled .btn {
     width: 100px !important
 }
 
+.w-130px {
+    width: 130px !important
+}
+
 .w-150px {
     width: 150px !important
 }
 
+.w-160px {
+    width: 160px !important
+}
+
 .w-170px {
     width: 170px !important
+}
+
+.w-177px {
+    width: 177px !important
 }
 
 .w-180px {
@@ -18805,6 +18821,9 @@ fieldset:disabled .btn {
     width: 600px !important
 }
 
+.w-1052px {
+    width: 1052px !important
+}
 .h-5px {
     height: 5px !important
 }
@@ -18969,6 +18988,10 @@ fieldset:disabled .btn {
     height: 100px !important
 }
 
+.h-110px {
+    height: 110px !important
+}
+
 .h-120px {
     height: 120px !important
 }
@@ -19029,6 +19052,10 @@ fieldset:disabled .btn {
     height: 330px !important
 }
 
+.h-339px {
+    height: 339px !important
+}
+
 .h-340px {
     height: 340px !important
 }
@@ -19039,6 +19066,10 @@ fieldset:disabled .btn {
 
 .h-392px {
     height: 392px !important
+}
+
+.h-396px {
+    height: 396px !important
 }
 
 .h-400px {
@@ -19059,6 +19090,10 @@ fieldset:disabled .btn {
 
 .h-500px {
     height: 500px !important
+}
+
+.h-520px {
+    height: 520px !important
 }
 
 .h-540px {
@@ -30290,7 +30325,6 @@ body .note-modal-backdrop {
 .weakModal .state-tooltip:hover .state-tooltip-text {
     display: block;
 }
-
 /* end - datatable weak detail modal Table css */
 
 /* begin - table-report css */
@@ -30361,7 +30395,7 @@ body .note-modal-backdrop {
 /* END specificsation-table*/
 
 /* BiGIN 원 직접 만들기 */
-.documentation-wrapper{
+/* .documentation-wrapper{
     margin: 0 auto;
     padding: 30px;
     max-width: 1170px;
@@ -30375,6 +30409,7 @@ body .note-modal-backdrop {
     border-radius: 50%;
     text-align: center;
 }
+*/
 /* END 원 직접 만들기 */
 
 /* 유저 가이드 이미지 */
@@ -30395,44 +30430,174 @@ body .note-modal-backdrop {
     user-select:none;
 }
 
-/* monitoring-page*/
+/* BEGIN Data Fabric css */
+/* Query web */
+.change-tabs {
+  border: 0 !important;
+}
+
+.change-link {
+  font-weight: bold;
+  color: var(--bs-black) !important;
+  border: 1px solid #798e98 !important;
+  background-color: #798e98 !important;
+  border-radius: var(--bs-border-radius) !important;
+}
+
+.change-link:hover {
+  font-weight: bold;
+  color: var(--bs-black) !important;
+  border: 1px solid #a8b6bc !important;
+  background-color: #9baab2 !important;
+}
+
+.change-link.active {
+  color: var(--bs-black) !important;
+  border-color: var(--bs-warning) !important;
+  background-color: var(--bs-warning) !important;
+}
+.query-container, .result-container {
+    width: 100%;
+    height: 100%;
+}
+
+.query-container .queryBtn {
+    color: #fff;
+    border-radius: var(--bs-border-radius);
+}
+
+.query-container .queryBtn-outline {
+    border-radius: var(--bs-border-radius);
+}
+
+.query-container .query-tabs,
+.result-container .result-tabs {
+    margin-bottom: 3px;
+}
+
+.query-container .query-box,
+.result-container .result-box {
+    width: 100%;
+    height: 350px;
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.query-container .query-box .query-input {
+    width: 100%;
+    height: 350px;
+    background-color: rgba(255, 255, 255, .2);
+    border: 1px solid rgba(255, 255, 255, .2);
+    outline: none;
+    caret-color: var(--bs-warning);
+}
+
+.result-container  {
+    margin-top: 15px;
+}
+
+.result-container .queryDownload-container .queryDownload-box .downloadBtn {
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--bs-border-radius);
+    color: #fff;
+    text-align: center;
+}
+
+.result-container .queryDownload-container .queryDownload-box .downloadBtn:hover {
+    background-color: transparent;
+    color: var(--bs-warning);
+    border-color: var(--bs-warning);
+}
+
+.result-container .queryDownload-container .queryDownload-box .downloadBtn:nth-child(1),
+.result-container .queryDownload-container .queryDownload-box .downloadBtn:nth-child(2) {
+    margin-right: 5px;
+}
+
+.result-container .queryDownload-container .queryDownload-box .downloadBtn .file-icon {
+    font-size: 20px;
+}
+
+.result-container .queryDownload-container .queryDownload-box .download-text {
+    display: inline-block;
+    width: 40px;
+    height: 18px;
+}
+
+.result-container .result-box {
+    padding: 10px 0;
+    border: 1px solid rgba(255, 255, 255, .2);
+}
+
+.result-container .result-box .resultTable {
+   width: 98%;
+   margin: 0 auto;
+   background-color: rgba(255, 255, 255, .2);
+   padding: 0 !important;
+}
+
+/* monitoring-page */
 .Query-History-card{
     padding: 16px 0px 16px 12px;
 }
 
 .monitoring-table{
     overflow: auto;
-    height: 230px
+    height: 280px
 }
 
-/* BEGIN Query-History-table-head*/
+/* Query-History-table-head */
 .Query-History-table{
     text-align: center;
     width: 99%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .Query-History-table thead tr th{
     font-weight: lighter;
+    position: sticky;
+    top: 0px;
 }
 
-.Query-History-table thead tr th:nth-child(1){
-    width: 20%;
+.Query-History-table thead tr th:nth-child(1),
+.Query-History-table thead tr th:nth-child(7){
+    width: 15%;
 }
+/* END BEGIN Data Fabric css */
 
-.Query-History-table thead tr th:nth-child(2),
+
 .Query-History-table thead tr th:nth-child(3),
-.Query-History-table thead tr th:nth-child(4),{
+.Query-History-table thead tr th:nth-child(4),
+.Query-History-table thead tr th:nth-child(5),
+.Query-History-table thead tr th:nth-child(2){
     width: 10%;
 }
 
-.Query-History-table thead tr th:nth-child(5){
+.Query-History-table thead tr th:nth-child(6){
     width: 30%;
 }
 
-.Query-History-table thead tr th:nth-child(6){
-    width: 15%;
+
+
+
+/* END Query-History-table-head*/
+
+.database-cpu-usage{
+    width : 1052px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
+
+/* BEGiN Database Connected */
+.database-connected-card{
+    padding: 16px 0px 16px 12px;
+}
+
 
 .TableProperties{
     text-align: center;
@@ -30535,7 +30700,58 @@ body .note-modal-backdrop {
 .textBox-scroll{
     overflow:auto;
 }
+.setting-table{
+    overflow: auto;
+    height: 490px;
+}
 
+.database-connected-table{
+    text-align: center;
+    width: 99%;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.database-connected-table thead tr th{
+    font-weight: lighter;
+    position: sticky;
+    top: 0px;
+}
+
+.database-connected-table thead tr th:nth-child(1){
+    width: 5%;
+}
+
+.database-connected-table thead tr th:nth-child(2){
+    width: 20%;
+}
+
+.database-connected-table thead tr th:nth-child(3){
+    width: 17%;
+}
+
+.database-connected-table thead tr th:nth-child(4),{
+    width: 16%;
+}
+
+.database-connected-table thead tr th:nth-child(6){
+    width: 10%
+}
+
+.database-connected-table thead tr th:nth-child(5){
+    width: 18%;
+}
+.database-connected-table thead tr th:nth-child(7){
+    width: 10%;
+}
+
+.database-table-icon:hover{
+    cursor : pointer;
+}
+/* END Database Connected */
+.setting-save-btn{
+    border-radius: 8px;
+}
 
 
 .textBox-scroll::-webkit-scrollbar-thumb {

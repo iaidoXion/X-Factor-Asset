@@ -3,9 +3,10 @@
 {% load static %}
 
 <!-- BEGIN content -->
-<div id="content" class="app-content">
+<div id="content" class="app-content" style="padding: 1rem !important;">
     <div class="container">
         <div class="row justify-content-center">
+            <!-- BEGIN col-xl-10 -->
             <div class="col-xl-10">
                 <div class="row">
                     <!-- BEGIN col-xl-6 -->
@@ -15,9 +16,9 @@
                             <!-- BEGIN card-body -->
                             <div class="card-body h-224px">
                                 <!-- BEGIN title -->
-                                <span class="fs-16px">Database 접속량</span>
+                                <span class="fs-12px">Database 접속량</span>
                                 <!-- END title -->
-                                <div class="mt-n3 mb-n2" id="databaseConnectChart"></div>
+                                <div id="databaseConnectChart" class="mt-n3 mb-n2" ></div>
                             </div>
                             <!-- END card-body -->
 
@@ -41,9 +42,9 @@
                             <!-- BEGIN card-body -->
                             <div class="card-body h-224px">
                                 <!-- BEGIN title -->
-                                <span>User 접속량</span>
+                                <span class="fs-12px">User 접속량</span>
                                 <!-- END title -->
-                                <div class="mt-n3 mb-n2" id="UserConnectChart"></div>
+                                <div id="UserConnectChart" class="mt-n3 mb-n2" ></div>
                             </div>
                             <!-- END card-body -->
 
@@ -67,11 +68,13 @@
                             <!-- BEGIN card-body -->
                             <div class="card-body h-270px">
                                 <!-- BEGIN title -->
-                                <p class="fs-16px">Database CPU 사용량</p>
+                                <span class="fs-12px">Database CPU 사용량</span>
                                 <!-- END title -->
+                                <div class="database-cpu-usage ">
+                                    <div id="CpuUsageChart" class="mt-n3 mb-n2"></div>
+                                </div>
                             </div>
                             <!-- END card-body -->
-                            <div id="CpuLinChart"></div>
                             <!-- BEGIN card-arrow -->
                             <div class="card-arrow">
                                 <div class="card-arrow-top-left"></div>
@@ -83,20 +86,22 @@
                         </div>
                         <!-- END card -->
                     </div>
+
                     <!-- END col-xl-12 -->
 
                     <!-- END col-xl-12 -->
                     <div class="col-xl-12">
                         <div class="card">
                             <!-- BEGIN card-body -->
-                            <div class="card-body h-320px Query-History-card">
-                                <p class="fs-16px">Query History</p>
-                                <!-- BEGIN #weak datatable -->
+                            <div class="card-body h-340px Query-History-card">
+                                <p class="fs-12px">Query History</p>
+                                <!-- BEGIN monitoring-table -->
                                 <div class="monitoring-table ps ps--active-y" data-scrollbar="true">
-                                    <table class="table Query-History-table">
-                                        <thead class="table-active">
-                                            <tr>
+                                    <table class="table table-striped Query-History-table fs-12px">
+                                        <thead>
+                                            <tr class="table-dark">
                                                 <th>Timestamp</th>
+                                                <th>Dataname</th>
                                                 <th>Database</th>
                                                 <th>Table</th>
                                                 <th>User</th>
@@ -107,14 +112,16 @@
                                         <tbody>
                                             <tr>
                                                 <td>2023-01-27 15:10:45</td>
+                                                <td></td>
                                                 <td>Teradata</td>
                                                 <td>Menu</td>
                                                 <td>Manager</td>
-                                                <td class="text-truncate" title="SELECT count(*) FROM Menu GG/GOOD/BAD">SELECT count(*) FROM Menu GG/GOOD/BAD</td>
-                                                <td class="text-truncate" title="SUCCES ROWS GG/GOOD/BAD">SUCCES ROWS GG/GOOD/BAD</td>
+                                                <td class="text-truncate" title="SELECT count(*) FROM Menu GG/GOOD/BAD">SELECT count(*) FROM Menu </td>
+                                                <td class="text-truncate" title="SUCCES ROWS GG/GOOD/BAD">SUCCES ROWS </td>
                                             </tr>
-                                            <tr class="table-active">
+                                            <tr>
                                                 <td>2023-01-27 14:35:13</td>
+                                                <td></td>
                                                 <td>Postgres</td>
                                                 <td>Statistics</td>
                                                 <td>Guest</td>
@@ -123,14 +130,16 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-27 14:20:22</td>
+                                                <td></td>
                                                 <td>Postgres</td>
                                                 <td>Statistics</td>
                                                 <td>Guest</td>
                                                 <td>DROP TABLE Statistic</td>
                                                 <td>SUCCES ROWS</td>
                                             </tr>
-                                            <tr class="table-active">
+                                            <tr>
                                                 <td>2023-01-27 13:41:51</td>
+                                                <td></td>
                                                 <td>Teradata</td>
                                                 <td>Menu</td>
                                                 <td>Admin</td>
@@ -139,14 +148,16 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-27 11:58:33</td>
+                                                <td></td>
                                                 <td>ETC1</td>
                                                 <td>User</td>
                                                 <td>Admin</td>
                                                 <td>SELECT * FROM USER WHERE </td>
                                                 <td>SUCCES ROWS</td>
                                             </tr>
-                                            <tr class="table-active">
+                                            <tr>
                                                 <td>2023-01-26 19:40:02</td>
+                                                <td></td>
                                                 <td>ETC1</td>
                                                 <td>User</td>
                                                 <td>Manager</td>
@@ -155,14 +166,16 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-26 18:10:16</td>
+                                                <td></td>
                                                 <td>Teradata</td>
                                                 <td>Web</td>
                                                 <td>Manager</td>
                                                 <td>SELECT count(*) FROM Menu </td>
                                                 <td>Excuted as Error</td>
                                             </tr>
-                                            <tr class="table-active">
+                                            <tr>
                                                 <td>2023-01-26 17:10:45</td>
+                                                <td></td>
                                                 <td>Teradata</td>
                                                 <td>Menu</td>
                                                 <td>Manager</td>
@@ -171,14 +184,16 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-26 16:10:16</td>
+                                                <td></td>
                                                 <td>Teradata</td>
                                                 <td>Web</td>
                                                 <td>Manager</td>
                                                 <td>SELECT count(*) FROM Menu </td>
                                                 <td>Excuted as Error</td>
                                             </tr>
-                                            <tr class="table-active">
+                                            <tr>
                                                 <td>2023-01-26 15:10:16</td>
+                                                <td></td>
                                                 <td>Teradata</td>
                                                 <td>Web</td>
                                                 <td>Manager</td>
@@ -187,14 +202,7 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-26 14:58:33</td>
-                                                <td>ETC1</td>
-                                                <td>User</td>
-                                                <td>Admin</td>
-                                                <td>SELECT * FROM USER WHERE </td>
-                                                <td>SUCCES ROWS</td>
-                                            </tr>
-                                            <tr class="table-active">
-                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
                                                 <td>ETC1</td>
                                                 <td>User</td>
                                                 <td>Admin</td>
@@ -203,14 +211,7 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-25 21:58:33</td>
-                                                <td>ETC1</td>
-                                                <td>User</td>
-                                                <td>Admin</td>
-                                                <td>SELECT * FROM USER WHERE </td>
-                                                <td>SUCCES ROWS</td>
-                                            </tr>
-                                            <tr class="table-active">
-                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
                                                 <td>ETC1</td>
                                                 <td>User</td>
                                                 <td>Admin</td>
@@ -219,14 +220,7 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-25 21:58:33</td>
-                                                <td>ETC1</td>
-                                                <td>User</td>
-                                                <td>Admin</td>
-                                                <td>SELECT * FROM USER WHERE </td>
-                                                <td>SUCCES ROWS</td>
-                                            </tr>
-                                            <tr class="table-active">
-                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
                                                 <td>ETC1</td>
                                                 <td>User</td>
                                                 <td>Admin</td>
@@ -235,14 +229,7 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-25 21:58:33</td>
-                                                <td>ETC1</td>
-                                                <td>User</td>
-                                                <td>Admin</td>
-                                                <td>SELECT * FROM USER WHERE </td>
-                                                <td>SUCCES ROWS</td>
-                                            </tr>
-                                            <tr class="table-active">
-                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
                                                 <td>ETC1</td>
                                                 <td>User</td>
                                                 <td>Admin</td>
@@ -251,6 +238,43 @@
                                             </tr>
                                             <tr>
                                                 <td>2023-01-25 21:58:33</td>
+                                                <td></td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
+                                                <td>ETC1</td>
+                                                <td>User</td>
+                                                <td>Admin</td>
+                                                <td>SELECT * FROM USER WHERE </td>
+                                                <td>SUCCES ROWS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-01-25 21:58:33</td>
+                                                <td></td>
                                                 <td>ETC1</td>
                                                 <td>User</td>
                                                 <td>Admin</td>
@@ -260,8 +284,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-
-                                <!-- END #weak datatable -->
+                                <!-- END monitoring-table -->
                             </div>
                             <!-- END card-body -->
                             <div class="card-arrow">
@@ -275,8 +298,10 @@
                     <!-- END col-xl-12 -->
                 </div>
             </div>
+            <!-- END col-xl-10 -->
         </div>
     </div>
 </div>
 <!-- END content -->
+
 {% endblock %}

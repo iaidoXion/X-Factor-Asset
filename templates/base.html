@@ -93,61 +93,61 @@
     <!-- 기본 템플릿 안에 삽입될 내용 End -->
     </div>
   <!-- END #app -->
+
   <!-- Bootstrap JS -->
   <script src="{% static 'js/jquery/jquery-3.6.0.min.js' %}"></script>
-  <script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
   <!-- ================== BEGIN core-js ================== -->
   <script src="{% static 'assets/js/vendor.min.js' %}"></script>
   <script src="{% static 'assets/js/app.min.js' %}"></script>
+  <script src="{% static 'js/jquery/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/apexcharts/dist/apexcharts.min.js' %}"></script>
   <!-- ================== END core-js ================== -->
 
-  <!-- ================== BEGIN swiper-js ================== -->
-  <script src="{% static 'js/jquery/swiper-bundle.min.js' %}"></script>
-  <!-- ================== END swiper-js ================== -->
-
-  <!-- ================== BEGIN page-js ================== -->
+  <!-- ================== BEGIN jvectormap-js ================== -->
   <script src="{% static 'assets/plugins/jvectormap-next/jquery-jvectormap.min.js' %}"></script>
   <script src="{% static 'assets/plugins/jvectormap-content/world-mill.js' %}"></script>
   <script src="{% static 'assets/plugins/jvectormap-content/kr-mill.js' %}"></script>
   <script src="{% static 'assets/plugins/jvectormap-content/sn-mill.js' %}"></script>
-  <script src="{% static 'assets/plugins/apexcharts/dist/apexcharts.min.js' %}"></script>
+  <!-- ================== BEGIN jvectormap-js ================== -->
+
+  <!-- ================== BEGIN Chart-js ================== -->
+  <!-- ================== dashboard chart NC or Xfactor ================== -->
   {% if Customer == 'NC' or Customer == 'Xfactor'%}
-<!--  <script src="{% static 'assets/js/demo/dashboard.demo.nc.js' %}"></script>-->
   <script src="{% static 'assets/js/demo/dashboard.demo.nc.banner.js' %}"></script>
   {% else %}
   <script src="{% static 'assets/js/demo/dashboard.demo.js' %}"></script>
   {% endif %}
-  <!-- ================== END page-js ================== -->
 
-  <!-- ================== BEGIN dashboard-js ================== -->
+  <!-- ================== dashboard-js ================== -->
   <script src="{% static 'js/common/dashboard.js' %}"></script>
-  <!-- ================== END dashboard-js ================== -->
 
-  <!-- ================== BEGIN documentation_charts-js ================ -->
-<!--  <script src="{% static 'js/documentationJS/documentation_charts.js' %}"></script>-->
-  <!-- ================== END documentation_charts-js ================ -->
-
-  <!-- ================== BEGIN datafabric.js ================== -->
+  <!-- ================== documentation_chart ================== -->
+  {% if request.path == '/dashboard_chart_ug/' %}
+  <script src="{% static 'js/documentationJS/documentation_charts.js' %}"></script>
+  <!-- ================== dataFabric chart  ================ -->
+  {% elif request.path == '/monitoring_DF/' %}
   <script src="{% static 'js/dataFabricJS/datafabric.js' %}"></script>
-  <!-- ================== END datafabric.js ================== -->
+  {% else %}
+  {% endif %}
+  <!-- ================== END Chart-js ================== -->
 
   <!-- ================== BEGIN TABLE-js ================== -->
   <script src="{% static 'assets/plugins/datatables.net/js/jquery.dataTables.min.js' %}"></script>
   <script src="{% static 'assets/plugins/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
-
-<script src="{% static 'assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
-<script src="{% static 'assets/plugins/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
-<script src="{% static 'assets/plugins/moment/min/moment.min.js' %}"></script>
-<script src="{% static 'assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
-<script src="{% static 'assets/plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
-<script src="{% static 'assets/js/demo/table-plugins.demo.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/moment/min/moment.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'assets/plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+  <script src="{% static 'assets/js/demo/table-plugins.demo.js' %}"></script>
 <!-- ================== END TABLE-js ================== -->
 
 <script src="{% static 'js/common/nav.js' %}"></script>

@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!-- BEGIN content -->
+<div id="content" class="app-content" style="padding: 1rem !important;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- BEGIN col-xl-10 -->
+            <div class="col-xl-10">
+                <div class="row">
+                    <!-- BEGIN col-xl-12 -->
+                    <div class="col-xl-12">
+                        <!-- BEGIN card -->
+                        <div class="form-control form-control-lg bg-white bg-opacity-25 text-center w-170px mb-3px">
+                            <span class="fs-12px " style="color: white">Database Navigator</span>
+                        </div>
+                        <div class="card mb-5">
+                            <!-- BEGIN card-body -->
+                            <div class="card-body h-auto">
+                                <div class="row justify-content-center">
+                                    <!-- BEGIN col-xl-10 -->
+                                    <div class="col-xl-9">
+                                        <span>Server</span>
+                                        <div class="card mb-4">
+                                            <div class="card-body h-auto">
+                                                <div class="row justify-content-center">
+                                                <!-- BEGIN col-xl-10 -->
+                                                    <div class="col-xl-10 mb-4 d-flex">
+                                                        <span class="ps-9px">Database : </span>
+                                                        <span>
+                                                            <select class="w-200px text-center">
+                                                                <option>Teradata</option>
+                                                                <option>Postgres</option>
+                                                                <option>ETC1</option>
+                                                                <option>ETC2</option>
+                                                                <option>ETC3</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                <!-- END col-xl-10 -->
+                                                <!-- BEGIN col-xl-5 -->
+                                                    <div class="col-xl-5 ">
+                                                      <span class="ps-38px">Host : </span> <input class="w-200px" type="text">
+                                                    </div>
+                                                <!-- END col-xl-5 -->
+                                                <!-- BEGIN col-xl-5 -->
+                                                    <div class="col-xl-5">
+                                                      <span class="ps-50px">Port :</span> <input class="w-200px" type="text">
+                                                    </div>
+                                                <!-- END col-xl-5 -->
+                                                </div>
+                                            </div>
+                                            <div class="card-arrow">
+                                                <div class="card-arrow-top-left"></div>
+                                                <div class="card-arrow-top-right"></div>
+                                                <div class="card-arrow-bottom-left"></div>
+                                                <div class="card-arrow-bottom-right"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END col-xl-10 -->
+                                </div>
+                                <!-- BEGIN col-xl-12 -->
+                                <div class="col-xl-12">
+                                    <div class="text-end">
+                                        <button class="setting-save-btn btn btn-outline-default w-130px ">Save</button>
+                                    </div>
+                                </div>
+                                <!-- END col-xl-10 -->
+                            </div>
+                            <!-- END card-body -->
+                            <!-- BEGIN card-arrow -->
+                            <div class="card-arrow">
+                                <div class="card-arrow-top-left"></div>
+                                <div class="card-arrow-top-right"></div>
+                                <div class="card-arrow-bottom-left"></div>
+                                <div class="card-arrow-bottom-right"></div>
+                            </div>
+                            <!-- END card-arrow -->
+                        </div>
+                        <!-- END card -->
+                    </div>
+                    <!-- END col-xl-12 -->
+
+                    <!-- END col-xl-12 -->
+                    <div class="col-xl-12">
+                        <div class="form-control form-control-lg bg-white bg-opacity-25 text-center w-170px mb-3px">
+                            <span class="fs-12px" style="color: white">Database Connected</span>
+                        </div>
+                        <div class="card">
+                            <!-- BEGIN card-body -->
+                            <div class="card-body h-520px database-connected-card">
+                                <!-- BEGIN setting-table -->
+                                <div class="setting-table ps ps--active-y" data-scrollbar="true">
+                                    <table class="table table-striped database-connected-table fs-12px">
+                                        <thead>
+                                            <tr class="table-dark">
+                                                <th>NO</th>
+                                                <th>Dataname</th>
+                                                <th>Database</th>
+                                                <th>Host</th>
+                                                <th>Port</th>
+                                                <th>Username</th>
+                                                <th>Modify</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td></td>
+                                                <td>Postgres</td>
+                                                <td>127.0.0.1</td>
+                                                <td>5432</td>
+                                                <td>hostname</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td></td>
+                                                <td>ETC1</td>
+                                                <td>192.168.0.0</td>
+                                                <td>1234</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td></td>
+                                                <td>ETC2</td>
+                                                <td>localhost</td>
+                                                <td>9999</td>
+                                                <td>admin</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td></td>
+                                                <td>ETC3</td>
+                                                <td>localhost</td>
+                                                <td>5678</td>
+                                                <td>admin</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>9</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>10</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>11</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>12</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>15</td>
+                                                <td></td>
+                                                <td>Teradata</td>
+                                                <td>localhost</td>
+                                                <td>1025</td>
+                                                <td>Username</td>
+                                                <td class="text-center"><i class="bi bi-gear database-table-icon"></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END setting-table -->
+                            </div>
+                            <!-- END card-body -->
+                            <div class="card-arrow">
+                                <div class="card-arrow-top-left"></div>
+                                <div class="card-arrow-top-right"></div>
+                                <div class="card-arrow-bottom-left"></div>
+                                <div class="card-arrow-bottom-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END col-xl-12 -->
+                </div>
+            </div>
+            <!-- END col-xl-12 -->
+        </div>
+    </div>
+</div>
+<!-- END content -->
+
+{% endblock %}
