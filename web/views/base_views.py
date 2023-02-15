@@ -311,13 +311,13 @@ def gpuServer_moreInfo_paging(request):
     data = [ str(length), str(page), str(search)]
     SMD = PDPI('statistics', 'gpuServerMore', data)
     for i in range(len(SMD)):
-        model = SMD[i]['model'].replace("{","").replace("}","")
-        if (model.split(",")[1]).isdigit():
-            SMD[i]['model'] = model.split(",")[0]
-            SMD[i]['count'] = str(model.split(",")[1])
+        model = eval(SMD[i]['model'])
+        if type(list(model)[0]) == str:
+            SMD[i]['model'] = list(model)[0]
+            SMD[i]['count'] = str(list(model)[1])
         else:
-            SMD[i]['model'] = model.split(",")[1]
-            SMD[i]['count'] = str(model.split(",")[0])
+            SMD[i]['model'] = list(model)[1]
+            SMD[i]['count'] = str(list(model)[0])
 
         # model = SMD[i]['model'].replace(',', '').replace('"', '').replace('{', '').replace('}','')[1:]
         # count = SMD[i]['model'].replace(',', '').replace('"', '').replace('{', '').replace('}','')[0]
