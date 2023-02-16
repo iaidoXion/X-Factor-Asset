@@ -1552,8 +1552,8 @@ worldMapData.forEach(function (datum) {
       "stroke-opacity": .5,
       "stroke-width": 0,
       "r": 1,
-      "opacity": 0.74,
-      "fill-opacity": 0.74
+      "opacity": 0.34,
+      "fill-opacity": 0.34
     })
     .transition()
     .duration(6000)
