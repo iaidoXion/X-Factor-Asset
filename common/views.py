@@ -323,4 +323,4 @@ def taniumUsers(user_id, user_pw):
             print()
 
     except ConnectionError as e:
-        print(e)
+        print(str(e))
