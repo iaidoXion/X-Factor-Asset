@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 import hashlib
 import psycopg2
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 with open("setting.json", encoding="UTF-8") as f:
     SETTING = json.loads(f.read())
@@ -51,6 +52,7 @@ def signup(request):
             res_data['user_rank'] = user_rank
             return render(request, 'common/signup.html', res_data)
 
+@csrf_exempt
 def login(request):
     if Login_Method == "WEB":
         if request.method == 'GET':
