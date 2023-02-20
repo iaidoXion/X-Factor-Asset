@@ -306,19 +306,37 @@ def chart_data(data, type):
         V_count = []
         date_list = []
         count = []
-        for i in range(len(data)):
-            if data[i][0] == 'Yes':
-                V_count.append(data[i][1])
-                V_date_list.append(str(data[i][2]))
+        df = pd.DataFrame(data, columns=['isVirtual', 'value', 'datetime'])
+        df_yes = df[df['isVirtual'] == 'Yes'].rename(columns={'isVirtual':'Yes'})
+        df_no = df[df['isVirtual'] == 'No'].rename(columns={'isVirtual':'No'})
+        df_merge = pd.merge(left=df_yes, right=df_no, how="outer", on="datetime").sort_values(by='datetime', ascending=True).reset_index(drop=True)
+        df_merge['Yes'] = df_merge['Yes'].fillna('Yes')
+        df_merge['No'] = df_merge['No'].fillna('No')
+        df_merge['value_x'] = df_merge['value_x'].fillna(0)
+        df_merge['value_y'] = df_merge['value_y'].fillna(0)
+        for i in range(len(df_merge['datetime'])):
+            V_count.append(df_merge['value_x'][i])
+            count.append(df_merge['value_y'][i])
+            if str(df_merge['datetime'][i]).split(" ")[0].split("-")[2].startswith('0'):
+                date_list.append(str(df_merge['datetime'][i]).split(" ")[0].split("-")[2].replace('0', ""))
             else:
-                count.append(data[i][1])
-                if str(data[i][2]).split("-")[2][0:2].startswith('0'):
-                    date_list.append(str(data[i][2]).split("-")[2][0:2].replace('0', ""))
-                else:
-                    date_list.append(str(data[i][2]).split("-")[2][0:2])
-
+                date_list.append(str(df_merge['datetime'][i]).split(" ")[0].split("-")[2])
         ChartDataList = [{"data": [{"name": "virtual", "data": V_count}, {"name": "physical", "data": count}], "date": date_list}]
 
+        # for i in range(len(data)):
+        #     if data[i][0] == 'Yes':
+        #         V_count.append(data[i][1])
+        #         V_date_list.append(str(data[i][2]))
+        #     else:
+        #         count.append(data[i][1])
+        #         #print(str(data[i][2]).split("-")[2][0:2])
+        #         if str(data[i][2]).split("-")[2][0:2].startswith('0'):
+        #             date_list.append(str(data[i][2]).split("-")[2][0:2].replace('0', ""))
+        #         else:
+        #             date_list.append(str(data[i][2]).split("-")[2][0:2])
+        #
+        # ChartDataList = [{"data": [{"name": "virtual", "data": V_count}, {"name": "physical", "data": count}], "date": date_list}]
+        #print(ChartDataList)
     if type == 'Bar':
         x = sorted(ChartDataList, key=lambda x: x['value'], reverse=True)[0:3]
         ChartDataList = x
