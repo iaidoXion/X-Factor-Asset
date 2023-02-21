@@ -43,14 +43,15 @@
                 </div>
                 <div class="menu-text d-sm-block d-none">{{ request.session.sessionid }}</div>
             </a>
+
             <div class="dropdown-menu dropdown-menu-end me-lg-3 fs-11px mt-1">
-                {% if Login_Method != 'Tanium'%}
+                {% if Login_Method == 'Tanium'%}
+                <a class="dropdown-item d-flex align-items-center" onclick="confirmLogout2()">로그아웃 <i class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
+                {% else %}
                 <a class="dropdown-item d-flex align-items-center" href="../updateform?user_id={{request.session.sessionid}}">{{ request.session.sessionname }} 회원정보 <i class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
                 <div class="dropdown-divider"></div>
-                {% endif %}
-                <!--						<a class="dropdown-item d-flex align-items-center" href="email_inbox.html">{{request.session.sessionemail|default:'메일없음' }}<i class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>-->
-                <!--						<a class="dropdown-item d-flex align-items-center" href="settings.html">설정 <i class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>-->
                 <a class="dropdown-item d-flex align-items-center" onclick="confirmLogout2()">로그아웃 <i class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
+                {% endif %}
             </div>
         </div>
         {% endif %}
@@ -78,6 +79,7 @@
 					location.href = "../logout/";
 				}
 			}
+
 
 
 </script>
